@@ -12,6 +12,15 @@ from patent_search import config
 def cmd_build(args):
     from patent_search.build_index import build
 
+    if args.cpc_only:
+        from patent_search.cpc import write_cpc_columns
+
+        if not config.DB_PATH.exists():
+            sys.exit(f"Error: no index at {config.DB_PATH}. Run: python -m patent_search build")
+        c = write_cpc_columns(config.DB_PATH)
+        print(f"{c['distinct_codes']} distinct classification codes: {c['split']} split, "
+              f"{c['subclass_only']} subclass only, {c['unreadable']} unreadable ({c['patents']} patents)")
+        return
     counts = build().counts
     print(f"{counts['patents']} patents")
     print(f"{counts['claims']} claims indexed")
@@ -118,7 +127,10 @@ def cmd_grade(args):
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="python -m patent_search")
     sub = parser.add_subparsers(dest="command", required=True)
-    sub.add_parser("build", help="read the raw dir, clean, embed, write data/index").set_defaults(func=cmd_build)
+    b = sub.add_parser("build", help="read the raw dir, clean, embed, write data/index")
+    b.add_argument("--cpc-only", action="store_true",
+                   help="only (re)write the cpc_* columns of an existing search.db; no re-embedding")
+    b.set_defaults(func=cmd_build)
     s = sub.add_parser("search", help="search claims by question and/or exact keywords")
     s.add_argument("query", nargs="?", help="plain English question")
     s.add_argument("-k", "--keyword", action="append", default=[],

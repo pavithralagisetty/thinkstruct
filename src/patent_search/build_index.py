@@ -12,6 +12,7 @@ import numpy as np
 
 from patent_search import config
 from patent_search.claims import Claim, parse_claims
+from patent_search.cpc import write_cpc_columns
 from patent_search.load import load_patents, remove_reference_numerals
 
 log = logging.getLogger(__name__)
@@ -27,7 +28,11 @@ CREATE TABLE patents (
     kind_code TEXT,
     pub_date TEXT,
     source_file TEXT NOT NULL,
-    vec_row INTEGER
+    vec_row INTEGER,
+    cpc_subclass TEXT,
+    cpc_group INTEGER,
+    cpc_subgroup TEXT,
+    cpc_code TEXT
 );
 CREATE TABLE claims (
     claim_id TEXT PRIMARY KEY,
@@ -125,7 +130,8 @@ def build(raw_dir: Path | None = None, index_dir: Path | None = None, embedder=N
     try:
         con.executescript(SCHEMA)
         con.executemany(
-            "INSERT INTO patents VALUES (?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO patents (doc_number, title, abstract, description, has_description, classification, "
+            "kind_code, pub_date, source_file, vec_row) VALUES (?,?,?,?,?,?,?,?,?,?)",
             [(p.doc_number, p.title, p.abstract, p.description, int(p.has_description),
               p.classification, p.kind_code, p.pub_date, p.source_file,
               patent_vec_row.get(p.doc_number)) for p in patents])
@@ -137,6 +143,8 @@ def build(raw_dir: Path | None = None, index_dir: Path | None = None, embedder=N
         con.commit()
     finally:
         con.close()
+
+    counts["cpc"] = write_cpc_columns(tmp["search.db"])
 
     _save_npy(tmp["claim_vectors.npy"], claim_vectors)
     _save_npy(tmp["patent_vectors.npy"], patent_vectors)

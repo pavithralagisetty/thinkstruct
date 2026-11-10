@@ -108,7 +108,7 @@ Wrap the model in a small class with `embed_documents(texts)` and `embed_query(t
 Small data, keep everything in files and load it into memory at search time.
 
 * `data/index/search.db` (SQLite)
-  * `patents(doc_number PK, title, abstract, description, has_description, classification, kind_code, pub_date, source_file, vec_row)`
+  * `patents(doc_number PK, title, abstract, description, has_description, classification, kind_code, pub_date, source_file, vec_row, cpc_subclass, cpc_group, cpc_subgroup, cpc_code)`
   * `claims(claim_id PK, doc_number, claim_number, text, embed_text, parent_number, root_number, is_independent, opening_missing, vec_row)`
 * `data/index/claim_vectors.npy` and `data/index/patent_vectors.npy`, rows matching `vec_row`
 * `data/index/meta.json`: model name, revision, code revision, vector size, build time, counts
@@ -118,6 +118,17 @@ The build writes every file under a `.tmp` name first and renames them into plac
 `description` is the non blank paragraphs joined with a blank line, or empty.
 
 Keeping all vectors in memory is fine up to a few hundred thousand claims. Keep the vector lookup behind one function so it can be moved to FAISS or Qdrant later without touching the rest. In `search.py` this is the `VectorStore` class; nothing else touches the vectors. The index (SQLite rows, vectors, meta) is loaded once per process.
+
+## Classification codes
+
+`classification` is a CPC symbol stored without separators: `B60C1112FI` is CPC **B60C 11/12** (subclass `B60C`, main group `11`, subgroup `12`; the trailing `FI` is not part of the symbol). The digits alone are ambiguous (`1112` could be `1/112` or `11/12`), so a text prefix filter would be wrong: `B60C1` as a prefix also catches groups 11, 13, 15, 17 and 19. `cpc.py` splits codes properly.
+
+* **Reference data.** `MAIN_GROUPS` lists the real main groups of B60B, B60C, B60D, B60F, B60G, B60J and B60R, taken from the USPTO CPC scheme pages (`https://www.uspto.gov/web/patents/classification/cpc/html/cpc-<SUBCLASS>.html`), without the indexing codes (2000 series). `SUBCLASS_TITLES` and `GROUP_TITLES` hold the scheme titles (cross references in brackets removed). A group whose title could not be read is left out rather than guessed. There are no subgroup titles.
+* **Split rule** (`split_code`). Take the longest real main group that leaves a subgroup of at least 2 digits: `B60B1110` is `11/10` ("Emergency wheels"), `B60D1167` is `1/167` (B60D has no group 11), `B60C15024` is `15/024`. In a subclass not in `MAIN_GROUPS`, a code is split only when one reading is possible (3 digits, `A01B100` is `1/00`); otherwise only the subclass is kept and a warning is logged. All 145 distinct codes in the data split, with no warnings, and every split is a real symbol on the USPTO pages.
+* **Queries** (`parse_query`). Accepts `B60C`, `B60C 1`, `B60C 11/12`, `B60C11/12` and the stored form `B60C1112` (split by the same rule). `/00` means the whole main group. An unknown main group in a known subclass, a one digit subgroup, or text that is not a CPC symbol is a clear `ValueError`.
+* **Matching** (`matches(query, code)`). Whole parts are compared, never text prefixes: `B60C 1` matches only group 1. A subgroup also covers the subgroups under it: `15/02` covers `15/024`.
+* **Stored columns.** `write_cpc_columns(db_path)` fills `cpc_subclass`, `cpc_group` (int), `cpc_subgroup` (digits after the slash, `00` for the main group itself) and `cpc_code` (`B60C 11/12`) in the patents table. The build calls it at the end; `python -m patent_search build --cpc-only` runs it on an existing `search.db` (adding the columns if missing) without re-embedding. A patent without a classification gets nulls.
+* The result cards still show `classification` exactly as stored.
 
 ## Search
 
@@ -158,7 +169,7 @@ When `opening_missing` is true, show the text as it is. The flag lets the caller
 
 * Python function `search(...)` above.
 * CLI through `python -m patent_search` (also `serve` to run the web page on port 8000; `--host` and `--port` override `config.HOST` and `config.PORT`):
-  * `build`: read the raw dir (`config.RAW_DIR`), clean, embed, write `data/index`, print counts (patents, claims indexed, patents without description, claims with missing openings, cancelled claim numbers)
+  * `build`: read the raw dir (`config.RAW_DIR`), clean, embed, write `data/index` (`--cpc-only` only rewrites the CPC columns), print counts (patents, claims indexed, patents without description, claims with missing openings, cancelled claim numbers)
   * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`. The question is optional when `-k` is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON.
 * HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10}` returning the response above. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser. Errors come back as `{"error": "<message>"}`: `400` for bad input (no query or keyword, `top_n` out of range, wrong types, a body that is not JSON) and `503` when the index is missing or was built with a different model. The index loads on the first request, and the model on the first request with a query.
 * Web page at `GET /` (see Frontend).
@@ -263,6 +274,7 @@ patent_search/
     embedder.py             model wrapper
     build_index.py
     keywords.py             keyword parsing and matching
+    cpc.py                  CPC code splitting, query parsing and matching, scheme titles
     search.py
     evaluate.py             model comparison: BM25 baseline, cached vectors, metrics
     grading.py              pooled blind grading and scoring
