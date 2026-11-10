@@ -31,6 +31,7 @@ W_CLAIM = 0.8
 W_PATENT = 0.2
 TOP_N_DEFAULT = 10
 TOP_N_MAX = 100
+CLAIMS_PER_PATENT = 3     # claims shown per patent when results are grouped by patent
 
 # Web server
 HOST = "127.0.0.1"

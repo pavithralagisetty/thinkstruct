@@ -31,8 +31,10 @@ def index(tmp_path_factory):
     raw.mkdir()
     (raw / "patents_1.json").write_text(json.dumps([
         {"doc_number": "B", "title": "SPOKE", "abstract": "A spoke.",
+         "classification": "B60B100FI", "filename": "USBA1-20250110.XML",
          "claims": ["1. A spoke.", "2. The spoke of claim 1, with a tire."]},
         {"doc_number": "A", "title": "TIRE", "abstract": "A tire.",
+         "classification": "B60C1112FI", "filename": "USAA1-20240615.XML",
          "claims": ["1. A tire.", "2. The tire of claim 1, with a sensor.", "a tire"]},
         {"doc_number": "C", "claims": ["1. A spoke."]},
     ]))

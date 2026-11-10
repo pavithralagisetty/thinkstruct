@@ -39,7 +39,8 @@ def cmd_search(args):
 
     keywords = [k for option in args.keyword for k in parse_keywords(option)]
     try:
-        response = search(args.query, keywords or None, args.top)
+        response = search(args.query, keywords or None, args.top, args.classification or None,
+                          args.date_from, args.date_to, args.main_only, args.by)
     except (ValueError, IndexNotReady) as e:
         sys.exit(f"Error: {e}")
 
@@ -47,10 +48,22 @@ def cmd_search(args):
         print(json.dumps(response.to_dict(), indent=2, ensure_ascii=False))
         return
     shown = len(response.hits)
+    unit = "patents" if response.group_by == "patent" else "claims"
     more = f", showing top {shown}" if response.total_matches > shown else ""
-    print(f"{response.total_matches} matching claims{more}\n")
+    print(f"{response.total_matches} matching {unit}{more}\n")
     for rank, h in enumerate(response.hits, 1):
         score = f"{h.score:.2f}  " if h.score is not None else ""
+        if response.group_by == "patent":
+            print(f"{rank}. {score}{h.doc_number}  {h.title}")
+            print(f"   {h.cpc_code or h.classification} · published {h.pub_date} · "
+                  f"{h.matching_claims} matching claim{'s' if h.matching_claims != 1 else ''}")
+            for c in h.claims:
+                label = claim_label(c.is_independent)
+                cscore = f" {c.score:.2f}" if c.score is not None else ""
+                print(f"   - claim {c.claim_number}{cscore}{'  [' + label + ']' if label else ''}")
+                print(textwrap.indent(textwrap.fill(textwrap.shorten(c.text, 300), 96), "     "))
+            print()
+            continue
         label = claim_label(h.is_independent)
         print(f"{rank}. {score}{h.doc_number} claim {h.claim_number}"
               f"{'  [' + label + ']' if label else ''}  {h.title}")
@@ -137,6 +150,14 @@ def main(argv=None):
                    help='exact keyword; repeatable; "double quotes" keep a phrase together')
     s.add_argument("-n", "--top", type=int, default=config.TOP_N_DEFAULT, help="number of results")
     s.add_argument("--json", action="store_true", help="print the response as JSON")
+    s.add_argument("--by", choices=["claim", "patent"], default="claim",
+                   help="list claims (default) or group them by patent")
+    s.add_argument("-c", "--classification", action="append", default=[], metavar="CODE",
+                   help='CPC filter, e.g. "B60C 11/12"; repeatable, commas allowed; any code matches')
+    s.add_argument("--from", dest="date_from", metavar="DATE", help="published on or after (2024, 2024-06, 2024-06-15)")
+    s.add_argument("--to", dest="date_to", metavar="DATE", help="published on or before (inclusive)")
+    s.add_argument("--main-only", action="store_true",
+                   help="only independent (main) claims; claims with a missing opening are left out")
     s.set_defaults(func=cmd_search)
     v = sub.add_parser("serve", help="run the web page and API")
     v.add_argument("--host", default=config.HOST)

@@ -21,6 +21,11 @@ class SearchRequest(BaseModel):
     query: str | None = None
     keywords: str | list[str] | None = None
     top_n: int = config.TOP_N_DEFAULT
+    classification: str | list[str] | None = None
+    date_from: str | int | None = None
+    date_to: str | int | None = None
+    independent_only: bool = False
+    group_by: str = "claim"
 
 
 def _error(status: int, message: str) -> JSONResponse:
@@ -31,6 +36,11 @@ FIELD_RULES = {
     "query": "query must be a string",
     "keywords": "keywords must be a string or a list of strings",
     "top_n": "top_n must be a whole number",
+    "classification": "classification must be a code or a list of codes",
+    "date_from": "date_from must be a date like 2024, 2024-06 or 2024-06-15",
+    "date_to": "date_to must be a date like 2024, 2024-06 or 2024-06-15",
+    "independent_only": "independent_only must be true or false",
+    "group_by": "group_by must be claim or patent",
 }
 
 
@@ -44,7 +54,7 @@ async def bad_request(request: Request, exc: RequestValidationError):
         elif loc and loc[0] in FIELD_RULES:
             message = FIELD_RULES[loc[0]]
         else:
-            message = "The request body must be a JSON object with query, keywords and top_n"
+            message = "The request body must be a JSON object (query, keywords, top_n and the filters)"
         if message not in messages:
             messages.append(message)
     return _error(400, ". ".join(messages) + ".")
@@ -56,7 +66,8 @@ def post_search(body: SearchRequest):
     try:
         with _index_lock:
             index = search_module.get_index()
-        response = index.search(body.query, body.keywords, body.top_n)
+        response = index.search(body.query, body.keywords, body.top_n, body.classification,
+                                body.date_from, body.date_to, body.independent_only, body.group_by)
     except ValueError as e:
         return _error(400, str(e))
     except IndexNotReady as e:

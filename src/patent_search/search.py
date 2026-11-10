@@ -1,15 +1,18 @@
-"""Search over the built index: exact keyword filter, then semantic ranking."""
+"""Search over the built index: exact keyword and field filters, then semantic ranking."""
 
+import calendar
 import copy
 import json
+import re
 import sqlite3
 from dataclasses import asdict, dataclass
+from datetime import date
 from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
 
-from patent_search import config
+from patent_search import config, cpc
 from patent_search.keywords import compile_keywords, matches_all
 
 REBUILD = "Rebuild it with: python -m patent_search build"
@@ -17,6 +20,10 @@ REBUILD = "Rebuild it with: python -m patent_search build"
 
 class IndexNotReady(RuntimeError):
     """The index is missing or does not match the current config."""
+
+
+GROUP_BY = ("claim", "patent")
+_DATE_RE = re.compile(r"^(\d{4})(?:-(\d{1,2})(?:-(\d{1,2}))?)?$")
 
 
 @dataclass
@@ -30,16 +37,102 @@ class SearchHit:
     opening_missing: bool
     pub_date: str | None
     classification: str
+    cpc_code: str | None
+    source_file: str
+
+
+@dataclass
+class PatentClaim:
+    claim_number: int
+    text: str
+    score: float | None
+    is_independent: bool | None
+    opening_missing: bool
+
+
+@dataclass
+class PatentHit:
+    doc_number: str
+    title: str
+    abstract: str
+    score: float | None             # the score of its best claim
+    matching_claims: int            # its claims that passed step 1
+    claims: list[PatentClaim]       # its best CLAIMS_PER_PATENT claims, in ranked order
+    pub_date: str | None
+    classification: str
+    cpc_code: str | None
     source_file: str
 
 
 @dataclass
 class SearchResponse:
-    total_matches: int
-    hits: list[SearchHit]
+    total_matches: int              # claims, or patents when group_by is "patent"
+    hits: list
+    group_by: str = "claim"
 
     def to_dict(self) -> dict:
         return asdict(self)
+
+
+@dataclass(frozen=True)
+class Filters:
+    """Field filters applied in step 1 together with the keywords (AND)."""
+    classification: tuple[cpc.Cpc, ...] = ()        # any of these
+    date_from: str | None = None                    # inclusive, YYYY-MM-DD
+    date_to: str | None = None                      # inclusive, YYYY-MM-DD
+    independent_only: bool = False
+
+    @property
+    def active(self) -> bool:
+        return bool(self.classification or self.date_from or self.date_to or self.independent_only)
+
+
+def _date_bound(value, name: str, end: bool) -> str | None:
+    """'2024', '2024-06' or '2024-06-15'. A partial date covers the whole year or month."""
+    if value is None or not str(value).strip():
+        return None
+    text = str(value).strip()
+    match = _DATE_RE.match(text)
+    if not match:
+        raise ValueError(f"{name} must be a date like 2024, 2024-06 or 2024-06-15, not {text!r}.")
+    year, month, day = int(match.group(1)), match.group(2), match.group(3)
+    try:
+        if month is None:
+            d = date(year, 12, 31) if end else date(year, 1, 1)
+        elif day is None:
+            m = int(month)
+            if not 1 <= m <= 12:
+                raise ValueError
+            d = date(year, m, calendar.monthrange(year, m)[1] if end else 1)
+        else:
+            d = date(year, int(month), int(day))
+    except ValueError:
+        raise ValueError(f"{name} {text!r} is not a real date.") from None
+    return d.isoformat()
+
+
+def make_filters(classification: str | list[str] | None = None, date_from=None, date_to=None,
+                 independent_only: bool = False) -> Filters:
+    """Build and check the filters. Several classification codes (a list, or one string with
+    commas) mean any of them. Raises ValueError with a clear message for bad input."""
+    if isinstance(classification, str):
+        classification = [classification]
+    if classification is not None and not isinstance(classification, (list, tuple)):
+        raise ValueError("classification must be a code or a list of codes.")
+    codes = []
+    for item in classification or []:
+        if not isinstance(item, str):
+            raise ValueError("classification must be a code or a list of codes.")
+        for part in item.split(","):
+            if part.strip():
+                codes.append(cpc.parse_query(part))
+    start = _date_bound(date_from, "date_from", end=False)
+    stop = _date_bound(date_to, "date_to", end=True)
+    if start and stop and start > stop:
+        raise ValueError(f"date_from ({start}) is after date_to ({stop}).")
+    if not isinstance(independent_only, bool):
+        raise ValueError("independent_only must be true or false.")
+    return Filters(tuple(dict.fromkeys(codes)), start, stop, independent_only)
 
 
 class VectorStore:
@@ -84,7 +177,7 @@ class Index:
         con.row_factory = sqlite3.Row
         try:
             self.patents = {r["doc_number"]: dict(r) for r in con.execute(
-                "SELECT doc_number, title, classification, pub_date, source_file, vec_row FROM patents")}
+                "SELECT doc_number, title, abstract, classification, pub_date, source_file, vec_row FROM patents")}
             self.claims = [dict(r) for r in con.execute(
                 "SELECT doc_number, claim_number, text, is_independent, opening_missing, vec_row "
                 "FROM claims ORDER BY doc_number, claim_number")]
@@ -95,6 +188,10 @@ class Index:
                                    np.load(index_dir / "patent_vectors.npy"))
         if len(self.vectors.claim_vectors) != len(self.claims):
             raise IndexNotReady(f"claim_vectors.npy does not match search.db. {REBUILD}")
+        # Classification split once per patent (same rule as the stored cpc_* columns).
+        for p in self.patents.values():
+            p["cpc"] = cpc.split_code(p["classification"])
+            p["cpc_code"] = str(p["cpc"]) if p["cpc"] else None
         self.claim_rows = np.array([c["vec_row"] for c in self.claims], dtype=np.int64)
         self.patent_rows = np.array(
             [v if (v := self.patents[c["doc_number"]]["vec_row"]) is not None else -1 for c in self.claims],
@@ -123,40 +220,83 @@ class Index:
             text=c["text"], score=score,
             is_independent=None if c["is_independent"] is None else bool(c["is_independent"]),
             opening_missing=bool(c["opening_missing"]), pub_date=p["pub_date"],
-            classification=p["classification"], source_file=p["source_file"],
+            classification=p["classification"], cpc_code=p["cpc_code"], source_file=p["source_file"],
         )
 
+    def patent_hit(self, doc_number: str, ranked: list[tuple[float | None, int]]) -> PatentHit:
+        """ranked: this patent's matching claims as (score, claim index), best first."""
+        p = self.patents[doc_number]
+        claims = []
+        for score, i in ranked[:config.CLAIMS_PER_PATENT]:
+            c = self.claims[i]
+            claims.append(PatentClaim(
+                claim_number=c["claim_number"], text=c["text"], score=score,
+                is_independent=None if c["is_independent"] is None else bool(c["is_independent"]),
+                opening_missing=bool(c["opening_missing"])))
+        return PatentHit(
+            doc_number=doc_number, title=p["title"], abstract=p["abstract"], score=ranked[0][0],
+            matching_claims=len(ranked), claims=claims, pub_date=p["pub_date"],
+            classification=p["classification"], cpc_code=p["cpc_code"], source_file=p["source_file"],
+        )
+
+    def _patent_passes(self, p: dict, filters: Filters) -> bool:
+        if filters.classification and not any(cpc.matches(q, p["cpc"]) for q in filters.classification):
+            return False
+        if filters.date_from and not (p["pub_date"] and p["pub_date"] >= filters.date_from):
+            return False
+        if filters.date_to and not (p["pub_date"] and p["pub_date"] <= filters.date_to):
+            return False
+        return True
+
     def search(self, query: str | None = None, keywords: str | list[str] | None = None,
-               top_n: int = config.TOP_N_DEFAULT) -> SearchResponse:
+               top_n: int = config.TOP_N_DEFAULT, classification: str | list[str] | None = None,
+               date_from=None, date_to=None, independent_only: bool = False,
+               group_by: str = "claim") -> SearchResponse:
         query = query.strip() if query else None
         patterns = compile_keywords(keywords)
-        if not query and not patterns:
-            raise ValueError("Give a query or at least one keyword.")
+        filters = make_filters(classification, date_from, date_to, independent_only)
+        if group_by not in GROUP_BY:
+            raise ValueError(f"group_by must be one of: {', '.join(GROUP_BY)}.")
         if not isinstance(top_n, int) or isinstance(top_n, bool) or not 1 <= top_n <= config.TOP_N_MAX:
             raise ValueError(f"top_n must be a whole number from 1 to {config.TOP_N_MAX}.")
+        if not query and not patterns and not filters.active:
+            raise ValueError("Give a query, at least one keyword, or a filter.")
 
-        # Step 1: exact keyword filter on the claim's own display text.
-        if patterns:
-            matched = [i for i, c in enumerate(self.claims) if matches_all(c["text"], patterns)]
-        else:
-            matched = list(range(len(self.claims)))
-        total = len(matched)
+        # Step 1: exact keywords on the claim's own display text, AND the field filters.
+        allowed = None
+        if filters.classification or filters.date_from or filters.date_to:
+            allowed = {d for d, p in self.patents.items() if self._patent_passes(p, filters)}
+        matched = [
+            i for i, c in enumerate(self.claims)
+            if (allowed is None or c["doc_number"] in allowed)
+            and (not filters.independent_only or c["is_independent"] == 1)
+            and (not patterns or matches_all(c["text"], patterns))
+        ]
 
-        # Step 2b: keywords only. self.claims is already in doc_number, claim_number order.
         if not query:
-            return SearchResponse(total, [self.hit(i, None) for i in matched[:top_n]])
+            # Step 2b: no question. self.claims is already in doc_number, claim_number order.
+            ranked = [(None, i) for i in matched]
+        elif not matched:
+            ranked = []
+        else:
+            # Step 2a: weighted claim and patent similarity.
+            rows = np.array(matched, dtype=np.int64)
+            q = self.embedder.embed_query(query)
+            claim_sim, patent_sim = self.vectors.similarities(q, self.claim_rows[rows], self.patent_rows[rows])
+            scores = config.W_CLAIM * claim_sim.astype(np.float64) + config.W_PATENT * patent_sim.astype(np.float64)
+            ranked = [(round(float(s), 6), i) for s, i in zip(scores, matched)]
+            # Ties: doc_number then claim_number, which is the order of i.
+            ranked.sort(key=lambda t: (-t[0], t[1]))
 
-        # Step 2a: weighted claim and patent similarity.
-        if not matched:
-            return SearchResponse(0, [])
-        rows = np.array(matched, dtype=np.int64)
-        q = self.embedder.embed_query(query)
-        claim_sim, patent_sim = self.vectors.similarities(q, self.claim_rows[rows], self.patent_rows[rows])
-        scores = config.W_CLAIM * claim_sim.astype(np.float64) + config.W_PATENT * patent_sim.astype(np.float64)
-        scored = [(round(float(s), 6), i) for s, i in zip(scores, matched)]
-        # Ties: doc_number then claim_number, which is the order of i.
-        scored.sort(key=lambda t: (-t[0], t[1]))
-        return SearchResponse(total, [self.hit(i, s) for s, i in scored[:top_n]])
+        if group_by == "claim":
+            return SearchResponse(len(matched), [self.hit(i, s) for s, i in ranked[:top_n]], "claim")
+
+        # Group by patent in ranked order: a patent ranks by its best claim.
+        groups: dict[str, list[tuple[float | None, int]]] = {}
+        for s, i in ranked:
+            groups.setdefault(self.claims[i]["doc_number"], []).append((s, i))
+        hits = [self.patent_hit(d, g) for d, g in list(groups.items())[:top_n]]
+        return SearchResponse(len(groups), hits, "patent")
 
 
 @lru_cache(maxsize=1)
@@ -165,5 +305,8 @@ def get_index() -> Index:
 
 
 def search(query: str | None = None, keywords: str | list[str] | None = None,
-           top_n: int = config.TOP_N_DEFAULT) -> SearchResponse:
-    return get_index().search(query, keywords, top_n)
+           top_n: int = config.TOP_N_DEFAULT, classification: str | list[str] | None = None,
+           date_from=None, date_to=None, independent_only: bool = False,
+           group_by: str = "claim") -> SearchResponse:
+    return get_index().search(query, keywords, top_n, classification, date_from, date_to,
+                              independent_only, group_by)

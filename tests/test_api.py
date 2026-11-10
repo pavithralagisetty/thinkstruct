@@ -29,8 +29,15 @@ def test_keyword_string_uses_the_same_parser(client):
 
 
 @pytest.mark.parametrize("body, text", [
-    ({}, "query or at least one keyword"),
-    ({"query": "  ", "keywords": ""}, "query or at least one keyword"),
+    ({}, "at least one keyword, or a filter"),
+    ({"query": "  ", "keywords": ""}, "at least one keyword, or a filter"),
+    ({"classification": "B60C 2"}, "no main group 2"),
+    ({"classification": ["B60C 11", 5]}, "classification must be a code or a list of codes"),
+    ({"date_from": "2024/06"}, "date like 2024, 2024-06 or 2024-06-15"),
+    ({"date_to": "2024-02-30"}, "not a real date"),
+    ({"date_from": "2025", "date_to": "2024"}, "is after date_to"),
+    ({"independent_only": "maybe"}, "independent_only must be true or false"),
+    ({"query": "tire", "group_by": "patents"}, "group_by must be one of"),
     ({"query": "tire", "top_n": 0}, "top_n"),
     ({"query": "tire", "top_n": 1000}, "top_n"),
     ({"query": "tire", "top_n": "ten"}, "top_n must be a whole number"),
@@ -72,3 +79,11 @@ def test_page_loads_nothing_from_the_internet(client):
     page = client.get("/").text
     assert not re.search(r"""(src|href)\s*=\s*["']?(https?:)?//""", page)
     assert "@import" not in page and "url(http" not in page
+
+
+def test_filters_and_grouping_through_the_api(client, index):
+    body = {"classification": "B60C", "date_from": 2024, "independent_only": False, "group_by": "patent"}
+    r = client.post("/search", json=body)
+    assert r.status_code == 200
+    assert r.json() == index.search(None, None, 10, "B60C", 2024, None, False, "patent").to_dict()
+    assert r.json()["group_by"] == "patent"

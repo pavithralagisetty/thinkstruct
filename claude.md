@@ -134,13 +134,26 @@ Keeping all vectors in memory is fine up to a few hundred thousand claims. Keep 
 
 ```python
 search(query: str | None = None,
-       keywords: list[str] | None = None,
-       top_n: int = 10) -> SearchResponse
+       keywords: str | list[str] | None = None,
+       top_n: int = 10,
+       classification: str | list[str] | None = None,
+       date_from: str | None = None,
+       date_to: str | None = None,
+       independent_only: bool = False,
+       group_by: str = "claim") -> SearchResponse
 ```
 
-At least one of `query` or `keywords` is required, otherwise raise a clear error. A blank query counts as none. `top_n` must be a whole number from 1 to `TOP_N_MAX` (100).
+At least one of `query`, `keywords` or a filter is required, otherwise raise a clear error. A filter alone is a valid search. A blank query counts as none. `top_n` must be a whole number from 1 to `TOP_N_MAX` (100). `group_by` must be `"claim"` or `"patent"`.
 
-**Step 1: keyword filter (optional, exact). Runs first.**
+**Step 1: keyword filter and field filters (optional, exact). Runs first.** A claim passes only if it passes the keywords and every filter given (AND).
+
+**Filters** (`make_filters(classification, date_from, date_to, independent_only)` in `search.py`, which checks the input and raises `ValueError` with a clear message):
+
+* `classification`: CPC codes parsed with `cpc.parse_query` and compared with `cpc.matches` (whole parts, see Classification codes), so `B60C 1` matches main group 1 only. Several codes (a list, or one string with commas, `"B60C 11/12, B60D"`) match if any of them matches. Unknown main groups (`B60C 2`), one digit subgroups and text that is not a code are errors.
+* `date_from`, `date_to`: inclusive, on `pub_date`. Each accepts `2024`, `2024-06` or `2024-06-15`; a partial date covers the whole year or month (`date_to = 2024-02` ends on 2024-02-29). Other formats, dates that do not exist (`2024-02-30`) and `date_from` after `date_to` are errors. A patent without a publication date is left out whenever a date filter is set.
+* `independent_only`: keeps only claims with `is_independent = True` (120 in the data). Claims whose opening is missing have an unknown type (`is_independent = None`), so they are left out too, even though some of them are main claims.
+
+**Keywords:**
 
 * Every keyword must appear in the claim (AND across keywords).
 * Match against the claim's own display text only, not the title and not the main claim. A dependent claim matches only on words it actually contains.
@@ -159,9 +172,14 @@ score = W_CLAIM * claim_similarity + W_PATENT * patent_similarity
 
 Defaults `W_CLAIM = 0.8`, `W_PATENT = 0.2`, both in config. Scores are rounded to 6 decimals before sorting, so tiny floating point differences cannot reorder results. Sort by score high to low, then `doc_number`, then `claim_number` so ties always come out in the same order. Return the top `top_n`.
 
-**Step 2b: keywords only.** Return matching claims sorted by `doc_number` then `claim_number`, first `top_n`, with no score.
+**Step 2b: no query (keywords and/or filters only).** Return matching claims sorted by `doc_number` then `claim_number`, first `top_n`, with no score.
 
-**Response.** `total_matches` (claims left after step 1) and a list of hits, each with: `doc_number`, `title`, `claim_number`, `text`, `score` (`None` in keyword only mode), `is_independent`, `opening_missing`, `pub_date`, `classification`, `source_file`.
+**Grouping.** `group_by = "claim"` (default) returns claims. `group_by = "patent"` runs the same steps and scores, then groups the ranked claims by `doc_number` in ranked order: a patent ranks by its best claim (its score is that claim's score; ties follow the claim tie order, so `doc_number`). With no query, patents come in `doc_number` order with no score and their claims in claim number order. `top_n` counts patents.
+
+**Response.** `group_by`, `total_matches` (claims left after step 1, or with `group_by = "patent"` the number of patents that have at least one such claim) and a list of hits.
+
+* Claim hits: `doc_number`, `title`, `claim_number`, `text`, `score` (`None` without a query), `is_independent`, `opening_missing`, `pub_date`, `classification` (as stored), `cpc_code` (split, e.g. `B60C 11/12`, or `None`), `source_file`.
+* Patent hits: `doc_number`, `title`, `abstract`, `score`, `matching_claims` (its claims that passed step 1), `claims` (its best `config.CLAIMS_PER_PATENT` = 3, each with `claim_number`, `text`, `score`, `is_independent`, `opening_missing`), `pub_date`, `classification`, `cpc_code`, `source_file`.
 
 When `opening_missing` is true, show the text as it is. The flag lets the caller say the start of the claim is missing in the source.
 
@@ -170,8 +188,8 @@ When `opening_missing` is true, show the text as it is. The flag lets the caller
 * Python function `search(...)` above.
 * CLI through `python -m patent_search` (also `serve` to run the web page on port 8000; `--host` and `--port` override `config.HOST` and `config.PORT`):
   * `build`: read the raw dir (`config.RAW_DIR`), clean, embed, write `data/index` (`--cpc-only` only rewrites the CPC columns), print counts (patents, claims indexed, patents without description, claims with missing openings, cancelled claim numbers)
-  * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`. The question is optional when `-k` is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON.
-* HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10}` returning the response above. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser. Errors come back as `{"error": "<message>"}`: `400` for bad input (no query or keyword, `top_n` out of range, wrong types, a body that is not JSON) and `503` when the index is missing or was built with a different model. The index loads on the first request, and the model on the first request with a query.
+  * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`, plus `--by claim|patent`, `-c/--classification CODE` (repeatable, commas allowed, any code matches), `--from DATE`, `--to DATE` and `--main-only` (independent claims only). The question is optional when `-k` or a filter is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON.
+* HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10, "classification": ..., "date_from": ..., "date_to": ..., "independent_only": false, "group_by": "claim"}` (all optional) returning the response above. `classification` is a string (commas allowed) or a list of strings; the dates are strings, or a number for a year. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser. Errors come back as `{"error": "<message>"}`: `400` for bad input (no query, keyword or filter, `top_n` out of range, a bad code, date or `group_by`, wrong types, a body that is not JSON) and `503` when the index is missing or was built with a different model. The index loads on the first request, and the model on the first request with a query.
 * Web page at `GET /` (see Frontend).
 
 ## Frontend
