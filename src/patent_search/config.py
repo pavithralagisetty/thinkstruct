@@ -35,3 +35,43 @@ TOP_N_MAX = 100
 # Web server
 HOST = "127.0.0.1"
 PORT = 8000
+
+# Evaluation (python -m patent_search eval)
+EVAL_QUESTIONS_PATH = PROJECT_ROOT / "tests" / "eval" / "questions.json"
+EVAL_RESULTS_DIR = Path(os.environ.get("PATENT_SEARCH_EVAL_RESULTS_DIR", PROJECT_ROOT / "data" / "eval_results"))
+EVAL_CACHE_DIR = Path(os.environ.get("PATENT_SEARCH_EVAL_CACHE_DIR", PROJECT_ROOT / "data" / "eval_cache"))
+EVAL_TOP_N = 10
+EVAL_BATCH_SIZE = 32
+# Grades B3 will give each claim per question: 0 not relevant, 1 partly, 2 fully.
+EVAL_RELEVANT_GRADE = 1      # counts for Hit@5, P@5, Recall@10, MRR
+EVAL_FULL_GRADE = 2          # "fully relevant" for the first-full-rank metric
+
+# BM25 word-matching baseline
+BM25_K1 = 1.5
+BM25_B = 0.75
+
+# Embedding models to compare. "nomic" is the production model and reuses data/index.
+BGE_QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
+EVAL_MODELS = {
+    "nomic": {
+        "model_name": MODEL_NAME, "revision": MODEL_REVISION, "code_revision": MODEL_CODE_REVISION,
+        "query_prefix": QUERY_PREFIX, "document_prefix": DOCUMENT_PREFIX, "trust_remote_code": True,
+        "reuse_index": True,
+    },
+    "bge-small": {
+        "model_name": "BAAI/bge-small-en-v1.5", "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+        "query_prefix": BGE_QUERY_PREFIX, "document_prefix": "",
+    },
+    "bge-base": {
+        "model_name": "BAAI/bge-base-en-v1.5", "revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+        "query_prefix": BGE_QUERY_PREFIX, "document_prefix": "",
+    },
+    "patentsberta": {
+        "model_name": "AI-Growth-Lab/PatentSBERTa", "revision": "3ff1d553c861d8f5bfd902333d97fc95eb6b4c8f",
+        "query_prefix": "", "document_prefix": "",
+    },
+    "minilm": {
+        "model_name": "sentence-transformers/all-MiniLM-L6-v2", "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "query_prefix": "", "document_prefix": "",
+    },
+}

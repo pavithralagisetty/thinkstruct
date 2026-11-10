@@ -11,7 +11,9 @@ class Embedder:
                  code_revision: str | None = config.MODEL_CODE_REVISION,
                  document_prefix: str = config.DOCUMENT_PREFIX,
                  query_prefix: str = config.QUERY_PREFIX,
-                 batch_size: int = config.EMBED_BATCH_SIZE):
+                 batch_size: int = config.EMBED_BATCH_SIZE,
+                 trust_remote_code: bool = True,
+                 device: str | None = None):
         from sentence_transformers import SentenceTransformer
 
         self.model_name = model_name
@@ -22,8 +24,8 @@ class Embedder:
         self.batch_size = batch_size
         pinned = {"code_revision": code_revision} if code_revision else {}
         self.model = SentenceTransformer(
-            model_name, revision=revision, trust_remote_code=True,
-            model_kwargs=pinned, config_kwargs=pinned,
+            model_name, revision=revision, trust_remote_code=trust_remote_code,
+            model_kwargs=pinned, config_kwargs=pinned, device=device,
         )
 
     @property

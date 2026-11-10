@@ -5,7 +5,6 @@ import numpy as np
 
 from patent_search.build_index import build, claim_embed_text, patent_embed_text
 from patent_search.claims import parse_claims
-from patent_search.load import Patent
 
 
 class FakeEmbedder:
@@ -14,12 +13,6 @@ class FakeEmbedder:
     def embed_documents(self, texts, show_progress=False):
         v = np.ones((len(texts), 4), dtype=np.float32)
         return v / np.linalg.norm(v, axis=1, keepdims=True)
-
-
-def _patent(**kw):
-    base = dict(doc_number="1", title="", abstract="", claims=[], description="", has_description=False,
-                classification="", kind_code=None, pub_date=None, source_file="f")
-    return Patent(**{**base, **kw})
 
 
 def test_claim_embed_text():
@@ -36,9 +29,10 @@ def test_claim_embed_text():
 
 
 def test_patent_embed_text():
-    assert patent_embed_text(_patent(title="T", abstract="A b.")) == "T. A b."
-    assert patent_embed_text(_patent(title="T")) == "T"
-    assert patent_embed_text(_patent()) is None
+    assert patent_embed_text("T", "A b.") == "T. A b."
+    assert patent_embed_text("T", "") == "T"
+    assert patent_embed_text("", "A b.") == "A b."
+    assert patent_embed_text("", "") is None
 
 
 def test_build_writes_index(tmp_path):

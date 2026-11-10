@@ -1,5 +1,6 @@
 """Search over the built index: exact keyword filter, then semantic ranking."""
 
+import copy
 import json
 import sqlite3
 from dataclasses import asdict, dataclass
@@ -75,6 +76,7 @@ class Index:
             raise IndexNotReady(
                 f"The index was built with model {built[0]} (revision {built[1]}, code {built[2]}), "
                 f"but config uses {wanted[0]} (revision {wanted[1]}, code {wanted[2]}). {REBUILD}")
+        self.index_dir = index_dir
         self.meta = meta
         self._embedder = embedder
 
@@ -104,6 +106,14 @@ class Index:
             from patent_search.embedder import Embedder
             self._embedder = Embedder()
         return self._embedder
+
+    def with_store(self, vectors, embedder) -> "Index":
+        """The same claims and patents searched with other vectors (model comparison).
+        `vectors` needs a VectorStore-shaped similarities(); `embedder` an embed_query()."""
+        other = copy.copy(self)
+        other.vectors = vectors
+        other._embedder = embedder
+        return other
 
     def hit(self, i: int, score: float | None) -> SearchHit:
         c = self.claims[i]

@@ -200,6 +200,34 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 * Show only fields the data has (no assignee or inventor). System font, nothing loaded from the internet.
 * Follows the system setting with `prefers-color-scheme`. Light and dark are equally finished; neither is the main one.
 
+## Evaluation
+
+A model comparison runner, so the embedding model can be chosen on evidence. It saves rankings only; there is no hand-made ground truth yet. Grading (labels per question) is added in a later step (B3) and fed to the metric functions below.
+
+* **Questions:** `tests/eval/questions.json`, 10 questions `q01`–`q10`, text only, no relevant claims listed.
+* **Candidates:** `bm25` plus every model in `config.EVAL_MODELS`:
+
+  | Name | Model | Query prefix | Document prefix | Reads up to |
+  |---|---|---|---|---|
+  | `nomic` | `nomic-ai/nomic-embed-text-v1.5` (production) | `search_query: ` | `search_document: ` | 8,192 tokens |
+  | `bge-small` | `BAAI/bge-small-en-v1.5` | `Represent this sentence for searching relevant passages: ` | none | 512 |
+  | `bge-base` | `BAAI/bge-base-en-v1.5` | same as bge-small | none | 512 |
+  | `patentsberta` | `AI-Growth-Lab/PatentSBERTa` | none | none | 512 |
+  | `minilm` | `sentence-transformers/all-MiniLM-L6-v2` | none | none | 256 |
+
+  Each has a pinned revision in config. `nomic` reuses `data/index`; the others embed the same claim and patent texts the build stored (`claims.embed_text`, and `{title}. {abstract}`).
+* **Same search for everyone.** Every candidate goes through the production `Index.search` with the same weights (`W_CLAIM`, `W_PATENT`), filter and tie order; only the vectors change (`Index.with_store`). `bm25` is `BM25Store` in `evaluate.py`, shaped like `VectorStore`: Okapi BM25 (`BM25_K1 = 1.5`, `BM25_B = 0.75`) over lowercase word tokens of the same texts, with each query's scores divided by the best document's score so they lie in 0 to 1 like a cosine similarity.
+* **Cache.** Vectors for non-nomic models are cached in `data/eval_cache/<name>/` (git ignored), keyed by model, revision, code revision, document prefix and a SHA-256 of the claim and patent texts. Any change re-embeds.
+* **CLI:** `python -m patent_search eval [--models NAME ...] [--device DEVICE] [-n TOP]`. Defaults: bm25 plus every model in `EVAL_MODELS`, the device is `mps` when available (else `cpu`), top 10. It prints the top 3 per question per candidate.
+* **Report:** `data/eval_results/run_<UTC time>.json` with the index meta, settings, questions, each candidate's model, revision, prefixes, where its vectors came from (`data/index`, `cache` or `embedded`) and run time, and for every candidate and question the top 10 `claim_id`s with scores.
+* **Metrics** (`evaluate.py`), each taking the ranked claim ids and a `{claim_id: grade}` dict. Grades are 0 (not relevant), 1 (partly), 2 (fully); claims without a grade count as 0. Relevant means grade ≥ `EVAL_RELEVANT_GRADE` (1).
+  * `hit@5`: 1 if any relevant claim is in the top 5.
+  * `p@5`: relevant claims in the top 5, divided by 5.
+  * `recall@10`: share of all relevant claims found in the top 10 (`None` if the question has none).
+  * `mrr`: 1 / rank of the first relevant claim (0 if none).
+  * `ndcg@10`: graded gain `2^grade - 1` (`None` if no claim has a positive grade).
+  * `first_full_rank`: rank of the first claim with grade ≥ `EVAL_FULL_GRADE` (2), `None` if none is in the list.
+
 ## Project layout
 
 ```
@@ -208,18 +236,22 @@ patent_search/
   pyproject.toml
   data 2/patent_data_small/ input JSON files (all 64)
   data/index/               built files, git ignored
+  data/eval_cache/          cached vectors for model comparison, git ignored
+  data/eval_results/        model comparison reports
   src/patent_search/
-    config.py               paths, model name and revision, weights, top_n
+    config.py               paths, model name and revision, weights, top_n, eval models
     load.py                 read JSON, empty value handling, cleaning, duplicates
     claims.py               claim number recovery, cancelled claims, parents, roots
     embedder.py             model wrapper
     build_index.py
     keywords.py             keyword parsing and matching
     search.py
+    evaluate.py             model comparison: BM25 baseline, cached vectors, metrics
     api.py
     __main__.py             CLI
     static/index.html       the web page
   tests/
+    eval/questions.json     the evaluation questions
 ```
 
 Stack: Python 3.11, `sentence-transformers`, `numpy`, `fastapi`, `uvicorn`, `pytest`. Nothing else unless needed. Pin `transformers>=4.44,<5`: the nomic model's remote code breaks on transformers 5.

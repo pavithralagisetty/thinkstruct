@@ -1,5 +1,7 @@
 # Built index (rebuild with `python -m patent_search build`)
 data/index/
+# Cached vectors for model comparison (python -m patent_search eval)
+data/eval_cache/
 
 # Python
 __pycache__/

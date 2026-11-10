@@ -1,4 +1,4 @@
-"""Command line: python -m patent_search build | search | serve"""
+"""Command line: python -m patent_search build | search | serve | eval"""
 
 import argparse
 import json
@@ -58,6 +58,29 @@ def cmd_serve(args):
     uvicorn.run("patent_search.api:app", host=args.host, port=args.port)
 
 
+def cmd_eval(args):
+    from patent_search import evaluate
+    from patent_search.search import Index, IndexNotReady
+
+    try:
+        index = Index()
+        report = evaluate.run(candidates=args.models, device=args.device, top_n=args.top, index=index)
+    except (ValueError, IndexNotReady) as e:
+        sys.exit(f"Error: {e}")
+    path = evaluate.save_report(report)
+
+    for q in report["questions"]:
+        print(f"{q['id']}  {q['text']}")
+        for name, results in report["results"].items():
+            for rank, hit in enumerate(results[q["id"]][:3], 1):
+                title = index.patents[hit["claim_id"].split(":")[0]]["title"]
+                print(f"  {name if rank == 1 else '':13} {rank}. {hit['claim_id']:15} {hit['score']:.3f}  {title[:60]}")
+        print()
+    for name, info in report["candidates"].items():
+        print(f"{name:13} {info['seconds']:7.1f}s  {info.get('vectors', '')}")
+    print(f"\nReport: {path}")
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="python -m patent_search")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -73,6 +96,12 @@ def main(argv=None):
     v.add_argument("--host", default=config.HOST)
     v.add_argument("--port", type=int, default=config.PORT)
     v.set_defaults(func=cmd_serve)
+    e = sub.add_parser("eval", help="compare models: top claims per question per model")
+    e.add_argument("--models", nargs="+", metavar="NAME",
+                   help=f"candidates to run (default: bm25 {' '.join(config.EVAL_MODELS)})")
+    e.add_argument("--device", help="torch device for the models (default: mps when available, else cpu)")
+    e.add_argument("-n", "--top", type=int, default=config.EVAL_TOP_N, help="claims saved per question")
+    e.set_defaults(func=cmd_eval)
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(message)s")
     args.func(args)

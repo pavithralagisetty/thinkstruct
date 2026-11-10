@@ -12,7 +12,7 @@ import numpy as np
 
 from patent_search import config
 from patent_search.claims import Claim, parse_claims
-from patent_search.load import Patent, load_patents, remove_reference_numerals
+from patent_search.load import load_patents, remove_reference_numerals
 
 log = logging.getLogger(__name__)
 
@@ -62,11 +62,11 @@ def claim_embed_text(title: str, claim: Claim, by_number: dict[int, Claim]) -> s
     return "\n".join(lines)
 
 
-def patent_embed_text(patent: Patent) -> str | None:
+def patent_embed_text(title: str, abstract: str) -> str | None:
     """'{title}. {abstract}', the title alone without abstract, None if both are empty."""
-    if patent.title and patent.abstract:
-        return f"{patent.title}. {patent.abstract}"
-    return patent.title or patent.abstract or None
+    if title and abstract:
+        return f"{title}. {abstract}"
+    return title or abstract or None
 
 
 def _bool(value: bool | None) -> int | None:
@@ -92,7 +92,7 @@ def build(raw_dir: Path | None = None, index_dir: Path | None = None, embedder=N
             claim_rows.append(claim)
             claim_texts.append(claim_embed_text(patent.title, claim, by_number))
 
-    patent_texts = [(p, patent_embed_text(p)) for p in patents]
+    patent_texts = [(p, patent_embed_text(p.title, p.abstract)) for p in patents]
     embedded_patents = [(p, t) for p, t in patent_texts if t is not None]
 
     if embedder is None:
