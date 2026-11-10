@@ -206,7 +206,7 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
   * a text box for keywords, marked optional. Placeholder: `sipe "tread block" spoke*`
   * a number box for how many results (claims or patents), default 10
   * three linked classification dropdowns, Subclass, Main group and Subgroup, filled from `GET /classifications`. Each option shows the code, the title when known and the patent count (`11 — Tyre tread bands; … (101)`). Each later dropdown is disabled until the one before it is chosen; changing one resets the ones after it. The most specific choice is sent as one `classification` code (`B60C`, `B60C 11` or `B60C 11/12`). Subgroups listed are the ones in the data (not `/00`, which is the group itself)
-  * "Published from" and "Published to" text boxes (`2024`, `2024-06` or `2024-06-15`, inclusive; the server checks them)
+  * "Published from" and "Published to" text boxes (`2024`, `2024-06` or `2024-06-15`, inclusive; the server checks them). Each has a calendar button inside it that opens the browser's own date picker (`showPicker()` on a hidden `<input type="date">`); the chosen day replaces the box's text. The picker opens on what the box already says (a year or month at its first day for "from", its last day for "to"). Typing stays possible because a picker can only give a full day, while the filter also takes a year or a month
   * a "Main claims only" checkbox (`independent_only`), with a note that claims whose start is missing have an unknown type and are left out
   * a "Clear filters" link
 * A Search button. Pressing Enter in any text box also searches.
@@ -218,7 +218,7 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 * The panel's badge counts the keywords plus the other filters set (classification, each date, main claims only): "1 filter", "4 filters".
 * The example chips clear the filters, then set the question and keywords; the Show toggle keeps its setting.
 * While waiting, disable the button and show "Searching...".
-* Above the results show `{total_matches} matching claims` (or `matching patents`), and `showing top {n}` when there are more than shown.
+* Above the results show `{total_matches} matching claims` (or `matching patents`), and `showing top {n}` when there are more than shown. When there is a question but no keyword and no filter, nothing is filtered out and every claim is ranked, so the line says `Top {n} claims by meaning` (or `patents`) instead, without the total, so it does not look as if every claim matched. There is no score cutoff: on the graded evaluation claims, nomic's scores for relevant and not relevant claims overlap and differ from question to question, so no fixed value separates them.
 * Each claim result is a simple card with:
   * the patent title
   * patent number and claim number
@@ -235,6 +235,7 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
   * each shown claim (up to 3) in a soft panel: bold "Claim N", a quiet "Main" or "Dependent" tag (none when unknown), a dashed "Start missing" tag when `opening_missing` (its tooltip is the full note "The start of this claim is missing in the source data."), its score on the right (when there is a question), and the text clamped to 3 lines with "Show full claim". The best claim's panel has a thin orange border (only when there is a question)
   * no score repeated at the bottom
 * Keyword matches are marked with a soft yellow highlight (`<mark>`, a token for light and one for dark) in claim cards and in the claims of patent cards, using the `highlights` spans from the server; the page does not re-implement the keyword rules. Spans are code point offsets, so the page slices an array of code points (`Array.from(text)`), not the UTF-16 string, and builds the text from text nodes (no HTML from the data).
+* A "See more" button under the results runs the same search again with 10 more (`top_n` + 10, up to `TOP_N_MAX`). Ranking is deterministic, so the results already shown keep their places. It shows only while the last search filled its `top_n` and there are more matches; at 100 it is replaced by a note that 100 is the most one search returns and keywords or filters narrow it down. It does not change the Results box, so a new search, an example chip or the Show toggle starts again from the box's number.
 * No results: show "No claims matched." or "No patents matched."
 * API errors: show the error message in red above the results.
 * If `/classifications` cannot be loaded, the subclass dropdown says "Classifications unavailable" and the other searches still work.

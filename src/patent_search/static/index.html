@@ -227,6 +227,20 @@
     font-size: 16px;
   }
   .field input:focus { outline: none; border-color: var(--accent); }
+  /* Date box: type a partial date, or pick one from the calendar */
+  .date-field { position: relative; }
+  .date-field input[type="text"] { padding-right: 44px; }
+  .calendar-btn {
+    position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+    width: 36px; height: 34px; border: 0; border-radius: 8px;
+    background: transparent; color: var(--muted);
+    display: grid; place-items: center;
+  }
+  .calendar-btn:hover { color: var(--accent); background: var(--surface-2); }
+  .date-field input[type="date"] {
+    position: absolute; right: 4px; bottom: 0; width: 36px; height: 1px;
+    opacity: 0; pointer-events: none; border: 0; padding: 0;
+  }
   .hint { margin: 6px 0 0; color: var(--faint); font-size: 13px; }
   .hint code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
 
@@ -280,6 +294,14 @@
     border: 0; background: transparent; padding: 0; margin-top: 8px;
     color: var(--accent); font-weight: 600; font-size: 15px;
   }
+  .see-more { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 24px 0 8px; }
+  .see-more button {
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    border-radius: 999px; padding: 10px 22px; font-size: 15px; font-weight: 600; cursor: pointer;
+  }
+  .see-more button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .see-more button:disabled { opacity: 0.6; cursor: default; }
+  .see-more .note { margin: 0; text-align: center; }
   mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
   .note { margin: 10px 0 0; color: var(--faint); font-size: 13px; }
   /* Patent cards */
@@ -401,14 +423,22 @@
 
         <div class="field span-2">
           <label for="date-from">Published from</label>
-          <input id="date-from" type="text" autocomplete="off" placeholder="2024-06" inputmode="numeric">
+          <div class="date-field" data-end="false">
+            <input id="date-from" type="text" autocomplete="off" placeholder="2024-06" inputmode="numeric">
+            <button class="calendar-btn" type="button" aria-label="Choose the first publication date" title="Choose the first publication date"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></button>
+            <input type="date" tabindex="-1" aria-hidden="true">
+          </div>
         </div>
         <div class="field span-2">
           <label for="date-to">Published to</label>
-          <input id="date-to" type="text" autocomplete="off" placeholder="2024-12-31" inputmode="numeric">
+          <div class="date-field" data-end="true">
+            <input id="date-to" type="text" autocomplete="off" placeholder="2024-12-31" inputmode="numeric">
+            <button class="calendar-btn" type="button" aria-label="Choose the last publication date" title="Choose the last publication date"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></button>
+            <input type="date" tabindex="-1" aria-hidden="true">
+          </div>
         </div>
         <div class="field span-2" style="align-self: end;">
-          <p class="hint" style="margin-bottom: 12px;">Inclusive. <code>2024</code>, <code>2024-06</code> or <code>2024-06-15</code>.</p>
+          <p class="hint" style="margin-bottom: 12px;">Inclusive. Pick a day, or type <code>2024</code>, <code>2024-06</code> or <code>2024-06-15</code>.</p>
         </div>
 
         <label class="check span-5" for="main-only">
@@ -433,6 +463,8 @@
     { label: "Keyword: sipe", query: "", keywords: "sipe" },
     { label: "Heavy truck tires + tread", query: "tire for heavy trucks", keywords: "tread" },
   ];
+
+  const TOP_N_MAX = 100, MORE_STEP = 10;   // TOP_N_MAX matches config.TOP_N_MAX
 
   const $ = (id) => document.getElementById(id);
   const form = $("form"), queryBox = $("query"), keywordBox = $("keywords"), topBox = $("top-n");
@@ -545,6 +577,37 @@
     fromBox.value = "";
     toBox.value = "";
     mainOnly.checked = false;
+  }
+
+  // ---------- date pickers ----------
+
+  // The calendar opens on what the box already says: a full date as is, a year or month at
+  // its first day (from) or last day (to). The chosen day replaces the box's text.
+  function pickerStart(text, end) {
+    const m = /^(\d{4})(?:-(\d{1,2})(?:-(\d{1,2}))?)?$/.exec(text.trim());
+    if (!m) return "";
+    const y = Number(m[1]);
+    const mo = m[2] ? Number(m[2]) : (end ? 12 : 1);
+    if (mo < 1 || mo > 12) return "";
+    const last = new Date(y, mo, 0).getDate();
+    const d = m[3] ? Number(m[3]) : (end ? last : 1);
+    if (d < 1 || d > last) return "";
+    return `${m[1]}-${String(mo).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+  }
+
+  for (const field of document.querySelectorAll(".date-field")) {
+    const box = field.querySelector('input[type="text"]');
+    const picker = field.querySelector('input[type="date"]');
+    field.querySelector(".calendar-btn").addEventListener("click", () => {
+      picker.value = pickerStart(box.value, field.dataset.end === "true");
+      try { picker.showPicker(); } catch { picker.focus(); picker.click(); }
+    });
+    picker.addEventListener("change", () => {
+      if (!picker.value) return;
+      box.value = picker.value;
+      box.dispatchEvent(new Event("input"));
+      box.focus();
+    });
   }
 
   // ---------- results ----------
@@ -681,11 +744,39 @@
     results.replaceChildren(el("div", "error", message));
   }
 
+  // "See more" under the results: the same search again with MORE_STEP more results.
+  // Ranking is deterministic, so the results already shown stay where they are. The
+  // Results box is left alone, so the next new search starts from its number again.
+  function seeMore(data, shown, unit) {
+    if (shown < data.top_n || shown >= data.total_matches) return null;   // nothing left to show
+    const box = el("div", "see-more");
+    if (data.top_n >= TOP_N_MAX) {
+      box.append(el("p", "note", `Showing the first ${TOP_N_MAX} ${unit}, the most one search returns. Add keywords or filters to narrow it down.`));
+      return box;
+    }
+    const button = el("button", null, "See more");
+    button.type = "button";
+    button.addEventListener("click", () => {
+      button.disabled = true;
+      button.textContent = "Loading...";
+      runSearch(Math.min(data.top_n + MORE_STEP, TOP_N_MAX));
+    });
+    box.append(button);
+    return box;
+  }
+
   function render(data) {
     const patents = data.group_by === "patent";
     const shown = data.hits.length;
-    let summary = `${data.total_matches} matching ${patents ? "patents" : "claims"}`;
-    if (data.total_matches > shown) summary += `, showing top ${shown}`;
+    const unit = patents ? "patents" : "claims";
+    let summary;
+    if (data.ranked_all) {
+      // a question with no keywords or filters ranks everything; nothing was filtered out
+      summary = `Top ${shown} ${unit} by meaning`;
+    } else {
+      summary = `${data.total_matches} matching ${unit}`;
+      if (data.total_matches > shown) summary += `, showing top ${shown}`;
+    }
     const parts = [el("p", "summary", summary)];
     if (!shown) {
       parts.push(el("p", "empty", patents ? "No patents matched." : "No claims matched."));
@@ -696,12 +787,14 @@
     const clamps = [];
     grid.append(...data.hits.map((hit) => (patents ? patentCard(hit, clamps) : claimCard(hit, clamps))));
     parts.push(grid);
+    const more = seeMore(data, shown, unit);
+    if (more) parts.push(more);
     results.replaceChildren(...parts);
     // Only offer "Show full ..." where the text is actually cut off.
     for (const c of clamps) c.more.hidden = c.text.scrollHeight <= c.text.clientHeight + 1;
   }
 
-  async function runSearch() {
+  async function runSearch(moreTopN = null) {
     const query = queryBox.value.trim();
     const keywords = keywordBox.value.trim();
     const classification = classificationCode();
@@ -711,7 +804,7 @@
       return;
     }
     const raw = topBox.value.trim();
-    const topN = raw === "" ? 10 : (/^\d+$/.test(raw) ? Number(raw) : raw);
+    const topN = moreTopN ?? (raw === "" ? 10 : (/^\d+$/.test(raw) ? Number(raw) : raw));
     const body = {
       query: query || null, keywords: keywords || null, top_n: topN,
       classification: classification || null, date_from: dateFrom || null, date_to: dateTo || null,
@@ -737,6 +830,8 @@
       }
       if (data.group_by === "patent") await treeReady;   // group titles come from /classifications
       if (id !== requestId) return;
+      data.top_n = topN;
+      data.ranked_all = Boolean(query) && !keywords && !classification && !dateFrom && !dateTo && !mainOnly.checked;
       render(data);
     } catch (e) {
       if (id === requestId) showError("Could not reach the search server.");
