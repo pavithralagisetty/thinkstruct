@@ -36,7 +36,7 @@ These were measured on the sample. The code must handle them in general, not jus
 
 3. **Cancelled claims.** 167 claim items (1,560 claim numbers) are placeholders with no content, for example `"17 . (canceled)"` or a range. Ranges appear as `"6 - 9 . (canceled)"`, `"1 .- 15 . (canceled)"`, `"1 - 15 : (canceled)"` and `"1 - 10 (canceled)"`. Do not index them. They still use up claim numbers (the range example uses up 6, 7, 8 and 9).
 
-4. **Claims with missing openings.** 3,223 of 10,578 claim items lost their claim number and their opening words. Example: the real claim is `"1 . A bassinet comprising: a base; a column assembly ..."` but the item only holds `"a base; a column assembly ..."`. This happens when the claim had nested parts in the source XML. Each list item is still exactly one claim, in the right order, so the number can be recovered from position:
+4. **Claims with missing openings.** 3,200 of 10,578 claim items lost their claim number and their opening words. Example: the real claim is `"1 . A bassinet comprising: a base; a column assembly ..."` but the item only holds `"a base; a column assembly ..."`. This happens when the claim had nested parts in the source XML. Each list item is still exactly one claim, in the right order, so the number can be recovered from position:
 
    ```
    n = 0
@@ -49,7 +49,7 @@ These were measured on the sample. The code must handle them in general, not jus
            n = n + 1        # this item is claim n, opening missing
    ```
 
-   A number is `N .` with the period not followed by a digit, so a recovered item starting `"0.5 phr of ..."` is not read as claim 0.
+   A number is `N .` with the period not followed by a digit, so a recovered item starting `"0.5 phr of ..."` is not read as claim 0. Two patents write the number as `N :` (`20240075771`) or `N )` (`20240116312`); these are accepted the same way (23 items), again only when no digit follows.
 
    **Source gaps.** On the full set 4 patents have a numbering gap or a claim out of order (`20240294037`, `20240391281`, `20250010663`, `20250065669`). When a run of unnumbered items is followed by a numbered claim that disagrees with forward counting, number the run backward from that claim (`8, ?, 11` makes the gap claim 10), as long as those numbers are free. Claim references in the source confirm this every time it can be checked. Log a warning. Claim ids must stay unique: a number that would clash gets the next free number above the highest, with a warning.
 
@@ -69,7 +69,7 @@ For each real (not cancelled) claim, produce:
 * `embed_text`: see below
 * `parent_number`: first `claim N` found in the first 200 characters of the text (for `claims 1 to 3` take the first number). `None` if not found.
 * `is_independent`: `True` if numbered and no parent; `False` if it has a parent; `None` if the opening is missing
-* `root_number`: follow parent links upward until reaching a claim with no parent, or a parent that is missing or cancelled. Guard against loops. A claim with no parent is its own root.
+* `root_number`: follow parent links upward until reaching a claim with no parent, or a parent that is missing or cancelled. Guard against loops. A claim with no parent is its own root. Five claims in the source refer to themselves (`20240149618` claim 7, `20240190172` claim 8, `20240278602` claim 32, `20240343066` claim 20, `20250058586` claim 20): keep the self reference as `parent_number`, stop there as the root, and log a warning.
 * `opening_missing` (bool)
 
 ## What gets embedded
@@ -230,7 +230,7 @@ Stack: Python 3.11, `sentence-transformers`, `numpy`, `fastapi`, `uvicorn`, `pyt
 
 ## Done when
 
-`python -m patent_search build` on the full data prints: 640 patents, 10,411 claims indexed, 119 patents without description, 3,223 claims with missing openings.
+`python -m patent_search build` on the full data prints: 640 patents, 10,411 claims indexed, 119 patents without description, 3,200 claims with missing openings. (1,560 claim numbers are cancelled.)
 
 These give sensible top results:
 
