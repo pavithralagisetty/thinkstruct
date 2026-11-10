@@ -173,3 +173,12 @@ def test_highlights_in_claim_and_patent_hits(index):
     assert [claim.text[a:b] for a, b in claim.highlights] == ["sensor"]
     assert index.search("tire").hits[0].highlights == []
     assert index.search("tire", group_by="patent").hits[0].claims[0].highlights == []
+
+
+def test_request_words_are_removed_before_embedding(index):
+    plain = index.search("tire tread", top_n=5)
+    wrapped = index.search("find me claims which talk about tire tread, please", top_n=5)
+    assert wrapped.query_used == plain.query_used == "tire tread"
+    assert wrapped.hits == plain.hits
+    assert index.search(keywords="tire").query_used is None
+    assert index.search("claims").query_used == "claims"           # nothing left: kept as typed

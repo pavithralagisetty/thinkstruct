@@ -165,7 +165,15 @@ At least one of `query`, `keywords` or a filter is required, otherwise raise a c
 * Highlights (`keywords.highlight_spans`): every claim in a response, claim hits and the claims inside patent hits, carries `highlights`, the `[start, end)` spans in its `text` where a keyword matched, by the same compiled patterns as the filter. Spans are sorted, overlapping or touching spans are merged, and offsets are Python string indices (Unicode code points). Without keywords the list is empty. Only the claim text is highlighted, never the title or main claim, because only the claim text is matched.
 * Parsing (`keywords.py`, used by both the CLI and the API): in a string, spaces separate keywords and text in double quotes stays one phrase; an unclosed quote runs to the end. In a list, each item is one keyword or phrase (quotes are stripped). Blank keywords and a bare `*` are ignored. Unicode hyphens (‐ ‑) count as hyphens; an en dash does not.
 
-**Step 2a: query given.** Embed the query with the `search_query: ` prefix. For each claim that passed step 1:
+**Request words** (`request_words.strip_request_words`, word lists in config). Before the question is embedded, request wording at its start and end is removed, so `claim which talks about spoke wheels`, `find me patents about spoke wheels, please` and `spoke wheels` give the same results. This matters because the word "claim" otherwise pulls results toward dependent claims (their embedded text says "claim" in the `Main claim:` label and in "according to claim 1"): `claim which talks about spoke wheels` gave 9 dependent claims from one patent, `spoke wheels` a mix from 6 patents.
+
+* At the start, in this order: polite words (`please`, `can you`, `I want`), a request verb with an optional `me` (`find`, `show me`, `search for`, `I'm looking for`), `what are` / `which` before a noun, a determiner (`all`, `the`, `a`), a noun (`claims`, `patents`, `patent claims`), then a relative word (`which`, `that`), a describing verb (`talk about`, `describe`, `mention`, `relate`, `are`) and a link word (`about`, `on`, `related to`, `for`, `with`). At the end: `please`, `thanks`, `thank you` and trailing `?`, `!`, `.`.
+* Whole words, case insensitive, curly apostrophes count. Never in the middle of the question.
+* A determiner, describing verb or link word is removed only after a request verb or noun, so `a wheel with spokes`, `the spoke of a wheel` and `what is a sipe` stay as typed. Verbs that are also nouns (`return`, `list`, `show`, `get`, `search`) are removed only before `me`, a determiner, a noun or a link word, so `return spring for a valve` stays.
+* If nothing would be left (`claims`, `please`), the question is kept as typed. Spaces are collapsed. Nothing else is changed: no stemming, stopwords, spelling or synonyms.
+* Checked: the 10 evaluation questions and the example questions are unchanged (their results equal the saved nomic run), and each of them wrapped six ways (`find claims about …`, `claims which talk about …`, `… please`, `can you find patents on …?` and others) gives exactly the same top 10 as the plain question (96 of 96).
+
+**Step 2a: query given.** Embed the question (after request words are removed) with the `search_query: ` prefix. For each claim that passed step 1:
 
 ```
 score = W_CLAIM * claim_similarity + W_PATENT * patent_similarity
@@ -177,7 +185,7 @@ Defaults `W_CLAIM = 0.8`, `W_PATENT = 0.2`, both in config. Scores are rounded t
 
 **Grouping.** `group_by = "claim"` (default) returns claims. `group_by = "patent"` runs the same steps and scores, then groups the ranked claims by `doc_number` in ranked order: a patent ranks by its best claim (its score is that claim's score; ties follow the claim tie order, so `doc_number`). With no query, patents come in `doc_number` order with no score and their claims in claim number order. `top_n` counts patents.
 
-**Response.** `group_by`, `total_matches` (claims left after step 1, or with `group_by = "patent"` the number of patents that have at least one such claim) and a list of hits.
+**Response.** `group_by`, `query_used` (the question as embedded, after request words were removed; `None` without a question), `total_matches` (claims left after step 1, or with `group_by = "patent"` the number of patents that have at least one such claim) and a list of hits.
 
 * Claim hits: `doc_number`, `title`, `claim_number`, `text`, `score` (`None` without a query), `is_independent`, `opening_missing`, `pub_date`, `classification` (as stored), `cpc_code` (split, e.g. `B60C 11/12`, or `None`), `source_file`, `highlights`.
 * Patent hits: `doc_number`, `title`, `abstract`, `score`, `matching_claims` (its claims that passed step 1), `claims` (its best `config.CLAIMS_PER_PATENT` = 3, each with `claim_number`, `text`, `score`, `is_independent`, `opening_missing`, `highlights`), `pub_date`, `classification`, `cpc_code`, `source_file`.
@@ -189,7 +197,7 @@ When `opening_missing` is true, show the text as it is. The flag lets the caller
 * Python function `search(...)` above.
 * CLI through `python -m patent_search` (also `serve` to run the web page on port 8000; `--host` and `--port` override `config.HOST` and `config.PORT`):
   * `build`: read the raw dir (`config.RAW_DIR`), clean, embed, write `data/index` (`--cpc-only` only rewrites the CPC columns), print counts (patents, claims indexed, patents without description, claims with missing openings, cancelled claim numbers)
-  * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`, plus `--by claim|patent`, `-c/--classification CODE` (repeatable, commas allowed, any code matches), `--from DATE`, `--to DATE` and `--main-only` (independent claims only). The question is optional when `-k` or a filter is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON.
+  * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`, plus `--by claim|patent`, `-c/--classification CODE` (repeatable, commas allowed, any code matches), `--from DATE`, `--to DATE` and `--main-only` (independent claims only). The question is optional when `-k` or a filter is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON. When request words were removed, the plain output starts with `Searched for: <question as embedded>`.
 * HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10, "classification": ..., "date_from": ..., "date_to": ..., "independent_only": false, "group_by": "claim"}` (all optional) returning the response above. `classification` is a string (commas allowed) or a list of strings; the dates are strings, or a number for a year. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser. Errors come back as `{"error": "<message>"}`: `400` for bad input (no query, keyword or filter, `top_n` out of range, a bad code, date or `group_by`, wrong types, a body that is not JSON) and `503` when the index is missing or was built with a different model. The index loads on the first request, and the model on the first request with a query.
 * `GET /classifications`: the dropdown data, built from the data in the index: `{"subclasses": [{code, count, title?, groups: [{code, count, title?, subgroups: [{code, count}]}]}]}`. `code` is a valid `classification` query, `count` is the number of patents it matches with the same `cpc.matches` as the filter (so `15/02` counts `15/024` too), and `title` is there only when the scheme title is known. Subgroups are in scheme order (`02` < `024` < `10`).
 * Web page at `GET /` (see Frontend).
@@ -235,6 +243,7 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
   * each shown claim (up to 3) in a soft panel: bold "Claim N", a quiet "Main" or "Dependent" tag (none when unknown), a dashed "Start missing" tag when `opening_missing` (its tooltip is the full note "The start of this claim is missing in the source data."), its score on the right (when there is a question), and the text clamped to 3 lines with "Show full claim". The best claim's panel has a thin orange border (only when there is a question)
   * no score repeated at the bottom
 * Keyword matches are marked with a soft yellow highlight (`<mark>`, a token for light and one for dark) in claim cards and in the claims of patent cards, using the `highlights` spans from the server; the page does not re-implement the keyword rules. Spans are code point offsets, so the page slices an array of code points (`Array.from(text)`), not the UTF-16 string, and builds the text from text nodes (no HTML from the data).
+* When request words were removed from the question (`query_used` differs from what was typed), the line above the results ends with a quiet ` · searched for “spoke wheels”`.
 * A "See more" button under the results runs the same search again with 10 more (`top_n` + 10, up to `TOP_N_MAX`). Ranking is deterministic, so the results already shown keep their places. It shows only while the last search filled its `top_n` and there are more matches; at 100 it is replaced by a note that 100 is the most one search returns and keywords or filters narrow it down. It does not change the Results box, so a new search, an example chip or the Show toggle starts again from the box's number.
 * No results: show "No claims matched." or "No patents matched."
 * API errors: show the error message in red above the results.
@@ -309,12 +318,13 @@ patent_search/
   data/eval_results/        model comparison reports and scores
   data/eval_judgments/      blind packets, grades and pooled_grades.json
   src/patent_search/
-    config.py               paths, model name and revision, weights, top_n, eval models
+    config.py               paths, model name and revision, weights, top_n, request words, eval models
     load.py                 read JSON, empty value handling, cleaning, duplicates
     claims.py               claim number recovery, cancelled claims, parents, roots
     embedder.py             model wrapper
     build_index.py
     keywords.py             keyword parsing and matching
+    request_words.py        removes request wording ("find claims about") from the question
     cpc.py                  CPC code splitting, query parsing and matching, scheme titles
     search.py
     evaluate.py             model comparison: BM25 baseline, cached vectors, metrics

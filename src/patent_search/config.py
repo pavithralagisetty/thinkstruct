@@ -33,6 +33,35 @@ TOP_N_DEFAULT = 10
 TOP_N_MAX = 100
 CLAIMS_PER_PATENT = 3     # claims shown per patent when results are grouped by patent
 
+# Request words removed from the start and end of a question before it is embedded
+# (request_words.py). Matched case insensitively as whole words; never in the middle.
+REQUEST_POLITE = ["please", "kindly", "can you", "could you", "would you", "will you",
+                  "i want to", "i want", "i need to", "i need", "i would like to", "i would like",
+                  "i'd like to", "i'd like"]
+REQUEST_VERBS = ["find", "show", "give", "list", "get", "return", "retrieve", "fetch", "search for",
+                 "search", "look for", "look up", "looking for", "i am looking for", "i'm looking for",
+                 "help me find"]
+# These verbs are removed even when the question follows them directly ("find spoke wheels").
+# The others only before me/us, a determiner, a noun or a link word, so "return spring for a
+# valve" stays as typed.
+REQUEST_VERBS_ALONE = ["find", "search for", "look for", "looking for", "i am looking for",
+                       "i'm looking for", "help me find", "retrieve"]
+REQUEST_ME = ["me", "us"]
+REQUEST_ASK = ["what are", "what is", "which are", "which is", "what", "which"]   # only before a noun
+REQUEST_DETERMINERS = ["all the", "all", "any", "the", "some", "every", "a", "an"]
+REQUEST_NOUNS = ["patent claims", "patent claim", "claims", "claim", "patents", "patent",
+                 "documents", "results", "inventions", "invention"]
+REQUEST_RELATIVE = ["which", "that", "where"]
+REQUEST_RELATIVE_VERBS = ["talk", "talks", "discuss", "discusses", "mention", "mentions", "describe",
+                          "describes", "cover", "covers", "deal", "deals", "relate", "relates",
+                          "involve", "involves", "contain", "contains", "disclose", "discloses",
+                          "include", "includes", "explain", "explains", "show", "shows", "have",
+                          "has", "are", "is", "describing", "mentioning", "covering", "discussing",
+                          "involving", "containing", "disclosing", "including"]
+REQUEST_LINKS = ["about", "on", "regarding", "concerning", "related to", "relating to", "for", "of",
+                 "with", "to"]
+REQUEST_TRAILING = ["please", "thanks", "thank you"]
+
 # Web server
 HOST = "127.0.0.1"
 PORT = 8000

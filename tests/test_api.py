@@ -109,3 +109,8 @@ def test_classification_counts_use_the_filter_matching(client, index):
         for code in [node["code"]] + [g["code"] for g in node["groups"]]:
             assert index.search(classification=code, group_by="patent").total_matches == \
                 next(n for n in [node] + node["groups"] if n["code"] == code)["count"]
+
+
+def test_response_says_what_was_searched(client):
+    r = client.post("/search", json={"query": "claims about tire tread"})
+    assert r.status_code == 200 and r.json()["query_used"] == "tire tread"

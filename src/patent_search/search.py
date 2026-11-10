@@ -14,6 +14,7 @@ import numpy as np
 
 from patent_search import config, cpc
 from patent_search.keywords import compile_keywords, highlight_spans, matches_all
+from patent_search.request_words import strip_request_words
 
 REBUILD = "Rebuild it with: python -m patent_search build"
 
@@ -71,6 +72,7 @@ class SearchResponse:
     total_matches: int              # claims, or patents when group_by is "patent"
     hits: list
     group_by: str = "claim"
+    query_used: str | None = None   # the question as embedded, after request words were removed
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -262,7 +264,7 @@ class Index:
                top_n: int = config.TOP_N_DEFAULT, classification: str | list[str] | None = None,
                date_from=None, date_to=None, independent_only: bool = False,
                group_by: str = "claim") -> SearchResponse:
-        query = query.strip() if query else None
+        query = strip_request_words(query) if query and query.strip() else None
         patterns = compile_keywords(keywords)
         filters = make_filters(classification, date_from, date_to, independent_only)
         if group_by not in GROUP_BY:
@@ -299,14 +301,14 @@ class Index:
             ranked.sort(key=lambda t: (-t[0], t[1]))
 
         if group_by == "claim":
-            return SearchResponse(len(matched), [self.hit(i, s, patterns) for s, i in ranked[:top_n]], "claim")
+            return SearchResponse(len(matched), [self.hit(i, s, patterns) for s, i in ranked[:top_n]], "claim", query)
 
         # Group by patent in ranked order: a patent ranks by its best claim.
         groups: dict[str, list[tuple[float | None, int]]] = {}
         for s, i in ranked:
             groups.setdefault(self.claims[i]["doc_number"], []).append((s, i))
         hits = [self.patent_hit(d, g, patterns) for d, g in list(groups.items())[:top_n]]
-        return SearchResponse(len(groups), hits, "patent")
+        return SearchResponse(len(groups), hits, "patent", query)
 
 
 @lru_cache(maxsize=1)

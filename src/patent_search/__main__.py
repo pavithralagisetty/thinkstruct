@@ -50,6 +50,8 @@ def cmd_search(args):
     shown = len(response.hits)
     unit = "patents" if response.group_by == "patent" else "claims"
     more = f", showing top {shown}" if response.total_matches > shown else ""
+    if response.query_used and response.query_used != " ".join(args.query.split()):
+        print(f"Searched for: {response.query_used}")
     print(f"{response.total_matches} matching {unit}{more}\n")
     for rank, h in enumerate(response.hits, 1):
         score = f"{h.score:.2f}  " if h.score is not None else ""

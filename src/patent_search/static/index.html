@@ -251,6 +251,7 @@
     border-radius: 10px; padding: 12px 16px; margin-bottom: 16px;
   }
   .summary { color: var(--muted); font-size: 17px; margin: 0 0 16px; }
+  .searched-for { color: var(--faint); }
   .empty { color: var(--muted); text-align: center; padding: 32px 0; }
   .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
   @media (max-width: 760px) {
@@ -778,6 +779,10 @@
       if (data.total_matches > shown) summary += `, showing top ${shown}`;
     }
     const parts = [el("p", "summary", summary)];
+    // Request words ("find claims about ...") are removed before the question is embedded.
+    if (data.query_used && data.query_used !== data.typed_query) {
+      parts[0].append(el("span", "searched-for", ` · searched for “${data.query_used}”`));
+    }
     if (!shown) {
       parts.push(el("p", "empty", patents ? "No patents matched." : "No claims matched."));
       results.replaceChildren(...parts);
@@ -831,6 +836,7 @@
       if (data.group_by === "patent") await treeReady;   // group titles come from /classifications
       if (id !== requestId) return;
       data.top_n = topN;
+      data.typed_query = query.split(/\s+/).join(" ");
       data.ranked_all = Boolean(query) && !keywords && !classification && !dateFrom && !dateTo && !mainOnly.checked;
       render(data);
     } catch (e) {
