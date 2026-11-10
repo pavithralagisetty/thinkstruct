@@ -1,0 +1,27 @@
+# Built index (rebuild with `python -m patent_search build`)
+data/index/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment files
+.env
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
