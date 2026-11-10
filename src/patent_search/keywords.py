@@ -62,3 +62,16 @@ def compile_keywords(keywords: str | list[str] | None) -> list[re.Pattern]:
 def matches_all(text: str, patterns: list[re.Pattern]) -> bool:
     """True when every pattern is found in the text (the claim's own display text)."""
     return all(p.search(text) for p in patterns)
+
+
+def highlight_spans(text: str, patterns: list[re.Pattern]) -> list[list[int]]:
+    """[start, end) spans (Python string indices, i.e. Unicode code points) of every keyword
+    match in the text, sorted, with overlapping or touching spans merged."""
+    spans = sorted((m.start(), m.end()) for p in patterns for m in p.finditer(text) if m.end() > m.start())
+    merged: list[list[int]] = []
+    for start, end in spans:
+        if merged and start <= merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], end)
+        else:
+            merged.append([start, end])
+    return merged

@@ -13,7 +13,7 @@ from pathlib import Path
 import numpy as np
 
 from patent_search import config, cpc
-from patent_search.keywords import compile_keywords, matches_all
+from patent_search.keywords import compile_keywords, highlight_spans, matches_all
 
 REBUILD = "Rebuild it with: python -m patent_search build"
 
@@ -39,6 +39,7 @@ class SearchHit:
     classification: str
     cpc_code: str | None
     source_file: str
+    highlights: list[list[int]]     # [start, end) keyword matches in text
 
 
 @dataclass
@@ -48,6 +49,7 @@ class PatentClaim:
     score: float | None
     is_independent: bool | None
     opening_missing: bool
+    highlights: list[list[int]]     # [start, end) keyword matches in text
 
 
 @dataclass
@@ -212,7 +214,7 @@ class Index:
         other._embedder = embedder
         return other
 
-    def hit(self, i: int, score: float | None) -> SearchHit:
+    def hit(self, i: int, score: float | None, patterns=()) -> SearchHit:
         c = self.claims[i]
         p = self.patents[c["doc_number"]]
         return SearchHit(
@@ -221,6 +223,7 @@ class Index:
             is_independent=None if c["is_independent"] is None else bool(c["is_independent"]),
             opening_missing=bool(c["opening_missing"]), pub_date=p["pub_date"],
             classification=p["classification"], cpc_code=p["cpc_code"], source_file=p["source_file"],
+            highlights=highlight_spans(c["text"], patterns),
         )
 
     def classification_tree(self) -> list[dict]:
@@ -229,7 +232,7 @@ class Index:
             self._classification_tree = cpc.classification_tree([p["cpc"] for p in self.patents.values()])
         return self._classification_tree
 
-    def patent_hit(self, doc_number: str, ranked: list[tuple[float | None, int]]) -> PatentHit:
+    def patent_hit(self, doc_number: str, ranked: list[tuple[float | None, int]], patterns=()) -> PatentHit:
         """ranked: this patent's matching claims as (score, claim index), best first."""
         p = self.patents[doc_number]
         claims = []
@@ -238,7 +241,8 @@ class Index:
             claims.append(PatentClaim(
                 claim_number=c["claim_number"], text=c["text"], score=score,
                 is_independent=None if c["is_independent"] is None else bool(c["is_independent"]),
-                opening_missing=bool(c["opening_missing"])))
+                opening_missing=bool(c["opening_missing"]),
+                highlights=highlight_spans(c["text"], patterns)))
         return PatentHit(
             doc_number=doc_number, title=p["title"], abstract=p["abstract"], score=ranked[0][0],
             matching_claims=len(ranked), claims=claims, pub_date=p["pub_date"],
@@ -295,13 +299,13 @@ class Index:
             ranked.sort(key=lambda t: (-t[0], t[1]))
 
         if group_by == "claim":
-            return SearchResponse(len(matched), [self.hit(i, s) for s, i in ranked[:top_n]], "claim")
+            return SearchResponse(len(matched), [self.hit(i, s, patterns) for s, i in ranked[:top_n]], "claim")
 
         # Group by patent in ranked order: a patent ranks by its best claim.
         groups: dict[str, list[tuple[float | None, int]]] = {}
         for s, i in ranked:
             groups.setdefault(self.claims[i]["doc_number"], []).append((s, i))
-        hits = [self.patent_hit(d, g) for d, g in list(groups.items())[:top_n]]
+        hits = [self.patent_hit(d, g, patterns) for d, g in list(groups.items())[:top_n]]
         return SearchResponse(len(groups), hits, "patent")
 
 

@@ -45,3 +45,19 @@ def test_matching(keywords, text, expected):
 
 def test_wildcard_only_is_ignored():
     assert compile_keywords("*") == []
+
+
+def spans(keywords, text):
+    from patent_search.keywords import highlight_spans
+    return [text[a:b] for a, b in highlight_spans(text, compile_keywords(keywords))]
+
+
+def test_highlight_spans():
+    from patent_search.keywords import highlight_spans
+    assert spans("spoke*", "a spoke and two spokes, not wheelspoke") == ["spoke", "spokes"]
+    assert spans('"fiber reinforced"', "a fiber-reinforced or fiber reinforced rim") == ["fiber-reinforced", "fiber reinforced"]
+    assert spans("Sipe", "SIPE and sipe") == ["SIPE", "sipe"]
+    # overlapping and touching matches merge, output is sorted
+    assert highlight_spans("tread block", compile_keywords('block "tread block" tread')) == [[0, 11]]
+    assert highlight_spans("b a", compile_keywords("a b")) == [[0, 1], [2, 3]]
+    assert highlight_spans("anything", []) == []

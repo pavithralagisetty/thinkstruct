@@ -162,3 +162,14 @@ def test_group_by_must_be_known(index):
 
 def test_claim_response_says_group_by(index):
     assert index.search("tire").to_dict()["group_by"] == "claim"
+
+
+def test_highlights_in_claim_and_patent_hits(index):
+    r = index.search("tire", keywords="tire*")
+    for h in r.hits:
+        assert h.highlights and all(h.text[a:b].lower().startswith("tire") for a, b in h.highlights)
+    p = index.search("tire", keywords="sensor", group_by="patent")
+    [claim] = p.hits[0].claims
+    assert [claim.text[a:b] for a, b in claim.highlights] == ["sensor"]
+    assert index.search("tire").hits[0].highlights == []
+    assert index.search("tire", group_by="patent").hits[0].claims[0].highlights == []

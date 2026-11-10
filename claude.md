@@ -162,6 +162,7 @@ At least one of `query`, `keywords` or a filter is required, otherwise raise a c
 * A trailing `*` matches word starts: `spoke*` matches spoke, spokes, spoked.
 * A hyphen between words matches a space and the other way round: `fiber reinforced` matches `fiber-reinforced`.
 * No stemming, no spelling variants (fibre vs fiber), no synonyms. Exact means exact.
+* Highlights (`keywords.highlight_spans`): every claim in a response, claim hits and the claims inside patent hits, carries `highlights`, the `[start, end)` spans in its `text` where a keyword matched, by the same compiled patterns as the filter. Spans are sorted, overlapping or touching spans are merged, and offsets are Python string indices (Unicode code points). Without keywords the list is empty. Only the claim text is highlighted, never the title or main claim, because only the claim text is matched.
 * Parsing (`keywords.py`, used by both the CLI and the API): in a string, spaces separate keywords and text in double quotes stays one phrase; an unclosed quote runs to the end. In a list, each item is one keyword or phrase (quotes are stripped). Blank keywords and a bare `*` are ignored. Unicode hyphens (‐ ‑) count as hyphens; an en dash does not.
 
 **Step 2a: query given.** Embed the query with the `search_query: ` prefix. For each claim that passed step 1:
@@ -178,8 +179,8 @@ Defaults `W_CLAIM = 0.8`, `W_PATENT = 0.2`, both in config. Scores are rounded t
 
 **Response.** `group_by`, `total_matches` (claims left after step 1, or with `group_by = "patent"` the number of patents that have at least one such claim) and a list of hits.
 
-* Claim hits: `doc_number`, `title`, `claim_number`, `text`, `score` (`None` without a query), `is_independent`, `opening_missing`, `pub_date`, `classification` (as stored), `cpc_code` (split, e.g. `B60C 11/12`, or `None`), `source_file`.
-* Patent hits: `doc_number`, `title`, `abstract`, `score`, `matching_claims` (its claims that passed step 1), `claims` (its best `config.CLAIMS_PER_PATENT` = 3, each with `claim_number`, `text`, `score`, `is_independent`, `opening_missing`), `pub_date`, `classification`, `cpc_code`, `source_file`.
+* Claim hits: `doc_number`, `title`, `claim_number`, `text`, `score` (`None` without a query), `is_independent`, `opening_missing`, `pub_date`, `classification` (as stored), `cpc_code` (split, e.g. `B60C 11/12`, or `None`), `source_file`, `highlights`.
+* Patent hits: `doc_number`, `title`, `abstract`, `score`, `matching_claims` (its claims that passed step 1), `claims` (its best `config.CLAIMS_PER_PATENT` = 3, each with `claim_number`, `text`, `score`, `is_independent`, `opening_missing`, `highlights`), `pub_date`, `classification`, `cpc_code`, `source_file`.
 
 When `opening_missing` is true, show the text as it is. The flag lets the caller say the start of the claim is missing in the source.
 
@@ -233,6 +234,7 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
   * a small uppercase heading "Best matching claims" ("Matching claims" without a question) with `{shown} of {matching_claims}` on the right
   * each shown claim (up to 3) in a soft panel: bold "Claim N", a quiet "Main" or "Dependent" tag (none when unknown), a dashed "Start missing" tag when `opening_missing` (its tooltip is the full note "The start of this claim is missing in the source data."), its score on the right (when there is a question), and the text clamped to 3 lines with "Show full claim". The best claim's panel has a thin orange border (only when there is a question)
   * no score repeated at the bottom
+* Keyword matches are marked with a soft yellow highlight (`<mark>`, a token for light and one for dark) in claim cards and in the claims of patent cards, using the `highlights` spans from the server; the page does not re-implement the keyword rules. Spans are code point offsets, so the page slices an array of code points (`Array.from(text)`), not the UTF-16 string, and builds the text from text nodes (no HTML from the data).
 * No results: show "No claims matched." or "No patents matched."
 * API errors: show the error message in red above the results.
 * If `/classifications` cannot be loaded, the subclass dropdown says "Classifications unavailable" and the other searches still work.

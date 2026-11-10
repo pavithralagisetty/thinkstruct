@@ -22,6 +22,7 @@
     --error: #c62828;
     --error-bg: #fdecea;
     --glow: rgba(232, 98, 42, 0.14);
+    --mark: rgba(250, 204, 21, 0.38);
     --shadow: 0 1px 2px rgba(20, 20, 25, 0.04), 0 4px 16px rgba(20, 20, 25, 0.05);
   }
   @media (prefers-color-scheme: dark) {
@@ -39,6 +40,7 @@
       --error: #ff7b72;
       --error-bg: #2a1414;
       --glow: rgba(232, 98, 42, 0.16);
+      --mark: rgba(250, 204, 21, 0.26);
       --shadow: none;
     }
   }
@@ -278,6 +280,7 @@
     border: 0; background: transparent; padding: 0; margin-top: 8px;
     color: var(--accent); font-weight: 600; font-size: 15px;
   }
+  mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
   .note { margin: 10px 0 0; color: var(--faint); font-size: 13px; }
   /* Patent cards */
   .grid.patents { align-items: start; }
@@ -550,6 +553,21 @@
     return /^\d{11}$/.test(doc) ? `US ${doc.slice(0, 4)}/${doc.slice(4)}` : `US ${doc}`;
   }
 
+  // Claim text with the server's keyword spans marked. Spans are code point offsets
+  // (Python string indices), so index an array of code points, not the UTF-16 string.
+  function claimText(className, text, highlights) {
+    const node = el("p", className);
+    const chars = Array.from(text);
+    let at = 0;
+    for (const [start, end] of highlights || []) {
+      if (start > at) node.append(chars.slice(at, start).join(""));
+      node.append(el("mark", "", chars.slice(start, end).join("")));
+      at = end;
+    }
+    if (at < chars.length) node.append(chars.slice(at).join(""));
+    return node;
+  }
+
   function kindLabel(isIndependent) {
     return isIndependent === true ? "Main claim" : isIndependent === false ? "Dependent claim" : null;
   }
@@ -578,7 +596,7 @@
     if (hit.pub_date) meta.push(`Published ${hit.pub_date}`);
     node.append(el("div", "meta", meta.join(" · ")));
 
-    const text = el("p", "claim-text clamped", hit.text);
+    const text = claimText("claim-text clamped", hit.text, hit.highlights);
     const more = el("button", "more", "Show full claim");
     node.append(text, more);
     clamps.push(clampToggle(text, more, "Show full claim"));
@@ -649,7 +667,7 @@
       }
       if (claim.score !== null && claim.score !== undefined) h.append(el("span", "pscore", claim.score.toFixed(2)));
       item.append(h);
-      const text = el("p", "claim-text clamped", claim.text);
+      const text = claimText("claim-text clamped", claim.text, claim.highlights);
       const more = el("button", "more", "Show full claim");
       item.append(text, more);
       clamps.push(clampToggle(text, more, "Show full claim"));
