@@ -1,4 +1,4 @@
-"""Command line: python -m patent_search build | search"""
+"""Command line: python -m patent_search build | search | serve"""
 
 import argparse
 import json
@@ -52,6 +52,12 @@ def cmd_search(args):
         print()
 
 
+def cmd_serve(args):
+    import uvicorn
+
+    uvicorn.run("patent_search.api:app", host=args.host, port=args.port)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="python -m patent_search")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -63,6 +69,10 @@ def main(argv=None):
     s.add_argument("-n", "--top", type=int, default=config.TOP_N_DEFAULT, help="number of results")
     s.add_argument("--json", action="store_true", help="print the response as JSON")
     s.set_defaults(func=cmd_search)
+    v = sub.add_parser("serve", help="run the web page and API")
+    v.add_argument("--host", default=config.HOST)
+    v.add_argument("--port", type=int, default=config.PORT)
+    v.set_defaults(func=cmd_serve)
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(message)s")
     args.func(args)

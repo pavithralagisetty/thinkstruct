@@ -157,11 +157,11 @@ When `opening_missing` is true, show the text as it is. The flag lets the caller
 ## Interfaces
 
 * Python function `search(...)` above.
-* CLI through `python -m patent_search` (also `serve` to run the web page on port 8000):
+* CLI through `python -m patent_search` (also `serve` to run the web page on port 8000; `--host` and `--port` override `config.HOST` and `config.PORT`):
   * `build`: read the raw dir (`config.RAW_DIR`), clean, embed, write `data/index`, print counts (patents, claims indexed, patents without description, claims with missing openings, cancelled claim numbers)
   * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`. The question is optional when `-k` is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON.
-* HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10}` returning the response above. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser.
-* Web page at `GET /` (see Frontend).
+* HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10}` returning the response above. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser. Errors come back as `{"error": "<message>"}`: `400` for bad input (no query or keyword, `top_n` out of range, wrong types, a body that is not JSON) and `503` when the index is missing or was built with a different model. The index loads on the first request, and the model on the first request with a query.
+* Web page at `GET /` (see Frontend). Until the frontend step is built, `static/index.html` is a placeholder page.
 
 ## Frontend
 
