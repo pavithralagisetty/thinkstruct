@@ -161,7 +161,7 @@ When `opening_missing` is true, show the text as it is. The flag lets the caller
   * `build`: read the raw dir (`config.RAW_DIR`), clean, embed, write `data/index`, print counts (patents, claims indexed, patents without description, claims with missing openings, cancelled claim numbers)
   * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`. The question is optional when `-k` is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON.
 * HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10}` returning the response above. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser. Errors come back as `{"error": "<message>"}`: `400` for bad input (no query or keyword, `top_n` out of range, wrong types, a body that is not JSON) and `503` when the index is missing or was built with a different model. The index loads on the first request, and the model on the first request with a query.
-* Web page at `GET /` (see Frontend). Until the frontend step is built, `static/index.html` is a placeholder page.
+* Web page at `GET /` (see Frontend).
 
 ## Frontend
 
@@ -192,13 +192,13 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 
 **Look**
 
-* Clean landing style: header with an orange "P" logo, a large two-line headline with the second line in orange (`#e8622a`), a short subtitle, and a soft orange glow behind the hero.
+* Clean landing style: header with an orange "P" logo and "Patent Claim Search", a large two-line headline ("Patent claims," then "found by meaning." in orange `#e8622a`), the subtitle "Ask in plain English and get the patent claims that match. Add exact keywords when wording matters.", and a soft orange glow behind the hero.
 * Large rounded search bar with a search icon and an orange Search button inside it.
-* Pill chips under the search bar that run the example searches from "Done when" (the data has no categories, so no category chips).
+* Pill chips under a "Try an example" label that run the example searches from "Done when": Carbon fiber spokes, Bassinet arm, Tire sensor setup, Wall-climbing robots, Keyword: sipe, Heavy truck tires + tread (the data has no categories, so no category chips).
 * The keyword box and the results number live in a collapsible "Exact keyword filters" panel, which shows a count badge when keywords are set.
-* Result cards in a two column grid (one column on a phone): monospace patent number badge (`US 2024/0116310`), the main or dependent claim label in orange at the top right, a bold title, then a line with claim number, classification and publication date, then the claim text clamped to 5 lines with "Show full claim". The score sits at the bottom of the card.
+* Result cards in a two column grid (one column on a phone): monospace patent number badge (`US 2024/0116310`), the main or dependent claim label in orange at the top right, a bold title, then a line with claim number, classification and publication date (`Claim 22 · B60B3300FI · Published 2024-03-21`; the classification is shown exactly as stored, not reformatted), then the claim text clamped to 5 lines with "Show full claim". The score sits at the bottom of the card.
 * Show only fields the data has (no assignee or inventor). System font, nothing loaded from the internet.
-* Works in light and dark mode using `prefers-color-scheme`.
+* Follows the system setting with `prefers-color-scheme`. Light and dark are equally finished; neither is the main one.
 
 ## Project layout
 

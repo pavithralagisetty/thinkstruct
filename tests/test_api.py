@@ -60,3 +60,15 @@ def test_index_not_ready_is_503(monkeypatch):
 def test_page(client):
     r = client.get("/")
     assert r.status_code == 200 and r.headers["content-type"].startswith("text/html")
+    page = r.text
+    for text in ['placeholder=\'sipe "tread block" spoke*\'', "Exact keyword filters", "Type a question or a keyword",
+                 "Searching...", "No claims matched.", "The start of this claim is missing in the source data.",
+                 "Show full claim", "prefers-color-scheme", 'fetch("/search"']:
+        assert text in page, text
+
+
+def test_page_loads_nothing_from_the_internet(client):
+    import re
+    page = client.get("/").text
+    assert not re.search(r"""(src|href)\s*=\s*["']?(https?:)?//""", page)
+    assert "@import" not in page and "url(http" not in page

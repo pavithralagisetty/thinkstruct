@@ -3,13 +3,465 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Patent Claim Search</title>
 <style>
-  body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 4rem auto; padding: 0 1rem; }
+  :root {
+    --accent: #e8622a;
+    --accent-hover: #d4561f;
+    --on-accent: #1a0f0a;
+    --bg: #f7f6f4;
+    --surface: #ffffff;
+    --surface-2: #efedea;
+    --border: #e2dfda;
+    --text: #17171a;
+    --muted: #6b6a70;
+    --faint: #8f8d93;
+    --chip-active-bg: #17171a;
+    --chip-active-text: #ffffff;
+    --error: #c62828;
+    --error-bg: #fdecea;
+    --glow: rgba(232, 98, 42, 0.14);
+    --shadow: 0 1px 2px rgba(20, 20, 25, 0.04), 0 4px 16px rgba(20, 20, 25, 0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent-hover: #f0743f;
+      --bg: #0f0f10;
+      --surface: #19191c;
+      --surface-2: #232327;
+      --border: #2b2b30;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --faint: #7c7c85;
+      --chip-active-bg: #f4f4f5;
+      --chip-active-text: #111113;
+      --error: #ff7b72;
+      --error-bg: #2a1414;
+      --glow: rgba(232, 98, 42, 0.16);
+      --shadow: none;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  button, input { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Header */
+  .topbar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: var(--accent); color: #fff;
+    display: grid; place-items: center;
+    font-weight: 700; font-size: 17px;
+  }
+  .brand { font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 72px 16px 8px;
+    text-align: center;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 260px;
+    background: radial-gradient(60% 100% at 50% 0%, var(--glow), transparent 70%);
+    pointer-events: none;
+  }
+  .hero > * { position: relative; }
+  h1 {
+    margin: 0;
+    font-size: clamp(40px, 8vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    font-weight: 800;
+  }
+  h1 .second { display: block; color: var(--accent); }
+  .subtitle {
+    max-width: 34em; margin: 24px auto 0;
+    color: var(--muted);
+    font-size: clamp(16px, 2.2vw, 19px);
+  }
+
+  /* Search */
+  .search-wrap { max-width: 760px; margin: 40px auto 0; padding: 0 16px; }
+  .searchbar {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 8px 8px 8px 18px;
+    box-shadow: var(--shadow);
+  }
+  .searchbar:focus-within { border-color: var(--accent); }
+  .searchbar svg { flex: none; color: var(--faint); }
+  .searchbar input {
+    flex: 1; min-width: 0;
+    border: 0; background: transparent; outline: none;
+    font-size: 18px; padding: 10px 0;
+  }
+  .searchbar input::placeholder { color: var(--faint); }
+  .search-btn {
+    flex: none;
+    border: 0; border-radius: 14px;
+    background: var(--accent); color: var(--on-accent);
+    font-weight: 600; font-size: 17px;
+    padding: 12px 24px;
+  }
+  .search-btn:hover:not(:disabled) { background: var(--accent-hover); }
+  .search-btn:disabled { opacity: 0.7; cursor: progress; }
+
+  .examples { margin-top: 28px; text-align: center; }
+  .examples-label { color: var(--faint); font-size: 14px; margin-bottom: 12px; }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .chip {
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--text);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 15px;
+  }
+  .chip:hover { border-color: var(--faint); }
+  .chip[aria-pressed="true"] {
+    background: var(--chip-active-bg); color: var(--chip-active-text); border-color: var(--chip-active-bg);
+  }
+
+  /* Exact keyword filters */
+  .filters {
+    margin-top: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+  }
+  .filters-toggle {
+    width: 100%;
+    display: flex; align-items: center; gap: 12px;
+    border: 0; background: transparent;
+    padding: 16px 20px;
+    text-align: left;
+    border-radius: 16px;
+  }
+  .filters-toggle svg { flex: none; }
+  .filters-title { font-weight: 600; font-size: 17px; }
+  .filters-side { margin-left: auto; display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 15px; }
+  .badge {
+    background: var(--accent); color: var(--on-accent);
+    border-radius: 999px; padding: 1px 9px;
+    font-size: 13px; font-weight: 600;
+  }
+  .chevron { transition: transform 0.15s; }
+  .filters-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+  .filters-body {
+    display: grid; grid-template-columns: 1fr 140px; gap: 16px;
+    padding: 0 20px 20px;
+  }
+  .filters-body[hidden] { display: none; }
+  .field label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .field label .optional { color: var(--faint); font-weight: 400; }
+  .field input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 16px;
+  }
+  .field input:focus { outline: none; border-color: var(--accent); }
+  .hint { margin: 6px 0 0; color: var(--faint); font-size: 13px; }
+  .hint code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+
+  /* Results */
+  .results { max-width: 1200px; margin: 48px auto 80px; padding: 0 16px; }
+  .error {
+    color: var(--error); background: var(--error-bg);
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 16px;
+  }
+  .summary { color: var(--muted); font-size: 17px; margin: 0 0 16px; }
+  .empty { color: var(--muted); text-align: center; padding: 32px 0; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: 1fr; }
+    .filters-body { grid-template-columns: 1fr; }
+    .hero { padding-top: 48px; }
+    .search-btn { padding: 10px 16px; }
+    .searchbar input { font-size: 16px; }
+  }
+  .card {
+    display: flex; flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+  }
+  .card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .number {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 15px;
+    background: var(--surface-2);
+    border-radius: 8px;
+    padding: 4px 10px;
+  }
+  .kind { color: var(--accent); font-weight: 600; font-size: 15px; white-space: nowrap; }
+  .card h2 { margin: 14px 0 4px; font-size: 19px; line-height: 1.3; overflow-wrap: anywhere; }
+  .meta { color: var(--muted); font-size: 15px; }
+  .claim-text {
+    margin: 14px 0 0;
+    overflow-wrap: anywhere;
+  }
+  .claim-text.clamped {
+    display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .more {
+    align-self: flex-start;
+    border: 0; background: transparent; padding: 0; margin-top: 8px;
+    color: var(--accent); font-weight: 600; font-size: 15px;
+  }
+  .note { margin: 10px 0 0; color: var(--faint); font-size: 13px; }
+  .score {
+    margin-top: auto; padding-top: 16px;
+    color: var(--muted); font-size: 14px;
+  }
+  .score strong { color: var(--text); font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
-<h1>Patent Claim Search</h1>
-<p>The search page is not built yet. The API is available at <code>POST /search</code>.</p>
+<header class="topbar">
+  <div class="logo" aria-hidden="true">P</div>
+  <div class="brand">Patent Claim Search</div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Patent claims,<span class="second">found by meaning.</span></h1>
+    <p class="subtitle">Ask in plain English and get the patent claims that match. Add exact keywords when wording matters.</p>
+  </section>
+
+  <form class="search-wrap" id="form" novalidate>
+    <div class="searchbar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="query" type="text" autocomplete="off" placeholder="Describe what the claim should cover" aria-label="Question">
+      <button class="search-btn" id="submit" type="submit">Search</button>
+    </div>
+
+    <div class="examples">
+      <div class="examples-label">Try an example</div>
+      <div class="chips" id="chips"></div>
+    </div>
+
+    <div class="filters">
+      <button class="filters-toggle" id="filters-toggle" type="button" aria-expanded="false" aria-controls="filters-body">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+        <span class="filters-title">Exact keyword filters</span>
+        <span class="filters-side">
+          <span id="filters-state">Add filters</span>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </span>
+      </button>
+      <div class="filters-body" id="filters-body" hidden>
+        <div class="field">
+          <label for="keywords">Keywords <span class="optional">(optional)</span></label>
+          <input id="keywords" type="text" autocomplete="off" placeholder='sipe "tread block" spoke*'>
+          <p class="hint">Every keyword must appear in the claim. <code>"quotes"</code> for a phrase, <code>*</code> at the end for word starts.</p>
+        </div>
+        <div class="field">
+          <label for="top-n">Results</label>
+          <input id="top-n" type="number" min="1" max="100" step="1" value="10" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <section class="results" id="results" aria-live="polite"></section>
+</main>
+
+<script>
+(() => {
+  const EXAMPLES = [
+    { label: "Carbon fiber spokes", query: "wheel spoke made of carbon fiber", keywords: "" },
+    { label: "Bassinet arm", query: "bassinet arm that rotates the infant tub", keywords: "" },
+    { label: "Tire sensor setup", query: "setting up a tire pressure sensor from a phone", keywords: "" },
+    { label: "Wall-climbing robots", query: "robot that drives up walls using magnetic wheels", keywords: "" },
+    { label: "Keyword: sipe", query: "", keywords: "sipe" },
+    { label: "Heavy truck tires + tread", query: "tire for heavy trucks", keywords: "tread" },
+  ];
+
+  const $ = (id) => document.getElementById(id);
+  const form = $("form"), queryBox = $("query"), keywordBox = $("keywords"), topBox = $("top-n");
+  const button = $("submit"), results = $("results");
+  const toggle = $("filters-toggle"), filtersBody = $("filters-body"), filtersState = $("filters-state");
+  let requestId = 0;
+
+  function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  // Same splitting as the server's parser: spaces separate keywords, "quotes" keep a phrase.
+  function countKeywords(text) {
+    let n = 0;
+    for (const m of text.matchAll(/"([^"]*)"?|(\S+)/g)) {
+      if ((m[1] ?? m[2]).replace(/[\s"*]/g, "")) n++;
+    }
+    return n;
+  }
+
+  function updateFilterState() {
+    const n = countKeywords(keywordBox.value);
+    filtersState.replaceChildren(n
+      ? el("span", "badge", n === 1 ? "1 keyword" : `${n} keywords`)
+      : document.createTextNode("Add filters"));
+  }
+
+  function setFiltersOpen(open) {
+    toggle.setAttribute("aria-expanded", String(open));
+    filtersBody.hidden = !open;
+  }
+
+  function formatNumber(doc) {
+    return /^\d{11}$/.test(doc) ? `US ${doc.slice(0, 4)}/${doc.slice(4)}` : `US ${doc}`;
+  }
+
+  function card(hit) {
+    const node = el("article", "card");
+    const top = el("div", "card-top");
+    top.append(el("span", "number", formatNumber(hit.doc_number)));
+    if (hit.is_independent === true) top.append(el("span", "kind", "Main claim"));
+    if (hit.is_independent === false) top.append(el("span", "kind", "Dependent claim"));
+    node.append(top);
+
+    node.append(el("h2", "", hit.title || "Untitled"));
+    const meta = [`Claim ${hit.claim_number}`];
+    if (hit.classification) meta.push(hit.classification);
+    if (hit.pub_date) meta.push(`Published ${hit.pub_date}`);
+    node.append(el("div", "meta", meta.join(" · ")));
+
+    const text = el("p", "claim-text clamped", hit.text);
+    node.append(text);
+    const more = el("button", "more", "Show full claim");
+    more.type = "button";
+    more.hidden = true;
+    more.addEventListener("click", () => {
+      const clamped = text.classList.toggle("clamped");
+      more.textContent = clamped ? "Show full claim" : "Show less";
+    });
+    node.append(more);
+
+    if (hit.opening_missing) {
+      node.append(el("p", "note", "The start of this claim is missing in the source data."));
+    }
+    if (hit.score !== null && hit.score !== undefined) {
+      const score = el("div", "score", "Score ");
+      score.append(el("strong", "", hit.score.toFixed(2)));
+      node.append(score);
+    }
+    return { node, text, more };
+  }
+
+  function showError(message) {
+    results.replaceChildren(el("div", "error", message));
+  }
+
+  function render(data) {
+    const shown = data.hits.length;
+    let summary = `${data.total_matches} matching claims`;
+    if (data.total_matches > shown) summary += `, showing top ${shown}`;
+    const parts = [el("p", "summary", summary)];
+    if (!shown) {
+      parts.push(el("p", "empty", "No claims matched."));
+      results.replaceChildren(...parts);
+      return;
+    }
+    const grid = el("div", "grid");
+    const cards = data.hits.map(card);
+    grid.append(...cards.map((c) => c.node));
+    parts.push(grid);
+    results.replaceChildren(...parts);
+    // Only offer "Show full claim" where the text is actually cut off.
+    for (const c of cards) c.more.hidden = c.text.scrollHeight <= c.text.clientHeight + 1;
+  }
+
+  async function runSearch() {
+    const query = queryBox.value.trim();
+    const keywords = keywordBox.value.trim();
+    if (!query && !keywords) {
+      showError("Type a question or a keyword");
+      return;
+    }
+    const raw = topBox.value.trim();
+    const topN = raw === "" ? 10 : (/^\d+$/.test(raw) ? Number(raw) : raw);
+    const body = { query: query || null, keywords: keywords || null, top_n: topN };
+
+    const id = ++requestId;
+    button.disabled = true;
+    button.textContent = "Searching...";
+    try {
+      const response = await fetch("/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      let data = null;
+      try { data = await response.json(); } catch { /* not JSON */ }
+      if (id !== requestId) return;
+      if (!response.ok) {
+        showError((data && data.error) || `Search failed (HTTP ${response.status}).`);
+        return;
+      }
+      render(data);
+    } catch (e) {
+      if (id === requestId) showError("Could not reach the search server.");
+    } finally {
+      if (id === requestId) {
+        button.disabled = false;
+        button.textContent = "Search";
+      }
+    }
+  }
+
+  function clearActiveChip() {
+    for (const chip of document.querySelectorAll(".chip")) chip.setAttribute("aria-pressed", "false");
+  }
+
+  for (const example of EXAMPLES) {
+    const chip = el("button", "chip", example.label);
+    chip.type = "button";
+    chip.setAttribute("aria-pressed", "false");
+    chip.addEventListener("click", () => {
+      queryBox.value = example.query;
+      keywordBox.value = example.keywords;
+      updateFilterState();
+      if (example.keywords) setFiltersOpen(true);
+      clearActiveChip();
+      chip.setAttribute("aria-pressed", "true");
+      runSearch();
+    });
+    $("chips").append(chip);
+  }
+
+  toggle.addEventListener("click", () => setFiltersOpen(filtersBody.hidden));
+  keywordBox.addEventListener("input", () => { updateFilterState(); clearActiveChip(); });
+  queryBox.addEventListener("input", clearActiveChip);
+  form.addEventListener("submit", (event) => { event.preventDefault(); runSearch(); });
+})();
+</script>
 </body>
 </html>
