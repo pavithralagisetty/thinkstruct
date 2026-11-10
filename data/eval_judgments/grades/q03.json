@@ -1,0 +1,91 @@
+{
+  "question_id": "q03",
+  "question": "grain structure and strength of the spokes in a cast aluminium wheel made from recycled scrap",
+  "grades": [
+    {
+      "claim_id": "20240217263:29",
+      "grade": 0,
+      "reason": "Generic list of wheel materials; nothing on grain structure, strength or recycled scrap."
+    },
+    {
+      "claim_id": "20240227433:1",
+      "grade": 1,
+      "reason": "Casting method with a grain refiner, related to grain structure but no spoke grain or strength stated."
+    },
+    {
+      "claim_id": "20240227433:10",
+      "grade": 2,
+      "reason": "States secondary dendrite arm spacing (microstructure) in the spoke region."
+    },
+    {
+      "claim_id": "20240227433:11",
+      "grade": 2,
+      "reason": "States average grain size in the spoke region of the cast wheel."
+    },
+    {
+      "claim_id": "20240227433:12",
+      "grade": 2,
+      "reason": "States yield strength and elongation of a sample from the spoke region."
+    },
+    {
+      "claim_id": "20240227433:13",
+      "grade": 1,
+      "reason": "Cast aluminum wheel with spokes and high scrap content, but no grain structure or strength stated."
+    },
+    {
+      "claim_id": "20240227433:15",
+      "grade": 0,
+      "reason": "Only a silicon content range; no grain structure, strength or spokes."
+    },
+    {
+      "claim_id": "20240227433:16",
+      "grade": 0,
+      "reason": "Only alloying element ranges; no grain structure, strength or spokes."
+    },
+    {
+      "claim_id": "20240227433:17",
+      "grade": 2,
+      "reason": "States SDAS and grain size of the spoke region."
+    },
+    {
+      "claim_id": "20240227433:18",
+      "grade": 1,
+      "reason": "States yield strength and elongation but not tied to spokes or grain structure in the text present."
+    },
+    {
+      "claim_id": "20240227433:19",
+      "grade": 1,
+      "reason": "States yield strength and elongation but not tied to spokes, grain structure or scrap in the text present."
+    },
+    {
+      "claim_id": "20240227433:2",
+      "grade": 1,
+      "reason": "States scrap aluminum content of the melt, but not grain structure or spoke strength."
+    },
+    {
+      "claim_id": "20240227433:3",
+      "grade": 0,
+      "reason": "Only a tilt casting temperature; no grain structure or strength."
+    },
+    {
+      "claim_id": "20240227433:4",
+      "grade": 0,
+      "reason": "Only casting process and die material; no grain structure or strength stated."
+    },
+    {
+      "claim_id": "20240227433:6",
+      "grade": 0,
+      "reason": "Only an iron content range."
+    },
+    {
+      "claim_id": "20240227433:8",
+      "grade": 0,
+      "reason": "Only a silicon content range."
+    },
+    {
+      "claim_id": "20240227433:9",
+      "grade": 0,
+      "reason": "Only alloying element ranges; no grain structure, strength or spokes."
+    }
+  ]
+}

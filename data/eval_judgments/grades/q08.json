@@ -1,0 +1,136 @@
+{
+  "question_id": "q08",
+  "question": "how large the spacing should be between separate foam noise-damping pieces inside a tire or on the rim",
+  "grades": [
+    {
+      "claim_id": "20240059105:17",
+      "grade": 2,
+      "reason": "States the gap between adjacent sound absorbers in the tire as 1% to 99% of circumferential length."
+    },
+    {
+      "claim_id": "20240059105:21",
+      "grade": 2,
+      "reason": "States the gap between adjacent sound absorbers on the rim as 1% to 99% of rim circumference."
+    },
+    {
+      "claim_id": "20240059105:8",
+      "grade": 0,
+      "reason": "Flow resistivity of the absorber material, not spacing."
+    },
+    {
+      "claim_id": "20240059105:9",
+      "grade": 1,
+      "reason": "Thickness of discrete sound absorbers, not the gap between them."
+    },
+    {
+      "claim_id": "20240109370:20",
+      "grade": 1,
+      "reason": "Distance between end edges in a low-noise tire layer, but it is a sealing layer, not foam damper pieces."
+    },
+    {
+      "claim_id": "20240109370:21",
+      "grade": 0,
+      "reason": "Sealing layer thickness, not noise-damping foam spacing."
+    },
+    {
+      "claim_id": "20240140140:40",
+      "grade": 1,
+      "reason": "Mentions noise cancelling foam in the tire but nothing on spacing."
+    },
+    {
+      "claim_id": "20240300269:10",
+      "grade": 0,
+      "reason": "Foam insert void shape, not noise damping spacing."
+    },
+    {
+      "claim_id": "20240300269:13",
+      "grade": 0,
+      "reason": "Foam tyre insert mounting, not noise damping spacing."
+    },
+    {
+      "claim_id": "20240300269:3",
+      "grade": 0,
+      "reason": "Foam insert material, not noise damping spacing."
+    },
+    {
+      "claim_id": "20240316986:1",
+      "grade": 0,
+      "reason": "Bead seal, not a noise damper."
+    },
+    {
+      "claim_id": "20240316986:2",
+      "grade": 0,
+      "reason": "Bead seal, not a noise damper."
+    },
+    {
+      "claim_id": "20240316986:21",
+      "grade": 0,
+      "reason": "Bead seal, not a noise damper."
+    },
+    {
+      "claim_id": "20240316986:6",
+      "grade": 0,
+      "reason": "Bead seal spine, not a noise damper."
+    },
+    {
+      "claim_id": "20240316986:7",
+      "grade": 0,
+      "reason": "Bead seal spine, not a noise damper."
+    },
+    {
+      "claim_id": "20250065675:1",
+      "grade": 1,
+      "reason": "Sound damper dimensions in the tire cavity, but no spacing between pieces."
+    },
+    {
+      "claim_id": "20250065675:2",
+      "grade": 1,
+      "reason": "Damper width relative to tire, but no spacing between pieces."
+    },
+    {
+      "claim_id": "20250065675:3",
+      "grade": 1,
+      "reason": "Placement of the sound damper in the tire, but no spacing between pieces."
+    },
+    {
+      "claim_id": "20250065675:4",
+      "grade": 1,
+      "reason": "Damper ends are joined into an annulus, related to end gaps but gives no spacing."
+    },
+    {
+      "claim_id": "20250065675:5",
+      "grade": 1,
+      "reason": "Damper ends fitted together, related to end gaps but gives no spacing."
+    },
+    {
+      "claim_id": "20250065675:6",
+      "grade": 0,
+      "reason": "Cross-section shape only."
+    },
+    {
+      "claim_id": "20250065675:7",
+      "grade": 0,
+      "reason": "Density of a single annular damper, unrelated to spacing."
+    },
+    {
+      "claim_id": "20250065675:8",
+      "grade": 0,
+      "reason": "Hardness of the damper, unrelated to spacing."
+    },
+    {
+      "claim_id": "20250065675:9",
+      "grade": 1,
+      "reason": "Damper size relative to tire, but no spacing between pieces."
+    },
+    {
+      "claim_id": "20250115081:15",
+      "grade": 0,
+      "reason": "Tread groove protrusion sizes, not foam dampers."
+    },
+    {
+      "claim_id": "20250135803:7",
+      "grade": 0,
+      "reason": "Brake disk fastener damping member."
+    }
+  ]
+}

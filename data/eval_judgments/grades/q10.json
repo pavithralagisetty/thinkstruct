@@ -1,0 +1,136 @@
+{
+  "question_id": "q10",
+  "question": "Hall effect sensor that detects a magnet on a moving part to know its position",
+  "grades": [
+    {
+      "claim_id": "20240116318:1",
+      "grade": 2,
+      "reason": "Sensing flux of a magnet on a movable component to determine its end position."
+    },
+    {
+      "claim_id": "20240116318:10",
+      "grade": 1,
+      "reason": "Sensing magnetic flux with multiple sensors, but position determination not stated in this claim."
+    },
+    {
+      "claim_id": "20240116318:11",
+      "grade": 2,
+      "reason": "Magnet on a movable component sensed by a magnetic flux sensor to determine its end position."
+    },
+    {
+      "claim_id": "20240116318:14",
+      "grade": 0,
+      "reason": "Indicator for remaining life or alert; not about sensing."
+    },
+    {
+      "claim_id": "20240116318:15",
+      "grade": 1,
+      "reason": "States a 3D Hall effect sensor, but not the magnet or position detection itself."
+    },
+    {
+      "claim_id": "20240116318:18",
+      "grade": 0,
+      "reason": "Memory storing sensor data for observing operation; not about magnet position sensing."
+    },
+    {
+      "claim_id": "20240116318:2",
+      "grade": 0,
+      "reason": "Defines wear threshold positions and life expectancy; not about the sensing."
+    },
+    {
+      "claim_id": "20240116318:20",
+      "grade": 1,
+      "reason": "Determines velocity of the movable component via controller timer; related motion sensing but no magnet or Hall sensor."
+    },
+    {
+      "claim_id": "20240116318:3",
+      "grade": 0,
+      "reason": "Relation between life expectancies; not about sensing."
+    },
+    {
+      "claim_id": "20240116318:5",
+      "grade": 1,
+      "reason": "Uses end position comparison to determine state; related but no magnet sensing stated."
+    },
+    {
+      "claim_id": "20240116318:6",
+      "grade": 0,
+      "reason": "Lists operational states; no sensing stated."
+    },
+    {
+      "claim_id": "20240116318:7",
+      "grade": 1,
+      "reason": "Stores sensor data of sensed magnetic flux; related but no position detection stated."
+    },
+    {
+      "claim_id": "20240116318:8",
+      "grade": 0,
+      "reason": "Only about accessing stored data to observe fifth wheel operation; no sensor or magnet stated."
+    },
+    {
+      "claim_id": "20240116318:9",
+      "grade": 1,
+      "reason": "States a 3D Hall effect sensor, but not the magnet or position detection itself."
+    },
+    {
+      "claim_id": "20240208266:1",
+      "grade": 0,
+      "reason": "Magnet arrangement in a caster mount; no sensing."
+    },
+    {
+      "claim_id": "20240208266:2",
+      "grade": 0,
+      "reason": "Magnetic centering force on a caster; no sensing."
+    },
+    {
+      "claim_id": "20240208266:3",
+      "grade": 0,
+      "reason": "Fixed element is a permanent magnet; no sensing."
+    },
+    {
+      "claim_id": "20240208266:8",
+      "grade": 0,
+      "reason": "Rows of magnets in a caster mount; no sensing."
+    },
+    {
+      "claim_id": "20240343065:4",
+      "grade": 1,
+      "reason": "Sensor detecting displacement of an encoder on a bearing, but no Hall sensor or magnet stated."
+    },
+    {
+      "claim_id": "20240343065:5",
+      "grade": 0,
+      "reason": "Nut holding part location; unrelated."
+    },
+    {
+      "claim_id": "20240383279:4",
+      "grade": 1,
+      "reason": "States a Hall effect sensor detecting a reference point, but no magnet on a moving part."
+    },
+    {
+      "claim_id": "20240383279:5",
+      "grade": 2,
+      "reason": "Magnet fixed to pivoting caster connector detected by a magnetic sensor to determine pivot position."
+    },
+    {
+      "claim_id": "20240399790:10",
+      "grade": 0,
+      "reason": "Magnet posture control motor; no position sensing."
+    },
+    {
+      "claim_id": "20240399790:8",
+      "grade": 0,
+      "reason": "Magnet posture control motor; no position sensing."
+    },
+    {
+      "claim_id": "20250115083:2",
+      "grade": 0,
+      "reason": "Strain sensor geometry, unrelated to magnetic position sensing."
+    },
+    {
+      "claim_id": "20250115083:5",
+      "grade": 0,
+      "reason": "Strain sensor mounting in a tire; unrelated."
+    }
+  ]
+}

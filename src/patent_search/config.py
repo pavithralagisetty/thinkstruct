@@ -40,6 +40,7 @@ PORT = 8000
 EVAL_QUESTIONS_PATH = PROJECT_ROOT / "tests" / "eval" / "questions.json"
 EVAL_RESULTS_DIR = Path(os.environ.get("PATENT_SEARCH_EVAL_RESULTS_DIR", PROJECT_ROOT / "data" / "eval_results"))
 EVAL_CACHE_DIR = Path(os.environ.get("PATENT_SEARCH_EVAL_CACHE_DIR", PROJECT_ROOT / "data" / "eval_cache"))
+EVAL_JUDGMENTS_DIR = Path(os.environ.get("PATENT_SEARCH_EVAL_JUDGMENTS_DIR", PROJECT_ROOT / "data" / "eval_judgments"))
 EVAL_TOP_N = 10
 EVAL_BATCH_SIZE = 32
 # Grades B3 will give each claim per question: 0 not relevant, 1 partly, 2 fully.

@@ -1,0 +1,101 @@
+{
+  "question_id": "q07",
+  "question": "estimating how much service life is left in a worn semi-truck fifth wheel coupling",
+  "grades": [
+    {
+      "claim_id": "20240116318:1",
+      "grade": 2,
+      "reason": "Determines remaining life expectancy of the fifth wheel component by comparing end position to worn thresholds."
+    },
+    {
+      "claim_id": "20240116318:10",
+      "grade": 0,
+      "reason": "Only specifies using two or more sensors."
+    },
+    {
+      "claim_id": "20240116318:11",
+      "grade": 2,
+      "reason": "Determines remaining life expectancy of a fifth wheel component from comparison to a worn threshold."
+    },
+    {
+      "claim_id": "20240116318:12",
+      "grade": 2,
+      "reason": "Compares to a worn threshold corresponding to a remaining life expectancy of the fifth wheel component."
+    },
+    {
+      "claim_id": "20240116318:13",
+      "grade": 1,
+      "reason": "Only relates two remaining life expectancies; does not itself state the estimation."
+    },
+    {
+      "claim_id": "20240116318:14",
+      "grade": 1,
+      "reason": "Indicates remaining life expectancy but does not state how it is estimated."
+    },
+    {
+      "claim_id": "20240116318:15",
+      "grade": 0,
+      "reason": "Only specifies the sensor type."
+    },
+    {
+      "claim_id": "20240116318:16",
+      "grade": 1,
+      "reason": "Determines operational state from worn thresholds, related but not remaining life."
+    },
+    {
+      "claim_id": "20240116318:17",
+      "grade": 1,
+      "reason": "Names a worn operational state but does not estimate remaining life."
+    },
+    {
+      "claim_id": "20240116318:18",
+      "grade": 1,
+      "reason": "Stores data to observe fifth wheel operation over time, related to wear monitoring but no life estimate."
+    },
+    {
+      "claim_id": "20240116318:2",
+      "grade": 2,
+      "reason": "Defines worn thresholds corresponding to first and second remaining life expectancies of the fifth wheel component."
+    },
+    {
+      "claim_id": "20240116318:20",
+      "grade": 0,
+      "reason": "Only adds a timer to determine velocity of the component."
+    },
+    {
+      "claim_id": "20240116318:3",
+      "grade": 1,
+      "reason": "Only relates two remaining life expectancies; does not itself state how remaining life is estimated."
+    },
+    {
+      "claim_id": "20240116318:4",
+      "grade": 1,
+      "reason": "Indicates remaining life expectancy or an alert but does not state the estimation."
+    },
+    {
+      "claim_id": "20240116318:5",
+      "grade": 1,
+      "reason": "Determines operational state from worn thresholds, related but not remaining life."
+    },
+    {
+      "claim_id": "20240116318:6",
+      "grade": 1,
+      "reason": "Names a worn operational state but does not estimate remaining life."
+    },
+    {
+      "claim_id": "20240116318:7",
+      "grade": 0,
+      "reason": "Only stores sensor data to memory."
+    },
+    {
+      "claim_id": "20240116318:8",
+      "grade": 1,
+      "reason": "Observes fifth wheel operation over time from stored data, related but no life estimate."
+    },
+    {
+      "claim_id": "20240116318:9",
+      "grade": 0,
+      "reason": "Only specifies the sensor type."
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "question_id": "q01",
+  "question": "tool that pulls a tire valve out of the wheel, focusing on how it grips the rim",
+  "grades": [
+    {
+      "claim_id": "20240092128:1",
+      "grade": 1,
+      "reason": "Claims a valve removal tool with a rim contact member but does not state how it grips the rim."
+    },
+    {
+      "claim_id": "20240092128:10",
+      "grade": 2,
+      "reason": "States locking points on the rim contact member base that releasably engage the wheel rim during valve removal."
+    },
+    {
+      "claim_id": "20240092128:11",
+      "grade": 2,
+      "reason": "States step-shaped locking points that limit movement of the rim contact member base relative to the rim."
+    },
+    {
+      "claim_id": "20240092128:12",
+      "grade": 1,
+      "reason": "Valve removal method placing the rim contact member on the rim top surface, but no gripping detail."
+    },
+    {
+      "claim_id": "20240092128:13",
+      "grade": 1,
+      "reason": "Describes how the tool grips the valve stem, not the rim."
+    },
+    {
+      "claim_id": "20240092128:14",
+      "grade": 1,
+      "reason": "Describes slot housing the rim contact member, not how it grips the rim."
+    },
+    {
+      "claim_id": "20240092128:15",
+      "grade": 1,
+      "reason": "Valve removal method topic, but only claims slot region dimensions."
+    },
+    {
+      "claim_id": "20240092128:16",
+      "grade": 1,
+      "reason": "Describes linkage moving the rim contact member, not how it grips the rim."
+    },
+    {
+      "claim_id": "20240092128:17",
+      "grade": 1,
+      "reason": "Locates the rim contact member on the body but does not say how it grips the rim."
+    },
+    {
+      "claim_id": "20240092128:18",
+      "grade": 1,
+      "reason": "Valve removal method topic, but only claims handle connection, not rim gripping."
+    },
+    {
+      "claim_id": "20240092128:19",
+      "grade": 1,
+      "reason": "Valve removal method topic, but only claims handle length, not rim gripping."
+    },
+    {
+      "claim_id": "20240092128:2",
+      "grade": 1,
+      "reason": "Describes how the tool grips the valve stem, not the rim."
+    },
+    {
+      "claim_id": "20240092128:20",
+      "grade": 1,
+      "reason": "Describes rim contact member extending from body, not how it grips the rim."
+    },
+    {
+      "claim_id": "20240092128:21",
+      "grade": 2,
+      "reason": "States locking points on the rim contact member base that releasably engage the wheel rim during valve removal."
+    },
+    {
+      "claim_id": "20240092128:22",
+      "grade": 2,
+      "reason": "States step-shaped locking points that limit movement of the rim contact member base relative to the rim."
+    },
+    {
+      "claim_id": "20240092128:23",
+      "grade": 1,
+      "reason": "Describes valve rotation during removal, not rim gripping."
+    },
+    {
+      "claim_id": "20240092128:3",
+      "grade": 1,
+      "reason": "Describes slot housing the rim contact member, not how it grips the rim."
+    },
+    {
+      "claim_id": "20240092128:4",
+      "grade": 1,
+      "reason": "Valve removal tool topic, but only claims slot region dimensions."
+    },
+    {
+      "claim_id": "20240092128:5",
+      "grade": 1,
+      "reason": "Describes linkage moving the rim contact member, not how it grips the rim."
+    },
+    {
+      "claim_id": "20240092128:6",
+      "grade": 1,
+      "reason": "Locates the rim contact member on the body but does not say how it grips the rim."
+    },
+    {
+      "claim_id": "20240092128:7",
+      "grade": 1,
+      "reason": "Valve removal tool topic, but only claims handle connection, not rim gripping."
+    },
+    {
+      "claim_id": "20240092128:8",
+      "grade": 1,
+      "reason": "Valve removal tool topic, but only claims handle length, not rim gripping."
+    },
+    {
+      "claim_id": "20240092128:9",
+      "grade": 1,
+      "reason": "Describes rim contact member extending from body, not how it grips the rim."
+    }
+  ]
+}

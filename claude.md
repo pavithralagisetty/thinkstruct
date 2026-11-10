@@ -228,6 +228,23 @@ A model comparison runner, so the embedding model can be chosen on evidence. It 
   * `ndcg@10`: graded gain `2^grade - 1` (`None` if no claim has a positive grade).
   * `first_full_rank`: rank of the first claim with grade ≥ `EVAL_FULL_GRADE` (2), `None` if none is in the list.
 
+### Pooled blind grading
+
+The only source of relevance labels (`grading.py`, `python -m patent_search grade prepare | score`).
+
+1. **Pool.** For each question, the union of every candidate's top 10 from the latest eval report (`data/eval_results/run_*.json`, or `--report`).
+2. **Blind packets.** `grade prepare` writes `data/eval_judgments/packets/<qid>.json`: the question, the grading instructions, and for each pooled claim that has no grade yet its `claim_id`, patent title, main claim text (dependent claims only: the text of its root claim), claim text and `opening_missing`. The claims are in a fixed random order (seeded from the question id). No model names, scores or ranks.
+3. **Reuse.** Grades live in `data/eval_judgments/grades/<qid>.json` and are never changed once written. Only pooled claims without a grade go into a packet, so a new model only needs its new claims graded. A question with nothing left to grade gets no packet.
+4. **Judges.** One blind subagent per packet. It may read only its packet and write only `data/eval_judgments/incoming/<qid>.json`; it never sees which model returned a claim or any eval result. Scale: **2** = the claim itself states what is asked, **1** = right topic and a closely related detail, **0** = not relevant. It judges the claim's own text (the main claim is context only) and gives one short reason per claim.
+5. **Score.** `grade score` checks each incoming file (every packet claim graded exactly once, grade 0, 1 or 2, a reason, nothing extra), merges it into `grades/`, writes all pooled grades to `data/eval_judgments/pooled_grades.json`, scores every candidate with the metric functions above (claims never graded count as 0, with a warning) and prints the comparison table and the rank of the first fully relevant claim per question. The result is saved to `data/eval_results/scores_<UTC time>.json`.
+
+**Limits.**
+
+* Only pooled claims are graded. A relevant claim that no candidate returned in its top 10 is invisible, so recall is recall within the pool, and a model that finds relevant claims nobody else found is not rewarded for them until they are graded.
+* 10 questions and one judge per claim. The judges are language models, not patent examiners; their grades are consistent within a packet but not checked by a second judge. Small differences between models are noise.
+* A model is only worth switching to if it clearly beats the current one (nomic) on these metrics, not by a hair; switching means a rebuild and a different cost and context length.
+* If nomic does not beat bm25, the embedding step is not earning its cost and plain word matching should be considered instead.
+
 ## Project layout
 
 ```
@@ -237,7 +254,8 @@ patent_search/
   data 2/patent_data_small/ input JSON files (all 64)
   data/index/               built files, git ignored
   data/eval_cache/          cached vectors for model comparison, git ignored
-  data/eval_results/        model comparison reports
+  data/eval_results/        model comparison reports and scores
+  data/eval_judgments/      blind packets, grades and pooled_grades.json
   src/patent_search/
     config.py               paths, model name and revision, weights, top_n, eval models
     load.py                 read JSON, empty value handling, cleaning, duplicates
@@ -247,6 +265,7 @@ patent_search/
     keywords.py             keyword parsing and matching
     search.py
     evaluate.py             model comparison: BM25 baseline, cached vectors, metrics
+    grading.py              pooled blind grading and scoring
     api.py
     __main__.py             CLI
     static/index.html       the web page

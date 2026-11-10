@@ -1,0 +1,196 @@
+{
+  "question_id": "q06",
+  "question": "built-in wheel nut wrench whose lever folds flat into a recess in the wheel when not in use",
+  "grades": [
+    {
+      "claim_id": "20240066920:14",
+      "grade": 0,
+      "reason": "External impact wrench or ratchet, not built into the wheel."
+    },
+    {
+      "claim_id": "20240217264:1",
+      "grade": 0,
+      "reason": "Wrench integrated in a bearing press tool, not built into the wheel."
+    },
+    {
+      "claim_id": "20240217264:10",
+      "grade": 0,
+      "reason": "Press wrench teeth, unrelated."
+    },
+    {
+      "claim_id": "20240217264:11",
+      "grade": 0,
+      "reason": "Press mechanism extensions, unrelated."
+    },
+    {
+      "claim_id": "20240217264:14",
+      "grade": 0,
+      "reason": "Alignment marking on press wrench, unrelated."
+    },
+    {
+      "claim_id": "20240217264:4",
+      "grade": 0,
+      "reason": "Press wrench base and arms, unrelated."
+    },
+    {
+      "claim_id": "20240217264:5",
+      "grade": 0,
+      "reason": "Grip on a bearing press wrench, unrelated to a wheel-stowed lever."
+    },
+    {
+      "claim_id": "20240217264:7",
+      "grade": 0,
+      "reason": "Grip surface of press wrench, unrelated."
+    },
+    {
+      "claim_id": "20240217264:9",
+      "grade": 0,
+      "reason": "Wrench arm teeth on a press tool, not a wheel-integrated wrench."
+    },
+    {
+      "claim_id": "20240286435:2",
+      "grade": 0,
+      "reason": "Tool storage unit wheels, unrelated."
+    },
+    {
+      "claim_id": "20240286435:3",
+      "grade": 0,
+      "reason": "Eccentric bolt of tool storage unit, unrelated."
+    },
+    {
+      "claim_id": "20240286435:5",
+      "grade": 0,
+      "reason": "Swing arm pivot of tool storage unit, unrelated."
+    },
+    {
+      "claim_id": "20240351371:14",
+      "grade": 0,
+      "reason": "Sensor ring press fit on clamping nut, unrelated."
+    },
+    {
+      "claim_id": "20240391274:1",
+      "grade": 1,
+      "reason": "Wheel with built-in lug lever having a storage position, but no folding flat into a recess."
+    },
+    {
+      "claim_id": "20240391274:13",
+      "grade": 1,
+      "reason": "Lever rotation range between storage and operating, no recess stated."
+    },
+    {
+      "claim_id": "20240391274:15",
+      "grade": 2,
+      "reason": "Lever arm sits in a pocket when stored and pivots out to operate."
+    },
+    {
+      "claim_id": "20240391274:16",
+      "grade": 1,
+      "reason": "Lever lies conformal with wheel body when stored, but no recess is stated."
+    },
+    {
+      "claim_id": "20240391274:18",
+      "grade": 1,
+      "reason": "Locking tied to the lever storage position, no recess stated."
+    },
+    {
+      "claim_id": "20240391274:2",
+      "grade": 2,
+      "reason": "Lever arm sits in a pocket when stored and pivots out to operate."
+    },
+    {
+      "claim_id": "20240391274:3",
+      "grade": 1,
+      "reason": "Pocket shaped to the lever arm, but folding into it is not stated here."
+    },
+    {
+      "claim_id": "20240391274:4",
+      "grade": 1,
+      "reason": "Lever conformal with wheel body when stored, recess not stated in this claim."
+    },
+    {
+      "claim_id": "20240391274:5",
+      "grade": 1,
+      "reason": "Lever arm geometry of integrated wrench, no stowing detail."
+    },
+    {
+      "claim_id": "20240391274:6",
+      "grade": 1,
+      "reason": "Lever arm geometry of integrated wrench, no folding into recess."
+    },
+    {
+      "claim_id": "20240391274:7",
+      "grade": 1,
+      "reason": "Locking responsive to lever storage position, no recess stated."
+    },
+    {
+      "claim_id": "20240391274:8",
+      "grade": 1,
+      "reason": "Locks lever arm in storage position, no recess or folding flat stated."
+    },
+    {
+      "claim_id": "20240391274:9",
+      "grade": 1,
+      "reason": "Ratchet drive of the integrated lever, not its stowing."
+    },
+    {
+      "claim_id": "20250010660:15",
+      "grade": 0,
+      "reason": "Spoke assembly device bearing member, unrelated."
+    },
+    {
+      "claim_id": "20250026148:10",
+      "grade": 0,
+      "reason": "Tool engagement recess, not a lever storage recess."
+    },
+    {
+      "claim_id": "20250026148:11",
+      "grade": 0,
+      "reason": "Square tool engagement recess, not a lever storage recess."
+    },
+    {
+      "claim_id": "20250026148:13",
+      "grade": 0,
+      "reason": "Engagement recess of a separate tool, unrelated."
+    },
+    {
+      "claim_id": "20250026148:14",
+      "grade": 0,
+      "reason": "Square tool engagement recess, unrelated."
+    },
+    {
+      "claim_id": "20250026148:17",
+      "grade": 0,
+      "reason": "Method with separate extraction tool, not a built-in wrench."
+    },
+    {
+      "claim_id": "20250026148:3",
+      "grade": 0,
+      "reason": "Thread engagement lengths of removal tool, unrelated."
+    },
+    {
+      "claim_id": "20250026148:4",
+      "grade": 0,
+      "reason": "Bearing face trench of removal tool, unrelated."
+    },
+    {
+      "claim_id": "20250026148:6",
+      "grade": 0,
+      "reason": "Separate centre-lock removal tool, not a built-in folding lever."
+    },
+    {
+      "claim_id": "20250026148:7",
+      "grade": 0,
+      "reason": "Bearing surface placement on removal tool, unrelated."
+    },
+    {
+      "claim_id": "20250026148:8",
+      "grade": 0,
+      "reason": "Two-part extraction tool, unrelated."
+    },
+    {
+      "claim_id": "20250026148:9",
+      "grade": 0,
+      "reason": "Annular spacer tool, unrelated."
+    }
+  ]
+}

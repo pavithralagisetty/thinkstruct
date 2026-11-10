@@ -1,0 +1,136 @@
+{
+  "question_id": "q09",
+  "question": "omnidirectional roller wheel with the drive motor packaged inside its hub",
+  "grades": [
+    {
+      "claim_id": "20240149613:1",
+      "grade": 0,
+      "reason": "Omni wheel roller component structure; no drive motor."
+    },
+    {
+      "claim_id": "20240149613:10",
+      "grade": 0,
+      "reason": "Screw shaft for roller mounting; no motor."
+    },
+    {
+      "claim_id": "20240149613:11",
+      "grade": 0,
+      "reason": "Roller bearing clamping; no motor."
+    },
+    {
+      "claim_id": "20240149613:12",
+      "grade": 0,
+      "reason": "Roller bracket to hub bracket connection; no motor."
+    },
+    {
+      "claim_id": "20240149613:14",
+      "grade": 0,
+      "reason": "Omni wheel roller component structure; no drive motor."
+    },
+    {
+      "claim_id": "20240149613:4",
+      "grade": 0,
+      "reason": "Roller component connection structure; no motor."
+    },
+    {
+      "claim_id": "20240149613:8",
+      "grade": 0,
+      "reason": "Roller bearing mounting; no motor."
+    },
+    {
+      "claim_id": "20240149613:9",
+      "grade": 0,
+      "reason": "Roller shaft locking; no motor."
+    },
+    {
+      "claim_id": "20240326512:1",
+      "grade": 0,
+      "reason": "Omni wheel hub and overmolded rollers structure; no drive motor."
+    },
+    {
+      "claim_id": "20240326512:10",
+      "grade": 0,
+      "reason": "Overmolding shut-off regions; no motor."
+    },
+    {
+      "claim_id": "20240326512:13",
+      "grade": 0,
+      "reason": "Overmolding inner and outer hub; no motor."
+    },
+    {
+      "claim_id": "20240326512:15",
+      "grade": 0,
+      "reason": "Mold shut-off regions; no motor."
+    },
+    {
+      "claim_id": "20240326512:17",
+      "grade": 0,
+      "reason": "Axle chamfer orientation; no motor."
+    },
+    {
+      "claim_id": "20240326512:18",
+      "grade": 0,
+      "reason": "Bushing molding dimensions; no motor."
+    },
+    {
+      "claim_id": "20240326512:19",
+      "grade": 0,
+      "reason": "Bushing molding dimensions; no drive motor or hub-packaged motor."
+    },
+    {
+      "claim_id": "20240326512:2",
+      "grade": 0,
+      "reason": "Inner and outer overmolded hub; no motor."
+    },
+    {
+      "claim_id": "20240326512:3",
+      "grade": 0,
+      "reason": "Hub spokes holding roller sub-assemblies; no motor."
+    },
+    {
+      "claim_id": "20240326512:4",
+      "grade": 0,
+      "reason": "Axle chamfered ends; no motor."
+    },
+    {
+      "claim_id": "20240326512:5",
+      "grade": 0,
+      "reason": "Axle chamfer orientation; no motor."
+    },
+    {
+      "claim_id": "20240326512:6",
+      "grade": 0,
+      "reason": "Bushing outer diameter shape; no motor."
+    },
+    {
+      "claim_id": "20240326512:7",
+      "grade": 0,
+      "reason": "Bushing spherical outer diameter; no motor."
+    },
+    {
+      "claim_id": "20240326512:8",
+      "grade": 0,
+      "reason": "Axles are cross rolling pins; no motor."
+    },
+    {
+      "claim_id": "20240326512:9",
+      "grade": 0,
+      "reason": "Axle material; no motor."
+    },
+    {
+      "claim_id": "20250074109:11",
+      "grade": 0,
+      "reason": "Sub-wheel axis orientation only; no motor or hub packaging."
+    },
+    {
+      "claim_id": "20250074109:12",
+      "grade": 1,
+      "reason": "Motors drive the wheel body and bevel gear of an omni drive, but not stated to be inside the hub."
+    },
+    {
+      "claim_id": "20250074109:8",
+      "grade": 1,
+      "reason": "Motors drive the wheel body and bevel gear of an omni drive, but not stated to be inside the hub."
+    }
+  ]
+}

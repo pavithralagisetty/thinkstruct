@@ -1,0 +1,191 @@
+{
+  "question_id": "q02",
+  "question": "reuse the windshield washer fluid reservoir to spray liquid ahead of the tires so the car does not hydroplane",
+  "grades": [
+    {
+      "claim_id": "20240075774:12",
+      "grade": 0,
+      "reason": "Lubricant spray on a tire bead in a tire changing machine, not relevant."
+    },
+    {
+      "claim_id": "20240083201:11",
+      "grade": 0,
+      "reason": "Tire mileage cloud management, not relevant."
+    },
+    {
+      "claim_id": "20240217268:1",
+      "grade": 1,
+      "reason": "Injects liquid on the ground in front of the wheel treads from a tank, but does not state using the washer reservoir."
+    },
+    {
+      "claim_id": "20240217268:10",
+      "grade": 1,
+      "reason": "Vehicle with an anti-aquaplaning system, but states nothing about the washer reservoir or spraying ahead of tires."
+    },
+    {
+      "claim_id": "20240217268:3",
+      "grade": 2,
+      "reason": "Anti-aquaplaning system whose main tank is the vehicle's windscreen washer liquid tank."
+    },
+    {
+      "claim_id": "20240217268:4",
+      "grade": 2,
+      "reason": "Anti-aquaplaning system whose main tank is shared with the windscreen washer liquid supply."
+    },
+    {
+      "claim_id": "20240217268:5",
+      "grade": 1,
+      "reason": "Supply unit also feeds windscreen washer nozzles, related but does not state spraying ahead of tires against hydroplaning."
+    },
+    {
+      "claim_id": "20240217268:6",
+      "grade": 1,
+      "reason": "Accumulators for anti-aquaplaning injectors, related detail without washer reservoir reuse."
+    },
+    {
+      "claim_id": "20240217268:7",
+      "grade": 1,
+      "reason": "Venturi flow element in anti-aquaplaning auxiliary tank line, related detail without washer reuse or tire spraying."
+    },
+    {
+      "claim_id": "20240217268:8",
+      "grade": 1,
+      "reason": "Mixing and delivering operating liquid from tanks to users, related but no washer reservoir or tire spraying stated."
+    },
+    {
+      "claim_id": "20240217268:9",
+      "grade": 1,
+      "reason": "Anti-aquaplaning supply pump port selection, related detail but no washer reservoir or spraying ahead of tires stated."
+    },
+    {
+      "claim_id": "20240308269:18",
+      "grade": 0,
+      "reason": "Slanted drain hole in wheel seal, not relevant."
+    },
+    {
+      "claim_id": "20240308269:27",
+      "grade": 0,
+      "reason": "Wheel seal condensate drainage, not relevant."
+    },
+    {
+      "claim_id": "20240308269:28",
+      "grade": 0,
+      "reason": "Wheel seal condensate drainage, not relevant."
+    },
+    {
+      "claim_id": "20240308269:29",
+      "grade": 0,
+      "reason": "Condensate drainage from a wheel seal, not relevant."
+    },
+    {
+      "claim_id": "20240383280:34",
+      "grade": 0,
+      "reason": "Self-cleaning non-pneumatic irrigation tires, not relevant."
+    },
+    {
+      "claim_id": "20250033410:10",
+      "grade": 0,
+      "reason": "Transmission overflow tube, not relevant."
+    },
+    {
+      "claim_id": "20250033410:12",
+      "grade": 0,
+      "reason": "Transmission suction line to axles, not relevant."
+    },
+    {
+      "claim_id": "20250033410:13",
+      "grade": 0,
+      "reason": "Transmission suction line to third reservoir, not relevant."
+    },
+    {
+      "claim_id": "20250033410:14",
+      "grade": 0,
+      "reason": "Transmission suction line to axles, not relevant."
+    },
+    {
+      "claim_id": "20250033410:15",
+      "grade": 0,
+      "reason": "Transmission transfer pump to axles, not relevant."
+    },
+    {
+      "claim_id": "20250033410:16",
+      "grade": 0,
+      "reason": "Transmission fluid pump to rear axle, not relevant."
+    },
+    {
+      "claim_id": "20250033410:17",
+      "grade": 0,
+      "reason": "Drivetrain transmission fluid transfer between axles, unrelated to anti-hydroplaning spraying."
+    },
+    {
+      "claim_id": "20250033410:2",
+      "grade": 0,
+      "reason": "Transmission suction line to axles, not relevant."
+    },
+    {
+      "claim_id": "20250033410:3",
+      "grade": 0,
+      "reason": "Transmission suction line to third reservoir, not relevant."
+    },
+    {
+      "claim_id": "20250033410:4",
+      "grade": 0,
+      "reason": "Transmission suction line to axles, not relevant."
+    },
+    {
+      "claim_id": "20250033410:5",
+      "grade": 0,
+      "reason": "Transmission transfer pump to axles, not relevant."
+    },
+    {
+      "claim_id": "20250033410:6",
+      "grade": 0,
+      "reason": "Transmission fluid pump to rear axle, not relevant."
+    },
+    {
+      "claim_id": "20250033410:7",
+      "grade": 0,
+      "reason": "Transmission fluid pump between axles, not relevant."
+    },
+    {
+      "claim_id": "20250058591:1",
+      "grade": 0,
+      "reason": "Tire inflation reservoir and compressor, not relevant."
+    },
+    {
+      "claim_id": "20250058591:2",
+      "grade": 0,
+      "reason": "Valve between tire and inflation reservoir, not relevant."
+    },
+    {
+      "claim_id": "20250058591:3",
+      "grade": 0,
+      "reason": "Tire pressure regulation compressor, not relevant."
+    },
+    {
+      "claim_id": "20250058591:4",
+      "grade": 0,
+      "reason": "Tire fluid pressure and temperature condition, not relevant."
+    },
+    {
+      "claim_id": "20250058591:5",
+      "grade": 0,
+      "reason": "Tire condition data processing, not relevant."
+    },
+    {
+      "claim_id": "20250058591:6",
+      "grade": 0,
+      "reason": "Closed loop tire inflation system, not relevant."
+    },
+    {
+      "claim_id": "20250058591:7",
+      "grade": 0,
+      "reason": "Vehicle with tire pressure regulation system, not relevant."
+    },
+    {
+      "claim_id": "20250115081:2",
+      "grade": 0,
+      "reason": "Tire groove fluid flow paths for noise, not liquid spraying from a reservoir."
+    }
+  ]
+}

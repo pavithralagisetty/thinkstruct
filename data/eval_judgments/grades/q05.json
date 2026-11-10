@@ -1,0 +1,166 @@
+{
+  "question_id": "q05",
+  "question": "how off-road sand recovery boards are strapped together or stacked for storage",
+  "grades": [
+    {
+      "claim_id": "20240300270:17",
+      "grade": 0,
+      "reason": "Pivotable loading panel on a platform; unrelated."
+    },
+    {
+      "claim_id": "20240375437:10",
+      "grade": 0,
+      "reason": "Differing adjacent gripping surfaces; not about storage."
+    },
+    {
+      "claim_id": "20240375437:11",
+      "grade": 0,
+      "reason": "Differing aligned gripping surfaces; not about storage."
+    },
+    {
+      "claim_id": "20240375437:12",
+      "grade": 0,
+      "reason": "Gripping feature edges engaging tire sipes; nothing on strapping or stacking."
+    },
+    {
+      "claim_id": "20240375437:14",
+      "grade": 0,
+      "reason": "Concave valley between gripping rows; not about storage."
+    },
+    {
+      "claim_id": "20240375437:15",
+      "grade": 1,
+      "reason": "Recites slots near the edges of the board but does not state strapping or stacking."
+    },
+    {
+      "claim_id": "20240375437:16",
+      "grade": 2,
+      "reason": "Claims a strap through slots that cinches adjacent recovery boards together."
+    },
+    {
+      "claim_id": "20240375437:18",
+      "grade": 0,
+      "reason": "Hexagonal prism gripping features; not about storage."
+    },
+    {
+      "claim_id": "20240375437:19",
+      "grade": 0,
+      "reason": "Gaps between gripping features for track lugs; not about storage."
+    },
+    {
+      "claim_id": "20240375437:20",
+      "grade": 0,
+      "reason": "Inclined ramp gripping features; not about storage."
+    },
+    {
+      "claim_id": "20240375437:21",
+      "grade": 2,
+      "reason": "Bottom surface matches top so multiple recovery boards nest on top of each other."
+    },
+    {
+      "claim_id": "20240375437:22",
+      "grade": 0,
+      "reason": "Differing gripping feature surfaces; not about storage."
+    },
+    {
+      "claim_id": "20240375437:23",
+      "grade": 0,
+      "reason": "Differing aligned gripping surfaces; not about storage."
+    },
+    {
+      "claim_id": "20240375437:4",
+      "grade": 2,
+      "reason": "Claims a strap through slots that cinches adjacent recovery boards together."
+    },
+    {
+      "claim_id": "20240375437:5",
+      "grade": 0,
+      "reason": "Polygonal prism gripping feature shape; not about storage."
+    },
+    {
+      "claim_id": "20240375437:7",
+      "grade": 0,
+      "reason": "Gaps between gripping features for track lugs; not about storage."
+    },
+    {
+      "claim_id": "20240375437:8",
+      "grade": 0,
+      "reason": "Inclined ramp gripping features; not about storage."
+    },
+    {
+      "claim_id": "20240375437:9",
+      "grade": 2,
+      "reason": "Bottom surface matches top so multiple recovery boards nest on top of each other."
+    },
+    {
+      "claim_id": "20250058584:10",
+      "grade": 0,
+      "reason": "Axle and brake disc assembly fragment; unrelated."
+    },
+    {
+      "claim_id": "20250058584:12",
+      "grade": 0,
+      "reason": "Axle and brake disc assembly fragment; unrelated."
+    },
+    {
+      "claim_id": "20250058584:3",
+      "grade": 0,
+      "reason": "Axle press-fitted in hole; unrelated."
+    },
+    {
+      "claim_id": "20250058584:5",
+      "grade": 0,
+      "reason": "Number of brake disc protrusions; unrelated."
+    },
+    {
+      "claim_id": "20250058584:6",
+      "grade": 0,
+      "reason": "Brake disc protrusion spacing; unrelated."
+    },
+    {
+      "claim_id": "20250058584:8",
+      "grade": 0,
+      "reason": "Holes for attaching hub to brake disc; unrelated."
+    },
+    {
+      "claim_id": "20250083481:1",
+      "grade": 0,
+      "reason": "Off-road vehicle with elevating towing tongue; unrelated."
+    },
+    {
+      "claim_id": "20250083481:2",
+      "grade": 0,
+      "reason": "Towing tongue angles; unrelated."
+    },
+    {
+      "claim_id": "20250083481:3",
+      "grade": 0,
+      "reason": "Steering lock on towable vehicle; unrelated."
+    },
+    {
+      "claim_id": "20250083481:4",
+      "grade": 0,
+      "reason": "Steering lock on towable vehicle; unrelated."
+    },
+    {
+      "claim_id": "20250083481:5",
+      "grade": 0,
+      "reason": "Wheel arrangement of a towable vehicle; unrelated."
+    },
+    {
+      "claim_id": "20250083481:6",
+      "grade": 0,
+      "reason": "Wheel arrangement of a towable vehicle; unrelated."
+    },
+    {
+      "claim_id": "20250083481:7",
+      "grade": 0,
+      "reason": "Wheel arrangement of a towable vehicle; unrelated."
+    },
+    {
+      "claim_id": "20250083481:8",
+      "grade": 0,
+      "reason": "Wheel arrangement of a towable vehicle; unrelated."
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "question_id": "q04",
+  "question": "what the backing film of a sealing tape for tubeless bicycle rims is made of",
+  "grades": [
+    {
+      "claim_id": "20240149615:13",
+      "grade": 0,
+      "reason": "Hub sealing groove geometry; unrelated."
+    },
+    {
+      "claim_id": "20240181803:1",
+      "grade": 0,
+      "reason": "Non-woven visible surface of rim body; not a sealing tape."
+    },
+    {
+      "claim_id": "20240181803:2",
+      "grade": 0,
+      "reason": "Rim body composite layers, not a sealing tape."
+    },
+    {
+      "claim_id": "20240181803:3",
+      "grade": 0,
+      "reason": "Unidirectional fibers of rim prepreg; unrelated."
+    },
+    {
+      "claim_id": "20240181803:4",
+      "grade": 0,
+      "reason": "Non-woven layer contribution to rim stability; unrelated."
+    },
+    {
+      "claim_id": "20240181803:5",
+      "grade": 0,
+      "reason": "Non-woven layer thickness on rim body; unrelated to tape."
+    },
+    {
+      "claim_id": "20240181803:6",
+      "grade": 0,
+      "reason": "Non-woven layer weight of a rim body composite, not a sealing tape."
+    },
+    {
+      "claim_id": "20240181803:7",
+      "grade": 0,
+      "reason": "Prepreg fibers of a rim body, not a sealing tape."
+    },
+    {
+      "claim_id": "20240181803:8",
+      "grade": 0,
+      "reason": "Non-woven prepreg of rim surface; not a sealing tape."
+    },
+    {
+      "claim_id": "20240181803:9",
+      "grade": 0,
+      "reason": "Non-woven proportion of rim layer; unrelated to tape."
+    },
+    {
+      "claim_id": "20240198725:1",
+      "grade": 0,
+      "reason": "Tape shaping system of machine; no material."
+    },
+    {
+      "claim_id": "20240198725:10",
+      "grade": 0,
+      "reason": "Machine sensor protection system; no material."
+    },
+    {
+      "claim_id": "20240198725:11",
+      "grade": 0,
+      "reason": "Heat shaping step of tape application machine; no material."
+    },
+    {
+      "claim_id": "20240198725:12",
+      "grade": 0,
+      "reason": "Machine setup and wheel positioning steps; no material."
+    },
+    {
+      "claim_id": "20240198725:13",
+      "grade": 0,
+      "reason": "Tape application method steps; says nothing about tape material."
+    },
+    {
+      "claim_id": "20240198725:15",
+      "grade": 0,
+      "reason": "Valve hole punching steps; no material."
+    },
+    {
+      "claim_id": "20240198725:3",
+      "grade": 0,
+      "reason": "Wheel positioning rollers of tape machine; no material."
+    },
+    {
+      "claim_id": "20240198725:4",
+      "grade": 0,
+      "reason": "Tape dispensing machine mechanics; no material."
+    },
+    {
+      "claim_id": "20240198725:8",
+      "grade": 0,
+      "reason": "Interchangeable pressure roller of tape machine; no material."
+    },
+    {
+      "claim_id": "20240198725:9",
+      "grade": 0,
+      "reason": "Hole punch of tape machine; no material."
+    },
+    {
+      "claim_id": "20240316986:10",
+      "grade": 0,
+      "reason": "Hollow bolt air channel; unrelated."
+    },
+    {
+      "claim_id": "20240316986:12",
+      "grade": 0,
+      "reason": "Fasteners for spine segments of seal; unrelated."
+    },
+    {
+      "claim_id": "20240316986:13",
+      "grade": 0,
+      "reason": "Elastomeric rim seal with compressing backing, not a tape backing film material."
+    },
+    {
+      "claim_id": "20240316986:14",
+      "grade": 0,
+      "reason": "C-shaped spine backing of elastomeric seal; not a tape film."
+    },
+    {
+      "claim_id": "20240316986:15",
+      "grade": 0,
+      "reason": "Mounting holes for spine tensioning device; unrelated."
+    },
+    {
+      "claim_id": "20240316986:16",
+      "grade": 0,
+      "reason": "Drive shaft of spine tensioning device; unrelated."
+    },
+    {
+      "claim_id": "20240316986:17",
+      "grade": 0,
+      "reason": "Drive shaft controller of spine tensioning; unrelated."
+    },
+    {
+      "claim_id": "20240316986:18",
+      "grade": 0,
+      "reason": "Gear mechanism of spine tensioning device; unrelated to tape backing."
+    },
+    {
+      "claim_id": "20240316986:19",
+      "grade": 0,
+      "reason": "End caps and threaded couplers of spine; unrelated."
+    },
+    {
+      "claim_id": "20240316986:6",
+      "grade": 0,
+      "reason": "Backing is a stiff spine on an elastomeric seal, not a tape film."
+    },
+    {
+      "claim_id": "20240316986:8",
+      "grade": 0,
+      "reason": "Fastener for an elastomeric seal spine, not a sealing tape backing."
+    },
+    {
+      "claim_id": "20240316986:9",
+      "grade": 0,
+      "reason": "Threaded bolt fastener of seal spine; unrelated."
+    },
+    {
+      "claim_id": "20240424830:1",
+      "grade": 1,
+      "reason": "Adhesive sheet with support substrate, but substrate material not stated."
+    },
+    {
+      "claim_id": "20240424830:2",
+      "grade": 1,
+      "reason": "Adhesive layer storage modulus; not the backing material."
+    },
+    {
+      "claim_id": "20240424830:3",
+      "grade": 1,
+      "reason": "Rim adhesive sheet, but states the adhesive layer material, not the backing film."
+    },
+    {
+      "claim_id": "20240424830:4",
+      "grade": 1,
+      "reason": "Adhesive layer thickness of rim sheet; not the backing material."
+    },
+    {
+      "claim_id": "20240424830:5",
+      "grade": 2,
+      "reason": "States the support substrate is a resin film substrate."
+    },
+    {
+      "claim_id": "20240424830:6",
+      "grade": 2,
+      "reason": "States the support substrate includes a polyester base film."
+    },
+    {
+      "claim_id": "20240424830:7",
+      "grade": 1,
+      "reason": "Colored layer on the base film; related backing detail but no material stated."
+    },
+    {
+      "claim_id": "20240424830:8",
+      "grade": 1,
+      "reason": "Support substrate thickness only, not its material."
+    },
+    {
+      "claim_id": "20240424830:9",
+      "grade": 1,
+      "reason": "States use for sealing tubeless rim spoke holes but not the backing material."
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-"""Command line: python -m patent_search build | search | serve | eval"""
+"""Command line: python -m patent_search build | search | serve | eval | grade"""
 
 import argparse
 import json
@@ -81,6 +81,40 @@ def cmd_eval(args):
     print(f"\nReport: {path}")
 
 
+def cmd_grade(args):
+    from patent_search import grading
+
+    try:
+        if args.action == "prepare":
+            out = grading.prepare(args.report)
+            print(f"Pool from {out['report']}")
+            for qid, n in out["questions"].items():
+                print(f"  {qid}: {n['pool']:3} pooled, {n['already_graded']:3} already graded, {n['to_grade']:3} to grade")
+            return
+        result, path = grading.run_score(args.report)
+    except (ValueError, FileNotFoundError, KeyError) as e:
+        sys.exit(f"Error: {e}")
+
+    if result["merged_now"]:
+        print("Merged grades: " + ", ".join(f"{q} {n}" for q, n in result["merged_now"].items()))
+    if result["ungraded"]:
+        n = sum(len(v) for v in result["ungraded"].values())
+        print(f"WARNING: {n} pooled claims have no grade and count as 0: "
+              + ", ".join(f"{q} ({len(v)})" for q, v in result["ungraded"].items()))
+    print(f"\n{'model':13} {'Hit@5':>6} {'P@5':>6} {'R@10':>6} {'MRR':>6} {'nDCG@10':>8} {'Full@10':>8}")
+    for name, m in result["summary"].items():
+        fmt = lambda v: f"{v:.3f}" if v is not None else "  -  "
+        print(f"{name:13} {fmt(m['hit@5']):>6} {fmt(m['p@5']):>6} {fmt(m['recall@10']):>6} "
+              f"{fmt(m['mrr']):>6} {fmt(m['ndcg@10']):>8} {str(m['full@10']) + '/' + str(len(result['pool'])):>8}")
+    names = list(result["per_question"])
+    print("\nRank of the first fully relevant claim (- = none in the top 10)")
+    print(f"{'':5}" + "".join(f"{n:>13}" for n in names))
+    for qid in result["pool"]:
+        ranks = [result["per_question"][n][qid]["first_full_rank"] for n in names]
+        print(f"{qid:5}" + "".join(f"{(r if r is not None else '-'):>13}" for r in ranks))
+    print(f"\nScores: {path}")
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="python -m patent_search")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -102,6 +136,11 @@ def main(argv=None):
     e.add_argument("--device", help="torch device for the models (default: mps when available, else cpu)")
     e.add_argument("-n", "--top", type=int, default=config.EVAL_TOP_N, help="claims saved per question")
     e.set_defaults(func=cmd_eval)
+    g = sub.add_parser("grade", help="pooled blind grading of the eval results")
+    g.add_argument("action", choices=["prepare", "score"],
+                   help="prepare: write blind packets; score: merge grades and score every model")
+    g.add_argument("--report", help="eval report to use (default: latest data/eval_results/run_*.json)")
+    g.set_defaults(func=cmd_grade)
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(message)s")
     args.func(args)
