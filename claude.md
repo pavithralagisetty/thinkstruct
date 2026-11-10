@@ -84,11 +84,11 @@ Main claim: {text of the root claim}
 Claim: {this claim's text}
 ```
 
-Include the `Main claim` line only when this claim depends on another claim.
+Include the `Main claim` line only when this claim depends on another claim (it has a parent and its root is a different claim, so a claim that refers to itself gets no main claim line). Leave out the `Patent` line when the title is empty.
 
 The main claim line matters because a dependent claim like "The spoke star of claim 2, wherein the fastening means is connectable to the loop" means very little on its own. Remove bracketed reference numbers from both claim texts here.
 
-**Patent vector** (one per patent): `{title}. {abstract}`. Use the title alone if the abstract is empty. If both are empty, store no vector and use a patent score of 0 for that patent.
+**Patent vector** (one per patent): `{title}. {abstract}`. Use the title alone if the abstract is empty, and the abstract alone if the title is empty. If both are empty, store no vector and use a patent score of 0 for that patent.
 
 **Not embedded:** `detailed_description` (long, missing for 119 of 640, and results are claims anyway), `classification`, `bibtex`, ids.
 
@@ -111,7 +111,9 @@ Small data, keep everything in files and load it into memory at search time.
   * `patents(doc_number PK, title, abstract, description, has_description, classification, kind_code, pub_date, source_file, vec_row)`
   * `claims(claim_id PK, doc_number, claim_number, text, embed_text, parent_number, root_number, is_independent, opening_missing, vec_row)`
 * `data/index/claim_vectors.npy` and `data/index/patent_vectors.npy`, rows matching `vec_row`
-* `data/index/meta.json`: model name, revision, vector size, build time, counts
+* `data/index/meta.json`: model name, revision, code revision, vector size, build time, counts
+
+The build writes every file under a `.tmp` name first and renames them into place at the end (`meta.json` last), so a failed build never leaves a half written index.
 
 `description` is the non blank paragraphs joined with a blank line, or empty.
 
@@ -155,7 +157,7 @@ When `opening_missing` is true, show the text as it is. The flag lets the caller
 
 * Python function `search(...)` above.
 * CLI through `python -m patent_search` (also `serve` to run the web page on port 8000):
-  * `build`: read the raw dir (`config.RAW_DIR`), clean, embed, write `data/index`, print counts
+  * `build`: read the raw dir (`config.RAW_DIR`), clean, embed, write `data/index`, print counts (patents, claims indexed, patents without description, claims with missing openings, cancelled claim numbers)
   * `search "<question>"` with an optional repeatable keyword option and an optional top option
 * HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10}` returning the response above. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser.
 * Web page at `GET /` (see Frontend).
