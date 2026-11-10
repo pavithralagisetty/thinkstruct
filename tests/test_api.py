@@ -68,7 +68,9 @@ def test_page(client):
     r = client.get("/")
     assert r.status_code == 200 and r.headers["content-type"].startswith("text/html")
     page = r.text
-    for text in ['placeholder=\'sipe "tread block" spoke*\'', "Exact keyword filters", "Type a question or a keyword",
+    for text in ['placeholder=\'sipe "tread block" spoke*\'', "Exact filters", "Type a question or a keyword",
+                 'data-group="claim"', 'data-group="patent"', 'fetch("/classifications")', "Main claims only",
+                 "Published from", "Published to", "No patents matched.", "matching claims",
                  "Searching...", "No claims matched.", "The start of this claim is missing in the source data.",
                  "Show full claim", "prefers-color-scheme", 'fetch("/search"']:
         assert text in page, text
@@ -87,3 +89,23 @@ def test_filters_and_grouping_through_the_api(client, index):
     assert r.status_code == 200
     assert r.json() == index.search(None, None, 10, "B60C", 2024, None, False, "patent").to_dict()
     assert r.json()["group_by"] == "patent"
+
+
+def test_classifications(client):
+    r = client.get("/classifications")
+    assert r.status_code == 200
+    tree = r.json()["subclasses"]
+    assert [n["code"] for n in tree] == ["B60B", "B60C"]          # C has no classification
+    b60c = tree[1]
+    assert b60c["count"] == 1 and b60c["title"].startswith("VEHICLE TYRES")
+    [group] = b60c["groups"]
+    assert group == {"code": "B60C 11", "count": 1, "title": "Tyre tread bands; Tread patterns; Anti-skid inserts",
+                     "subgroups": [{"code": "B60C 11/12", "count": 1}]}
+    assert tree[0]["groups"][0]["subgroups"] == []                # B60B 1/00 is the group itself
+
+
+def test_classification_counts_use_the_filter_matching(client, index):
+    for node in client.get("/classifications").json()["subclasses"]:
+        for code in [node["code"]] + [g["code"] for g in node["groups"]]:
+            assert index.search(classification=code, group_by="patent").total_matches == \
+                next(n for n in [node] + node["groups"] if n["code"] == code)["count"]

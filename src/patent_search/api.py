@@ -75,6 +75,17 @@ def post_search(body: SearchRequest):
     return response.to_dict()
 
 
+@app.get("/classifications")
+def get_classifications():
+    """Subclass -> main group -> subgroup, with patent counts, for the filter dropdowns."""
+    try:
+        with _index_lock:
+            index = search_module.get_index()
+    except IndexNotReady as e:
+        return _error(503, str(e))
+    return {"subclasses": index.classification_tree()}
+
+
 @app.get("/", include_in_schema=False)
 def page():
     return FileResponse(STATIC_DIR / "index.html", media_type="text/html")

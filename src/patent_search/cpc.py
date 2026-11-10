@@ -262,3 +262,38 @@ def write_cpc_columns(db_path: Path) -> dict:
             "split": sum(1 for v in codes.values() if v and v.group is not None),
             "subclass_only": sum(1 for v in codes.values() if v and v.group is None),
             "unreadable": sum(1 for v in codes.values() if v is None)}
+
+
+def _subgroup_order(subgroup: str) -> tuple[str, int]:
+    """Scheme order: subgroup digits read as a decimal fraction (02 < 024 < 10)."""
+    return subgroup.ljust(8, "0"), len(subgroup)
+
+
+def classification_tree(codes: list[Cpc | None]) -> list[dict]:
+    """Subclass -> main group -> subgroup nodes for the codes in the data (one code per
+    patent). Each node has `code` (a query string for parse_query), `count` (patents it
+    matches, with the same matches() as the filter) and `title` when known."""
+    present = [c for c in codes if c is not None]
+
+    def count(query_text: str) -> int:
+        q = parse_query(query_text)
+        return sum(matches(q, c) for c in present)
+
+    tree = []
+    for subclass in sorted({c.subclass for c in present}):
+        in_sub = [c for c in present if c.subclass == subclass]
+        node = {"code": subclass, "count": count(subclass), "groups": []}
+        if subclass in SUBCLASS_TITLES:
+            node["title"] = SUBCLASS_TITLES[subclass]
+        for group in sorted({c.group for c in in_sub if c.group is not None}):
+            g_code = f"{subclass} {group}"
+            g_node = {"code": g_code, "count": count(g_code), "subgroups": []}
+            if (subclass, group) in GROUP_TITLES:
+                g_node["title"] = GROUP_TITLES[(subclass, group)]
+            subgroups = {c.subgroup for c in in_sub if c.group == group and c.subgroup and set(c.subgroup) != {"0"}}
+            for sub in sorted(subgroups, key=_subgroup_order):
+                s_code = f"{subclass} {group}/{sub}"
+                g_node["subgroups"].append({"code": s_code, "count": count(s_code)})
+            node["groups"].append(g_node)
+        tree.append(node)
+    return tree

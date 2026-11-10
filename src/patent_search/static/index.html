@@ -53,7 +53,7 @@
     font-size: 16px;
     line-height: 1.5;
   }
-  button, input { font: inherit; color: inherit; }
+  button, input, select { font: inherit; color: inherit; }
   button { cursor: pointer; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
@@ -125,7 +125,21 @@
   .search-btn:hover:not(:disabled) { background: var(--accent-hover); }
   .search-btn:disabled { opacity: 0.7; cursor: progress; }
 
-  .examples { margin-top: 28px; text-align: center; }
+  /* Show: Claims | Patents */
+  .show { margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+  .show-label { color: var(--muted); font-size: 15px; }
+  .segmented {
+    display: inline-flex; padding: 4px; gap: 4px;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px;
+  }
+  .segmented button {
+    border: 0; background: transparent; color: var(--muted);
+    padding: 6px 18px; border-radius: 9px; font-size: 15px;
+  }
+  .segmented button[aria-pressed="true"] { background: var(--surface); color: var(--text); font-weight: 600; box-shadow: var(--shadow); }
+  @media (prefers-color-scheme: dark) { .segmented button[aria-pressed="true"] { background: #0f0f10; } }
+
+  .examples { margin-top: 24px; text-align: center; }
   .examples-label { color: var(--faint); font-size: 14px; margin-bottom: 12px; }
   .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
   .chip {
@@ -141,7 +155,7 @@
     background: var(--chip-active-bg); color: var(--chip-active-text); border-color: var(--chip-active-bg);
   }
 
-  /* Exact keyword filters */
+  /* Exact filters */
   .filters {
     margin-top: 24px;
     background: var(--surface);
@@ -168,8 +182,36 @@
   .chevron { transition: transform 0.15s; }
   .filters-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
   .filters-body {
-    display: grid; grid-template-columns: 1fr 140px; gap: 16px;
+    display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px;
     padding: 0 20px 20px;
+  }
+  .span-2 { grid-column: span 2; }
+  .span-3 { grid-column: span 3; }
+  .span-5 { grid-column: span 5; }
+  .span-6 { grid-column: span 6; }
+  .group-label { grid-column: span 6; margin: 4px 0 -8px; font-size: 14px; font-weight: 600; }
+  .field select {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 15px;
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--faint) 50%), linear-gradient(135deg, var(--faint) 50%, transparent 50%);
+    background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%;
+    background-size: 5px 5px; background-repeat: no-repeat;
+    padding-right: 32px;
+    text-overflow: ellipsis;
+  }
+  .field select:focus { outline: none; border-color: var(--accent); }
+  .field select:disabled { opacity: 0.5; cursor: not-allowed; }
+  .check { display: flex; align-items: center; gap: 10px; font-size: 15px; cursor: pointer; }
+  .check input { width: 18px; height: 18px; accent-color: var(--accent); margin: 0; }
+  .check .hint { margin: 0; }
+  .clear {
+    justify-self: end; align-self: center;
+    border: 0; background: transparent; color: var(--accent); font-weight: 600; font-size: 14px; padding: 0;
   }
   .filters-body[hidden] { display: none; }
   .field label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
@@ -198,6 +240,9 @@
   @media (max-width: 760px) {
     .grid { grid-template-columns: 1fr; }
     .filters-body { grid-template-columns: 1fr; }
+    .filters-body > * { grid-column: auto; }
+    .group-label { margin-bottom: -8px; }
+    .clear { justify-self: start; }
     .hero { padding-top: 48px; }
     .search-btn { padding: 10px 16px; }
     .searchbar input { font-size: 16px; }
@@ -234,6 +279,19 @@
     color: var(--accent); font-weight: 600; font-size: 15px;
   }
   .note { margin: 10px 0 0; color: var(--faint); font-size: 13px; }
+  .count { color: var(--accent); font-weight: 600; font-size: 15px; white-space: nowrap; }
+  .abstract { margin: 12px 0 0; color: var(--muted); overflow-wrap: anywhere; }
+  .abstract.clamped { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .pclaims { margin: 16px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
+  .pclaim { padding: 12px 0 0; }
+  .pclaim + .pclaim { border-top: 1px dashed var(--border); margin-top: 12px; }
+  .pclaim-head { display: flex; gap: 8px; align-items: baseline; font-size: 14px; color: var(--muted); }
+  .pclaim-head strong { color: var(--text); }
+  .pclaim-head .kind { font-size: 14px; }
+  .pclaim-head .pscore { margin-left: auto; font-variant-numeric: tabular-nums; }
+  .pclaim .claim-text { margin-top: 4px; font-size: 15px; }
+  .pclaim .claim-text.clamped { -webkit-line-clamp: 3; }
+  .more-claims { margin: 12px 0 0; color: var(--faint); font-size: 13px; }
   .score {
     margin-top: auto; padding-top: 16px;
     color: var(--muted); font-size: 14px;
@@ -260,6 +318,14 @@
       <button class="search-btn" id="submit" type="submit">Search</button>
     </div>
 
+    <div class="show">
+      <span class="show-label" id="show-label">Show</span>
+      <div class="segmented" role="group" aria-labelledby="show-label">
+        <button type="button" id="show-claims" data-group="claim" aria-pressed="true">Claims</button>
+        <button type="button" id="show-patents" data-group="patent" aria-pressed="false">Patents</button>
+      </div>
+    </div>
+
     <div class="examples">
       <div class="examples-label">Try an example</div>
       <div class="chips" id="chips"></div>
@@ -268,14 +334,14 @@
     <div class="filters">
       <button class="filters-toggle" id="filters-toggle" type="button" aria-expanded="false" aria-controls="filters-body">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
-        <span class="filters-title">Exact keyword filters</span>
+        <span class="filters-title">Exact filters</span>
         <span class="filters-side">
           <span id="filters-state">Add filters</span>
           <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </span>
       </button>
       <div class="filters-body" id="filters-body" hidden>
-        <div class="field">
+        <div class="field span-5">
           <label for="keywords">Keywords <span class="optional">(optional)</span></label>
           <input id="keywords" type="text" autocomplete="off" placeholder='sipe "tread block" spoke*'>
           <p class="hint">Every keyword must appear in the claim. <code>"quotes"</code> for a phrase, <code>*</code> at the end for word starts.</p>
@@ -284,6 +350,38 @@
           <label for="top-n">Results</label>
           <input id="top-n" type="number" min="1" max="100" step="1" value="10" inputmode="numeric">
         </div>
+
+        <div class="group-label">Classification (CPC)</div>
+        <div class="field span-2">
+          <label for="cpc-subclass">Subclass</label>
+          <select id="cpc-subclass"><option value="">Any subclass</option></select>
+        </div>
+        <div class="field span-2">
+          <label for="cpc-group">Main group</label>
+          <select id="cpc-group" disabled><option value="">Any main group</option></select>
+        </div>
+        <div class="field span-2">
+          <label for="cpc-subgroup">Subgroup</label>
+          <select id="cpc-subgroup" disabled><option value="">Any subgroup</option></select>
+        </div>
+
+        <div class="field span-2">
+          <label for="date-from">Published from</label>
+          <input id="date-from" type="text" autocomplete="off" placeholder="2024-06" inputmode="numeric">
+        </div>
+        <div class="field span-2">
+          <label for="date-to">Published to</label>
+          <input id="date-to" type="text" autocomplete="off" placeholder="2024-12-31" inputmode="numeric">
+        </div>
+        <div class="field span-2" style="align-self: end;">
+          <p class="hint" style="margin-bottom: 12px;">Inclusive. <code>2024</code>, <code>2024-06</code> or <code>2024-06-15</code>.</p>
+        </div>
+
+        <label class="check span-5" for="main-only">
+          <input id="main-only" type="checkbox">
+          <span>Main claims only <span class="hint">(claims whose start is missing have an unknown type and are left out)</span></span>
+        </label>
+        <button class="clear" id="clear-filters" type="button">Clear filters</button>
       </div>
     </div>
   </form>
@@ -304,9 +402,14 @@
 
   const $ = (id) => document.getElementById(id);
   const form = $("form"), queryBox = $("query"), keywordBox = $("keywords"), topBox = $("top-n");
+  const subclassBox = $("cpc-subclass"), groupBox = $("cpc-group"), subgroupBox = $("cpc-subgroup");
+  const fromBox = $("date-from"), toBox = $("date-to"), mainOnly = $("main-only");
   const button = $("submit"), results = $("results");
   const toggle = $("filters-toggle"), filtersBody = $("filters-body"), filtersState = $("filters-state");
   let requestId = 0;
+  let groupBy = "claim";
+  let tree = [];
+  let searched = false;
 
   function el(tag, className, text) {
     const node = document.createElement(tag);
@@ -324,10 +427,67 @@
     return n;
   }
 
+  // ---------- classification dropdowns ----------
+
+  function shorten(text, n) {
+    return text.length > n ? text.slice(0, n - 1).trimEnd() + "…" : text;
+  }
+
+  function fill(select, anyLabel, nodes, label) {
+    select.replaceChildren(new Option(anyLabel, ""));
+    for (const node of nodes) {
+      const option = new Option(label(node), node.code);
+      if (node.title) option.title = node.title;
+      select.append(option);
+    }
+  }
+
+  function currentSubclass() { return tree.find((n) => n.code === subclassBox.value); }
+  function currentGroup() { return currentSubclass()?.groups.find((g) => g.code === groupBox.value); }
+
+  function onSubclass() {
+    const sub = currentSubclass();
+    fill(groupBox, "Any main group", sub ? sub.groups : [],
+      (g) => `${g.code.split(" ")[1]}${g.title ? " — " + shorten(g.title, 48) : ""} (${g.count})`);
+    groupBox.disabled = !sub || !sub.groups.length;
+    onGroup();
+  }
+
+  function onGroup() {
+    const group = currentGroup();
+    fill(subgroupBox, "Any subgroup", group ? group.subgroups : [], (s) => `${s.code.split(" ")[1]} (${s.count})`);
+    subgroupBox.disabled = !group || !group.subgroups.length;
+    updateFilterState();
+  }
+
+  function classificationCode() {
+    return subgroupBox.value || groupBox.value || subclassBox.value || "";
+  }
+
+  async function loadClassifications() {
+    try {
+      const response = await fetch("/classifications");
+      if (!response.ok) throw new Error();
+      tree = (await response.json()).subclasses;
+      fill(subclassBox, "Any subclass", tree,
+        (n) => `${n.code}${n.title ? " — " + shorten(n.title, 44) : ""} (${n.count})`);
+    } catch {
+      subclassBox.replaceChildren(new Option("Classifications unavailable", ""));
+      subclassBox.disabled = true;
+    }
+  }
+
+  // ---------- filter panel ----------
+
+  function filterCount() {
+    return countKeywords(keywordBox.value) + (classificationCode() ? 1 : 0) +
+      (fromBox.value.trim() ? 1 : 0) + (toBox.value.trim() ? 1 : 0) + (mainOnly.checked ? 1 : 0);
+  }
+
   function updateFilterState() {
-    const n = countKeywords(keywordBox.value);
+    const n = filterCount();
     filtersState.replaceChildren(n
-      ? el("span", "badge", n === 1 ? "1 keyword" : `${n} keywords`)
+      ? el("span", "badge", n === 1 ? "1 filter" : `${n} filters`)
       : document.createTextNode("Add filters"));
   }
 
@@ -336,16 +496,41 @@
     filtersBody.hidden = !open;
   }
 
+  function clearFilters() {
+    keywordBox.value = "";
+    subclassBox.value = "";
+    onSubclass();
+    fromBox.value = "";
+    toBox.value = "";
+    mainOnly.checked = false;
+  }
+
+  // ---------- results ----------
+
   function formatNumber(doc) {
     return /^\d{11}$/.test(doc) ? `US ${doc.slice(0, 4)}/${doc.slice(4)}` : `US ${doc}`;
   }
 
-  function card(hit) {
+  function kindLabel(isIndependent) {
+    return isIndependent === true ? "Main claim" : isIndependent === false ? "Dependent claim" : null;
+  }
+
+  function clampToggle(textNode, more, showLabel) {
+    more.type = "button";
+    more.hidden = true;
+    more.addEventListener("click", () => {
+      const clamped = textNode.classList.toggle("clamped");
+      more.textContent = clamped ? showLabel : "Show less";
+    });
+    return { text: textNode, more };
+  }
+
+  function claimCard(hit, clamps) {
     const node = el("article", "card");
     const top = el("div", "card-top");
     top.append(el("span", "number", formatNumber(hit.doc_number)));
-    if (hit.is_independent === true) top.append(el("span", "kind", "Main claim"));
-    if (hit.is_independent === false) top.append(el("span", "kind", "Dependent claim"));
+    const kind = kindLabel(hit.is_independent);
+    if (kind) top.append(el("span", "kind", kind));
     node.append(top);
 
     node.append(el("h2", "", hit.title || "Untitled"));
@@ -355,15 +540,9 @@
     node.append(el("div", "meta", meta.join(" · ")));
 
     const text = el("p", "claim-text clamped", hit.text);
-    node.append(text);
     const more = el("button", "more", "Show full claim");
-    more.type = "button";
-    more.hidden = true;
-    more.addEventListener("click", () => {
-      const clamped = text.classList.toggle("clamped");
-      more.textContent = clamped ? "Show full claim" : "Show less";
-    });
-    node.append(more);
+    node.append(text, more);
+    clamps.push(clampToggle(text, more, "Show full claim"));
 
     if (hit.opening_missing) {
       node.append(el("p", "note", "The start of this claim is missing in the source data."));
@@ -373,7 +552,57 @@
       score.append(el("strong", "", hit.score.toFixed(2)));
       node.append(score);
     }
-    return { node, text, more };
+    return node;
+  }
+
+  function patentCard(hit, clamps) {
+    const node = el("article", "card");
+    const top = el("div", "card-top");
+    top.append(el("span", "number", formatNumber(hit.doc_number)));
+    top.append(el("span", "count", hit.matching_claims === 1 ? "1 matching claim" : `${hit.matching_claims} matching claims`));
+    node.append(top);
+
+    node.append(el("h2", "", hit.title || "Untitled"));
+    const meta = [];
+    if (hit.cpc_code || hit.classification) meta.push(hit.cpc_code || hit.classification);
+    if (hit.pub_date) meta.push(`Published ${hit.pub_date}`);
+    if (meta.length) node.append(el("div", "meta", meta.join(" · ")));
+
+    if (hit.abstract) {
+      const abstract = el("p", "abstract clamped", hit.abstract);
+      const more = el("button", "more", "Show full abstract");
+      node.append(abstract, more);
+      clamps.push(clampToggle(abstract, more, "Show full abstract"));
+    }
+
+    const list = el("ul", "pclaims");
+    for (const claim of hit.claims) {
+      const item = el("li", "pclaim");
+      const head = el("div", "pclaim-head");
+      head.append(el("strong", "", `Claim ${claim.claim_number}`));
+      const kind = kindLabel(claim.is_independent);
+      if (kind) head.append(el("span", "kind", kind));
+      if (claim.score !== null && claim.score !== undefined) head.append(el("span", "pscore", claim.score.toFixed(2)));
+      item.append(head);
+      const text = el("p", "claim-text clamped", claim.text);
+      const more = el("button", "more", "Show full claim");
+      item.append(text, more);
+      clamps.push(clampToggle(text, more, "Show full claim"));
+      if (claim.opening_missing) {
+        item.append(el("p", "note", "The start of this claim is missing in the source data."));
+      }
+      list.append(item);
+    }
+    node.append(list);
+    const rest = hit.matching_claims - hit.claims.length;
+    if (rest > 0) node.append(el("p", "more-claims", `and ${rest} more matching claim${rest === 1 ? "" : "s"}`));
+
+    if (hit.score !== null && hit.score !== undefined) {
+      const score = el("div", "score", "Best claim score ");
+      score.append(el("strong", "", hit.score.toFixed(2)));
+      node.append(score);
+    }
+    return node;
   }
 
   function showError(message) {
@@ -381,35 +610,43 @@
   }
 
   function render(data) {
+    const patents = data.group_by === "patent";
     const shown = data.hits.length;
-    let summary = `${data.total_matches} matching claims`;
+    let summary = `${data.total_matches} matching ${patents ? "patents" : "claims"}`;
     if (data.total_matches > shown) summary += `, showing top ${shown}`;
     const parts = [el("p", "summary", summary)];
     if (!shown) {
-      parts.push(el("p", "empty", "No claims matched."));
+      parts.push(el("p", "empty", patents ? "No patents matched." : "No claims matched."));
       results.replaceChildren(...parts);
       return;
     }
     const grid = el("div", "grid");
-    const cards = data.hits.map(card);
-    grid.append(...cards.map((c) => c.node));
+    const clamps = [];
+    grid.append(...data.hits.map((hit) => (patents ? patentCard(hit, clamps) : claimCard(hit, clamps))));
     parts.push(grid);
     results.replaceChildren(...parts);
-    // Only offer "Show full claim" where the text is actually cut off.
-    for (const c of cards) c.more.hidden = c.text.scrollHeight <= c.text.clientHeight + 1;
+    // Only offer "Show full ..." where the text is actually cut off.
+    for (const c of clamps) c.more.hidden = c.text.scrollHeight <= c.text.clientHeight + 1;
   }
 
   async function runSearch() {
     const query = queryBox.value.trim();
     const keywords = keywordBox.value.trim();
-    if (!query && !keywords) {
-      showError("Type a question or a keyword");
+    const classification = classificationCode();
+    const dateFrom = fromBox.value.trim(), dateTo = toBox.value.trim();
+    if (!query && !keywords && !classification && !dateFrom && !dateTo && !mainOnly.checked) {
+      showError("Type a question or a keyword, or choose a filter");
       return;
     }
     const raw = topBox.value.trim();
     const topN = raw === "" ? 10 : (/^\d+$/.test(raw) ? Number(raw) : raw);
-    const body = { query: query || null, keywords: keywords || null, top_n: topN };
+    const body = {
+      query: query || null, keywords: keywords || null, top_n: topN,
+      classification: classification || null, date_from: dateFrom || null, date_to: dateTo || null,
+      independent_only: mainOnly.checked, group_by: groupBy,
+    };
 
+    searched = true;
     const id = ++requestId;
     button.disabled = true;
     button.textContent = "Searching...";
@@ -437,6 +674,8 @@
     }
   }
 
+  // ---------- wiring ----------
+
   function clearActiveChip() {
     for (const chip of document.querySelectorAll(".chip")) chip.setAttribute("aria-pressed", "false");
   }
@@ -446,6 +685,7 @@
     chip.type = "button";
     chip.setAttribute("aria-pressed", "false");
     chip.addEventListener("click", () => {
+      clearFilters();
       queryBox.value = example.query;
       keywordBox.value = example.keywords;
       updateFilterState();
@@ -457,10 +697,30 @@
     $("chips").append(chip);
   }
 
+  for (const b of document.querySelectorAll(".segmented button")) {
+    b.addEventListener("click", () => {
+      if (groupBy === b.dataset.group) return;
+      groupBy = b.dataset.group;
+      for (const other of document.querySelectorAll(".segmented button")) {
+        other.setAttribute("aria-pressed", String(other === b));
+      }
+      if (searched) runSearch();
+    });
+  }
+
   toggle.addEventListener("click", () => setFiltersOpen(filtersBody.hidden));
-  keywordBox.addEventListener("input", () => { updateFilterState(); clearActiveChip(); });
+  subclassBox.addEventListener("change", () => { onSubclass(); clearActiveChip(); });
+  groupBox.addEventListener("change", () => { onGroup(); clearActiveChip(); });
+  subgroupBox.addEventListener("change", () => { updateFilterState(); clearActiveChip(); });
+  for (const box of [keywordBox, fromBox, toBox]) {
+    box.addEventListener("input", () => { updateFilterState(); clearActiveChip(); });
+  }
+  mainOnly.addEventListener("change", () => { updateFilterState(); clearActiveChip(); });
   queryBox.addEventListener("input", clearActiveChip);
+  $("clear-filters").addEventListener("click", () => { clearFilters(); updateFilterState(); clearActiveChip(); });
   form.addEventListener("submit", (event) => { event.preventDefault(); runSearch(); });
+
+  loadClassifications();
 })();
 </script>
 </body>

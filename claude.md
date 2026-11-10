@@ -190,6 +190,7 @@ When `opening_missing` is true, show the text as it is. The flag lets the caller
   * `build`: read the raw dir (`config.RAW_DIR`), clean, embed, write `data/index` (`--cpc-only` only rewrites the CPC columns), print counts (patents, claims indexed, patents without description, claims with missing openings, cancelled claim numbers)
   * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`, plus `--by claim|patent`, `-c/--classification CODE` (repeatable, commas allowed, any code matches), `--from DATE`, `--to DATE` and `--main-only` (independent claims only). The question is optional when `-k` or a filter is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON.
 * HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10, "classification": ..., "date_from": ..., "date_to": ..., "independent_only": false, "group_by": "claim"}` (all optional) returning the response above. `classification` is a string (commas allowed) or a list of strings; the dates are strings, or a number for a year. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser. Errors come back as `{"error": "<message>"}`: `400` for bad input (no query, keyword or filter, `top_n` out of range, a bad code, date or `group_by`, wrong types, a body that is not JSON) and `503` when the index is missing or was built with a different model. The index loads on the first request, and the model on the first request with a query.
+* `GET /classifications`: the dropdown data, built from the data in the index: `{"subclasses": [{code, count, title?, groups: [{code, count, title?, subgroups: [{code, count}]}]}]}`. `code` is a valid `classification` query, `count` is the number of patents it matches with the same `cpc.matches` as the filter (so `15/02` counts `15/024` too), and `title` is there only when the scheme title is known. Subgroups are in scheme order (`02` < `024` < `10`).
 * Web page at `GET /` (see Frontend).
 
 ## Frontend
@@ -199,32 +200,43 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 **Page contents**
 
 * A text box for the question.
-* A text box for keywords, marked optional. Placeholder: `sipe "tread block" spoke*`
-* A number box for how many results, default 10.
-* A Search button. Pressing Enter in either text box also searches.
+* A "Show: Claims | Patents" toggle under the search bar. It sets `group_by` (`claim` or `patent`) and reruns the current search if one has run.
+* A collapsible "Exact filters" panel with:
+  * a text box for keywords, marked optional. Placeholder: `sipe "tread block" spoke*`
+  * a number box for how many results (claims or patents), default 10
+  * three linked classification dropdowns, Subclass, Main group and Subgroup, filled from `GET /classifications`. Each option shows the code, the title when known and the patent count (`11 — Tyre tread bands; … (101)`). Each later dropdown is disabled until the one before it is chosen; changing one resets the ones after it. The most specific choice is sent as one `classification` code (`B60C`, `B60C 11` or `B60C 11/12`). Subgroups listed are the ones in the data (not `/00`, which is the group itself)
+  * "Published from" and "Published to" text boxes (`2024`, `2024-06` or `2024-06-15`, inclusive; the server checks them)
+  * a "Main claims only" checkbox (`independent_only`), with a note that claims whose start is missing have an unknown type and are left out
+  * a "Clear filters" link
+* A Search button. Pressing Enter in any text box also searches.
 
 **Behavior**
 
-* Sends the two boxes and the number to `POST /search`. The keyword box is sent as one string; an empty box sends no keywords.
-* If both text boxes are empty, show "Type a question or a keyword" and do not call the API.
+* Sends the question, the keyword box as one string (an empty box sends no keywords), the number, `classification`, `date_from`, `date_to`, `independent_only` and `group_by` to `POST /search`.
+* Filters alone can search. If the question, keywords and every filter are empty, show "Type a question or a keyword, or choose a filter" and do not call the API.
+* The panel's badge counts the keywords plus the other filters set (classification, each date, main claims only): "1 filter", "4 filters".
+* The example chips clear the filters, then set the question and keywords; the Show toggle keeps its setting.
 * While waiting, disable the button and show "Searching...".
-* Above the results show `{total_matches} matching claims`, and `showing top {n}` when there are more than shown.
-* Each result is a simple card with:
+* Above the results show `{total_matches} matching claims` (or `matching patents`), and `showing top {n}` when there are more than shown.
+* Each claim result is a simple card with:
   * the patent title
   * patent number and claim number
-  * the score with 2 decimals (hidden in keyword only mode)
+  * the score with 2 decimals (hidden when there is no question)
   * a "main claim" or "dependent claim" label (no label when unknown)
   * the claim text
   * when `opening_missing` is true, a small grey note: "The start of this claim is missing in the source data."
-* No results: show "No claims matched."
+* Each patent result (first version) is a card with the patent number, "{matching_claims} matching claims" at the top right, the title, the split code (`cpc_code`, e.g. `B60C 11/12`) and publication date, the abstract (clamped to 3 lines, "Show full abstract"), its best claims (up to 3: number, label, score, text clamped to 3 lines, the missing-start note), "and N more matching claims" when there are more, and "Best claim score" at the bottom.
+* No results: show "No claims matched." or "No patents matched."
 * API errors: show the error message in red above the results.
+* If `/classifications` cannot be loaded, the subclass dropdown says "Classifications unavailable" and the other searches still work.
 
 **Look**
 
 * Clean landing style: header with an orange "P" logo and "Patent Claim Search", a large two-line headline ("Patent claims," then "found by meaning." in orange `#e8622a`), the subtitle "Ask in plain English and get the patent claims that match. Add exact keywords when wording matters.", and a soft orange glow behind the hero.
 * Large rounded search bar with a search icon and an orange Search button inside it.
 * Pill chips under a "Try an example" label that run the example searches from "Done when": Carbon fiber spokes, Bassinet arm, Tire sensor setup, Wall-climbing robots, Keyword: sipe, Heavy truck tires + tread (the data has no categories, so no category chips).
-* The keyword box and the results number live in a collapsible "Exact keyword filters" panel, which shows a count badge when keywords are set.
+* The Show toggle is a small segmented control labelled "Show" under the search bar.
+* The filters live in the collapsible "Exact filters" panel (keywords and results on the first row, the three classification dropdowns on the next, then the dates and the checkbox), which shows a count badge when any filter is set. On a phone the fields stack.
 * Result cards in a two column grid (one column on a phone): monospace patent number badge (`US 2024/0116310`), the main or dependent claim label in orange at the top right, a bold title, then a line with claim number, classification and publication date (`Claim 22 · B60B3300FI · Published 2024-03-21`; the classification is shown exactly as stored, not reformatted), then the claim text clamped to 5 lines with "Show full claim". The score sits at the bottom of the card.
 * Show only fields the data has (no assignee or inventor). System font, nothing loaded from the internet.
 * Follows the system setting with `prefers-color-scheme`. Light and dark are equally finished; neither is the main one.

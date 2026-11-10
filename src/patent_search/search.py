@@ -223,6 +223,12 @@ class Index:
             classification=p["classification"], cpc_code=p["cpc_code"], source_file=p["source_file"],
         )
 
+    def classification_tree(self) -> list[dict]:
+        """Classification dropdown data, built once from the patents in the index."""
+        if getattr(self, "_classification_tree", None) is None:
+            self._classification_tree = cpc.classification_tree([p["cpc"] for p in self.patents.values()])
+        return self._classification_tree
+
     def patent_hit(self, doc_number: str, ranked: list[tuple[float | None, int]]) -> PatentHit:
         """ranked: this patent's matching claims as (score, claim index), best first."""
         p = self.patents[doc_number]

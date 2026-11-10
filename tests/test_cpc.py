@@ -105,3 +105,13 @@ def test_build_fills_cpc_columns(index):
     con = sqlite3.connect(index.index_dir / "search.db")
     cols = [r[1] for r in con.execute("PRAGMA table_info(patents)")]
     assert cols[-4:] == ["cpc_subclass", "cpc_group", "cpc_subgroup", "cpc_code"]
+
+
+def test_classification_tree_order_and_counts():
+    codes = [split_code(c) for c in ["B60C1510FI", "B60C1502FI", "B60C15024FI", "B60C1500FI", "B60C100FI", None]]
+    [b60c] = cpc.classification_tree(codes)
+    assert b60c["count"] == 5
+    g15 = b60c["groups"][1]
+    assert [s["code"] for s in g15["subgroups"]] == ["B60C 15/02", "B60C 15/024", "B60C 15/10"]   # scheme order
+    assert [s["count"] for s in g15["subgroups"]] == [2, 1, 1]                                    # 15/02 covers 15/024
+    assert g15["count"] == 4
