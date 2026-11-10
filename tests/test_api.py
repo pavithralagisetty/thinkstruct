@@ -70,7 +70,7 @@ def test_page(client):
     page = r.text
     for text in ['placeholder=\'sipe "tread block" spoke*\'', "Exact filters", "Type a question or a keyword",
                  'data-group="claim"', 'data-group="patent"', 'fetch("/classifications")', "Main claims only",
-                 "Published from", "Published to", "No patents matched.", "matching claims",
+                 "Published from", "Published to", "No patents matched.", "Best matching claims", "Start missing", " match`",
                  "Searching...", "No claims matched.", "The start of this claim is missing in the source data.",
                  "Show full claim", "prefers-color-scheme", 'fetch("/search"']:
         assert text in page, text

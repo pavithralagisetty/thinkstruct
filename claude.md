@@ -225,7 +225,14 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
   * a "main claim" or "dependent claim" label (no label when unknown)
   * the claim text
   * when `opening_missing` is true, a small grey note: "The start of this claim is missing in the source data."
-* Each patent result (first version) is a card with the patent number, "{matching_claims} matching claims" at the top right, the title, the split code (`cpc_code`, e.g. `B60C 11/12`) and publication date, the abstract (clamped to 3 lines, "Show full abstract"), its best claims (up to 3: number, label, score, text clamped to 3 lines, the missing-start note), "and N more matching claims" when there are more, and "Best claim score" at the bottom.
+* Each patent result is a card (patent mode only):
+  * top left: the patent number badge and the publication date (on a phone the date wraps under the number); top right: an orange `{score} match` pill with 2 decimals (the best claim's score; hidden when there is no question)
+  * the title. All-caps titles get a smaller, letter-spaced style; the text itself is never changed
+  * the readable code (`cpc_code`, e.g. `B60C 11/12`, falling back to the stored code) as a small monospace chip, followed by its main group title when known (from `GET /classifications`; the page waits for it before showing patent cards)
+  * the abstract clamped to 3 lines with "Show full abstract"
+  * a small uppercase heading "Best matching claims" ("Matching claims" without a question) with `{shown} of {matching_claims}` on the right
+  * each shown claim (up to 3) in a soft panel: bold "Claim N", a quiet "Main" or "Dependent" tag (none when unknown), a dashed "Start missing" tag when `opening_missing` (its tooltip is the full note "The start of this claim is missing in the source data."), its score on the right (when there is a question), and the text clamped to 3 lines with "Show full claim". The best claim's panel has a thin orange border (only when there is a question)
+  * no score repeated at the bottom
 * No results: show "No claims matched." or "No patents matched."
 * API errors: show the error message in red above the results.
 * If `/classifications` cannot be loaded, the subclass dropdown says "Classifications unavailable" and the other searches still work.
@@ -237,6 +244,7 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 * Pill chips under a "Try an example" label that run the example searches from "Done when": Carbon fiber spokes, Bassinet arm, Tire sensor setup, Wall-climbing robots, Keyword: sipe, Heavy truck tires + tread (the data has no categories, so no category chips).
 * The Show toggle is a small segmented control labelled "Show" under the search bar.
 * The filters live in the collapsible "Exact filters" panel (keywords and results on the first row, the three classification dropdowns on the next, then the dates and the checkbox), which shows a count badge when any filter is set. On a phone the fields stack.
+* Patent cards are top-aligned in the grid and keep their own height (not stretched to the tallest card in the row).
 * Result cards in a two column grid (one column on a phone): monospace patent number badge (`US 2024/0116310`), the main or dependent claim label in orange at the top right, a bold title, then a line with claim number, classification and publication date (`Claim 22 · B60B3300FI · Published 2024-03-21`; the classification is shown exactly as stored, not reformatted), then the claim text clamped to 5 lines with "Show full claim". The score sits at the bottom of the card.
 * Show only fields the data has (no assignee or inventor). System font, nothing loaded from the internet.
 * Follows the system setting with `prefers-color-scheme`. Light and dark are equally finished; neither is the main one.

@@ -279,19 +279,50 @@
     color: var(--accent); font-weight: 600; font-size: 15px;
   }
   .note { margin: 10px 0 0; color: var(--faint); font-size: 13px; }
-  .count { color: var(--accent); font-weight: 600; font-size: 15px; white-space: nowrap; }
-  .abstract { margin: 12px 0 0; color: var(--muted); overflow-wrap: anywhere; }
+  /* Patent cards */
+  .grid.patents { align-items: start; }
+  .ptop { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .pid { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; min-width: 0; }
+  .pdate { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+  .pill {
+    flex: none;
+    background: var(--accent); color: var(--on-accent);
+    border-radius: 999px; padding: 3px 11px;
+    font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .card h2.caps { font-size: 15.5px; letter-spacing: 0.045em; line-height: 1.4; }
+  .pcode { display: flex; align-items: baseline; gap: 8px; margin-top: 8px; min-width: 0; }
+  .code-chip {
+    flex: none;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px;
+    border: 1px solid var(--border); border-radius: 6px; padding: 1px 7px; color: var(--text);
+  }
+  .code-title { color: var(--muted); font-size: 14px; line-height: 1.4; }
+  .abstract { margin: 14px 0 0; color: var(--muted); font-size: 15px; overflow-wrap: anywhere; }
   .abstract.clamped { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .pclaims { margin: 16px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
-  .pclaim { padding: 12px 0 0; }
-  .pclaim + .pclaim { border-top: 1px dashed var(--border); margin-top: 12px; }
-  .pclaim-head { display: flex; gap: 8px; align-items: baseline; font-size: 14px; color: var(--muted); }
-  .pclaim-head strong { color: var(--text); }
-  .pclaim-head .kind { font-size: 14px; }
-  .pclaim-head .pscore { margin-left: auto; font-variant-numeric: tabular-nums; }
+  .phead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin: 18px 0 8px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint);
+  }
+  .phead .of { letter-spacing: 0; text-transform: none; font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .pclaims { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .pclaim { background: var(--surface-2); border: 1px solid transparent; border-radius: 12px; padding: 10px 12px; }
+  .pclaim.best { border-color: var(--accent); }
+  .pclaim-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font-size: 14px; }
+  .pclaim-head .name { font-weight: 700; }
+  .tag {
+    font-size: 12px; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px; padding: 0 8px; line-height: 20px;
+  }
+  .tag.missing { border-style: dashed; cursor: help; }
+  .pclaim-head .pscore { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
   .pclaim .claim-text { margin-top: 4px; font-size: 15px; }
   .pclaim .claim-text.clamped { -webkit-line-clamp: 3; }
-  .more-claims { margin: 12px 0 0; color: var(--faint); font-size: 13px; }
+  .pclaim .more { margin-top: 4px; font-size: 14px; }
+  @media (max-width: 760px) {
+    .pid { flex-direction: column; align-items: flex-start; }
+  }
   .score {
     margin-top: auto; padding-top: 16px;
     color: var(--muted); font-size: 14px;
@@ -460,6 +491,14 @@
     updateFilterState();
   }
 
+  function groupTitle(cpcCode) {
+    // "B60C 11/12" -> the title of main group "B60C 11", when the scheme gives one
+    const m = /^(\S+) (\d+)/.exec(cpcCode || "");
+    if (!m) return null;
+    const group = tree.find((n) => n.code === m[1])?.groups.find((g) => g.code === `${m[1]} ${m[2]}`);
+    return group?.title || null;
+  }
+
   function classificationCode() {
     return subgroupBox.value || groupBox.value || subclassBox.value || "";
   }
@@ -555,18 +594,34 @@
     return node;
   }
 
+  function isAllCaps(text) {
+    return /[A-Z]/.test(text) && text === text.toUpperCase();
+  }
+
   function patentCard(hit, clamps) {
     const node = el("article", "card");
-    const top = el("div", "card-top");
-    top.append(el("span", "number", formatNumber(hit.doc_number)));
-    top.append(el("span", "count", hit.matching_claims === 1 ? "1 matching claim" : `${hit.matching_claims} matching claims`));
+    const scored = hit.score !== null && hit.score !== undefined;
+
+    const top = el("div", "ptop");
+    const id = el("div", "pid");
+    id.append(el("span", "number", formatNumber(hit.doc_number)));
+    if (hit.pub_date) id.append(el("span", "pdate", hit.pub_date));
+    top.append(id);
+    if (scored) top.append(el("span", "pill", `${hit.score.toFixed(2)} match`));
     node.append(top);
 
-    node.append(el("h2", "", hit.title || "Untitled"));
-    const meta = [];
-    if (hit.cpc_code || hit.classification) meta.push(hit.cpc_code || hit.classification);
-    if (hit.pub_date) meta.push(`Published ${hit.pub_date}`);
-    if (meta.length) node.append(el("div", "meta", meta.join(" · ")));
+    const title = el("h2", "", hit.title || "Untitled");
+    if (hit.title && isAllCaps(hit.title)) title.classList.add("caps");
+    node.append(title);
+
+    const code = hit.cpc_code || hit.classification;
+    if (code) {
+      const line = el("div", "pcode");
+      line.append(el("span", "code-chip", code));
+      const gt = groupTitle(hit.cpc_code);
+      if (gt) line.append(el("span", "code-title", gt));
+      node.append(line);
+    }
 
     if (hit.abstract) {
       const abstract = el("p", "abstract clamped", hit.abstract);
@@ -575,33 +630,32 @@
       clamps.push(clampToggle(abstract, more, "Show full abstract"));
     }
 
+    const head = el("div", "phead");
+    head.append(el("span", "", scored ? "Best matching claims" : "Matching claims"));
+    head.append(el("span", "of", `${hit.claims.length} of ${hit.matching_claims}`));
+    node.append(head);
+
     const list = el("ul", "pclaims");
-    for (const claim of hit.claims) {
-      const item = el("li", "pclaim");
-      const head = el("div", "pclaim-head");
-      head.append(el("strong", "", `Claim ${claim.claim_number}`));
-      const kind = kindLabel(claim.is_independent);
-      if (kind) head.append(el("span", "kind", kind));
-      if (claim.score !== null && claim.score !== undefined) head.append(el("span", "pscore", claim.score.toFixed(2)));
-      item.append(head);
+    hit.claims.forEach((claim, i) => {
+      const item = el("li", "pclaim" + (scored && i === 0 ? " best" : ""));
+      const h = el("div", "pclaim-head");
+      h.append(el("span", "name", `Claim ${claim.claim_number}`));
+      if (claim.is_independent === true) h.append(el("span", "tag", "Main"));
+      if (claim.is_independent === false) h.append(el("span", "tag", "Dependent"));
+      if (claim.opening_missing) {
+        const tag = el("span", "tag missing", "Start missing");
+        tag.title = "The start of this claim is missing in the source data.";
+        h.append(tag);
+      }
+      if (claim.score !== null && claim.score !== undefined) h.append(el("span", "pscore", claim.score.toFixed(2)));
+      item.append(h);
       const text = el("p", "claim-text clamped", claim.text);
       const more = el("button", "more", "Show full claim");
       item.append(text, more);
       clamps.push(clampToggle(text, more, "Show full claim"));
-      if (claim.opening_missing) {
-        item.append(el("p", "note", "The start of this claim is missing in the source data."));
-      }
       list.append(item);
-    }
+    });
     node.append(list);
-    const rest = hit.matching_claims - hit.claims.length;
-    if (rest > 0) node.append(el("p", "more-claims", `and ${rest} more matching claim${rest === 1 ? "" : "s"}`));
-
-    if (hit.score !== null && hit.score !== undefined) {
-      const score = el("div", "score", "Best claim score ");
-      score.append(el("strong", "", hit.score.toFixed(2)));
-      node.append(score);
-    }
     return node;
   }
 
@@ -620,7 +674,7 @@
       results.replaceChildren(...parts);
       return;
     }
-    const grid = el("div", "grid");
+    const grid = el("div", patents ? "grid patents" : "grid");
     const clamps = [];
     grid.append(...data.hits.map((hit) => (patents ? patentCard(hit, clamps) : claimCard(hit, clamps))));
     parts.push(grid);
@@ -663,6 +717,8 @@
         showError((data && data.error) || `Search failed (HTTP ${response.status}).`);
         return;
       }
+      if (data.group_by === "patent") await treeReady;   // group titles come from /classifications
+      if (id !== requestId) return;
       render(data);
     } catch (e) {
       if (id === requestId) showError("Could not reach the search server.");
@@ -720,7 +776,7 @@
   $("clear-filters").addEventListener("click", () => { clearFilters(); updateFilterState(); clearActiveChip(); });
   form.addEventListener("submit", (event) => { event.preventDefault(); runSearch(); });
 
-  loadClassifications();
+  const treeReady = loadClassifications();
 })();
 </script>
 </body>
