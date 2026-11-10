@@ -101,7 +101,7 @@ Default: `nomic-ai/nomic-embed-text-v1.5` through `sentence-transformers` with `
 * It needs a prefix: `search_document: ` on everything we store, `search_query: ` on the user question.
 * Pin the model revision in config so results stay the same over time.
 
-Wrap the model in a small class with `embed_documents(texts)` and `embed_query(text)` so it can be swapped later (for example `BAAI/bge-base-en-v1.5`, which cuts off after 512 tokens, or OpenAI `text-embedding-3-small`, which is paid). Save the model name and revision in the index metadata. If the search config uses a different model than the saved index, stop with a clear message telling the user to rebuild.
+Wrap the model in a small class with `embed_documents(texts)` and `embed_query(text)` so it can be swapped later (for example `BAAI/bge-base-en-v1.5`, which cuts off after 512 tokens, or OpenAI `text-embedding-3-small`, which is paid). Save the model name and revision in the index metadata. If the search config uses a different model (name, revision or code revision) than the saved index, stop with a clear message telling the user to rebuild (`IndexNotReady` in `search.py`). The model is only loaded when a query is given; keyword only searches never load it.
 
 ## Storage
 
@@ -117,7 +117,7 @@ The build writes every file under a `.tmp` name first and renames them into plac
 
 `description` is the non blank paragraphs joined with a blank line, or empty.
 
-Keeping all vectors in memory is fine up to a few hundred thousand claims. Keep the vector lookup behind one function so it can be moved to FAISS or Qdrant later without touching the rest.
+Keeping all vectors in memory is fine up to a few hundred thousand claims. Keep the vector lookup behind one function so it can be moved to FAISS or Qdrant later without touching the rest. In `search.py` this is the `VectorStore` class; nothing else touches the vectors. The index (SQLite rows, vectors, meta) is loaded once per process.
 
 ## Search
 
@@ -127,7 +127,7 @@ search(query: str | None = None,
        top_n: int = 10) -> SearchResponse
 ```
 
-At least one of `query` or `keywords` is required, otherwise raise a clear error.
+At least one of `query` or `keywords` is required, otherwise raise a clear error. A blank query counts as none. `top_n` must be a whole number from 1 to `TOP_N_MAX` (100).
 
 **Step 1: keyword filter (optional, exact). Runs first.**
 
@@ -146,7 +146,7 @@ At least one of `query` or `keywords` is required, otherwise raise a clear error
 score = W_CLAIM * claim_similarity + W_PATENT * patent_similarity
 ```
 
-Defaults `W_CLAIM = 0.8`, `W_PATENT = 0.2`, both in config. Sort by score high to low, then `doc_number`, then `claim_number` so ties always come out in the same order. Return the top `top_n`.
+Defaults `W_CLAIM = 0.8`, `W_PATENT = 0.2`, both in config. Scores are rounded to 6 decimals before sorting, so tiny floating point differences cannot reorder results. Sort by score high to low, then `doc_number`, then `claim_number` so ties always come out in the same order. Return the top `top_n`.
 
 **Step 2b: keywords only.** Return matching claims sorted by `doc_number` then `claim_number`, first `top_n`, with no score.
 
@@ -159,7 +159,7 @@ When `opening_missing` is true, show the text as it is. The flag lets the caller
 * Python function `search(...)` above.
 * CLI through `python -m patent_search` (also `serve` to run the web page on port 8000):
   * `build`: read the raw dir (`config.RAW_DIR`), clean, embed, write `data/index`, print counts (patents, claims indexed, patents without description, claims with missing openings, cancelled claim numbers)
-  * `search "<question>"` with an optional repeatable keyword option and an optional top option
+  * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`. The question is optional when `-k` is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON.
 * HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10}` returning the response above. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser.
 * Web page at `GET /` (see Frontend).
 
