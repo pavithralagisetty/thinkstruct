@@ -138,6 +138,7 @@ At least one of `query` or `keywords` is required, otherwise raise a clear error
 * A trailing `*` matches word starts: `spoke*` matches spoke, spokes, spoked.
 * A hyphen between words matches a space and the other way round: `fiber reinforced` matches `fiber-reinforced`.
 * No stemming, no spelling variants (fibre vs fiber), no synonyms. Exact means exact.
+* Parsing (`keywords.py`, used by both the CLI and the API): in a string, spaces separate keywords and text in double quotes stays one phrase; an unclosed quote runs to the end. In a list, each item is one keyword or phrase (quotes are stripped). Blank keywords and a bare `*` are ignored. Unicode hyphens (‐ ‑) count as hyphens; an en dash does not.
 
 **Step 2a: query given.** Embed the query with the `search_query: ` prefix. For each claim that passed step 1:
 
