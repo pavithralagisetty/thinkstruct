@@ -26,6 +26,7 @@ class SearchRequest(BaseModel):
     date_to: str | int | None = None
     independent_only: bool = False
     group_by: str = "claim"
+    title_abstract_keywords: str | list[str] | None = None
 
 
 def _error(status: int, message: str) -> JSONResponse:
@@ -41,6 +42,7 @@ FIELD_RULES = {
     "date_to": "date_to must be a date like 2024, 2024-06 or 2024-06-15",
     "independent_only": "independent_only must be true or false",
     "group_by": "group_by must be claim or patent",
+    "title_abstract_keywords": "title_abstract_keywords must be a string or a list of strings",
 }
 
 
@@ -67,7 +69,8 @@ def post_search(body: SearchRequest):
         with _index_lock:
             index = search_module.get_index()
         response = index.search(body.query, body.keywords, body.top_n, body.classification,
-                                body.date_from, body.date_to, body.independent_only, body.group_by)
+                                body.date_from, body.date_to, body.independent_only, body.group_by,
+                                body.title_abstract_keywords)
     except ValueError as e:
         return _error(400, str(e))
     except IndexNotReady as e:

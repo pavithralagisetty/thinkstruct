@@ -38,9 +38,10 @@ def cmd_search(args):
     from patent_search.search import IndexNotReady, search
 
     keywords = [k for option in args.keyword for k in parse_keywords(option)]
+    title_abstract = [k for option in args.title_abstract for k in parse_keywords(option)]
     try:
         response = search(args.query, keywords or None, args.top, args.classification or None,
-                          args.date_from, args.date_to, args.main_only, args.by)
+                          args.date_from, args.date_to, args.main_only, args.by, title_abstract or None)
     except (ValueError, IndexNotReady) as e:
         sys.exit(f"Error: {e}")
 
@@ -150,6 +151,8 @@ def main(argv=None):
     s.add_argument("query", nargs="?", help="plain English question")
     s.add_argument("-k", "--keyword", action="append", default=[],
                    help='exact keyword; repeatable; "double quotes" keep a phrase together')
+    s.add_argument("-t", "--title-abstract", action="append", default=[], metavar="KEYWORD",
+                   help="exact keyword that must be in the patent's title or abstract; repeatable")
     s.add_argument("-n", "--top", type=int, default=config.TOP_N_DEFAULT, help="number of results")
     s.add_argument("--json", action="store_true", help="print the response as JSON")
     s.add_argument("--by", choices=["claim", "patent"], default="claim",

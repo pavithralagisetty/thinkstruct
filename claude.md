@@ -140,23 +140,25 @@ search(query: str | None = None,
        date_from: str | None = None,
        date_to: str | None = None,
        independent_only: bool = False,
-       group_by: str = "claim") -> SearchResponse
+       group_by: str = "claim",
+       title_abstract_keywords: str | list[str] | None = None) -> SearchResponse
 ```
 
 At least one of `query`, `keywords` or a filter is required, otherwise raise a clear error. A filter alone is a valid search. A blank query counts as none. `top_n` must be a whole number from 1 to `TOP_N_MAX` (100). `group_by` must be `"claim"` or `"patent"`.
 
 **Step 1: keyword filter and field filters (optional, exact). Runs first.** A claim passes only if it passes the keywords and every filter given (AND).
 
-**Filters** (`make_filters(classification, date_from, date_to, independent_only)` in `search.py`, which checks the input and raises `ValueError` with a clear message):
+**Filters** (`make_filters(classification, date_from, date_to, independent_only, title_abstract_keywords)` in `search.py`, which checks the input and raises `ValueError` with a clear message):
 
 * `classification`: CPC codes parsed with `cpc.parse_query` and compared with `cpc.matches` (whole parts, see Classification codes), so `B60C 1` matches main group 1 only. Several codes (a list, or one string with commas, `"B60C 11/12, B60D"`) match if any of them matches. Unknown main groups (`B60C 2`), one digit subgroups and text that is not a code are errors.
 * `date_from`, `date_to`: inclusive, on `pub_date`. Each accepts `2024`, `2024-06` or `2024-06-15`; a partial date covers the whole year or month (`date_to = 2024-02` ends on 2024-02-29). Other formats, dates that do not exist (`2024-02-30`) and `date_from` after `date_to` are errors. A patent without a publication date is left out whenever a date filter is set.
+* `title_abstract_keywords`: keeps the claims of patents whose title or abstract contains every keyword. Same parsing and matching rules as the claim keywords below (whole word, case insensitive, `"phrases"`, `*` for word starts, hyphen equals space, no stemming). Each keyword may be in either field, but is checked in the title and the abstract separately, so a phrase never runs from the end of the title into the abstract. A patent with neither field never matches. It is separate from `keywords`, which still match only the claim text; both can be given (AND). On the full data `sipe` matches 24 patents (407 claims) and `bassinet` 1 (46 claims), the same as a direct scan of the database.
 * `independent_only`: keeps only claims with `is_independent = True` (120 in the data). Claims whose opening is missing have an unknown type (`is_independent = None`), so they are left out too, even though some of them are main claims.
 
 **Keywords:**
 
 * Every keyword must appear in the claim (AND across keywords).
-* Match against the claim's own display text only, not the title and not the main claim. A dependent claim matches only on words it actually contains.
+* Match against the claim's own display text only, not the title and not the main claim (use `title_abstract_keywords` for the title and abstract). A dependent claim matches only on words it actually contains.
 * Case insensitive, whole word.
 * A phrase in double quotes matches that exact phrase.
 * A trailing `*` matches word starts: `spoke*` matches spoke, spokes, spoked.
@@ -197,8 +199,8 @@ When `opening_missing` is true, show the text as it is. The flag lets the caller
 * Python function `search(...)` above.
 * CLI through `python -m patent_search` (also `serve` to run the web page on port 8000; `--host` and `--port` override `config.HOST` and `config.PORT`):
   * `build`: read the raw dir (`config.RAW_DIR`), clean, embed, write `data/index` (`--cpc-only` only rewrites the CPC columns), print counts (patents, claims indexed, patents without description, claims with missing openings, cancelled claim numbers)
-  * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`, plus `--by claim|patent`, `-c/--classification CODE` (repeatable, commas allowed, any code matches), `--from DATE`, `--to DATE` and `--main-only` (independent claims only). The question is optional when `-k` or a filter is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON. When request words were removed, the plain output starts with `Searched for: <question as embedded>`.
-* HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10, "classification": ..., "date_from": ..., "date_to": ..., "independent_only": false, "group_by": "claim"}` (all optional) returning the response above. `classification` is a string (commas allowed) or a list of strings; the dates are strings, or a number for a year. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser. Errors come back as `{"error": "<message>"}`: `400` for bad input (no query, keyword or filter, `top_n` out of range, a bad code, date or `group_by`, wrong types, a body that is not JSON) and `503` when the index is missing or was built with a different model. The index loads on the first request, and the model on the first request with a query.
+  * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`, plus `--by claim|patent`, `-c/--classification CODE` (repeatable, commas allowed, any code matches), `--from DATE`, `--to DATE`, `--main-only` (independent claims only) and `-t/--title-abstract KEYWORD` (repeatable, split by the same keyword parser; every keyword must be in the title or the abstract). The question is optional when `-k` or a filter is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON. When request words were removed, the plain output starts with `Searched for: <question as embedded>`.
+* HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10, "classification": ..., "date_from": ..., "date_to": ..., "independent_only": false, "group_by": "claim", "title_abstract_keywords": ...}` (all optional; `title_abstract_keywords` is a string or a list of strings, like `keywords`) returning the response above. `classification` is a string (commas allowed) or a list of strings; the dates are strings, or a number for a year. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser. Errors come back as `{"error": "<message>"}`: `400` for bad input (no query, keyword or filter, `top_n` out of range, a bad code, date or `group_by`, wrong types, a body that is not JSON) and `503` when the index is missing or was built with a different model. The index loads on the first request, and the model on the first request with a query.
 * `GET /classifications`: the dropdown data, built from the data in the index: `{"subclasses": [{code, count, title?, groups: [{code, count, title?, subgroups: [{code, count}]}]}]}`. `code` is a valid `classification` query, `count` is the number of patents it matches with the same `cpc.matches` as the filter (so `15/02` counts `15/024` too), and `title` is there only when the scheme title is known. Subgroups are in scheme order (`02` < `024` < `10`).
 * Web page at `GET /` (see Frontend).
 
@@ -211,7 +213,8 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 * A text box for the question.
 * A "Show: Claims | Patents" toggle under the search bar. It sets `group_by` (`claim` or `patent`) and reruns the current search if one has run.
 * A collapsible "Exact filters" panel with:
-  * a text box for keywords, marked optional. Placeholder: `sipe "tread block" spoke*`
+  * a "Claim keywords" text box, marked optional. Placeholder: `sipe "tread block" spoke*`
+  * a "Title or abstract keywords" text box (`title_abstract_keywords`), marked optional. Placeholder: `bassinet "spoke star" sensor*`
   * a number box for how many results (claims or patents), default 10
   * three linked classification dropdowns, Subclass, Main group and Subgroup, filled from `GET /classifications`. Each option shows the code, the title when known and the patent count (`11 — Tyre tread bands; … (101)`). Each later dropdown is disabled until the one before it is chosen; changing one resets the ones after it. The most specific choice is sent as one `classification` code (`B60C`, `B60C 11` or `B60C 11/12`). Subgroups listed are the ones in the data (not `/00`, which is the group itself)
   * "Published from" and "Published to" text boxes (`2024`, `2024-06` or `2024-06-15`, inclusive; the server checks them). Each has a calendar button inside it that opens the browser's own date picker (`showPicker()` on a hidden `<input type="date">`); the chosen day replaces the box's text. The picker opens on what the box already says (a year or month at its first day for "from", its last day for "to"). Typing stays possible because a picker can only give a full day, while the filter also takes a year or a month
@@ -223,7 +226,8 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 
 * Sends the question, the keyword box as one string (an empty box sends no keywords), the number, `classification`, `date_from`, `date_to`, `independent_only` and `group_by` to `POST /search`.
 * Filters alone can search. If the question, keywords and every filter are empty, show "Type a question or a keyword, or choose a filter" and do not call the API.
-* The panel's badge counts the keywords plus the other filters set (classification, each date, main claims only): "1 filter", "4 filters".
+* Sends the title or abstract box as one string in `title_abstract_keywords` (empty sends nothing). A question with title or abstract keywords is filtered, so the count line says `{n} matching claims`.
+* The panel's badge counts the claim keywords and the title or abstract keywords plus the other filters set (classification, each date, main claims only): "1 filter", "4 filters".
 * The example chips clear the filters, then set the question and keywords; the Show toggle keeps its setting.
 * While waiting, disable the button and show "Searching...".
 * Above the results show `{total_matches} matching claims` (or `matching patents`), and `showing top {n}` when there are more than shown. When there is a question but no keyword and no filter, nothing is filtered out and every claim is ranked, so the line says `Top {n} claims by meaning` (or `patents`) instead, without the total, so it does not look as if every claim matched. There is no score cutoff: on the graded evaluation claims, nomic's scores for relevant and not relevant claims overlap and differ from question to question, so no fixed value separates them.
@@ -255,7 +259,7 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 * Large rounded search bar with a search icon and an orange Search button inside it.
 * Pill chips under a "Try an example" label that run the example searches from "Done when": Carbon fiber spokes, Bassinet arm, Tire sensor setup, Wall-climbing robots, Keyword: sipe, Heavy truck tires + tread (the data has no categories, so no category chips).
 * The Show toggle is a small segmented control labelled "Show" under the search bar.
-* The filters live in the collapsible "Exact filters" panel (keywords and results on the first row, the three classification dropdowns on the next, then the dates and the checkbox), which shows a count badge when any filter is set. On a phone the fields stack.
+* The filters live in the collapsible "Exact filters" panel (claim keywords and results on the first row, title or abstract keywords on the second, the three classification dropdowns on the next, then the dates and the checkbox), which shows a count badge when any filter is set. On a phone the fields stack.
 * Patent cards are top-aligned in the grid and keep their own height (not stretched to the tallest card in the row).
 * Result cards in a two column grid (one column on a phone): monospace patent number badge (`US 2024/0116310`), the main or dependent claim label in orange at the top right, a bold title, then a line with claim number, classification and publication date (`Claim 22 · B60B3300FI · Published 2024-03-21`; the classification is shown exactly as stored, not reformatted), then the claim text clamped to 5 lines with "Show full claim". The score sits at the bottom of the card.
 * Show only fields the data has (no assignee or inventor). System font, nothing loaded from the internet.

@@ -399,13 +399,18 @@
       </button>
       <div class="filters-body" id="filters-body" hidden>
         <div class="field span-5">
-          <label for="keywords">Keywords <span class="optional">(optional)</span></label>
+          <label for="keywords">Claim keywords <span class="optional">(optional)</span></label>
           <input id="keywords" type="text" autocomplete="off" placeholder='sipe "tread block" spoke*'>
           <p class="hint">Every keyword must appear in the claim. <code>"quotes"</code> for a phrase, <code>*</code> at the end for word starts.</p>
         </div>
         <div class="field">
           <label for="top-n">Results</label>
           <input id="top-n" type="number" min="1" max="100" step="1" value="10" inputmode="numeric">
+        </div>
+        <div class="field span-6">
+          <label for="title-abstract">Title or abstract keywords <span class="optional">(optional)</span></label>
+          <input id="title-abstract" type="text" autocomplete="off" placeholder='bassinet "spoke star" sensor*'>
+          <p class="hint">Every keyword must appear in the patent's title or its abstract. Same rules as claim keywords.</p>
         </div>
 
         <div class="group-label">Classification (CPC)</div>
@@ -469,6 +474,7 @@
 
   const $ = (id) => document.getElementById(id);
   const form = $("form"), queryBox = $("query"), keywordBox = $("keywords"), topBox = $("top-n");
+  const titleAbstractBox = $("title-abstract");
   const subclassBox = $("cpc-subclass"), groupBox = $("cpc-group"), subgroupBox = $("cpc-subgroup");
   const fromBox = $("date-from"), toBox = $("date-to"), mainOnly = $("main-only");
   const button = $("submit"), results = $("results");
@@ -555,7 +561,7 @@
   // ---------- filter panel ----------
 
   function filterCount() {
-    return countKeywords(keywordBox.value) + (classificationCode() ? 1 : 0) +
+    return countKeywords(keywordBox.value) + countKeywords(titleAbstractBox.value) + (classificationCode() ? 1 : 0) +
       (fromBox.value.trim() ? 1 : 0) + (toBox.value.trim() ? 1 : 0) + (mainOnly.checked ? 1 : 0);
   }
 
@@ -573,6 +579,7 @@
 
   function clearFilters() {
     keywordBox.value = "";
+    titleAbstractBox.value = "";
     subclassBox.value = "";
     onSubclass();
     fromBox.value = "";
@@ -804,7 +811,8 @@
     const keywords = keywordBox.value.trim();
     const classification = classificationCode();
     const dateFrom = fromBox.value.trim(), dateTo = toBox.value.trim();
-    if (!query && !keywords && !classification && !dateFrom && !dateTo && !mainOnly.checked) {
+    const titleAbstract = titleAbstractBox.value.trim();
+    if (!query && !keywords && !titleAbstract && !classification && !dateFrom && !dateTo && !mainOnly.checked) {
       showError("Type a question or a keyword, or choose a filter");
       return;
     }
@@ -814,6 +822,7 @@
       query: query || null, keywords: keywords || null, top_n: topN,
       classification: classification || null, date_from: dateFrom || null, date_to: dateTo || null,
       independent_only: mainOnly.checked, group_by: groupBy,
+      title_abstract_keywords: titleAbstract || null,
     };
 
     searched = true;
@@ -837,7 +846,7 @@
       if (id !== requestId) return;
       data.top_n = topN;
       data.typed_query = query.split(/\s+/).join(" ");
-      data.ranked_all = Boolean(query) && !keywords && !classification && !dateFrom && !dateTo && !mainOnly.checked;
+      data.ranked_all = Boolean(query) && !keywords && !titleAbstract && !classification && !dateFrom && !dateTo && !mainOnly.checked;
       render(data);
     } catch (e) {
       if (id === requestId) showError("Could not reach the search server.");
@@ -887,7 +896,7 @@
   subclassBox.addEventListener("change", () => { onSubclass(); clearActiveChip(); });
   groupBox.addEventListener("change", () => { onGroup(); clearActiveChip(); });
   subgroupBox.addEventListener("change", () => { updateFilterState(); clearActiveChip(); });
-  for (const box of [keywordBox, fromBox, toBox]) {
+  for (const box of [keywordBox, titleAbstractBox, fromBox, toBox]) {
     box.addEventListener("input", () => { updateFilterState(); clearActiveChip(); });
   }
   mainOnly.addEventListener("change", () => { updateFilterState(); clearActiveChip(); });

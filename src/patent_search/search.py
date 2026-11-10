@@ -85,10 +85,17 @@ class Filters:
     date_from: str | None = None                    # inclusive, YYYY-MM-DD
     date_to: str | None = None                      # inclusive, YYYY-MM-DD
     independent_only: bool = False
+    title_abstract: tuple[re.Pattern, ...] = ()      # every keyword in the title or the abstract
 
     @property
     def active(self) -> bool:
-        return bool(self.classification or self.date_from or self.date_to or self.independent_only)
+        return bool(self.classification or self.date_from or self.date_to or self.independent_only
+                    or self.title_abstract)
+
+    @property
+    def by_patent(self) -> bool:
+        """True when a filter decides per patent (all of them except independent_only)."""
+        return bool(self.classification or self.date_from or self.date_to or self.title_abstract)
 
 
 def _date_bound(value, name: str, end: bool) -> str | None:
@@ -116,9 +123,11 @@ def _date_bound(value, name: str, end: bool) -> str | None:
 
 
 def make_filters(classification: str | list[str] | None = None, date_from=None, date_to=None,
-                 independent_only: bool = False) -> Filters:
+                 independent_only: bool = False,
+                 title_abstract_keywords: str | list[str] | None = None) -> Filters:
     """Build and check the filters. Several classification codes (a list, or one string with
-    commas) mean any of them. Raises ValueError with a clear message for bad input."""
+    commas) mean any of them. Title or abstract keywords follow the claim keyword rules; each
+    one must be in the title or in the abstract. Raises ValueError for bad input."""
     if isinstance(classification, str):
         classification = [classification]
     if classification is not None and not isinstance(classification, (list, tuple)):
@@ -136,7 +145,13 @@ def make_filters(classification: str | list[str] | None = None, date_from=None, 
         raise ValueError(f"date_from ({start}) is after date_to ({stop}).")
     if not isinstance(independent_only, bool):
         raise ValueError("independent_only must be true or false.")
-    return Filters(tuple(dict.fromkeys(codes)), start, stop, independent_only)
+    if title_abstract_keywords is not None and not (
+            isinstance(title_abstract_keywords, str)
+            or (isinstance(title_abstract_keywords, (list, tuple))
+                and all(isinstance(k, str) for k in title_abstract_keywords))):
+        raise ValueError("title_abstract_keywords must be a string or a list of strings.")
+    title_abstract = tuple(compile_keywords(title_abstract_keywords))
+    return Filters(tuple(dict.fromkeys(codes)), start, stop, independent_only, title_abstract)
 
 
 class VectorStore:
@@ -258,15 +273,20 @@ class Index:
             return False
         if filters.date_to and not (p["pub_date"] and p["pub_date"] <= filters.date_to):
             return False
+        # Each keyword in the title or the abstract, checked separately so a phrase cannot
+        # run from the end of the title into the abstract.
+        if not all(k.search(p["title"] or "") or k.search(p["abstract"] or "") for k in filters.title_abstract):
+            return False
         return True
 
     def search(self, query: str | None = None, keywords: str | list[str] | None = None,
                top_n: int = config.TOP_N_DEFAULT, classification: str | list[str] | None = None,
                date_from=None, date_to=None, independent_only: bool = False,
-               group_by: str = "claim") -> SearchResponse:
+               group_by: str = "claim",
+               title_abstract_keywords: str | list[str] | None = None) -> SearchResponse:
         query = strip_request_words(query) if query and query.strip() else None
         patterns = compile_keywords(keywords)
-        filters = make_filters(classification, date_from, date_to, independent_only)
+        filters = make_filters(classification, date_from, date_to, independent_only, title_abstract_keywords)
         if group_by not in GROUP_BY:
             raise ValueError(f"group_by must be one of: {', '.join(GROUP_BY)}.")
         if not isinstance(top_n, int) or isinstance(top_n, bool) or not 1 <= top_n <= config.TOP_N_MAX:
@@ -276,7 +296,7 @@ class Index:
 
         # Step 1: exact keywords on the claim's own display text, AND the field filters.
         allowed = None
-        if filters.classification or filters.date_from or filters.date_to:
+        if filters.by_patent:
             allowed = {d for d, p in self.patents.items() if self._patent_passes(p, filters)}
         matched = [
             i for i, c in enumerate(self.claims)
@@ -319,6 +339,7 @@ def get_index() -> Index:
 def search(query: str | None = None, keywords: str | list[str] | None = None,
            top_n: int = config.TOP_N_DEFAULT, classification: str | list[str] | None = None,
            date_from=None, date_to=None, independent_only: bool = False,
-           group_by: str = "claim") -> SearchResponse:
+           group_by: str = "claim",
+           title_abstract_keywords: str | list[str] | None = None) -> SearchResponse:
     return get_index().search(query, keywords, top_n, classification, date_from, date_to,
-                              independent_only, group_by)
+                              independent_only, group_by, title_abstract_keywords)

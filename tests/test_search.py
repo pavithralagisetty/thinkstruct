@@ -182,3 +182,34 @@ def test_request_words_are_removed_before_embedding(index):
     assert wrapped.hits == plain.hits
     assert index.search(keywords="tire").query_used is None
     assert index.search("claims").query_used == "claims"           # nothing left: kept as typed
+
+
+def test_title_abstract_keywords(index):
+    # A: title TIRE, abstract "A tire."; B: title SPOKE, abstract "A spoke."; C: neither
+    r = index.search(title_abstract_keywords="tire", group_by="patent")
+    assert [h.doc_number for h in r.hits] == ["A"] and r.total_matches == 1
+    assert index.search(title_abstract_keywords="tire").total_matches == 3          # all of A's claims
+    # whole word, prefix, case insensitive, like claim keywords
+    assert index.search(title_abstract_keywords="spok").total_matches == 0
+    assert index.search(title_abstract_keywords="SPOK*", group_by="patent").total_matches == 1
+    # every keyword must match, each in the title or the abstract
+    assert index.search(title_abstract_keywords="tire spoke").total_matches == 0
+    assert index.search(title_abstract_keywords=["tire", "a tire"], group_by="patent").total_matches == 1
+    # a phrase is not matched across the title and the abstract ("TIRE" + "A tire.")
+    assert index.search(title_abstract_keywords='"tire a"').total_matches == 0
+
+
+def test_title_abstract_keywords_combine_with_claim_keywords_and_query(index):
+    # B's claims: "A spoke." and "The spoke of claim 1, with a tire."
+    r = index.search(keywords="tire", title_abstract_keywords="spoke")
+    assert [(h.doc_number, h.claim_number) for h in r.hits] == [("B", 2)]
+    r = index.search("tire", title_abstract_keywords="spoke")
+    assert {h.doc_number for h in r.hits} == {"B"} and all(h.score is not None for h in r.hits)
+
+
+def test_title_abstract_keywords_alone_and_bad_type(index):
+    assert index.search(title_abstract_keywords="spoke").total_matches == 2
+    with pytest.raises(ValueError, match="Give a query"):
+        index.search(title_abstract_keywords="  ")
+    with pytest.raises(ValueError, match="title_abstract_keywords must be"):
+        index.search(title_abstract_keywords=5)

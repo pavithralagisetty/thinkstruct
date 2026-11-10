@@ -114,3 +114,11 @@ def test_classification_counts_use_the_filter_matching(client, index):
 def test_response_says_what_was_searched(client):
     r = client.post("/search", json={"query": "claims about tire tread"})
     assert r.status_code == 200 and r.json()["query_used"] == "tire tread"
+
+
+def test_title_abstract_keywords(client, index):
+    r = client.post("/search", json={"title_abstract_keywords": "tire", "group_by": "patent"})
+    assert r.status_code == 200
+    assert r.json() == index.search(None, None, 10, None, None, None, False, "patent", "tire").to_dict()
+    r = client.post("/search", json={"title_abstract_keywords": 5})
+    assert r.status_code == 400 and "title_abstract_keywords must be" in r.json()["error"]
