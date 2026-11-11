@@ -1,0 +1,126 @@
+{
+  "question_id": "q30",
+  "question": "airless tire with hollow cavities for an irrigation system tower",
+  "grades": [
+    {
+      "claim_id": "20240383280:1",
+      "grade": 1,
+      "reason": "Compressible tire body with a circular array of hollow cavities, but irrigation tower not stated in remaining text."
+    },
+    {
+      "claim_id": "20240383280:18",
+      "grade": 1,
+      "reason": "Relates raised central area to hollow cavity width; no irrigation tower."
+    },
+    {
+      "claim_id": "20240383280:19",
+      "grade": 1,
+      "reason": "Describes arrangement of hollow cavities in a single array; no irrigation tower."
+    },
+    {
+      "claim_id": "20240383280:20",
+      "grade": 1,
+      "reason": "Tire segments each with a hollow cavity, but no irrigation tower."
+    },
+    {
+      "claim_id": "20240383280:21",
+      "grade": 1,
+      "reason": "Compressible tire body with an array of hollow cavities, but irrigation tower not stated in remaining text."
+    },
+    {
+      "claim_id": "20240383280:22",
+      "grade": 0,
+      "reason": "Own text only refers to feature (a) of another claim; states nothing itself."
+    },
+    {
+      "claim_id": "20240383280:23",
+      "grade": 0,
+      "reason": "Own text only refers to feature (b) of another claim; states nothing itself."
+    },
+    {
+      "claim_id": "20240383280:24",
+      "grade": 0,
+      "reason": "Own text only refers to feature (c) of another claim; states nothing itself."
+    },
+    {
+      "claim_id": "20240383280:25",
+      "grade": 1,
+      "reason": "Non-pneumatic tire for an irrigation system wheeled tower, but no hollow cavities."
+    },
+    {
+      "claim_id": "20240383280:26",
+      "grade": 0,
+      "reason": "Only describes non-treaded areas between raised treads."
+    },
+    {
+      "claim_id": "20240383280:27",
+      "grade": 0,
+      "reason": "Only describes uniform radial measure at raised treads."
+    },
+    {
+      "claim_id": "20240383280:28",
+      "grade": 0,
+      "reason": "Only describes uniform radial measure at raised treads."
+    },
+    {
+      "claim_id": "20240383280:29",
+      "grade": 0,
+      "reason": "Only describes a staggered tread pattern."
+    },
+    {
+      "claim_id": "20240383280:3",
+      "grade": 1,
+      "reason": "Describes cavity cross-section shape; no irrigation tower."
+    },
+    {
+      "claim_id": "20240383280:30",
+      "grade": 0,
+      "reason": "Only describes tread sloped and raised areas; no cavities or irrigation tower."
+    },
+    {
+      "claim_id": "20240383280:31",
+      "grade": 0,
+      "reason": "Only describes radial measure at the central tread area."
+    },
+    {
+      "claim_id": "20240383280:32",
+      "grade": 0,
+      "reason": "Only describes uniform radial measure at the central tread area."
+    },
+    {
+      "claim_id": "20240383280:33",
+      "grade": 1,
+      "reason": "States the tire installed on an irrigation system wheeled tower, but its own text does not state hollow cavities or airless."
+    },
+    {
+      "claim_id": "20240383280:34",
+      "grade": 2,
+      "reason": "States non-pneumatic tires with tapered hollow cavities used on the irrigation system."
+    },
+    {
+      "claim_id": "20240383280:5",
+      "grade": 1,
+      "reason": "Details hollow cavity width through the tire body but no irrigation tower."
+    },
+    {
+      "claim_id": "20240383280:6",
+      "grade": 1,
+      "reason": "Details tapering of hollow cavities but no irrigation tower."
+    },
+    {
+      "claim_id": "20240383280:7",
+      "grade": 1,
+      "reason": "Details hollow cavities through the tire body but does not mention airless use on an irrigation tower."
+    },
+    {
+      "claim_id": "20240383280:8",
+      "grade": 1,
+      "reason": "Describes collapse of hollow cavities during rolling; no irrigation tower."
+    },
+    {
+      "claim_id": "20240383280:9",
+      "grade": 1,
+      "reason": "Relates tread profile to hollow cavity widths; no irrigation tower."
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "question_id": "q29",
+  "question": "airless wheel for rovers driving on the Moon or Mars",
+  "grades": [
+    {
+      "claim_id": "20240100881:3",
+      "grade": 0,
+      "reason": "Thermoplastic resin of an ordinary airless tire; not relevant to rovers."
+    },
+    {
+      "claim_id": "20240100881:4",
+      "grade": 0,
+      "reason": "Resin elastic modulus of an ordinary airless tire; not about rovers or planetary wheels."
+    },
+    {
+      "claim_id": "20240100881:5",
+      "grade": 0,
+      "reason": "Volume resistivity of resin in an ordinary airless tire; not relevant."
+    },
+    {
+      "claim_id": "20240100881:7",
+      "grade": 0,
+      "reason": "Bond shear strength in an ordinary airless tire; not relevant to rovers."
+    },
+    {
+      "claim_id": "20240165991:4",
+      "grade": 0,
+      "reason": "Omni wheel as driving wheel; not airless or planetary."
+    },
+    {
+      "claim_id": "20240165991:5",
+      "grade": 0,
+      "reason": "Middle wheel as driving wheel; not relevant."
+    },
+    {
+      "claim_id": "20240198723:12",
+      "grade": 1,
+      "reason": "Spring-biased spoke of an airless tire; airless wheel structure but no rover or planetary use."
+    },
+    {
+      "claim_id": "20240198723:3",
+      "grade": 0,
+      "reason": "Air tank feeding a stud spoke; not about airless rover wheels."
+    },
+    {
+      "claim_id": "20240198723:5",
+      "grade": 0,
+      "reason": "Air distribution manifold for stud spokes; not about airless rover wheels."
+    },
+    {
+      "claim_id": "20240198723:6",
+      "grade": 0,
+      "reason": "Air compressor for a stud spoke system; not about an airless rover wheel."
+    },
+    {
+      "claim_id": "20240198723:7",
+      "grade": 0,
+      "reason": "Generator for a pressure system; not about airless rover wheels."
+    },
+    {
+      "claim_id": "20250121629:1",
+      "grade": 1,
+      "reason": "Hub, laminated strip, metal cables, insulation and heating describe an airless wheel but do not state rover use."
+    },
+    {
+      "claim_id": "20250121629:10",
+      "grade": 1,
+      "reason": "Deformation and stress measurement of the laminated strip; wheel detail only."
+    },
+    {
+      "claim_id": "20250121629:11",
+      "grade": 1,
+      "reason": "Hub, laminated strip and metal cables with thermal insulation describe an airless wheel structure but do not state rover use."
+    },
+    {
+      "claim_id": "20250121629:12",
+      "grade": 1,
+      "reason": "Rotating electrical contacts to the laminated strip; wheel detail only."
+    },
+    {
+      "claim_id": "20250121629:15",
+      "grade": 1,
+      "reason": "Placement of heating wires in the strip; wheel detail only."
+    },
+    {
+      "claim_id": "20250121629:18",
+      "grade": 1,
+      "reason": "Metallic coating on thermal insulation of the wheel; related detail."
+    },
+    {
+      "claim_id": "20250121629:20",
+      "grade": 1,
+      "reason": "Bragg grating optical fibers in the wheel; detail only."
+    },
+    {
+      "claim_id": "20250121629:3",
+      "grade": 1,
+      "reason": "Electric heating wires in the laminated strip ferrules; related detail."
+    },
+    {
+      "claim_id": "20250121629:8",
+      "grade": 1,
+      "reason": "Metallic coating limiting radiative heat transfer on a non-pneumatic wheel; related detail."
+    },
+    {
+      "claim_id": "20250121629:9",
+      "grade": 1,
+      "reason": "Temperature measurement of the interposition layers; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:1",
+      "grade": 1,
+      "reason": "Hub, deformable tread and radial reinforcements describe an airless wheel but do not state non-pneumatic or rover use."
+    },
+    {
+      "claim_id": "20250121631:10",
+      "grade": 1,
+      "reason": "Two stop discs on the hub of the deformable wheel; detail only."
+    },
+    {
+      "claim_id": "20250121631:11",
+      "grade": 1,
+      "reason": "Metal shear strip tread layer of the deformable wheel; closely related structural detail."
+    },
+    {
+      "claim_id": "20250121631:12",
+      "grade": 2,
+      "reason": "Claims a vehicle with a deformable non-pneumatic load-bearing wheel and its full structure, i.e. an airless rover wheel."
+    },
+    {
+      "claim_id": "20250121631:13",
+      "grade": 1,
+      "reason": "Hub, deformable tread and radial reinforcements describe an airless wheel structure but do not state non-pneumatic or planetary use."
+    },
+    {
+      "claim_id": "20250121631:14",
+      "grade": 1,
+      "reason": "Rotatable stop disc of the deformable wheel; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:15",
+      "grade": 1,
+      "reason": "Outer surface contacts the ground; minor wheel detail."
+    },
+    {
+      "claim_id": "20250121631:16",
+      "grade": 1,
+      "reason": "Stop disc on a roller bearing; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:17",
+      "grade": 1,
+      "reason": "Roller bearing detail of the stop disc; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:18",
+      "grade": 1,
+      "reason": "Spring-connected outer strip of the stop disc; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:19",
+      "grade": 1,
+      "reason": "Deformable ring spring connections; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:2",
+      "grade": 1,
+      "reason": "Stop disc mounted by a roller bearing; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:20",
+      "grade": 1,
+      "reason": "Stainless steel strip windings of the deformable ring; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:4",
+      "grade": 1,
+      "reason": "Stop disc spring detail of a deformable non-pneumatic wheel; no rover or planetary use stated."
+    },
+    {
+      "claim_id": "20250121631:5",
+      "grade": 1,
+      "reason": "Spring connections formed by deformable rings; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:7",
+      "grade": 1,
+      "reason": "Bushing stop in the spring connection; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:8",
+      "grade": 1,
+      "reason": "Distribution of cylindrical rollers on the hub; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:9",
+      "grade": 1,
+      "reason": "Leather protection on the stop disc strip; wheel detail only."
+    }
+  ]
+}

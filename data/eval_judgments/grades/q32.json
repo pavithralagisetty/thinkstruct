@@ -1,0 +1,121 @@
+{
+  "question_id": "q32",
+  "question": "tread pattern that balances grip on snow against running noise",
+  "grades": [
+    {
+      "claim_id": "20240174031:20",
+      "grade": 1,
+      "reason": "Tread block with 3D recess/protrusion wall pattern; related to grip but no snow/noise balance stated."
+    },
+    {
+      "claim_id": "20240174031:28",
+      "grade": 1,
+      "reason": "Wavy 3D pattern on tread block walls; related tread detail, no noise balance stated."
+    },
+    {
+      "claim_id": "20240174031:29",
+      "grade": 1,
+      "reason": "Spacing detail of a 3D tread block wall pattern; no snow grip or noise balance stated."
+    },
+    {
+      "claim_id": "20240174031:32",
+      "grade": 1,
+      "reason": "Crest height range of tread block wall pattern; related detail only."
+    },
+    {
+      "claim_id": "20240174031:33",
+      "grade": 1,
+      "reason": "Crest height of tread block wall pattern; related detail only."
+    },
+    {
+      "claim_id": "20240174031:35",
+      "grade": 1,
+      "reason": "Crest-trough distance of tread block wall pattern; related detail only."
+    },
+    {
+      "claim_id": "20240174031:39",
+      "grade": 1,
+      "reason": "Zigzag 3D pattern on tread block walls; related tread detail, no noise balance stated."
+    },
+    {
+      "claim_id": "20250058589:1",
+      "grade": 1,
+      "reason": "Tread pattern with elements of differing pitch and angled portions; does not state the snow grip versus noise balance."
+    },
+    {
+      "claim_id": "20250058589:10",
+      "grade": 1,
+      "reason": "Void width of tread pattern portions; related detail, no snow/noise balance stated."
+    },
+    {
+      "claim_id": "20250058589:11",
+      "grade": 1,
+      "reason": "Void depth of tread pattern; related detail, balance not stated."
+    },
+    {
+      "claim_id": "20250058589:12",
+      "grade": 1,
+      "reason": "Overall volumetric void ratio of tread; related detail, balance not stated."
+    },
+    {
+      "claim_id": "20250058589:13",
+      "grade": 1,
+      "reason": "Surface void ratio of tread; related detail, balance not stated."
+    },
+    {
+      "claim_id": "20250058589:14",
+      "grade": 1,
+      "reason": "Pitch ratio of tread pattern elements, a noise-related detail, but the balance is not stated."
+    },
+    {
+      "claim_id": "20250058589:15",
+      "grade": 1,
+      "reason": "Pitch range of tread pattern elements, related to noise, but the balance is not stated."
+    },
+    {
+      "claim_id": "20250058589:16",
+      "grade": 1,
+      "reason": "Equal volumetric void ratio across tread pattern elements; related detail only."
+    },
+    {
+      "claim_id": "20250058589:17",
+      "grade": 1,
+      "reason": "Tread rubber Tg and modulus, a related tread detail, but no pattern or snow/noise balance stated."
+    },
+    {
+      "claim_id": "20250058589:18",
+      "grade": 1,
+      "reason": "3PMSF snow certification relates to snow grip but says nothing of noise or the pattern balance."
+    },
+    {
+      "claim_id": "20250058589:2",
+      "grade": 1,
+      "reason": "Pitch sequence ratios of tread pattern elements, noise-related, but the balance is not stated."
+    },
+    {
+      "claim_id": "20250058589:3",
+      "grade": 1,
+      "reason": "Curved tread pattern portions; related pattern geometry without the snow/noise balance."
+    },
+    {
+      "claim_id": "20250058589:4",
+      "grade": 1,
+      "reason": "V-shaped directional tread pattern; related geometry, no snow/noise balance stated."
+    },
+    {
+      "claim_id": "20250058589:5",
+      "grade": 1,
+      "reason": "Symmetric tread pattern portions; related geometry, no snow/noise balance stated."
+    },
+    {
+      "claim_id": "20250058589:8",
+      "grade": 1,
+      "reason": "Sipe depth in tread pattern elements; related detail, balance not stated."
+    },
+    {
+      "claim_id": "20250058589:9",
+      "grade": 1,
+      "reason": "Sipe width of tread pattern elements; related detail without stating the snow/noise balance."
+    }
+  ]
+}

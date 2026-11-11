@@ -1,0 +1,76 @@
+{
+  "question_id": "q12",
+  "question": "lightweight truck wheel made of heat-treated hardened steel",
+  "grades": [
+    {
+      "claim_id": "20240270012:1",
+      "grade": 2,
+      "reason": "Commercial vehicle steel wheel of heat-treated hardened steel with thin walls and a high size-to-mass ratio, i.e. lightweight."
+    },
+    {
+      "claim_id": "20240270012:10",
+      "grade": 1,
+      "reason": "Mentions the heat-treated and hardened disc or rim but only adds a surface roughness range."
+    },
+    {
+      "claim_id": "20240270012:11",
+      "grade": 1,
+      "reason": "Commercial vehicle steel wheel, only adds spin forming of disc and rim with different thicknesses."
+    },
+    {
+      "claim_id": "20240270012:12",
+      "grade": 1,
+      "reason": "Commercial vehicle steel wheel with hardness detail near a disc hole, not stating heat-treated hardened steel."
+    },
+    {
+      "claim_id": "20240270012:13",
+      "grade": 2,
+      "reason": "States a commercial vehicle steel wheel whose rim is made of heat-treated and hardened martensitic steel."
+    },
+    {
+      "claim_id": "20240270012:14",
+      "grade": 2,
+      "reason": "States a commercial vehicle steel wheel with rim and disc both made of heat-treated and hardened steel."
+    },
+    {
+      "claim_id": "20240270012:2",
+      "grade": 1,
+      "reason": "Commercial vehicle steel wheel with thin rim/disc thickness limit related to light weight, but no heat-treated steel."
+    },
+    {
+      "claim_id": "20240270012:3",
+      "grade": 1,
+      "reason": "Commercial vehicle steel wheel with rim/disc thickness limit related to light weight, but no heat-treated steel."
+    },
+    {
+      "claim_id": "20240270012:4",
+      "grade": 1,
+      "reason": "Commercial vehicle steel wheel, only adds press-fit joint and thickness details."
+    },
+    {
+      "claim_id": "20240270012:5",
+      "grade": 1,
+      "reason": "Commercial vehicle steel wheel with hardness detail around a weld's heated region, but does not state heat-treated hardened steel construction."
+    },
+    {
+      "claim_id": "20240270012:6",
+      "grade": 1,
+      "reason": "Commercial vehicle steel wheel, only adds minimum diameter and width."
+    },
+    {
+      "claim_id": "20240270012:7",
+      "grade": 0,
+      "reason": "Text is only the word 'claim', no content to judge."
+    },
+    {
+      "claim_id": "20240270012:8",
+      "grade": 1,
+      "reason": "Commercial vehicle steel wheel, only adds a wheel diameter range."
+    },
+    {
+      "claim_id": "20240270012:9",
+      "grade": 1,
+      "reason": "Commercial vehicle steel wheel, only adds a wheel width range."
+    }
+  ]
+}

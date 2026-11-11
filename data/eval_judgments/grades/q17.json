@@ -1,0 +1,146 @@
+{
+  "question_id": "q17",
+  "question": "wheel that holds onto a wall or structure with suction through openings in its surface",
+  "grades": [
+    {
+      "claim_id": "20240190172:1",
+      "grade": 0,
+      "reason": "Suction ports suck particles into a collector; the wheel does not hold onto a wall."
+    },
+    {
+      "claim_id": "20240190172:11",
+      "grade": 0,
+      "reason": "Two bladed particle suction structures; suction collects particles, not wall adhesion."
+    },
+    {
+      "claim_id": "20240190172:16",
+      "grade": 0,
+      "reason": "Bladed particle suction structure connecting hub and ring; not adhesion to a surface."
+    },
+    {
+      "claim_id": "20240190172:2",
+      "grade": 0,
+      "reason": "Suction port ramp for particle collection; not adhesion to a wall."
+    },
+    {
+      "claim_id": "20240190172:3",
+      "grade": 0,
+      "reason": "Separation wall in the particle air passage; not adhesion to a structure."
+    },
+    {
+      "claim_id": "20240190172:4",
+      "grade": 0,
+      "reason": "Blade shape of a particle suction structure; suction collects particles, not adhesion to a wall."
+    },
+    {
+      "claim_id": "20240190172:5",
+      "grade": 0,
+      "reason": "Spokes formed by the particle suction blades; not adhesion to a wall."
+    },
+    {
+      "claim_id": "20240190172:6",
+      "grade": 0,
+      "reason": "Placement of the particle suction blades in the rim; not adhesion to a surface."
+    },
+    {
+      "claim_id": "20240190172:7",
+      "grade": 0,
+      "reason": "Tire channels toward particle suction ports; not about holding onto a surface."
+    },
+    {
+      "claim_id": "20240190172:9",
+      "grade": 0,
+      "reason": "Rim layout for particle suction ports; not adhesion to a structure."
+    },
+    {
+      "claim_id": "20240326511:1",
+      "grade": 2,
+      "reason": "Wheel with apertures in its outer surface whose stretchable materials are moved to control adhesion to a structure surface."
+    },
+    {
+      "claim_id": "20240326511:10",
+      "grade": 1,
+      "reason": "States the structure surface is non-metallic; related detail about what the wheel adheres to."
+    },
+    {
+      "claim_id": "20240326511:11",
+      "grade": 1,
+      "reason": "States the structure surface is metallic; related detail about what the wheel adheres to."
+    },
+    {
+      "claim_id": "20240326511:12",
+      "grade": 2,
+      "reason": "Wheel with apertures in its outer surface and stretchable materials moved to control adhesion to a structure surface."
+    },
+    {
+      "claim_id": "20240326511:13",
+      "grade": 1,
+      "reason": "States radial movement increases adhesion to the structure; related detail without the openings."
+    },
+    {
+      "claim_id": "20240326511:14",
+      "grade": 1,
+      "reason": "States radial movement decreases adhesion to the structure; related detail without the openings."
+    },
+    {
+      "claim_id": "20240326511:17",
+      "grade": 1,
+      "reason": "Wedge and spring mechanism that increases adhesion to the structure surface, but no openings stated."
+    },
+    {
+      "claim_id": "20240326511:18",
+      "grade": 1,
+      "reason": "Wedge mechanism that decreases adhesion to the structure surface; related detail."
+    },
+    {
+      "claim_id": "20240326511:19",
+      "grade": 2,
+      "reason": "Method using a wheel with apertures in its outer surface to control adhesion to a structure surface."
+    },
+    {
+      "claim_id": "20240326511:2",
+      "grade": 1,
+      "reason": "States radial movement increases adhesion to the structure; related detail without the openings."
+    },
+    {
+      "claim_id": "20240326511:20",
+      "grade": 1,
+      "reason": "States the structure surface may be metallic or non-metallic; related detail of the adhesion method."
+    },
+    {
+      "claim_id": "20240326511:3",
+      "grade": 1,
+      "reason": "States radial movement decreases adhesion to the structure; related detail without the openings."
+    },
+    {
+      "claim_id": "20240326511:4",
+      "grade": 1,
+      "reason": "Only states the diaphragm moving device is a linear actuator; detail of the suction wheel."
+    },
+    {
+      "claim_id": "20240326511:5",
+      "grade": 1,
+      "reason": "Rod moving the diaphragm radially; detail of the adhesion mechanism."
+    },
+    {
+      "claim_id": "20240326511:6",
+      "grade": 1,
+      "reason": "Motor gear moving the actuator rod for the diaphragm; detail of the adhesion mechanism."
+    },
+    {
+      "claim_id": "20240326511:7",
+      "grade": 1,
+      "reason": "Only states the diaphragm moving device is a pump; detail of the suction wheel mechanism."
+    },
+    {
+      "claim_id": "20240326511:8",
+      "grade": 1,
+      "reason": "Pump detail for moving the diaphragm of the adhesion wheel, but does not state wall adhesion through openings."
+    },
+    {
+      "claim_id": "20240326511:9",
+      "grade": 1,
+      "reason": "Motor gear driving the pump for the diaphragm; detail of the adhesion mechanism."
+    }
+  ]
+}

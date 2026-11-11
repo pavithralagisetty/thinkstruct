@@ -1,0 +1,76 @@
+{
+  "question_id": "q35",
+  "question": "detecting a puncture with conductive layers around the sealant inside a tire",
+  "grades": [
+    {
+      "claim_id": "20250108667:1",
+      "grade": 2,
+      "reason": "Conductive layers on the sealant with a sensor detecting increased conductivity between them, i.e. puncture detection."
+    },
+    {
+      "claim_id": "20250108667:10",
+      "grade": 1,
+      "reason": "Only says a conductive layer is insulated."
+    },
+    {
+      "claim_id": "20250108667:11",
+      "grade": 1,
+      "reason": "Layer placement and sealant resistivity, related detail without detection."
+    },
+    {
+      "claim_id": "20250108667:12",
+      "grade": 1,
+      "reason": "Places the second conductive layer on the outer side of the sealant but states no detection."
+    },
+    {
+      "claim_id": "20250108667:13",
+      "grade": 2,
+      "reason": "Measurement circuit detects a short-circuit between the two conductive layers, the puncture detection itself."
+    },
+    {
+      "claim_id": "20250108667:15",
+      "grade": 1,
+      "reason": "Sensor measures current between the layers, a closely related detail without stating puncture detection."
+    },
+    {
+      "claim_id": "20250108667:16",
+      "grade": 1,
+      "reason": "Wiring of the measurement circuit to the layers, a related detail without stating detection."
+    },
+    {
+      "claim_id": "20250108667:19",
+      "grade": 1,
+      "reason": "Only says the sensor system includes an RFID tag."
+    },
+    {
+      "claim_id": "20250108667:2",
+      "grade": 1,
+      "reason": "Only lists forms of the first conductive layer."
+    },
+    {
+      "claim_id": "20250108667:20",
+      "grade": 2,
+      "reason": "Conductive layers inside and above the sealant with a sensor detecting a short-circuit between them and transmitting it."
+    },
+    {
+      "claim_id": "20250108667:3",
+      "grade": 1,
+      "reason": "Only lists materials of the conductive layers."
+    },
+    {
+      "claim_id": "20250108667:4",
+      "grade": 1,
+      "reason": "Only gives the conductive layer thickness."
+    },
+    {
+      "claim_id": "20250108667:5",
+      "grade": 1,
+      "reason": "Only gives the sealant layer thickness."
+    },
+    {
+      "claim_id": "20250108667:8",
+      "grade": 1,
+      "reason": "Only gives how much of the sealant surface the layers cover."
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "question_id": "q26",
+  "question": "retreading a tire without the sidewall rubber degrading from the bonding heat",
+  "grades": [
+    {
+      "claim_id": "20240246364:7",
+      "grade": 0,
+      "reason": "Communication device placement in a retreaded tire, not about sidewall rubber degradation."
+    },
+    {
+      "claim_id": "20240286436:25",
+      "grade": 0,
+      "reason": "Placement of a radio device relative to the inner liner, unrelated to retreading."
+    },
+    {
+      "claim_id": "20240286436:26",
+      "grade": 0,
+      "reason": "Cure times of RFID rubber layers, not retreading."
+    },
+    {
+      "claim_id": "20240286436:32",
+      "grade": 0,
+      "reason": "Cure package ratios for RFID rubber layers, not retreading."
+    },
+    {
+      "claim_id": "20240286438:1",
+      "grade": 0,
+      "reason": "Bicycle tire sidewall drive strip, not retreading."
+    },
+    {
+      "claim_id": "20240286439:26",
+      "grade": 0,
+      "reason": "Cure package of an RFID rubber layer, not retreading."
+    },
+    {
+      "claim_id": "20240286439:28",
+      "grade": 0,
+      "reason": "Curing an uncured carcass with an RFID module, not retreading."
+    },
+    {
+      "claim_id": "20240286439:29",
+      "grade": 0,
+      "reason": "Curing bladder for an RFID tire, not retreading or sidewall degradation."
+    },
+    {
+      "claim_id": "20240286439:34",
+      "grade": 0,
+      "reason": "Cure package for RFID rubber layer method, not retreading."
+    },
+    {
+      "claim_id": "20250018747:7",
+      "grade": 0,
+      "reason": "Rubber layer modulus change under dynamic stimulus, not retreading."
+    },
+    {
+      "claim_id": "20250018747:8",
+      "grade": 0,
+      "reason": "Rubber layer property change under dynamic stimulus, not retreading."
+    },
+    {
+      "claim_id": "20250018750:4",
+      "grade": 0,
+      "reason": "Communication device contacting side rubber, unrelated to retreading."
+    },
+    {
+      "claim_id": "20250018750:7",
+      "grade": 0,
+      "reason": "Communication device contacting side rubber, unrelated to retreading."
+    },
+    {
+      "claim_id": "20250018750:8",
+      "grade": 0,
+      "reason": "Communication device contacting side rubber, unrelated to retreading."
+    },
+    {
+      "claim_id": "20250042200:1",
+      "grade": 2,
+      "reason": "Claims retreading a base tire whose sidewall contains a specific degradation-resistant rubbery polymer, the asked solution."
+    },
+    {
+      "claim_id": "20250042200:10",
+      "grade": 1,
+      "reason": "Aspect ratio of the retreaded tire; on topic but not about sidewall degradation."
+    },
+    {
+      "claim_id": "20250042200:11",
+      "grade": 1,
+      "reason": "Retreading method limited to truck/bus tires; on topic but no sidewall heat detail."
+    },
+    {
+      "claim_id": "20250042200:12",
+      "grade": 1,
+      "reason": "Retreading method limited to passenger car tires; on topic but no sidewall heat detail."
+    },
+    {
+      "claim_id": "20250042200:2",
+      "grade": 1,
+      "reason": "Sidewall polymer constituent in a retreading method; related detail only."
+    },
+    {
+      "claim_id": "20250042200:3",
+      "grade": 1,
+      "reason": "Hydrogenated rubber in the sidewall of a retreaded tire; related but does not state heat degradation is avoided."
+    },
+    {
+      "claim_id": "20250042200:4",
+      "grade": 1,
+      "reason": "Retreading method detail on hydrogenation of the sidewall polymer, but does not state protection from bonding heat."
+    },
+    {
+      "claim_id": "20250042200:5",
+      "grade": 1,
+      "reason": "Functional group of the sidewall polymer in a retreading method; related detail only."
+    },
+    {
+      "claim_id": "20250042200:6",
+      "grade": 1,
+      "reason": "Sidewall silica content in a retreading method; related detail, no mention of heat degradation."
+    },
+    {
+      "claim_id": "20250042200:7",
+      "grade": 1,
+      "reason": "Sidewall natural rubber content in a retreading method; related detail only."
+    },
+    {
+      "claim_id": "20250042200:8",
+      "grade": 1,
+      "reason": "Sidewall butadiene rubber content in a retreading method; related detail only."
+    },
+    {
+      "claim_id": "20250042200:9",
+      "grade": 1,
+      "reason": "Sidewall rubber composition for a retreading method; related detail without stating heat resistance."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "question_id": "q25",
+  "question": "adapter for fitting a different size wheel to a motorcycle, with sprocket and brake mounts",
+  "grades": [
+    {
+      "claim_id": "20240336089:1",
+      "grade": 2,
+      "reason": "Recites the tube with sprocket, brake assembly and wheel mounting plates, i.e. the wheel adapter with sprocket and brake mounts."
+    },
+    {
+      "claim_id": "20240336089:10",
+      "grade": 1,
+      "reason": "Detail of the tube inserted into the brake drum center; does not itself state the adapter with sprocket and brake mounts."
+    },
+    {
+      "claim_id": "20240336089:2",
+      "grade": 1,
+      "reason": "Only adds relative diameters of the mounting plates; a closely related adapter detail."
+    },
+    {
+      "claim_id": "20240336089:3",
+      "grade": 1,
+      "reason": "Only adds cutout regions in the wheel mounting plate; related adapter detail."
+    },
+    {
+      "claim_id": "20240336089:4",
+      "grade": 1,
+      "reason": "Only adds relative plate thicknesses; related adapter detail."
+    },
+    {
+      "claim_id": "20240336089:5",
+      "grade": 2,
+      "reason": "States sprocket, brake drum and wheel all fastened to their mounting plates on the adapter tube."
+    },
+    {
+      "claim_id": "20240336089:6",
+      "grade": 1,
+      "reason": "Only adds aligned bolt patterns between sprocket plate and sprocket; related detail."
+    },
+    {
+      "claim_id": "20240336089:7",
+      "grade": 1,
+      "reason": "Only adds aligned bolt patterns between brake plate and brake drum; related detail."
+    },
+    {
+      "claim_id": "20240336089:8",
+      "grade": 1,
+      "reason": "Only adds aligned bolt patterns between wheel plate and wheel; related detail."
+    },
+    {
+      "claim_id": "20240336089:9",
+      "grade": 1,
+      "reason": "Only adds the tube inserted into the sprocket center; related detail."
+    }
+  ]
+}

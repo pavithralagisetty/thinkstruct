@@ -1,0 +1,286 @@
+{
+  "question_id": "q16",
+  "question": "spare wheel that fits over a flat tire so the car can keep driving without a jack",
+  "grades": [
+    {
+      "claim_id": "20240051335:1",
+      "grade": 0,
+      "reason": "Text is only a fragment 'a semicircular plate (' and states nothing relevant."
+    },
+    {
+      "claim_id": "20240051335:2",
+      "grade": 1,
+      "reason": "Expansible auxiliary wheel plate ribbing; related spare device but does not state fitting over a flat tire."
+    },
+    {
+      "claim_id": "20240051335:3",
+      "grade": 1,
+      "reason": "Expansible auxiliary wheel parts made of metal; related spare device, function not stated."
+    },
+    {
+      "claim_id": "20240051335:4",
+      "grade": 1,
+      "reason": "Cam hub shape of an expansible auxiliary wheel; related spare device, function not stated."
+    },
+    {
+      "claim_id": "20240051335:5",
+      "grade": 1,
+      "reason": "Expansible auxiliary wheel with cam hub pushing arm out to working state; related, but fitting over a flat tire without a jack not stated."
+    },
+    {
+      "claim_id": "20240066916:1",
+      "grade": 0,
+      "reason": "Wheel rim and brake seating space, unrelated."
+    },
+    {
+      "claim_id": "20240066916:10",
+      "grade": 0,
+      "reason": "Brake air guiding channel, unrelated."
+    },
+    {
+      "claim_id": "20240066916:11",
+      "grade": 0,
+      "reason": "Vehicle with a mounted wheel; no spare or flat tire."
+    },
+    {
+      "claim_id": "20240066916:2",
+      "grade": 0,
+      "reason": "Rim air guide, unrelated."
+    },
+    {
+      "claim_id": "20240066916:5",
+      "grade": 0,
+      "reason": "Spoke blade for air flow, unrelated."
+    },
+    {
+      "claim_id": "20240066916:6",
+      "grade": 0,
+      "reason": "Asymmetric spoke shape, unrelated."
+    },
+    {
+      "claim_id": "20240066916:7",
+      "grade": 0,
+      "reason": "Wheel, brake disk and hub system, unrelated."
+    },
+    {
+      "claim_id": "20240066916:9",
+      "grade": 0,
+      "reason": "Brake cooling air channel, unrelated."
+    },
+    {
+      "claim_id": "20240149611:17",
+      "grade": 0,
+      "reason": "Flexible wheel cover material, unrelated."
+    },
+    {
+      "claim_id": "20240149611:18",
+      "grade": 0,
+      "reason": "Fender material, unrelated."
+    },
+    {
+      "claim_id": "20240149612:11",
+      "grade": 0,
+      "reason": "Decorative wheel spacer, unrelated."
+    },
+    {
+      "claim_id": "20240165992:1",
+      "grade": 0,
+      "reason": "Tire handling machine, not a spare wheel."
+    },
+    {
+      "claim_id": "20240165992:10",
+      "grade": 0,
+      "reason": "Tire handler tilt actuator, unrelated."
+    },
+    {
+      "claim_id": "20240165992:11",
+      "grade": 0,
+      "reason": "Tire handler arm coupling, unrelated."
+    },
+    {
+      "claim_id": "20240165992:12",
+      "grade": 0,
+      "reason": "Tire handler wheel definition, unrelated."
+    },
+    {
+      "claim_id": "20240165992:15",
+      "grade": 0,
+      "reason": "Self-propelled tire handler, unrelated."
+    },
+    {
+      "claim_id": "20240165992:4",
+      "grade": 0,
+      "reason": "Tire handler battery, unrelated."
+    },
+    {
+      "claim_id": "20240165992:5",
+      "grade": 0,
+      "reason": "Tire handler for trucks, not a spare wheel."
+    },
+    {
+      "claim_id": "20240181802:10",
+      "grade": 0,
+      "reason": "Aerodynamic wheel cover, unrelated."
+    },
+    {
+      "claim_id": "20240181802:13",
+      "grade": 0,
+      "reason": "Wheel cover fastening, unrelated."
+    },
+    {
+      "claim_id": "20240181802:15",
+      "grade": 0,
+      "reason": "Wheel disc cover ring, unrelated."
+    },
+    {
+      "claim_id": "20240190169:41",
+      "grade": 0,
+      "reason": "Rail vehicle chassis, unrelated."
+    },
+    {
+      "claim_id": "20240286440:15",
+      "grade": 0,
+      "reason": "Wheel sound resonator clamps, unrelated."
+    },
+    {
+      "claim_id": "20240286440:16",
+      "grade": 0,
+      "reason": "Resonator beads, unrelated."
+    },
+    {
+      "claim_id": "20240300270:26",
+      "grade": 0,
+      "reason": "Jack hitch cargo method, unrelated."
+    },
+    {
+      "claim_id": "20240359502:1",
+      "grade": 0,
+      "reason": "Wheel lock disc preventing rim dislodging, not a spare wheel."
+    },
+    {
+      "claim_id": "20240367459:4",
+      "grade": 1,
+      "reason": "Replacing a vehicle wheel, related topic, but uses a jack and no over-tire spare."
+    },
+    {
+      "claim_id": "20240367459:6",
+      "grade": 0,
+      "reason": "Hydraulic fluid detail of a jack method, unrelated."
+    },
+    {
+      "claim_id": "20240367468:1",
+      "grade": 0,
+      "reason": "Vehicle hitch, unrelated."
+    },
+    {
+      "claim_id": "20240367468:24",
+      "grade": 0,
+      "reason": "Hitch mechanism, unrelated."
+    },
+    {
+      "claim_id": "20240367468:8",
+      "grade": 0,
+      "reason": "Hitch linkage detail, unrelated to spare wheels."
+    },
+    {
+      "claim_id": "20240416679:1",
+      "grade": 1,
+      "reason": "Auxiliary wheel with detachable hubs, but nothing about fitting over a flat tire or avoiding a jack."
+    },
+    {
+      "claim_id": "20240416679:2",
+      "grade": 0,
+      "reason": "Bearing clamp strip detail, no flat tire use."
+    },
+    {
+      "claim_id": "20240416679:3",
+      "grade": 0,
+      "reason": "Hub mounting plate detail of an auxiliary wheel, no flat tire use stated."
+    },
+    {
+      "claim_id": "20240416679:4",
+      "grade": 0,
+      "reason": "Bolt and nut connector detail, no flat tire use."
+    },
+    {
+      "claim_id": "20240416679:5",
+      "grade": 0,
+      "reason": "Nut groove fixing detail, no flat tire use."
+    },
+    {
+      "claim_id": "20240416679:7",
+      "grade": 0,
+      "reason": "Bolt connector detail, no flat tire use."
+    },
+    {
+      "claim_id": "20240416679:8",
+      "grade": 0,
+      "reason": "Shaft installation hole detail, no flat tire use."
+    },
+    {
+      "claim_id": "20240416679:9",
+      "grade": 0,
+      "reason": "Installation hole diameters, no flat tire use."
+    },
+    {
+      "claim_id": "20250010661:24",
+      "grade": 0,
+      "reason": "Spoke assembly device latches, unrelated."
+    },
+    {
+      "claim_id": "20250026146:1",
+      "grade": 0,
+      "reason": "Bicycle rim flange ratio, unrelated."
+    },
+    {
+      "claim_id": "20250026146:14",
+      "grade": 0,
+      "reason": "Bicycle rim flange ratios, unrelated."
+    },
+    {
+      "claim_id": "20250026146:15",
+      "grade": 0,
+      "reason": "Bicycle rim geometry, unrelated."
+    },
+    {
+      "claim_id": "20250026146:16",
+      "grade": 0,
+      "reason": "Bicycle rim flange gap, unrelated."
+    },
+    {
+      "claim_id": "20250026146:17",
+      "grade": 0,
+      "reason": "Bicycle rim flange gap, unrelated."
+    },
+    {
+      "claim_id": "20250026146:18",
+      "grade": 0,
+      "reason": "Bicycle rim flange gap, unrelated."
+    },
+    {
+      "claim_id": "20250026146:19",
+      "grade": 0,
+      "reason": "Bicycle rim flange gap, unrelated."
+    },
+    {
+      "claim_id": "20250026146:20",
+      "grade": 0,
+      "reason": "Bicycle rim sidewall shape, not a spare wheel over a flat tire."
+    },
+    {
+      "claim_id": "20250026146:21",
+      "grade": 0,
+      "reason": "Bicycle rim surface radius, unrelated."
+    },
+    {
+      "claim_id": "20250091381:12",
+      "grade": 0,
+      "reason": "Wheel cover slit, unrelated."
+    },
+    {
+      "claim_id": "20250091381:13",
+      "grade": 0,
+      "reason": "Wheel cover slit, unrelated."
+    }
+  ]
+}

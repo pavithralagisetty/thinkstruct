@@ -1,0 +1,136 @@
+{
+  "question_id": "q38",
+  "question": "holder that attaches a GPS tracker to a tire valve",
+  "grades": [
+    {
+      "claim_id": "20240239144:1",
+      "grade": 2,
+      "reason": "States a receptacle for a GPS tracker and a connector attaching the housing to the inflation valve."
+    },
+    {
+      "claim_id": "20240239144:10",
+      "grade": 1,
+      "reason": "Stem aperture accepting the valve base; related attachment detail without GPS tracker."
+    },
+    {
+      "claim_id": "20240239144:11",
+      "grade": 2,
+      "reason": "States a housing with GPS receptacle and a connector attaching it to the inflation valve."
+    },
+    {
+      "claim_id": "20240239144:12",
+      "grade": 2,
+      "reason": "States the tracker housing is attached to the inflation valve."
+    },
+    {
+      "claim_id": "20240239144:15",
+      "grade": 1,
+      "reason": "Housing fitted to a tyre rim; related placement detail only."
+    },
+    {
+      "claim_id": "20240239144:16",
+      "grade": 2,
+      "reason": "Inflation valve comprising a housing with a receptacle for a GPS tracker."
+    },
+    {
+      "claim_id": "20240239144:17",
+      "grade": 1,
+      "reason": "Describes the head with the GPS receptacle on an inflation valve but not how it attaches."
+    },
+    {
+      "claim_id": "20240239144:18",
+      "grade": 1,
+      "reason": "Recess shaped to accept a GPS tracker; attachment to valve not stated."
+    },
+    {
+      "claim_id": "20240239144:2",
+      "grade": 1,
+      "reason": "Housing for a GPS tracker with head and connector stem; valve attachment not stated here."
+    },
+    {
+      "claim_id": "20240239144:20",
+      "grade": 1,
+      "reason": "Cap forming a cavity enclosing a GPS tracker on the valve housing; attachment not stated."
+    },
+    {
+      "claim_id": "20240239144:21",
+      "grade": 0,
+      "reason": "Only the material of the head or cap."
+    },
+    {
+      "claim_id": "20240239144:22",
+      "grade": 0,
+      "reason": "Only the material of the head."
+    },
+    {
+      "claim_id": "20240239144:23",
+      "grade": 0,
+      "reason": "Only the material of the cap."
+    },
+    {
+      "claim_id": "20240239144:24",
+      "grade": 1,
+      "reason": "Kit of inflation valve, GPS tracker and parts; holder attachment not stated in the text."
+    },
+    {
+      "claim_id": "20240239144:25",
+      "grade": 2,
+      "reason": "Inflation valve with the GPS tracker held in the housing receptacle."
+    },
+    {
+      "claim_id": "20240239144:26",
+      "grade": 0,
+      "reason": "Grommet fitted to the valve, not the tracker holder."
+    },
+    {
+      "claim_id": "20240239144:27",
+      "grade": 0,
+      "reason": "Only says the valve is fitted to a tyre rim."
+    },
+    {
+      "claim_id": "20240239144:28",
+      "grade": 1,
+      "reason": "GPS tracker mounting attached to the tyre rim, not to the valve."
+    },
+    {
+      "claim_id": "20240239144:29",
+      "grade": 1,
+      "reason": "Rim, GPS tracker mounting and tracker; mounted on rim, not valve."
+    },
+    {
+      "claim_id": "20240239144:3",
+      "grade": 1,
+      "reason": "Recess shaped to accept a GPS tracker; attachment not stated."
+    },
+    {
+      "claim_id": "20240239144:30",
+      "grade": 1,
+      "reason": "Rim fitted with a GPS tracker mounting, not the valve."
+    },
+    {
+      "claim_id": "20240239144:5",
+      "grade": 1,
+      "reason": "Cap forming a cavity enclosing a GPS tracker; attachment not stated."
+    },
+    {
+      "claim_id": "20240239144:6",
+      "grade": 0,
+      "reason": "Only the material of the base or cap."
+    },
+    {
+      "claim_id": "20240239144:7",
+      "grade": 0,
+      "reason": "Only the material of the base."
+    },
+    {
+      "claim_id": "20240239144:8",
+      "grade": 0,
+      "reason": "Only the material of the cap."
+    },
+    {
+      "claim_id": "20240239144:9",
+      "grade": 0,
+      "reason": "Air and sealant apertures in the stem, not the tracker attachment."
+    }
+  ]
+}

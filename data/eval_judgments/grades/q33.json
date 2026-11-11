@@ -1,0 +1,116 @@
+{
+  "question_id": "q33",
+  "question": "decorative insert anchored in a recess in the tire sidewall",
+  "grades": [
+    {
+      "claim_id": "20250083477:1",
+      "grade": 2,
+      "reason": "Sidewall with a circumferential recess anchoring means intended to interact with a sidewall insert."
+    },
+    {
+      "claim_id": "20250083477:10",
+      "grade": 1,
+      "reason": "Only the protuberance height relative to recess depth."
+    },
+    {
+      "claim_id": "20250083477:11",
+      "grade": 1,
+      "reason": "Only the anchoring means position relative to a protective ridge."
+    },
+    {
+      "claim_id": "20250083477:12",
+      "grade": 1,
+      "reason": "Only the radial position of the anchoring means."
+    },
+    {
+      "claim_id": "20250083477:13",
+      "grade": 2,
+      "reason": "Claims a sidewall insert engaging in the tire sidewall recess and attaching over the protuberance."
+    },
+    {
+      "claim_id": "20250083477:14",
+      "grade": 1,
+      "reason": "Insert profile matching the protuberance profile; related detail."
+    },
+    {
+      "claim_id": "20250083477:15",
+      "grade": 1,
+      "reason": "Truncated insert width difference detail."
+    },
+    {
+      "claim_id": "20250083477:16",
+      "grade": 1,
+      "reason": "Insert and protuberance width geometry detail."
+    },
+    {
+      "claim_id": "20250083477:17",
+      "grade": 1,
+      "reason": "Insert diameter relative to anchoring means; a related fitting detail."
+    },
+    {
+      "claim_id": "20250083477:18",
+      "grade": 1,
+      "reason": "Only the insert material."
+    },
+    {
+      "claim_id": "20250083477:19",
+      "grade": 1,
+      "reason": "Insert material modulus relative to anchoring rubber; related detail."
+    },
+    {
+      "claim_id": "20250083477:2",
+      "grade": 1,
+      "reason": "Only a recess depth limit."
+    },
+    {
+      "claim_id": "20250083477:20",
+      "grade": 1,
+      "reason": "Insert material modulus relative to anchoring rubber; related detail."
+    },
+    {
+      "claim_id": "20250083477:21",
+      "grade": 1,
+      "reason": "Insert has different colour or texture (decorative) but the claim text does not state the recess anchoring."
+    },
+    {
+      "claim_id": "20250083477:22",
+      "grade": 2,
+      "reason": "Claims a tire plus sidewall insert engaging in the sidewall recess and attaching over the protuberance."
+    },
+    {
+      "claim_id": "20250083477:3",
+      "grade": 1,
+      "reason": "Only a recess depth limit."
+    },
+    {
+      "claim_id": "20250083477:4",
+      "grade": 1,
+      "reason": "Only a sidewall layer thickness versus recess depth detail."
+    },
+    {
+      "claim_id": "20250083477:5",
+      "grade": 1,
+      "reason": "Only a recess width limit."
+    },
+    {
+      "claim_id": "20250083477:6",
+      "grade": 1,
+      "reason": "Only a recess width limit."
+    },
+    {
+      "claim_id": "20250083477:7",
+      "grade": 1,
+      "reason": "Only the material of the layer holding the recess."
+    },
+    {
+      "claim_id": "20250083477:8",
+      "grade": 1,
+      "reason": "Only the angle of the recess walls."
+    },
+    {
+      "claim_id": "20250083477:9",
+      "grade": 1,
+      "reason": "Only the protuberance height relative to recess depth."
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "question_id": "q15",
+  "question": "airless wheel whose spring elements get stiffer once compressed past a threshold",
+  "grades": [
+    {
+      "claim_id": "20240100881:6",
+      "grade": 0,
+      "reason": "Bond shear strengths of an airless tire; unrelated to spring stiffening."
+    },
+    {
+      "claim_id": "20240100881:7",
+      "grade": 0,
+      "reason": "Bond shear strength of an airless tire; unrelated to spring stiffening."
+    },
+    {
+      "claim_id": "20240198723:12",
+      "grade": 1,
+      "reason": "Spring-biased spoke in an airless tire, related springs but no threshold stiffening."
+    },
+    {
+      "claim_id": "20250026145:20",
+      "grade": 0,
+      "reason": "Resilient wheel with directional power transfer and braking steps; no stiffening under compression."
+    },
+    {
+      "claim_id": "20250026145:27",
+      "grade": 1,
+      "reason": "Two compression stages where contact stops bowing, closely related but no stated stiffer spring rate."
+    },
+    {
+      "claim_id": "20250026145:28",
+      "grade": 1,
+      "reason": "First spring rate up to a threshold distance, closely related but does not state stiffening beyond it."
+    },
+    {
+      "claim_id": "20250026145:29",
+      "grade": 2,
+      "reason": "Beyond a threshold distance the compressed elements act at a significantly higher second spring rate."
+    },
+    {
+      "claim_id": "20250026145:33",
+      "grade": 1,
+      "reason": "Different spring rates in two compression stages, but does not state the second is stiffer or tied to a threshold."
+    },
+    {
+      "claim_id": "20250065669:22",
+      "grade": 2,
+      "reason": "Elements have a higher second spring constant when compressed beyond a threshold compression."
+    },
+    {
+      "claim_id": "20250065669:23",
+      "grade": 1,
+      "reason": "Peaks contact beyond a threshold deflection, but no stated increase in stiffness."
+    },
+    {
+      "claim_id": "20250065669:28",
+      "grade": 0,
+      "reason": "Resilient wheel absorbing compression with directional power transfer; no stiffening past a threshold."
+    },
+    {
+      "claim_id": "20250065669:29",
+      "grade": 2,
+      "reason": "Elements have a higher second spring constant when compressed beyond a threshold compression."
+    },
+    {
+      "claim_id": "20250065669:30",
+      "grade": 1,
+      "reason": "Peaks of resilient elements contact each other beyond a threshold deflection, but the claim does not state the stiffness increases."
+    },
+    {
+      "claim_id": "20250065669:31",
+      "grade": 0,
+      "reason": "Only locates the peaks of the resilient elements; nothing about stiffening."
+    },
+    {
+      "claim_id": "20250065669:34",
+      "grade": 0,
+      "reason": "Only describes element thickness; nothing about stiffening."
+    },
+    {
+      "claim_id": "20250065669:35",
+      "grade": 0,
+      "reason": "Resilient wheel absorbing compressive force; no stiffening past a threshold."
+    },
+    {
+      "claim_id": "20250065669:36",
+      "grade": 2,
+      "reason": "Elements have a higher second spring constant when compressed beyond a threshold compression."
+    },
+    {
+      "claim_id": "20250065669:37",
+      "grade": 1,
+      "reason": "Peaks contact beyond a threshold deflection, but no stated increase in stiffness."
+    },
+    {
+      "claim_id": "20250065669:38",
+      "grade": 0,
+      "reason": "Only locates the peaks; nothing about stiffening."
+    },
+    {
+      "claim_id": "20250065669:39",
+      "grade": 0,
+      "reason": "Only locates the peaks; nothing about stiffening."
+    },
+    {
+      "claim_id": "20250065669:40",
+      "grade": 0,
+      "reason": "Only describes alternating peak locations; nothing about stiffening."
+    },
+    {
+      "claim_id": "20250065669:41",
+      "grade": 0,
+      "reason": "Only describes element thickness; nothing about stiffening past a threshold."
+    }
+  ]
+}

@@ -260,7 +260,7 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 
 A model comparison runner, so the embedding model can be chosen on evidence. It saves rankings only; there is no hand-made ground truth yet. Grading (labels per question) is added in a later step (B3) and fed to the metric functions below.
 
-* **Questions:** `tests/eval/questions.json`, 10 questions `q01`–`q10`, text only, no relevant claims listed.
+* **Questions:** `tests/eval/questions.json`, 40 questions `q01`–`q40`, text only, no relevant claims listed. `q11`–`q40` were each written from one patent's abstract, asking about one point in plain words rather than copying its wording.
 * **Candidates:** `bm25` plus every model in `config.EVAL_MODELS`:
 
   | Name | Model | Query prefix | Document prefix | Reads up to |
@@ -295,32 +295,39 @@ The only source of relevance labels (`grading.py`, `python -m patent_search grad
 4. **Judges.** One blind subagent per packet. It may read only its packet and write only `data/eval_judgments/incoming/<qid>.json`; it never sees which model returned a claim or any eval result. Scale: **2** = the claim itself states what is asked, **1** = right topic and a closely related detail, **0** = not relevant. It judges the claim's own text (the main claim is context only) and gives one short reason per claim.
 5. **Score.** `grade score` checks each incoming file (every packet claim graded exactly once, grade 0, 1 or 2, a reason, nothing extra), merges it into `grades/`, writes all pooled grades to `data/eval_judgments/pooled_grades.json`, scores every candidate with the metric functions above (claims never graded count as 0, with a warning) and prints the comparison table and the rank of the first fully relevant claim per question. The result is saved to `data/eval_results/scores_<UTC time>.json`.
 
-**Results** (`scores_20261111T005725Z.json`, from `run_20261111T005621Z.json`, all 7 candidates, 299 graded claims):
+**Results** (`scores_20261111T064218Z.json`, from `run_20261111T063744Z.json`, all 7 candidates, 40 questions, 1,092 graded claims):
 
 | Model | Hit@5 | P@5 | R@10 | MRR | nDCG@10 | Full@10 |
 |---|---|---|---|---|---|---|
-| bm25 | 0.900 | 0.500 | 0.353 | 0.733 | 0.397 | 5/10 |
-| nomic (production) | 0.800 | 0.660 | 0.512 | 0.760 | 0.566 | 8/10 |
-| bge-small | 0.800 | 0.660 | 0.462 | 0.800 | 0.519 | 7/10 |
-| bge-base | 0.900 | 0.780 | 0.559 | 0.825 | 0.534 | 9/10 |
-| patentsberta | 0.900 | 0.740 | 0.546 | 0.825 | 0.567 | 9/10 |
-| minilm | 0.800 | 0.620 | 0.462 | 0.800 | 0.527 | 8/10 |
-| qwen3-0.6b | 0.900 | 0.760 | 0.666 | 0.917 | 0.674 | 9/10 |
+| bm25 | 0.825 | 0.645 | 0.460 | 0.739 | 0.544 | 25/40 |
+| nomic (production) | 0.925 | 0.770 | 0.542 | 0.857 | 0.683 | 34/40 |
+| bge-small | 0.875 | 0.710 | 0.473 | 0.818 | 0.572 | 26/40 |
+| bge-base | 0.925 | 0.750 | 0.510 | 0.879 | 0.585 | 28/40 |
+| patentsberta | 0.925 | 0.775 | 0.522 | 0.833 | 0.641 | 30/40 |
+| minilm | 0.875 | 0.700 | 0.463 | 0.797 | 0.572 | 27/40 |
+| qwen3-0.6b | 0.975 | 0.805 | 0.603 | 0.898 | 0.720 | 35/40 |
 
-`Full@10` counts the questions with a fully relevant claim in the top 10. The first round graded 285 pooled claims for the first six candidates. Adding `qwen3-0.6b` (embedding took 41 minutes on mps at batch size 4, about 6.4 GB) brought 14 new claims into the pool (q02 2, q04 3, q05 2, q08 1, q09 4, q10 2); only those were graded, by six blind judges with the same prompt, and the 285 existing grades did not change. The other six candidates' rankings are identical to the first run; their recall and nDCG dropped slightly because the pool now holds relevant claims only Qwen found (for example nomic recall 0.529 to 0.512), while Hit@5, P@5, MRR and Full@10 are unchanged. Qwen leads on recall, MRR and nDCG and is the only model with a fully relevant claim for q09 (rank 6), but misses q04, which bge-base, PatentSBERTa and MiniLM find. With 10 questions and one judge per claim this is a lead, not proof (see Limits); Qwen is also 1,024 numbers per vector (nomic 768) and would need a rebuild to use in production.
+`Full@10` counts the questions with a fully relevant claim in the top 10. History: the first round graded 285 pooled claims for six candidates on `q01`–`q10`; adding `qwen3-0.6b` (embedding took 41 minutes on mps at batch size 4, about 6.4 GB) added 14 claims. Then 30 questions (`q11`–`q40`) were added, each written from one patent's abstract across 25 CPC main groups (B60F, B60G, B60J and B60R have one patent each and are left out), avoiding the topics of `q01`–`q10`. Their 793 pooled claims were graded by 30 blind judges with the same prompt (one judge missed a claim, the check caught it, and the same judge graded it). The 299 earlier grades did not change, and every candidate's rankings for `q01`–`q10` are identical to the previous run, so the old questions score exactly as before.
+
+What 40 questions show:
+
+* nomic now clearly beats bm25 (nDCG 0.683 vs 0.544, Full@10 34 vs 25), and leads the other small models on nDCG and Full@10; on 10 questions it looked no better than bge-base or PatentSBERTa.
+* Qwen is first on every metric, but the margin over nomic is small. Per question (paired, 10,000 bootstrap resamples of the 40 questions): nDCG +0.037 (95% interval -0.031 to +0.109; Qwen better on 21 questions, worse on 18), MRR +0.041 (-0.044 to +0.133), P@5 +0.035 (-0.045 to +0.125), recall +0.061 (+0.002 to +0.128). Only recall is above zero, and only just. On the 30 new questions alone the two are nearly level (nDCG 0.735 vs 0.722, MRR 0.892 vs 0.890), so most of Qwen's lead comes from `q01`–`q10`.
+* By the rule below (switch only on a clear win), nomic stays: the gain is within noise on 3 of 4 metrics. Switching would not need re-embedding (the Qwen vectors in `data/eval_cache/qwen3-0.6b/` were made from the same texts and could be copied into `data/index` with a new `meta.json`; the build has no step for that yet), but every search with a question would load and run a 0.6B model instead of nomic, and the vectors grow to 1,024 numbers (nomic 768). Qwen's question embedding time has not been measured.
+* No model finds a fully relevant claim for `q14`, `q16` and `q32`. Their judges gave no grade 2 at all: no claim in the pool states the asked point in its own text (for `q32`, all 23 pooled claims are tread designs graded 1).
 
 **Limits.**
 
 * Only pooled claims are graded. A relevant claim that no candidate returned in its top 10 is invisible, so recall is recall within the pool, and a model that finds relevant claims nobody else found is not rewarded for them until they are graded.
-* 10 questions and one judge per claim. The judges are language models, not patent examiners; their grades are consistent within a packet but not checked by a second judge. Small differences between models are noise.
+* 40 questions and one judge per claim. The judges are language models, not patent examiners; their grades are consistent within a packet but not checked by a second judge. Small differences between models are noise.
 * A model is only worth switching to if it clearly beats the current one (nomic) on these metrics, not by a hair; switching means a rebuild and a different cost and context length.
 * If nomic does not beat bm25, the embedding step is not earning its cost and plain word matching should be considered instead.
 
 ## Timing
 
-`python -m patent_search.benchmark [REPEATS]` (one file, `benchmark.py`, cases listed in it) times the production `Index.search` on the 10 evaluation questions, with no filters and with each hybrid filter, REPEATS (default 20) timed runs per question per case after one warm-up. Embedding the question costs the same whatever the filters are, so it is timed on its own and the search timings reuse a vector embedded up front: they cover the keyword and filter step, scoring the claims that passed it, sorting and building the response. Each filtered case is also timed without a question ("filters only": the exact step alone). It prints the table; nothing is saved.
+`python -m patent_search.benchmark [REPEATS]` (one file, `benchmark.py`, cases listed in it) times the production `Index.search` on the evaluation questions, with no filters and with each hybrid filter, REPEATS (default 20) timed runs per question per case after one warm-up. Embedding the question costs the same whatever the filters are, so it is timed on its own and the search timings reuse a vector embedded up front: they cover the keyword and filter step, scoring the claims that passed it, sorting and building the response. Each filtered case is also timed without a question ("filters only": the exact step alone). It prints the table; nothing is saved.
 
-Results on the full data (10,411 claims, 768-number vectors, Apple silicon Mac):
+Results on the full data (10,411 claims, 768-number vectors, Apple silicon Mac), measured when there were 10 questions (`q01`–`q10`):
 
 | Case | Claims scored | Median ms | p95 ms | vs no filters | Filters only ms |
 |---|---|---|---|---|---|

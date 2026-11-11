@@ -1,0 +1,186 @@
+{
+  "question_id": "q19",
+  "question": "greasing a wheel hub bearing from the outside without taking the hub apart",
+  "grades": [
+    {
+      "claim_id": "20240190174:13",
+      "grade": 0,
+      "reason": "Raceway geometry of a hub bearing unit, no greasing."
+    },
+    {
+      "claim_id": "20240190174:4",
+      "grade": 0,
+      "reason": "Raceway geometry of a hub bearing unit, no greasing."
+    },
+    {
+      "claim_id": "20240359504:1",
+      "grade": 0,
+      "reason": "Hub-bearing assembly structure with preload, no greasing."
+    },
+    {
+      "claim_id": "20240359504:10",
+      "grade": 0,
+      "reason": "Bearing and spacer arrangement in the hub opening, no greasing."
+    },
+    {
+      "claim_id": "20240359504:12",
+      "grade": 0,
+      "reason": "Hub-bearing assembly method with rolled edge and preload, no lubrication."
+    },
+    {
+      "claim_id": "20240359504:6",
+      "grade": 0,
+      "reason": "Bearing and spacer arrangement in the hub opening, no greasing."
+    },
+    {
+      "claim_id": "20240383277:1",
+      "grade": 0,
+      "reason": "Hub-bearing assembly structure, no greasing."
+    },
+    {
+      "claim_id": "20240383277:3",
+      "grade": 0,
+      "reason": "Surface profile of the flanged hub, no greasing."
+    },
+    {
+      "claim_id": "20250058585:42",
+      "grade": 0,
+      "reason": "Installation interface between bearing and axle, no greasing."
+    },
+    {
+      "claim_id": "20250058585:43",
+      "grade": 0,
+      "reason": "Lists bearing installation parts, no greasing."
+    },
+    {
+      "claim_id": "20250058585:45",
+      "grade": 0,
+      "reason": "Bolted installation of bearing, no greasing."
+    },
+    {
+      "claim_id": "20250058585:49",
+      "grade": 0,
+      "reason": "About replacing the bearing installation without removing the axle, not greasing."
+    },
+    {
+      "claim_id": "20250058585:53",
+      "grade": 0,
+      "reason": "Parts attaching bearing installation to the hub, no greasing."
+    },
+    {
+      "claim_id": "20250058585:57",
+      "grade": 0,
+      "reason": "Second hub part adapted for bearing installation, no greasing."
+    },
+    {
+      "claim_id": "20250058585:58",
+      "grade": 0,
+      "reason": "Bearing installation assembled as a unit, no greasing."
+    },
+    {
+      "claim_id": "20250083473:16",
+      "grade": 0,
+      "reason": "Hub dimensions in a production method, no greasing."
+    },
+    {
+      "claim_id": "20250083473:3",
+      "grade": 0,
+      "reason": "Hub dimensions, no greasing."
+    },
+    {
+      "claim_id": "20250091386:1",
+      "grade": 2,
+      "reason": "Component with external port and channel so lubricant reaches the bearing while it stays assembled on the vehicle."
+    },
+    {
+      "claim_id": "20250091386:10",
+      "grade": 2,
+      "reason": "Wheel hub with external port and channel so lubricant reaches the bearing while the hub stays assembled."
+    },
+    {
+      "claim_id": "20250091386:11",
+      "grade": 0,
+      "reason": "Journal and bearing support arrangement, no greasing."
+    },
+    {
+      "claim_id": "20250091386:12",
+      "grade": 1,
+      "reason": "Places the channel's first side on the wheel side, a related detail of outside greasing, but does not state greasing."
+    },
+    {
+      "claim_id": "20250091386:13",
+      "grade": 0,
+      "reason": "Only describes a socket and shaft receiving hole, nothing about greasing."
+    },
+    {
+      "claim_id": "20250091386:14",
+      "grade": 0,
+      "reason": "Shape of surfaces, nothing about greasing."
+    },
+    {
+      "claim_id": "20250091386:15",
+      "grade": 0,
+      "reason": "Geometry of surfaces joining a face, no greasing."
+    },
+    {
+      "claim_id": "20250091386:16",
+      "grade": 1,
+      "reason": "Groove valleys collect lubricant from the port, a related lubrication detail only."
+    },
+    {
+      "claim_id": "20250091386:17",
+      "grade": 0,
+      "reason": "Mounting structures and brake rotor contact, no greasing."
+    },
+    {
+      "claim_id": "20250091386:18",
+      "grade": 1,
+      "reason": "Location of the lubricant port inside grooves, a related detail only."
+    },
+    {
+      "claim_id": "20250091386:19",
+      "grade": 2,
+      "reason": "Bearing carrier with ports and channel so lubricant is applied to the bearing while assembled on the vehicle."
+    },
+    {
+      "claim_id": "20250091386:2",
+      "grade": 0,
+      "reason": "Only states the component is a wheel hub."
+    },
+    {
+      "claim_id": "20250091386:20",
+      "grade": 0,
+      "reason": "Only states the bearing carrier is a knuckle or spindle."
+    },
+    {
+      "claim_id": "20250091386:3",
+      "grade": 0,
+      "reason": "Only states the component is a knuckle."
+    },
+    {
+      "claim_id": "20250091386:4",
+      "grade": 0,
+      "reason": "Bearing supports a driven shaft, nothing about greasing."
+    },
+    {
+      "claim_id": "20250091386:6",
+      "grade": 1,
+      "reason": "Greasing tool applies grease to the bearing through the port and channel, but does not state it is done without disassembly."
+    },
+    {
+      "claim_id": "20250091386:7",
+      "grade": 1,
+      "reason": "Port threading that meshes with a greasing tool, a related greasing detail only."
+    },
+    {
+      "claim_id": "20250091386:8",
+      "grade": 1,
+      "reason": "Zerk grease fitting threading, a related greasing detail only."
+    },
+    {
+      "claim_id": "20250091386:9",
+      "grade": 0,
+      "reason": "Bearing installable without a tool, not about greasing."
+    }
+  ]
+}

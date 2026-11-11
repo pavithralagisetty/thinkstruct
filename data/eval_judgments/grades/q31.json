@@ -1,0 +1,106 @@
+{
+  "question_id": "q31",
+  "question": "cord of two twisted yarns used to reinforce the belt bandage of a car tire",
+  "grades": [
+    {
+      "claim_id": "20240239140:1",
+      "grade": 0,
+      "reason": "Steel cord of twisted wires, not a two-yarn cord for a belt bandage."
+    },
+    {
+      "claim_id": "20240316989:11",
+      "grade": 1,
+      "reason": "States a cord of two twisted yarns but not its use in a tire belt bandage."
+    },
+    {
+      "claim_id": "20240316989:12",
+      "grade": 1,
+      "reason": "Only narrows the linear density ratio of the two yarns."
+    },
+    {
+      "claim_id": "20240316989:13",
+      "grade": 1,
+      "reason": "Only adds the Z value of the first yarn."
+    },
+    {
+      "claim_id": "20240316989:14",
+      "grade": 1,
+      "reason": "Only adds the material of the first yarn."
+    },
+    {
+      "claim_id": "20240316989:15",
+      "grade": 1,
+      "reason": "Only adds the linear density of the first yarn."
+    },
+    {
+      "claim_id": "20240316989:16",
+      "grade": 1,
+      "reason": "Only adds the linear density of the second yarn."
+    },
+    {
+      "claim_id": "20240316989:19",
+      "grade": 1,
+      "reason": "Cords of two twisted yarns in a composite, with no belt bandage stated."
+    },
+    {
+      "claim_id": "20240316989:20",
+      "grade": 1,
+      "reason": "Adds a belt bandage having the cords, but the two twisted yarns are only in the parent claim."
+    },
+    {
+      "claim_id": "20240316989:21",
+      "grade": 1,
+      "reason": "States a cord of two yarns twisted together but not its use in a tire belt bandage."
+    },
+    {
+      "claim_id": "20250018746:1",
+      "grade": 2,
+      "reason": "States a tire belt bandage ply with cords of exactly two end-twisted yarns."
+    },
+    {
+      "claim_id": "20250018746:10",
+      "grade": 2,
+      "reason": "States a belt bandage ply reinforced by cords of two end-twisted polyamide yarns in a tire."
+    },
+    {
+      "claim_id": "20250018746:2",
+      "grade": 1,
+      "reason": "Only adds the belt bandage ply tangent modulus."
+    },
+    {
+      "claim_id": "20250018746:3",
+      "grade": 1,
+      "reason": "Gives a two-yarn cord structure but does not itself state the belt bandage use."
+    },
+    {
+      "claim_id": "20250018746:4",
+      "grade": 1,
+      "reason": "Only adds the cord thread density."
+    },
+    {
+      "claim_id": "20250018746:5",
+      "grade": 1,
+      "reason": "Only adds the cord twist factor for the belt bandage tire."
+    },
+    {
+      "claim_id": "20250018746:6",
+      "grade": 1,
+      "reason": "Only adds an adhesive impregnation of the cords."
+    },
+    {
+      "claim_id": "20250018746:7",
+      "grade": 1,
+      "reason": "Only adds that the cord spans the belt's axial extent."
+    },
+    {
+      "claim_id": "20250018746:8",
+      "grade": 1,
+      "reason": "Only adds that the tire is on a passenger car."
+    },
+    {
+      "claim_id": "20250018746:9",
+      "grade": 1,
+      "reason": "Only adds that the tire is on a light-duty vehicle or van."
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "question_id": "q36",
+  "question": "sensor housing glued to the inside of a tire to measure how it deforms",
+  "grades": [
+    {
+      "claim_id": "20240157727:1",
+      "grade": 0,
+      "reason": "Rim cover accelerometer for wheel inclination, not inside the tire."
+    },
+    {
+      "claim_id": "20240157727:10",
+      "grade": 0,
+      "reason": "Rim accessory sensor axis; not relevant."
+    },
+    {
+      "claim_id": "20240157727:2",
+      "grade": 0,
+      "reason": "Rim accessory sensor placement; not relevant."
+    },
+    {
+      "claim_id": "20240157727:3",
+      "grade": 0,
+      "reason": "Rim accessory for wheel angle, not a sensor glued inside the tire."
+    },
+    {
+      "claim_id": "20240157727:4",
+      "grade": 0,
+      "reason": "Rim cover housing clamped to the central hole; not relevant."
+    },
+    {
+      "claim_id": "20240157727:5",
+      "grade": 0,
+      "reason": "Rim accessory circuit board; not relevant."
+    },
+    {
+      "claim_id": "20240157727:9",
+      "grade": 0,
+      "reason": "Battery of a rim accessory; not relevant."
+    },
+    {
+      "claim_id": "20240278598:22",
+      "grade": 0,
+      "reason": "Wheel hub temperature sensor, not a tire deformation sensor."
+    },
+    {
+      "claim_id": "20240278598:31",
+      "grade": 0,
+      "reason": "Battery in a wheel hub sensor node; not relevant."
+    },
+    {
+      "claim_id": "20240278598:33",
+      "grade": 0,
+      "reason": "Wheel hub sensor node potting; not relevant."
+    },
+    {
+      "claim_id": "20240336092:14",
+      "grade": 1,
+      "reason": "Sensor fastened in the tire casing to identify deformation, but no housing or adhesive is stated."
+    },
+    {
+      "claim_id": "20240336092:16",
+      "grade": 1,
+      "reason": "Angular pitch detail of a tire deformation method; no glued housing."
+    },
+    {
+      "claim_id": "20240336092:19",
+      "grade": 1,
+      "reason": "Data aggregation detail of a tire deformation method; no glued housing."
+    },
+    {
+      "claim_id": "20240336092:22",
+      "grade": 1,
+      "reason": "Threshold detail of a tire deformation method; no glued housing."
+    },
+    {
+      "claim_id": "20240336092:26",
+      "grade": 1,
+      "reason": "Formula detail of a tire deformation method; no glued housing."
+    },
+    {
+      "claim_id": "20240367466:1",
+      "grade": 1,
+      "reason": "Sensor housing joined to the tire inner surface, but no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:10",
+      "grade": 1,
+      "reason": "Shape of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:11",
+      "grade": 1,
+      "reason": "Side wall inclination of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:12",
+      "grade": 1,
+      "reason": "Material of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:14",
+      "grade": 1,
+      "reason": "Notches in the base of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:16",
+      "grade": 1,
+      "reason": "Sensor housed between base and cover and glued to the tire, but no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:18",
+      "grade": 1,
+      "reason": "Shape detail of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:2",
+      "grade": 1,
+      "reason": "Cover detail of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:3",
+      "grade": 1,
+      "reason": "Cover seat detail of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:4",
+      "grade": 1,
+      "reason": "Fin detail of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:5",
+      "grade": 1,
+      "reason": "Channel detail of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:6",
+      "grade": 1,
+      "reason": "Cover detail of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:7",
+      "grade": 1,
+      "reason": "Cover detail of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:9",
+      "grade": 1,
+      "reason": "Cavity detail of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20250108668:1",
+      "grade": 1,
+      "reason": "Component glued to the tire inner surface, but no sensor or deformation is stated."
+    },
+    {
+      "claim_id": "20250108668:10",
+      "grade": 1,
+      "reason": "Sensor container with an attachment surface; no gluing to the tire or deformation measurement stated."
+    },
+    {
+      "claim_id": "20250108668:11",
+      "grade": 1,
+      "reason": "Gluing a component to the tire inner surface, but the component is not stated to be a sensor."
+    },
+    {
+      "claim_id": "20250108668:14",
+      "grade": 1,
+      "reason": "Molding of an attached container; no sensor deformation measurement."
+    },
+    {
+      "claim_id": "20250108668:18",
+      "grade": 1,
+      "reason": "Sensor container attached to the tire inner surface, but no deformation measurement."
+    },
+    {
+      "claim_id": "20250108668:20",
+      "grade": 1,
+      "reason": "Sensor container with an attachment surface, but it carries a pressure sensor, not a deformation sensor."
+    },
+    {
+      "claim_id": "20250108668:3",
+      "grade": 1,
+      "reason": "Rib pattern of an attached component's surface; no sensor or deformation."
+    },
+    {
+      "claim_id": "20250108668:6",
+      "grade": 1,
+      "reason": "Surface pattern of the tire inner surface for an attached component; no sensor or deformation."
+    },
+    {
+      "claim_id": "20250108668:7",
+      "grade": 1,
+      "reason": "Adhesive between the elevations of a component attached to the tire; no sensor or deformation stated."
+    },
+    {
+      "claim_id": "20250108668:8",
+      "grade": 1,
+      "reason": "Surface pattern detail of an attached component; no sensor or deformation."
+    },
+    {
+      "claim_id": "20250115083:1",
+      "grade": 2,
+      "reason": "Housing bonded to the tire inner surface by elastic adhesive with a strain element that detects tire strain."
+    },
+    {
+      "claim_id": "20250115083:3",
+      "grade": 1,
+      "reason": "Cross-section shape of the elastic member of a strain detection device; a minor detail."
+    },
+    {
+      "claim_id": "20250115083:4",
+      "grade": 1,
+      "reason": "Elastic member engagement detail of a strain detection device; a minor detail."
+    },
+    {
+      "claim_id": "20250115083:5",
+      "grade": 2,
+      "reason": "Strain detection element in the housing recess faces the tire inner surface through elastic adhesive."
+    }
+  ]
+}

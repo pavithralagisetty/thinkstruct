@@ -1,0 +1,101 @@
+{
+  "question_id": "q11",
+  "question": "spoke nipple that sits in a separate base fitted into the rim",
+  "grades": [
+    {
+      "claim_id": "20240149609:1",
+      "grade": 1,
+      "reason": "Describes a nipple head with a separate nipple base but does not say the base sits in the rim."
+    },
+    {
+      "claim_id": "20240149609:10",
+      "grade": 1,
+      "reason": "Shape of the nipple base; related detail without rim seating."
+    },
+    {
+      "claim_id": "20240149609:11",
+      "grade": 2,
+      "reason": "States the nipple base is seated on the edge of the spoke hole of the rim."
+    },
+    {
+      "claim_id": "20240149609:12",
+      "grade": 1,
+      "reason": "Nipple base seated in the hub spoke hole rather than the rim."
+    },
+    {
+      "claim_id": "20240149609:13",
+      "grade": 1,
+      "reason": "Materials of nipple base and body; related detail without rim seating."
+    },
+    {
+      "claim_id": "20240149609:14",
+      "grade": 1,
+      "reason": "Materials of nipple base and body; related detail without rim seating."
+    },
+    {
+      "claim_id": "20240149609:15",
+      "grade": 1,
+      "reason": "Tolerance detail between column and nipple base holes; does not state base seated in the rim."
+    },
+    {
+      "claim_id": "20240149609:2",
+      "grade": 1,
+      "reason": "Shape of the nipple base; related detail without rim seating."
+    },
+    {
+      "claim_id": "20240149609:3",
+      "grade": 1,
+      "reason": "Diameter detail of the nipple base and damping member; no rim seating stated."
+    },
+    {
+      "claim_id": "20240149609:4",
+      "grade": 1,
+      "reason": "Materials of nipple base and body; related detail without rim seating."
+    },
+    {
+      "claim_id": "20240149609:5",
+      "grade": 1,
+      "reason": "Materials of nipple base and body; related detail without rim seating."
+    },
+    {
+      "claim_id": "20240149609:6",
+      "grade": 1,
+      "reason": "Adhesive between nipple base and damping member; related detail without rim seating."
+    },
+    {
+      "claim_id": "20240149609:7",
+      "grade": 1,
+      "reason": "Tolerance detail between column and nipple base holes; does not state base seated in the rim."
+    },
+    {
+      "claim_id": "20240149609:8",
+      "grade": 1,
+      "reason": "Detail of the nipple base and damping member coupling, without stating the base sits in the rim."
+    },
+    {
+      "claim_id": "20240149609:9",
+      "grade": 2,
+      "reason": "States a nipple assembly with a separate nipple base fitted on the column and supported on the rim at the spoke hole."
+    },
+    {
+      "claim_id": "20250115075:1",
+      "grade": 0,
+      "reason": "Nipples sleeved on spoke rope heads; no separate base fitted into the rim."
+    },
+    {
+      "claim_id": "20250115075:4",
+      "grade": 0,
+      "reason": "Tapered mounting hole in the nipple fitting the spoke head; no separate base in the rim."
+    },
+    {
+      "claim_id": "20250115075:5",
+      "grade": 1,
+      "reason": "Nipple inserted into a rim spoke hole and secured with a nut, close but not a separate base."
+    },
+    {
+      "claim_id": "20250115075:7",
+      "grade": 0,
+      "reason": "Only states materials of mounting heads and nipples; no separate base in the rim."
+    }
+  ]
+}

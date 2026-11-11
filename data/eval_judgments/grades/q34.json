@@ -1,0 +1,86 @@
+{
+  "question_id": "q34",
+  "question": "inner tube that inflates automatically when the tire goes flat",
+  "grades": [
+    {
+      "claim_id": "20240083199:1",
+      "grade": 2,
+      "reason": "Inner tube automatically inflated when pressure monitoring detects tire pressure loss."
+    },
+    {
+      "claim_id": "20240083199:10",
+      "grade": 1,
+      "reason": "Inner belt inside the inner tube, a structural detail not about automatic inflation."
+    },
+    {
+      "claim_id": "20240083199:11",
+      "grade": 0,
+      "reason": "Only the inner belt material, not the automatic inflation."
+    },
+    {
+      "claim_id": "20240083199:12",
+      "grade": 0,
+      "reason": "Only the inner belt material, not the automatic inflation."
+    },
+    {
+      "claim_id": "20240083199:2",
+      "grade": 2,
+      "reason": "Pressurized gas flows into the inner tube immediately upon detected pressure loss."
+    },
+    {
+      "claim_id": "20240083199:3",
+      "grade": 2,
+      "reason": "Gas generator directs gas into the inner tube immediately upon detected pressure loss."
+    },
+    {
+      "claim_id": "20240083199:4",
+      "grade": 1,
+      "reason": "Propellant detail of the inflation mechanism, does not itself state automatic inner tube inflation."
+    },
+    {
+      "claim_id": "20240083199:5",
+      "grade": 1,
+      "reason": "Propellant chemistry of the inflation mechanism, a related detail."
+    },
+    {
+      "claim_id": "20240083199:6",
+      "grade": 1,
+      "reason": "Type of pressure monitoring for the system, a related detail only."
+    },
+    {
+      "claim_id": "20240083199:7",
+      "grade": 1,
+      "reason": "Type of pressure monitoring for the system, a related detail only."
+    },
+    {
+      "claim_id": "20240083199:8",
+      "grade": 1,
+      "reason": "Pressure sensor placement in the inflation valve, a related detail."
+    },
+    {
+      "claim_id": "20240351376:1",
+      "grade": 1,
+      "reason": "Inner tube and inflating valve in a tire, but no automatic inflation on a flat."
+    },
+    {
+      "claim_id": "20240391279:1",
+      "grade": 0,
+      "reason": "Peristaltic chamber powering a generator; no inner tube or flat-tire inflation."
+    },
+    {
+      "claim_id": "20240391279:12",
+      "grade": 0,
+      "reason": "Only about a coil generating current, nothing on inner tube inflation."
+    },
+    {
+      "claim_id": "20240391279:4",
+      "grade": 1,
+      "reason": "Chamber aperture connected to tire interior or inner tube, but no automatic inflation when flat stated."
+    },
+    {
+      "claim_id": "20240391279:7",
+      "grade": 1,
+      "reason": "Peristaltic chamber connected to tire cavity or inner tube, but no inflation upon going flat stated."
+    }
+  ]
+}

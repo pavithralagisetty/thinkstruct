@@ -1,0 +1,146 @@
+{
+  "question_id": "q20",
+  "question": "motorized lift that holds a wheel upright while a mechanic mounts it on a car on a hoist",
+  "grades": [
+    {
+      "claim_id": "20240051337:1",
+      "grade": 0,
+      "reason": "Wheel carrier and bearing structure of a vehicle, not a lift tool."
+    },
+    {
+      "claim_id": "20240075774:10",
+      "grade": 1,
+      "reason": "Actuated lifting platform raises a wheel onto a tyre changer wheel-holder; related wheel lifting but not mounting on a car."
+    },
+    {
+      "claim_id": "20240075774:15",
+      "grade": 1,
+      "reason": "Lifting platform places a wheel on a tyre changer; related wheel lifting, not mounting on a car."
+    },
+    {
+      "claim_id": "20240109368:14",
+      "grade": 1,
+      "reason": "Mounting brackets bolted to the wheel component; related holding detail only."
+    },
+    {
+      "claim_id": "20240109368:15",
+      "grade": 0,
+      "reason": "Only states the handled component is a wheel spacer/adaptor; no lift or holding of a wheel."
+    },
+    {
+      "claim_id": "20240109368:2",
+      "grade": 1,
+      "reason": "Telescoping height-adjustable support for wheel components; related but not a motorized upright wheel lift."
+    },
+    {
+      "claim_id": "20240109368:5",
+      "grade": 1,
+      "reason": "Movable base of a wheel-component handling support; related detail only."
+    },
+    {
+      "claim_id": "20240109368:6",
+      "grade": 1,
+      "reason": "Rotary drive for a wheel-component handling apparatus; related powered handling detail but not a wheel lift holding it upright."
+    },
+    {
+      "claim_id": "20240109368:7",
+      "grade": 1,
+      "reason": "Linear actuator rotary drive of the handling apparatus; related powered detail only."
+    },
+    {
+      "claim_id": "20240140138:1",
+      "grade": 2,
+      "reason": "DC gear-motor scissor lift raises and lowers a wheel held stable and vertical by a stabilizing arm."
+    },
+    {
+      "claim_id": "20240140138:2",
+      "grade": 1,
+      "reason": "Telescoping stabilizing arm lockable by the mechanic; related detail of the wheel lifter."
+    },
+    {
+      "claim_id": "20240140138:3",
+      "grade": 1,
+      "reason": "Stabilizing arm head rollers hold the wheel vertical, but no motorized lift stated in this claim."
+    },
+    {
+      "claim_id": "20240140138:4",
+      "grade": 1,
+      "reason": "Power supply and drive train of the wheel lifter motor; related detail only."
+    },
+    {
+      "claim_id": "20240140138:5",
+      "grade": 1,
+      "reason": "DC gear motor sized to raise the wheel to the mounting studs; closely related motor detail but does not state holding the wheel upright."
+    },
+    {
+      "claim_id": "20240140138:6",
+      "grade": 1,
+      "reason": "Rollers on the scissor lift table supporting the wheel; related detail without stating the motorized upright-holding lift."
+    },
+    {
+      "claim_id": "20240300270:16",
+      "grade": 0,
+      "reason": "Electric motor in a trailer jack hitch, not a wheel lift."
+    },
+    {
+      "claim_id": "20240367459:7",
+      "grade": 0,
+      "reason": "Only states the hydraulic fluid is a liquid."
+    },
+    {
+      "claim_id": "20240375436:12",
+      "grade": 0,
+      "reason": "Walk-behind ground care vehicle; unrelated."
+    },
+    {
+      "claim_id": "20240375436:13",
+      "grade": 0,
+      "reason": "Electric motor and battery of a work vehicle with locking casters."
+    },
+    {
+      "claim_id": "20240391275:1",
+      "grade": 0,
+      "reason": "Fixing swivel wheels of a non-motorized vehicle; unrelated."
+    },
+    {
+      "claim_id": "20240391275:3",
+      "grade": 0,
+      "reason": "Non-motorized vehicle with swivel wheel fixation; unrelated."
+    },
+    {
+      "claim_id": "20240391275:4",
+      "grade": 0,
+      "reason": "Swivel wheel locking pivots on a non-motorized vehicle; unrelated."
+    },
+    {
+      "claim_id": "20240391282:16",
+      "grade": 0,
+      "reason": "Trailer hitch mount actuator, unrelated to wheel lifting."
+    },
+    {
+      "claim_id": "20250042206:13",
+      "grade": 0,
+      "reason": "Lifting a tire relative to its wheel, i.e. tire demounting, not mounting a wheel on a car."
+    },
+    {
+      "claim_id": "20250042206:17",
+      "grade": 0,
+      "reason": "Detecting actuator position relative to tire/wheel; not a wheel mounting lift."
+    },
+    {
+      "claim_id": "20250042206:18",
+      "grade": 0,
+      "reason": "Detecting implement position relative to tire/wheel; not about lifting a wheel onto a car."
+    },
+    {
+      "claim_id": "20250042206:7",
+      "grade": 0,
+      "reason": "Sensors detecting actuator position relative to a tire/wheel; nothing about lifting a wheel for mounting on a car."
+    },
+    {
+      "claim_id": "20250042206:8",
+      "grade": 0,
+      "reason": "Sensors detecting implement position; not a wheel lift for mounting."
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "question_id": "q27",
+  "question": "RFID tag placed between two rubber layers that cure at different speeds",
+  "grades": [
+    {
+      "claim_id": "20240286436:22",
+      "grade": 1,
+      "reason": "Two rubber layers with different T50 cure times, but the visible text does not mention the RFID device."
+    },
+    {
+      "claim_id": "20240286436:25",
+      "grade": 1,
+      "reason": "Positions the radio device relative to the two layers and inner liner, without stating different cure speeds."
+    },
+    {
+      "claim_id": "20240286436:26",
+      "grade": 1,
+      "reason": "Gives different T50 cure time ranges for the two layers but does not mention the RFID device."
+    },
+    {
+      "claim_id": "20240286436:27",
+      "grade": 1,
+      "reason": "Two rubber layers with different T50 cure times, but the visible text does not mention the RFID device."
+    },
+    {
+      "claim_id": "20240286436:30",
+      "grade": 1,
+      "reason": "Rubber compositions of the two layers only; neither the RFID nor the cure speeds are stated."
+    },
+    {
+      "claim_id": "20240286436:31",
+      "grade": 1,
+      "reason": "Filler content of the two layers only; neither the RFID nor the cure speeds are stated."
+    },
+    {
+      "claim_id": "20240286436:32",
+      "grade": 1,
+      "reason": "Different accelerator to sulfur ratios for the two layers relate to cure speed, but the RFID placement is not stated."
+    },
+    {
+      "claim_id": "20240286436:33",
+      "grade": 1,
+      "reason": "Positions the radio device relative to the two layers and inner liner, without stating different cure speeds."
+    },
+    {
+      "claim_id": "20240286436:34",
+      "grade": 2,
+      "reason": "States a radio device between a first and second rubber layer where the second layer has a longer T50 cure time."
+    },
+    {
+      "claim_id": "20240286436:35",
+      "grade": 0,
+      "reason": "Only adds a pebble-surface curing bladder; nothing about the RFID or the layers."
+    },
+    {
+      "claim_id": "20240286436:38",
+      "grade": 1,
+      "reason": "Rubber compositions of the two layers only; neither the RFID nor the cure speeds are stated."
+    },
+    {
+      "claim_id": "20240286436:39",
+      "grade": 1,
+      "reason": "Filler content of the two layers only; neither the RFID nor the cure speeds are stated."
+    },
+    {
+      "claim_id": "20240286436:40",
+      "grade": 1,
+      "reason": "Different accelerator to sulfur ratios for the two layers relate to cure speed, but the RFID placement is not stated."
+    },
+    {
+      "claim_id": "20240286436:41",
+      "grade": 1,
+      "reason": "Places the radio device with the second layer against the inner liner, but does not state the different cure speeds."
+    },
+    {
+      "claim_id": "20240286439:26",
+      "grade": 0,
+      "reason": "Only the cure package of a single rubber layer; no two layers curing at different speeds."
+    },
+    {
+      "claim_id": "20240416682:28",
+      "grade": 1,
+      "reason": "RFID tag inserted between rubber sheet layers, but no different cure speeds."
+    },
+    {
+      "claim_id": "20240416682:30",
+      "grade": 1,
+      "reason": "RFID tag covered by an unvulcanized rubber coating layer, but no different cure speeds."
+    },
+    {
+      "claim_id": "20240416686:30",
+      "grade": 1,
+      "reason": "RFID tag inserted between rubber sheet layers, but no different cure speeds."
+    }
+  ]
+}

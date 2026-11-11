@@ -1,0 +1,101 @@
+{
+  "question_id": "q18",
+  "question": "wheel that collects tire wear particles by sucking them in through ports in the rim",
+  "grades": [
+    {
+      "claim_id": "20240190172:1",
+      "grade": 2,
+      "reason": "States rim suction ports between tires, a particle collector and a suction flow sucking particles through the ports."
+    },
+    {
+      "claim_id": "20240190172:10",
+      "grade": 2,
+      "reason": "States suction ports through the rim groove bottom, a particle collector and a suction airflow sucking particles."
+    },
+    {
+      "claim_id": "20240190172:11",
+      "grade": 1,
+      "reason": "Placement of bladed suction structures and suction ports; related detail."
+    },
+    {
+      "claim_id": "20240190172:12",
+      "grade": 1,
+      "reason": "Detail of the air passage shape from the suction ports; does not itself state particle collection through rim ports."
+    },
+    {
+      "claim_id": "20240190172:13",
+      "grade": 1,
+      "reason": "Arrangement of suction ports around the particle collector; related detail, not the full suction collection concept."
+    },
+    {
+      "claim_id": "20240190172:14",
+      "grade": 1,
+      "reason": "Filtering body collector and air passage routing; related detail without stating rim ports collecting wear particles."
+    },
+    {
+      "claim_id": "20240190172:15",
+      "grade": 2,
+      "reason": "States a rim with suction ports, particle collector and suction system sucking particles from the tire-ground interface."
+    },
+    {
+      "claim_id": "20240190172:16",
+      "grade": 1,
+      "reason": "Bladed suction structure connecting hub to rim outer ring; related structural detail."
+    },
+    {
+      "claim_id": "20240190172:17",
+      "grade": 1,
+      "reason": "Hub fixation and collector inlet/outlets; related detail."
+    },
+    {
+      "claim_id": "20240190172:18",
+      "grade": 1,
+      "reason": "Suction ports through a circular groove bottom surface; related detail."
+    },
+    {
+      "claim_id": "20240190172:19",
+      "grade": 1,
+      "reason": "Brake disc surrounded by suction ports; related detail."
+    },
+    {
+      "claim_id": "20240190172:2",
+      "grade": 1,
+      "reason": "Suction port ramp geometry; related detail."
+    },
+    {
+      "claim_id": "20240190172:20",
+      "grade": 1,
+      "reason": "Filtering body on one side of the wheel; related detail."
+    },
+    {
+      "claim_id": "20240190172:3",
+      "grade": 1,
+      "reason": "Adds a separation wall in the air passage; related detail only."
+    },
+    {
+      "claim_id": "20240190172:4",
+      "grade": 1,
+      "reason": "Blade and airfoil shape of the suction structure; related detail."
+    },
+    {
+      "claim_id": "20240190172:5",
+      "grade": 1,
+      "reason": "Spokes formed by the bladed suction structure and non-pneumatic tire; related detail."
+    },
+    {
+      "claim_id": "20240190172:6",
+      "grade": 1,
+      "reason": "Location of the bladed suction structure within the rim; related detail."
+    },
+    {
+      "claim_id": "20240190172:7",
+      "grade": 1,
+      "reason": "Tire channels toward suction ports; related detail only."
+    },
+    {
+      "claim_id": "20240190172:9",
+      "grade": 1,
+      "reason": "Suction ports crossing the rim outer ring; related detail without stating particle collection."
+    }
+  ]
+}

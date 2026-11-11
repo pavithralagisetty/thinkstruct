@@ -1,0 +1,226 @@
+{
+  "question_id": "q23",
+  "question": "caster with a built-in brake and a spring between the wheel and its housing",
+  "grades": [
+    {
+      "claim_id": "20240198726:1",
+      "grade": 1,
+      "reason": "Caster with brake ring and brake block in body; no spring."
+    },
+    {
+      "claim_id": "20240198726:10",
+      "grade": 1,
+      "reason": "Caster brake ring alignment; no spring."
+    },
+    {
+      "claim_id": "20240198726:11",
+      "grade": 1,
+      "reason": "Caster brake ring mounting on hub; no spring."
+    },
+    {
+      "claim_id": "20240198726:12",
+      "grade": 1,
+      "reason": "Caster brake ring material; no spring."
+    },
+    {
+      "claim_id": "20240198726:15",
+      "grade": 1,
+      "reason": "Caster brake block material; no spring."
+    },
+    {
+      "claim_id": "20240198726:16",
+      "grade": 1,
+      "reason": "Caster brake block vertical movement; no spring."
+    },
+    {
+      "claim_id": "20240198726:20",
+      "grade": 1,
+      "reason": "Caster with integrated brake block and ring; no spring."
+    },
+    {
+      "claim_id": "20240198726:21",
+      "grade": 1,
+      "reason": "Caster brake ring alignment; no spring."
+    },
+    {
+      "claim_id": "20240198726:22",
+      "grade": 1,
+      "reason": "Caster brake ring mounting on hub; no spring."
+    },
+    {
+      "claim_id": "20240198726:23",
+      "grade": 1,
+      "reason": "Caster brake block material; no spring."
+    },
+    {
+      "claim_id": "20240198726:26",
+      "grade": 1,
+      "reason": "Caster brake ring material; no spring."
+    },
+    {
+      "claim_id": "20240198726:27",
+      "grade": 1,
+      "reason": "Caster brake block vertical movement; no spring."
+    },
+    {
+      "claim_id": "20240198726:9",
+      "grade": 1,
+      "reason": "Caster with integrated brake ring and block; no spring."
+    },
+    {
+      "claim_id": "20240208265:1",
+      "grade": 2,
+      "reason": "Caster with spring assembly between receptacle and wheel shaft and an integrated braking unit."
+    },
+    {
+      "claim_id": "20240208265:2",
+      "grade": 1,
+      "reason": "Caster braking units on wheel rims; no spring stated."
+    },
+    {
+      "claim_id": "20240208265:3",
+      "grade": 1,
+      "reason": "Braking pieces mounted in caster receptacle housing; no spring stated."
+    },
+    {
+      "claim_id": "20240208265:4",
+      "grade": 1,
+      "reason": "Braking piece engagement with caster housing walls; no spring."
+    },
+    {
+      "claim_id": "20240208265:5",
+      "grade": 0,
+      "reason": "Only a protuberance between protrusion and wall edge; no brake or spring stated."
+    },
+    {
+      "claim_id": "20240208265:6",
+      "grade": 0,
+      "reason": "Only states a protuberance shape; no brake or spring."
+    },
+    {
+      "claim_id": "20240208265:7",
+      "grade": 1,
+      "reason": "Braking piece retention in caster housing; no spring."
+    },
+    {
+      "claim_id": "20240208265:8",
+      "grade": 1,
+      "reason": "Caster braking surface shape; no spring stated."
+    },
+    {
+      "claim_id": "20240208265:9",
+      "grade": 1,
+      "reason": "Caster brake teeth structure detail; no spring stated."
+    },
+    {
+      "claim_id": "20240278599:1",
+      "grade": 1,
+      "reason": "Caster with built-in brake arm and lever but no spring."
+    },
+    {
+      "claim_id": "20240278599:10",
+      "grade": 1,
+      "reason": "Caster brake arm buffer pad; no spring."
+    },
+    {
+      "claim_id": "20240278599:14",
+      "grade": 0,
+      "reason": "Only lever arm clevis joint to dolly frame; no brake or spring stated."
+    },
+    {
+      "claim_id": "20240278599:2",
+      "grade": 0,
+      "reason": "Only a cam on the lever arm engaging the pin; no brake or spring stated."
+    },
+    {
+      "claim_id": "20240278599:3",
+      "grade": 1,
+      "reason": "Caster brake arm bracket detail; no spring."
+    },
+    {
+      "claim_id": "20240278599:4",
+      "grade": 0,
+      "reason": "Only lever arm handle geometry; no brake or spring stated."
+    },
+    {
+      "claim_id": "20240278599:5",
+      "grade": 0,
+      "reason": "Only an angle range; no brake or spring stated."
+    },
+    {
+      "claim_id": "20240278599:6",
+      "grade": 1,
+      "reason": "Lever orientation relative to brake arm positions; no spring."
+    },
+    {
+      "claim_id": "20240278599:7",
+      "grade": 0,
+      "reason": "Only pin diameters; no brake or spring stated."
+    },
+    {
+      "claim_id": "20240278599:8",
+      "grade": 0,
+      "reason": "Only pin geometry; no brake or spring stated."
+    },
+    {
+      "claim_id": "20240278599:9",
+      "grade": 0,
+      "reason": "Only pin material; no brake or spring stated."
+    },
+    {
+      "claim_id": "20240300263:4",
+      "grade": 1,
+      "reason": "Caster brake member with resilient member biasing it, but the spring is in the brake, not between wheel and housing."
+    },
+    {
+      "claim_id": "20250033409:14",
+      "grade": 1,
+      "reason": "Castor brake pedal and shoe thickness; no spring."
+    },
+    {
+      "claim_id": "20250033409:16",
+      "grade": 0,
+      "reason": "Only wheel toe angle; no brake or spring stated."
+    },
+    {
+      "claim_id": "20250033409:17",
+      "grade": 1,
+      "reason": "Castor brake shoe hardness; no spring."
+    },
+    {
+      "claim_id": "20250033409:18",
+      "grade": 1,
+      "reason": "Castor brake shoe hardness; no spring."
+    },
+    {
+      "claim_id": "20250033409:2",
+      "grade": 1,
+      "reason": "Castor brake pedal axle placement; no spring."
+    },
+    {
+      "claim_id": "20250033409:3",
+      "grade": 1,
+      "reason": "Castor brake pedal axle placement; no spring."
+    },
+    {
+      "claim_id": "20250033409:4",
+      "grade": 1,
+      "reason": "Castor brake pedal axle position; no spring between wheel and housing."
+    },
+    {
+      "claim_id": "20250033409:5",
+      "grade": 1,
+      "reason": "Castor brake shoe placement; no spring."
+    },
+    {
+      "claim_id": "20250033409:6",
+      "grade": 1,
+      "reason": "Castor braking device pressing wheels; no spring."
+    },
+    {
+      "claim_id": "20250033409:9",
+      "grade": 1,
+      "reason": "Castor brake shoe position; no spring."
+    }
+  ]
+}

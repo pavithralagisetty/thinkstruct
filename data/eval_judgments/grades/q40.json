@@ -1,0 +1,161 @@
+{
+  "question_id": "q40",
+  "question": "reducing rattle between a tow hitch mount and the receiver",
+  "grades": [
+    {
+      "claim_id": "20240075776:10",
+      "grade": 0,
+      "reason": "Four-bar linkage for height adjustment, unrelated to rattle."
+    },
+    {
+      "claim_id": "20240075776:11",
+      "grade": 0,
+      "reason": "Load measuring hitch receiver, unrelated to rattle."
+    },
+    {
+      "claim_id": "20240075776:12",
+      "grade": 0,
+      "reason": "Bearings for load measuring receiver, unrelated to rattle."
+    },
+    {
+      "claim_id": "20240075776:2",
+      "grade": 0,
+      "reason": "Plural linkages for height adjustment, unrelated."
+    },
+    {
+      "claim_id": "20240075776:24",
+      "grade": 0,
+      "reason": "Method of measuring hitch tongue load, unrelated to rattle."
+    },
+    {
+      "claim_id": "20240075776:3",
+      "grade": 0,
+      "reason": "Transverse support for linkage mechanisms, unrelated to rattle."
+    },
+    {
+      "claim_id": "20240075776:4",
+      "grade": 0,
+      "reason": "Multiple actuators for height adjustment, unrelated."
+    },
+    {
+      "claim_id": "20240075776:5",
+      "grade": 0,
+      "reason": "Actuator type for height adjustment, unrelated to rattle."
+    },
+    {
+      "claim_id": "20240075776:6",
+      "grade": 0,
+      "reason": "Hydraulic or pneumatic actuator for height adjustment, unrelated."
+    },
+    {
+      "claim_id": "20240075776:7",
+      "grade": 0,
+      "reason": "Linear actuator coupling for height adjustment, unrelated."
+    },
+    {
+      "claim_id": "20240075776:9",
+      "grade": 1,
+      "reason": "Shock absorber minimizing receiver portion movement in transit is related but not between mount and receiver."
+    },
+    {
+      "claim_id": "20240391281:1",
+      "grade": 2,
+      "reason": "Claims a dampener compressed between the tow mount base and the hitch platform that sits in the receiver tube, squarely coupling them."
+    },
+    {
+      "claim_id": "20240391281:10",
+      "grade": 2,
+      "reason": "Claims a dampener compressed against the channel member when the tow mount is secured to the hitch platform inserted in the receiver tube."
+    },
+    {
+      "claim_id": "20240391281:11",
+      "grade": 0,
+      "reason": "Only describes three hitch balls of different diameters."
+    },
+    {
+      "claim_id": "20240391281:12",
+      "grade": 0,
+      "reason": "Only lists tow accessory mount types."
+    },
+    {
+      "claim_id": "20240391281:13",
+      "grade": 1,
+      "reason": "Cross members giving lateral support to the mount base relate to fit and play but no damping stated."
+    },
+    {
+      "claim_id": "20240391281:14",
+      "grade": 0,
+      "reason": "Only describes three hitch balls of different diameters."
+    },
+    {
+      "claim_id": "20240391281:15",
+      "grade": 0,
+      "reason": "Only adds step or hook accessory mounts."
+    },
+    {
+      "claim_id": "20240391281:16",
+      "grade": 0,
+      "reason": "Only adds a pintle hook."
+    },
+    {
+      "claim_id": "20240391281:17",
+      "grade": 1,
+      "reason": "Dampener adhered or fused to the hitch platform; related dampener detail only."
+    },
+    {
+      "claim_id": "20240391281:18",
+      "grade": 1,
+      "reason": "How the dampener is attached by screws; related detail only."
+    },
+    {
+      "claim_id": "20240391281:19",
+      "grade": 1,
+      "reason": "Placement of the dampener on the recessed column; related detail only."
+    },
+    {
+      "claim_id": "20240391281:2",
+      "grade": 1,
+      "reason": "Fit between hitch platform front surface and mount base is related to play, but no damping or rattle stated."
+    },
+    {
+      "claim_id": "20240391281:20",
+      "grade": 1,
+      "reason": "Dampener member is detachable; related dampener detail only."
+    },
+    {
+      "claim_id": "20240391281:3",
+      "grade": 0,
+      "reason": "Text is only a fragment with no content."
+    },
+    {
+      "claim_id": "20240391281:4",
+      "grade": 1,
+      "reason": "Dampener affixed by adhesion, fusion or coating; related detail only."
+    },
+    {
+      "claim_id": "20240391281:5",
+      "grade": 1,
+      "reason": "Placement of the dampener border on the mount base; related detail, does not state rattle reduction."
+    },
+    {
+      "claim_id": "20240391281:6",
+      "grade": 1,
+      "reason": "Detail of the dampener member shape, not the rattle reduction itself."
+    },
+    {
+      "claim_id": "20240391281:7",
+      "grade": 1,
+      "reason": "Dampener is detachably affixed; related dampener detail only."
+    },
+    {
+      "claim_id": "20240391281:8",
+      "grade": 0,
+      "reason": "Only describes dual hitch balls of different diameters."
+    },
+    {
+      "claim_id": "20240391282:18",
+      "grade": 0,
+      "reason": "Locking mechanisms for stowed/deployed positions, nothing on rattle or damping."
+    }
+  ]
+}

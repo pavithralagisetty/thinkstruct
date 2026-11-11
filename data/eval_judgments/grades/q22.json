@@ -1,0 +1,86 @@
+{
+  "question_id": "q22",
+  "question": "tire handler that can tilt a large tire and lay it flat",
+  "grades": [
+    {
+      "claim_id": "20240165992:1",
+      "grade": 2,
+      "reason": "Tire handler grips and lifts the tire and a tilt assembly moves it between vertical and horizontal to lay the tire flat."
+    },
+    {
+      "claim_id": "20240165992:10",
+      "grade": 2,
+      "reason": "States a tilt actuator moving the tire-gripping arm assembly between vertical and horizontal positions, i.e. tilting the tire flat."
+    },
+    {
+      "claim_id": "20240165992:11",
+      "grade": 1,
+      "reason": "Describes how the arm assembly couples to the tilt assembly, closely related to tilting but does not state laying the tire flat."
+    },
+    {
+      "claim_id": "20240165992:12",
+      "grade": 1,
+      "reason": "Specifies the handled tire includes a rim, a related detail but no tilting or laying flat."
+    },
+    {
+      "claim_id": "20240165992:13",
+      "grade": 0,
+      "reason": "Only describes a U-shaped frame."
+    },
+    {
+      "claim_id": "20240165992:15",
+      "grade": 0,
+      "reason": "Only states the handler is self-propelled with a motor."
+    },
+    {
+      "claim_id": "20240165992:16",
+      "grade": 1,
+      "reason": "Tire handler gripping arms shift the tire laterally, a related handling detail but not tilting or laying flat."
+    },
+    {
+      "claim_id": "20240165992:17",
+      "grade": 1,
+      "reason": "Double-ended telescoping arms allow lateral movement of the gripping arms, a related handling detail but not tilting."
+    },
+    {
+      "claim_id": "20240165992:2",
+      "grade": 0,
+      "reason": "Only adds a remote control unit."
+    },
+    {
+      "claim_id": "20240165992:3",
+      "grade": 0,
+      "reason": "Only adds front and rear wheels to the frame; nothing about tilting or laying a tire flat."
+    },
+    {
+      "claim_id": "20240165992:4",
+      "grade": 0,
+      "reason": "Only adds a battery for power."
+    },
+    {
+      "claim_id": "20240165992:5",
+      "grade": 0,
+      "reason": "Only states the vehicle is a truck."
+    },
+    {
+      "claim_id": "20240165992:6",
+      "grade": 0,
+      "reason": "Only states the handler is remotely controllable."
+    },
+    {
+      "claim_id": "20240165992:7",
+      "grade": 0,
+      "reason": "Only states the handler is locally controllable."
+    },
+    {
+      "claim_id": "20240165992:8",
+      "grade": 0,
+      "reason": "Only adds an operator platform or deck."
+    },
+    {
+      "claim_id": "20240165992:9",
+      "grade": 1,
+      "reason": "Actuators of the tire handler are hydraulic cylinders, a related mechanism detail without stating tilt or lay flat."
+    }
+  ]
+}

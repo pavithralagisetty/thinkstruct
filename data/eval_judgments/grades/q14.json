@@ -1,0 +1,201 @@
+{
+  "question_id": "q14",
+  "question": "wheel finished with two colour coat layers, one covering the other",
+  "grades": [
+    {
+      "claim_id": "20240059101:13",
+      "grade": 0,
+      "reason": "Tire carcass and belt layers; unrelated."
+    },
+    {
+      "claim_id": "20240059101:24",
+      "grade": 0,
+      "reason": "Tire carcass plies, unrelated to colour coats."
+    },
+    {
+      "claim_id": "20240100885:1",
+      "grade": 0,
+      "reason": "Tire crown reinforcement; unrelated."
+    },
+    {
+      "claim_id": "20240100885:2",
+      "grade": 0,
+      "reason": "Tire crown layers; unrelated."
+    },
+    {
+      "claim_id": "20240100885:3",
+      "grade": 0,
+      "reason": "Tire crown working layers, not wheel colour coatings."
+    },
+    {
+      "claim_id": "20240100885:5",
+      "grade": 0,
+      "reason": "Tire crown working layers; unrelated."
+    },
+    {
+      "claim_id": "20240116309:14",
+      "grade": 0,
+      "reason": "Same gloss level of over-coating; no colour layers."
+    },
+    {
+      "claim_id": "20240116309:15",
+      "grade": 1,
+      "reason": "Coloured over-coating on a wheel, but only one colour coat is stated."
+    },
+    {
+      "claim_id": "20240116309:16",
+      "grade": 1,
+      "reason": "Wheel over-coating with several polymer layers, but colour not stated."
+    },
+    {
+      "claim_id": "20240116309:17",
+      "grade": 1,
+      "reason": "Primer coating beneath an over-coating on a wheel; layered coats but not colour layers."
+    },
+    {
+      "claim_id": "20240116309:18",
+      "grade": 1,
+      "reason": "Layered wheel coatings (intermediate over primer) but no colour coats stated."
+    },
+    {
+      "claim_id": "20240116309:19",
+      "grade": 1,
+      "reason": "Layer stack on wheel (primer, metal layer, over-coat) but no two colour coats."
+    },
+    {
+      "claim_id": "20240116309:20",
+      "grade": 0,
+      "reason": "Substrate visible through over-coat; no colour layers stated."
+    },
+    {
+      "claim_id": "20240116309:21",
+      "grade": 0,
+      "reason": "Applique is three dimensional; nothing about coats."
+    },
+    {
+      "claim_id": "20240116309:22",
+      "grade": 0,
+      "reason": "Applique is two dimensional; nothing about coats."
+    },
+    {
+      "claim_id": "20240116309:8",
+      "grade": 1,
+      "reason": "Second coloured coating applied over a first coating on a wheel, but the first is transparent, not a colour coat."
+    },
+    {
+      "claim_id": "20240174024:29",
+      "grade": 0,
+      "reason": "Article comprising a rubber composite; unrelated."
+    },
+    {
+      "claim_id": "20240190168:1",
+      "grade": 1,
+      "reason": "States a second colour-giving coating layer covering a first one, but on a generic base body, not a wheel."
+    },
+    {
+      "claim_id": "20240190168:10",
+      "grade": 1,
+      "reason": "Detail of removing the second coating layer in the two-layer paint method; layering on a wheel not stated."
+    },
+    {
+      "claim_id": "20240190168:11",
+      "grade": 1,
+      "reason": "Mechanical removal of the second coating layer of the two-layer paint; does not itself state the layering on a wheel."
+    },
+    {
+      "claim_id": "20240190168:2",
+      "grade": 1,
+      "reason": "States the component is a vehicle wheel, but the two colour layers are only in the main claim."
+    },
+    {
+      "claim_id": "20240190168:9",
+      "grade": 1,
+      "reason": "Applies a second colour-giving layer covering a first, but to a generic base body, not a wheel."
+    },
+    {
+      "claim_id": "20240270016:10",
+      "grade": 0,
+      "reason": "Only says the wheel is a composite material; nothing about colour coats."
+    },
+    {
+      "claim_id": "20240270016:17",
+      "grade": 0,
+      "reason": "Only says the wheel is a composite material."
+    },
+    {
+      "claim_id": "20240270016:9",
+      "grade": 0,
+      "reason": "Only says the wheel is a composite material."
+    },
+    {
+      "claim_id": "20240294035:18",
+      "grade": 0,
+      "reason": "Printed image layers at depths, not colour coat layers on a wheel."
+    },
+    {
+      "claim_id": "20240294035:2",
+      "grade": 0,
+      "reason": "Printed image layers at depths forming a 3D graphic, not colour coats on a wheel."
+    },
+    {
+      "claim_id": "20240294035:20",
+      "grade": 0,
+      "reason": "Printed layers with different densities, not colour coats."
+    },
+    {
+      "claim_id": "20240294035:3",
+      "grade": 0,
+      "reason": "Translucent printed layer of a wheel cover, not colour coats."
+    },
+    {
+      "claim_id": "20240294035:4",
+      "grade": 0,
+      "reason": "Printed layers with different density, not colour coats."
+    },
+    {
+      "claim_id": "20240294035:5",
+      "grade": 0,
+      "reason": "Printing process for a wheel cover image, not colour coat layers."
+    },
+    {
+      "claim_id": "20240424828:11",
+      "grade": 0,
+      "reason": "Interchanging a coloured substrate, not coat layers on a wheel."
+    },
+    {
+      "claim_id": "20240424828:5",
+      "grade": 0,
+      "reason": "Coloured surface and reflective spoke geometry, not coat layers."
+    },
+    {
+      "claim_id": "20240424828:6",
+      "grade": 0,
+      "reason": "Spoke sets reflecting coloured surfaces, not colour coat layers."
+    },
+    {
+      "claim_id": "20240424828:7",
+      "grade": 0,
+      "reason": "Lid covering the mount with a coloured surface underneath; not coat layers."
+    },
+    {
+      "claim_id": "20240424828:8",
+      "grade": 0,
+      "reason": "Interchangeable coloured substrates in a lid, not coat layers."
+    },
+    {
+      "claim_id": "20240424828:9",
+      "grade": 0,
+      "reason": "Surface textures of a reflective surface, not colour coats."
+    },
+    {
+      "claim_id": "20250128541:14",
+      "grade": 0,
+      "reason": "Locking elements of a wheel cover; unrelated."
+    },
+    {
+      "claim_id": "20250128541:20",
+      "grade": 0,
+      "reason": "Locking elements of a wheel cover; unrelated."
+    }
+  ]
+}

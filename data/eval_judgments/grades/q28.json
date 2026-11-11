@@ -1,0 +1,166 @@
+{
+  "question_id": "q28",
+  "question": "ratio of rim width to tire width in an aircraft radial tire",
+  "grades": [
+    {
+      "claim_id": "20240066922:2",
+      "grade": 0,
+      "reason": "Ratio of tread arc radii, not rim width to tire width."
+    },
+    {
+      "claim_id": "20240270020:1",
+      "grade": 2,
+      "reason": "Aircraft radial tire with rim width RW to tire maximum width W satisfying RW/W<=0.7."
+    },
+    {
+      "claim_id": "20240270020:2",
+      "grade": 1,
+      "reason": "Aircraft radial tire on its applicable rim with a dimensional ratio near the rim flange, but not rim width to tire width."
+    },
+    {
+      "claim_id": "20240270020:3",
+      "grade": 0,
+      "reason": "Aircraft tire stiffener sheet rubber; nothing about rim width ratio."
+    },
+    {
+      "claim_id": "20240270020:5",
+      "grade": 0,
+      "reason": "Aircraft tire stiffener tan delta comparison; nothing about rim width ratio."
+    },
+    {
+      "claim_id": "20240270020:7",
+      "grade": 0,
+      "reason": "Aircraft tire stiffener tan delta comparison; nothing about rim width ratio."
+    },
+    {
+      "claim_id": "20240270020:8",
+      "grade": 0,
+      "reason": "Aircraft tire stiffener tan delta comparison; nothing about rim width ratio."
+    },
+    {
+      "claim_id": "20240270020:9",
+      "grade": 0,
+      "reason": "Aircraft tire stiffener tan delta comparison; nothing about rim width ratio."
+    },
+    {
+      "claim_id": "20240408915:1",
+      "grade": 0,
+      "reason": "Passenger tire SW/OD and single main groove; no rim width to tire width ratio."
+    },
+    {
+      "claim_id": "20240408916:2",
+      "grade": 0,
+      "reason": "Passenger tire SW/OD and groove layout; no rim width to tire width ratio."
+    },
+    {
+      "claim_id": "20240408916:3",
+      "grade": 0,
+      "reason": "Passenger tire SW/OD and tread gauge; no rim width to tire width ratio."
+    },
+    {
+      "claim_id": "20240416685:1",
+      "grade": 0,
+      "reason": "Passenger tire SW/OD and communication device placement; no rim width ratio."
+    },
+    {
+      "claim_id": "20240416685:5",
+      "grade": 0,
+      "reason": "Only states the communication device is an RF tag."
+    },
+    {
+      "claim_id": "20240424835:1",
+      "grade": 0,
+      "reason": "Passenger tire SW/OD ratio and negative ratio; no rim width to tire width ratio."
+    },
+    {
+      "claim_id": "20240424835:10",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20240424835:11",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20240424835:2",
+      "grade": 0,
+      "reason": "Passenger tire SW/OD and contact length; no rim width to tire width ratio."
+    },
+    {
+      "claim_id": "20240424835:3",
+      "grade": 0,
+      "reason": "Passenger tire SW/OD and tread gauge; no rim width to tire width ratio."
+    },
+    {
+      "claim_id": "20240424835:4",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20240424835:5",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20240424835:6",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20240424835:8",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20250001808:1",
+      "grade": 0,
+      "reason": "Passenger tire width to outer diameter ratio, not rim width to tire width in an aircraft tire."
+    },
+    {
+      "claim_id": "20250001808:10",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20250001808:11",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20250001808:2",
+      "grade": 0,
+      "reason": "Passenger tire SW/OD and contact length; no rim width to tire width ratio."
+    },
+    {
+      "claim_id": "20250001808:3",
+      "grade": 0,
+      "reason": "Passenger tire SW/OD and tread gauge; no rim width to tire width ratio."
+    },
+    {
+      "claim_id": "20250001808:4",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20250001808:5",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20250001808:6",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20250001808:8",
+      "grade": 0,
+      "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+    },
+    {
+      "claim_id": "20250026146:7",
+      "grade": 0,
+      "reason": "Bicycle rim flange corner radius ratio, not aircraft rim to tire width."
+    }
+  ]
+}

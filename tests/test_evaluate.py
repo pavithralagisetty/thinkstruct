@@ -122,7 +122,7 @@ def test_unknown_candidate(index):
 
 def test_questions_file():
     questions = evaluate.load_questions()
-    assert [q["id"] for q in questions] == [f"q{i:02d}" for i in range(1, 11)]
+    assert [q["id"] for q in questions] == [f"q{i:02d}" for i in range(1, 41)]
     assert all(set(q) == {"id", "text"} and q["text"] for q in questions)
 
 

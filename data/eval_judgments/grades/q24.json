@@ -1,0 +1,106 @@
+{
+  "question_id": "q24",
+  "question": "keeping a planter gauge wheel from coming off when its bearing fails",
+  "grades": [
+    {
+      "claim_id": "20240165995:1",
+      "grade": 2,
+      "reason": "States a retaining member sized so the wheel is retained on the sleeve when the bearing fails."
+    },
+    {
+      "claim_id": "20240165995:10",
+      "grade": 1,
+      "reason": "Retaining diameter larger than bearing diameter, related sizing detail only."
+    },
+    {
+      "claim_id": "20240165995:11",
+      "grade": 1,
+      "reason": "Retaining diameter larger than bearing outer race, related sizing detail without stating the failure retention."
+    },
+    {
+      "claim_id": "20240165995:12",
+      "grade": 2,
+      "reason": "States the wheel is retained and does not separate from the wheel mount when the bearing fails."
+    },
+    {
+      "claim_id": "20240165995:13",
+      "grade": 1,
+      "reason": "Weldment engaging bolt head, related construction detail only."
+    },
+    {
+      "claim_id": "20240165995:14",
+      "grade": 1,
+      "reason": "Shape of the retaining member, related detail but no statement of retention on bearing failure."
+    },
+    {
+      "claim_id": "20240165995:15",
+      "grade": 2,
+      "reason": "States a retaining member that keeps the wheel on the sleeve when the wheel bearing fails."
+    },
+    {
+      "claim_id": "20240165995:16",
+      "grade": 2,
+      "reason": "States the wheel is retained and does not separate from the mount when the bearing fails."
+    },
+    {
+      "claim_id": "20240165995:18",
+      "grade": 1,
+      "reason": "Shape of the retaining member, related detail only."
+    },
+    {
+      "claim_id": "20240165995:19",
+      "grade": 1,
+      "reason": "Places the wheel retainer outward of the bearing, a related detail, but does not itself state retention on bearing failure."
+    },
+    {
+      "claim_id": "20240165995:2",
+      "grade": 1,
+      "reason": "Retaining diameter greater than bearing diameter, related sizing detail only."
+    },
+    {
+      "claim_id": "20240165995:20",
+      "grade": 0,
+      "reason": "Only describes wheel ground-engagement orientation, nothing about retention or bearing failure."
+    },
+    {
+      "claim_id": "20240165995:3",
+      "grade": 1,
+      "reason": "Retaining diameter larger than outer race inner diameter, related sizing detail only."
+    },
+    {
+      "claim_id": "20240165995:4",
+      "grade": 2,
+      "reason": "States the wheel is retained and does not fully separate from the mount when the bearing fails."
+    },
+    {
+      "claim_id": "20240165995:5",
+      "grade": 1,
+      "reason": "Weld attachment of the retaining member, related detail only."
+    },
+    {
+      "claim_id": "20240165995:6",
+      "grade": 1,
+      "reason": "Weldment engaging the bolt head, related construction detail only."
+    },
+    {
+      "claim_id": "20240165995:7",
+      "grade": 1,
+      "reason": "Material of the retainer sleeve and retaining member, a related detail without stating retention on bearing failure."
+    },
+    {
+      "claim_id": "20240165995:8",
+      "grade": 1,
+      "reason": "Sleeve and retaining member integrally formed, related detail only."
+    },
+    {
+      "claim_id": "20240165995:9",
+      "grade": 2,
+      "reason": "States a wheel retainer that keeps the wheel on the sleeve when the wheel bearing fails."
+    },
+    {
+      "claim_id": "20250100329:18",
+      "grade": 0,
+      "reason": "Gauge wheel tire protrusion for cleaning debris, unrelated to retaining the wheel on bearing failure."
+    }
+  ]
+}

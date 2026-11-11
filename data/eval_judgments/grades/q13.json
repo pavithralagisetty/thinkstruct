@@ -1,0 +1,96 @@
+{
+  "question_id": "q13",
+  "question": "vent plug with a tapered passage that seals itself",
+  "grades": [
+    {
+      "claim_id": "20250121628:1",
+      "grade": 2,
+      "reason": "States a vent plug with a tapered conical vent aperture and a spring-biased poppet seal that closes against it."
+    },
+    {
+      "claim_id": "20250121628:10",
+      "grade": 1,
+      "reason": "Vent plug coil spring around the poppet stem; related to self-closing but does not state the tapered passage."
+    },
+    {
+      "claim_id": "20250121628:11",
+      "grade": 1,
+      "reason": "Vent plug pilot diameter and stem shape detail; does not state the tapered self-sealing passage."
+    },
+    {
+      "claim_id": "20250121628:12",
+      "grade": 1,
+      "reason": "Conical surface leading to a pilot diameter with seal retention; closely related detail but does not state self-sealing."
+    },
+    {
+      "claim_id": "20250121628:13",
+      "grade": 1,
+      "reason": "Poppet end surface position in the closed position; sealing mechanism detail only."
+    },
+    {
+      "claim_id": "20250121628:14",
+      "grade": 1,
+      "reason": "Vent plug deformable retention apron; on topic but about mounting, not the tapered sealing passage."
+    },
+    {
+      "claim_id": "20250121628:15",
+      "grade": 2,
+      "reason": "States a vent plug with a tapered conical vent aperture and a spring-biased poppet seal that closes against it."
+    },
+    {
+      "claim_id": "20250121628:16",
+      "grade": 1,
+      "reason": "Vent plug pilot diameter and stem shape detail; on topic but does not state a tapered self-sealing passage."
+    },
+    {
+      "claim_id": "20250121628:17",
+      "grade": 1,
+      "reason": "Conical surface leading to a pilot diameter with seal retention; closely related detail but does not state self-sealing."
+    },
+    {
+      "claim_id": "20250121628:18",
+      "grade": 1,
+      "reason": "Poppet end surface position in the closed position; sealing mechanism detail only."
+    },
+    {
+      "claim_id": "20250121628:2",
+      "grade": 1,
+      "reason": "Vent plug pilot diameter and stem shape detail; does not state the tapered self-sealing passage."
+    },
+    {
+      "claim_id": "20250121628:3",
+      "grade": 1,
+      "reason": "Vent plug stem shoulders engaging the aperture; mechanism detail, not the tapered self-sealing passage."
+    },
+    {
+      "claim_id": "20250121628:4",
+      "grade": 1,
+      "reason": "Vent plug coil spring around the poppet stem; related to self-closing but does not state the tapered passage."
+    },
+    {
+      "claim_id": "20250121628:5",
+      "grade": 1,
+      "reason": "Conical surface leading to a pilot diameter with seal retention; closely related detail but does not state self-sealing."
+    },
+    {
+      "claim_id": "20250121628:6",
+      "grade": 1,
+      "reason": "Vent plug poppet end surface position in the closed position; a detail of the sealing mechanism, not the tapered self-sealing passage itself."
+    },
+    {
+      "claim_id": "20250121628:7",
+      "grade": 1,
+      "reason": "Vent plug deformable retention apron; on topic but about mounting, not the tapered sealing passage."
+    },
+    {
+      "claim_id": "20250121628:8",
+      "grade": 2,
+      "reason": "States a vent plug with a tapered conical vent aperture and a spring-biased poppet seal that closes against it."
+    },
+    {
+      "claim_id": "20250121628:9",
+      "grade": 1,
+      "reason": "Vent plug pilot diameter and stem shape detail; does not state the tapered self-sealing passage."
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "question_id": "q39",
+  "question": "weighing a caravan or trailer at the same height as the tow hitch",
+  "grades": [
+    {
+      "claim_id": "20240294043:12",
+      "grade": 0,
+      "reason": "Hitch alignment guide, no weighing."
+    },
+    {
+      "claim_id": "20240294043:17",
+      "grade": 0,
+      "reason": "Trailer proximity sensing for hitching, no weighing."
+    },
+    {
+      "claim_id": "20240294043:19",
+      "grade": 0,
+      "reason": "Tongue position sensing for hitching, no weighing."
+    },
+    {
+      "claim_id": "20240294043:4",
+      "grade": 0,
+      "reason": "Camera based trailer proximity sensing, no weighing."
+    },
+    {
+      "claim_id": "20240359511:1",
+      "grade": 1,
+      "reason": "Scale frame mounted on the hitch with adjacent weighing station, height match not stated."
+    },
+    {
+      "claim_id": "20240359511:10",
+      "grade": 1,
+      "reason": "Screw lock fixing scale to towing vehicle hitch, related mounting detail only."
+    },
+    {
+      "claim_id": "20240359511:11",
+      "grade": 1,
+      "reason": "Weighing station is a mock towball, related but no height statement."
+    },
+    {
+      "claim_id": "20240359511:12",
+      "grade": 1,
+      "reason": "Mock towball load cell measuring vertical load, but height relative to hitch not stated."
+    },
+    {
+      "claim_id": "20240359511:14",
+      "grade": 0,
+      "reason": "Fastening of a load cell actuator pin only."
+    },
+    {
+      "claim_id": "20240359511:15",
+      "grade": 0,
+      "reason": "Only about alert lights for load conditions."
+    },
+    {
+      "claim_id": "20240359511:16",
+      "grade": 0,
+      "reason": "Only about a loudspeaker for alerts."
+    },
+    {
+      "claim_id": "20240359511:17",
+      "grade": 0,
+      "reason": "Only about power supply via trailer plug."
+    },
+    {
+      "claim_id": "20240359511:18",
+      "grade": 0,
+      "reason": "Only about powering the weighing station from trailer plug pins, not weighing height."
+    },
+    {
+      "claim_id": "20240359511:2",
+      "grade": 1,
+      "reason": "Towball weighing station measures vertical towball load, but not at hitch height explicitly."
+    },
+    {
+      "claim_id": "20240359511:3",
+      "grade": 1,
+      "reason": "Scale mount receives the hitch, related but does not state weighing at hitch height."
+    },
+    {
+      "claim_id": "20240359511:4",
+      "grade": 1,
+      "reason": "Scale mounting on the towball, related to hitch weighing but no height statement."
+    },
+    {
+      "claim_id": "20240359511:5",
+      "grade": 1,
+      "reason": "Skirt locates scale frame on hitch tongue, related mounting detail without height statement."
+    },
+    {
+      "claim_id": "20240359511:7",
+      "grade": 1,
+      "reason": "Layout of weighing station relative to hitch receiving zone, no height matching stated."
+    },
+    {
+      "claim_id": "20240359511:8",
+      "grade": 2,
+      "reason": "Adjuster sets the level of the weighing station relative to the hitch mount."
+    },
+    {
+      "claim_id": "20240359511:9",
+      "grade": 1,
+      "reason": "Locks the scale frame onto the hitch tongue, related mounting detail only."
+    },
+    {
+      "claim_id": "20250135810:11",
+      "grade": 1,
+      "reason": "Load cell housing in the height adjustable tongue weight scale, structural detail only."
+    },
+    {
+      "claim_id": "20250135810:13",
+      "grade": 1,
+      "reason": "Display of tongue weight load cell output, related but no height statement."
+    },
+    {
+      "claim_id": "20250135810:14",
+      "grade": 1,
+      "reason": "Height adjustable trailer coupler weighing device, but does not tie the height to the tow hitch."
+    },
+    {
+      "claim_id": "20250135810:15",
+      "grade": 1,
+      "reason": "Trailer coupling head load cell mechanism, but no hitch height matching stated."
+    },
+    {
+      "claim_id": "20250135810:16",
+      "grade": 2,
+      "reason": "Height adjustable assembly secured at a selected weight measurement height for the trailer coupler."
+    },
+    {
+      "claim_id": "20250135810:17",
+      "grade": 1,
+      "reason": "Load cell housing fitting in height adjustable assembly, structural detail only."
+    },
+    {
+      "claim_id": "20250135810:18",
+      "grade": 0,
+      "reason": "Bolt and aperture detail of the display assembly, not about weighing height."
+    },
+    {
+      "claim_id": "20250135810:19",
+      "grade": 1,
+      "reason": "Load cell mounting in tongue weight scale, structural detail only."
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "question_id": "q21",
+  "question": "tool for removing the locking element from a centre-lock wheel nut",
+  "grades": [
+    {
+      "claim_id": "20250026148:1",
+      "grade": 2,
+      "reason": "Claims an extraction apparatus threaded into the locking element of a centre-lock wheel nut, with torque input and bearing on the nut."
+    },
+    {
+      "claim_id": "20250026148:10",
+      "grade": 1,
+      "reason": "Engagement element is a recess with limited rotational symmetry; related tool detail."
+    },
+    {
+      "claim_id": "20250026148:11",
+      "grade": 1,
+      "reason": "Square recess of the engagement element; minor tool detail."
+    },
+    {
+      "claim_id": "20250026148:12",
+      "grade": 2,
+      "reason": "Apparatus with threaded end engaging the locking element, torque engagement and bearing surface on the wheel nut, i.e. the removal tool."
+    },
+    {
+      "claim_id": "20250026148:17",
+      "grade": 2,
+      "reason": "Method using an extraction tool threaded into the locking element with a spacer against the wheel nut to translate the locking element out."
+    },
+    {
+      "claim_id": "20250026148:2",
+      "grade": 1,
+      "reason": "Detail of the locking element splines; right topic but not the removal tool."
+    },
+    {
+      "claim_id": "20250026148:3",
+      "grade": 1,
+      "reason": "Detail of thread engagement length between extraction tool and locking element; related but does not state the removal tool."
+    },
+    {
+      "claim_id": "20250026148:4",
+      "grade": 1,
+      "reason": "Circular trench in the bearing face for the wheel nut edge; related tool detail."
+    },
+    {
+      "claim_id": "20250026148:5",
+      "grade": 0,
+      "reason": "Only adds a wheel mounted on the hub; says nothing about removing the locking element."
+    },
+    {
+      "claim_id": "20250026148:6",
+      "grade": 1,
+      "reason": "Engagement element projects outward to assist removal; related tool detail."
+    },
+    {
+      "claim_id": "20250026148:7",
+      "grade": 1,
+      "reason": "Location of the bearing surface of the extraction apparatus; related detail only."
+    },
+    {
+      "claim_id": "20250026148:8",
+      "grade": 1,
+      "reason": "Describes the extraction apparatus split into extraction tool and spacer, a detail of the removal tool rather than the tool removing the locking element itself."
+    },
+    {
+      "claim_id": "20250026148:9",
+      "grade": 1,
+      "reason": "Only states the spacer tool is annular; closely related tool detail."
+    }
+  ]
+}

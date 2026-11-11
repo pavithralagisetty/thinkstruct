@@ -1,0 +1,251 @@
+{
+  "question_id": "q37",
+  "question": "machine that turns a tire inside out",
+  "grades": [
+    {
+      "claim_id": "20240075773:16",
+      "grade": 0,
+      "reason": "Bead breaker driving element positions; not inverting."
+    },
+    {
+      "claim_id": "20240075773:17",
+      "grade": 0,
+      "reason": "Lifting and rotating on a tyre changer; not inverting."
+    },
+    {
+      "claim_id": "20240075773:8",
+      "grade": 0,
+      "reason": "Lifting platform stop on tyre changer; not inverting."
+    },
+    {
+      "claim_id": "20240075774:12",
+      "grade": 0,
+      "reason": "Lubricant nozzle on bead breaker; not inverting."
+    },
+    {
+      "claim_id": "20240075774:14",
+      "grade": 0,
+      "reason": "Control ring for bead breaker; not inverting."
+    },
+    {
+      "claim_id": "20240075774:17",
+      "grade": 0,
+      "reason": "Lubricating step in bead breaking; not inverting."
+    },
+    {
+      "claim_id": "20240075774:2",
+      "grade": 0,
+      "reason": "Elastic return of driving element; not inverting."
+    },
+    {
+      "claim_id": "20240075774:20",
+      "grade": 0,
+      "reason": "Handle command component on tyre changer; not inverting."
+    },
+    {
+      "claim_id": "20240075774:3",
+      "grade": 0,
+      "reason": "Driving element handle on tyre changer; not inverting."
+    },
+    {
+      "claim_id": "20240075774:4",
+      "grade": 0,
+      "reason": "Bead breaker actuator connection; not inverting."
+    },
+    {
+      "claim_id": "20240075774:5",
+      "grade": 0,
+      "reason": "Coupling pin adjustment on tyre changer; not inverting."
+    },
+    {
+      "claim_id": "20240075774:6",
+      "grade": 0,
+      "reason": "Bead breaker tool adjustment; not inverting."
+    },
+    {
+      "claim_id": "20240075774:7",
+      "grade": 0,
+      "reason": "Bead breaker tool rotation on a tyre changer; not inverting."
+    },
+    {
+      "claim_id": "20240075774:8",
+      "grade": 0,
+      "reason": "Five-way valve for bead breaker; not inverting."
+    },
+    {
+      "claim_id": "20240075774:9",
+      "grade": 0,
+      "reason": "Bead breaking arm shape; not inverting."
+    },
+    {
+      "claim_id": "20240116316:12",
+      "grade": 0,
+      "reason": "Bicycle tire types; unrelated."
+    },
+    {
+      "claim_id": "20240165992:15",
+      "grade": 0,
+      "reason": "Self-propelled tire handler; not inverting."
+    },
+    {
+      "claim_id": "20240165992:2",
+      "grade": 0,
+      "reason": "Remote control for a tire handler; no inverting."
+    },
+    {
+      "claim_id": "20240165992:9",
+      "grade": 0,
+      "reason": "Hydraulic actuators of tire handler; not inverting."
+    },
+    {
+      "claim_id": "20240198725:10",
+      "grade": 0,
+      "reason": "Sensor protection on rim tape machine; unrelated."
+    },
+    {
+      "claim_id": "20240198725:13",
+      "grade": 0,
+      "reason": "Rim taping method; unrelated."
+    },
+    {
+      "claim_id": "20240198725:2",
+      "grade": 0,
+      "reason": "Rim tape application machine; unrelated to inverting a tire."
+    },
+    {
+      "claim_id": "20240198725:6",
+      "grade": 0,
+      "reason": "Tape cutting system; unrelated."
+    },
+    {
+      "claim_id": "20240198725:9",
+      "grade": 0,
+      "reason": "Hole punch on rim tape machine; unrelated."
+    },
+    {
+      "claim_id": "20240286438:1",
+      "grade": 0,
+      "reason": "Bicycle tire with drive strip; unrelated."
+    },
+    {
+      "claim_id": "20240286438:2",
+      "grade": 0,
+      "reason": "Vehicle with roller-driven tire; unrelated."
+    },
+    {
+      "claim_id": "20240367467:1",
+      "grade": 2,
+      "reason": "Device with stand, holder and pusher that inverts a tire."
+    },
+    {
+      "claim_id": "20240367467:10",
+      "grade": 2,
+      "reason": "Method of inverting a tire placed on the inverting stand, with bead preparation."
+    },
+    {
+      "claim_id": "20240367467:11",
+      "grade": 2,
+      "reason": "Method of inverting a tire with pushing mechanism engaging the bead."
+    },
+    {
+      "claim_id": "20240367467:12",
+      "grade": 2,
+      "reason": "Method of inverting a tire with a rim on the pushing mechanism."
+    },
+    {
+      "claim_id": "20240367467:14",
+      "grade": 2,
+      "reason": "Method of inverting a tire using an adjustable strap holding device."
+    },
+    {
+      "claim_id": "20240367467:17",
+      "grade": 2,
+      "reason": "Method of inverting a tire with a powered extending pushing mechanism."
+    },
+    {
+      "claim_id": "20240367467:18",
+      "grade": 2,
+      "reason": "Method of inverting a tire with automatic release of the holding device."
+    },
+    {
+      "claim_id": "20240367467:19",
+      "grade": 1,
+      "reason": "Sidewall removal step in tire inverting method; no machine detail stated."
+    },
+    {
+      "claim_id": "20240367467:20",
+      "grade": 1,
+      "reason": "Step after inverting a tire (reattaching sidewall), but no machine stated."
+    },
+    {
+      "claim_id": "20240367467:4",
+      "grade": 2,
+      "reason": "Tire inverting device with a wheel rim on the pusher."
+    },
+    {
+      "claim_id": "20240367467:8",
+      "grade": 2,
+      "reason": "Tire inverting device with powered pushing mechanism."
+    },
+    {
+      "claim_id": "20240367467:9",
+      "grade": 2,
+      "reason": "Method using a tire inverting device to push a tire edge until it inverts."
+    },
+    {
+      "claim_id": "20240391279:1",
+      "grade": 0,
+      "reason": "Self-reinflating tire with generator; unrelated."
+    },
+    {
+      "claim_id": "20240391279:10",
+      "grade": 0,
+      "reason": "Power generator types in a tire; unrelated."
+    },
+    {
+      "claim_id": "20240391279:12",
+      "grade": 0,
+      "reason": "Coil generating current; unrelated."
+    },
+    {
+      "claim_id": "20250033415:2",
+      "grade": 0,
+      "reason": "Heating step in making steel spokes; unrelated."
+    },
+    {
+      "claim_id": "20250033415:3",
+      "grade": 0,
+      "reason": "Quenching steel blanks; unrelated."
+    },
+    {
+      "claim_id": "20250033415:4",
+      "grade": 0,
+      "reason": "Machining spoke edges; unrelated."
+    },
+    {
+      "claim_id": "20250042206:1",
+      "grade": 0,
+      "reason": "Lifting system for a tire changing machine; does not turn a tire inside out."
+    },
+    {
+      "claim_id": "20250042206:10",
+      "grade": 0,
+      "reason": "Actuator mounting on tire changer chassis; not inverting."
+    },
+    {
+      "claim_id": "20250042206:11",
+      "grade": 0,
+      "reason": "Actuator mounting surface; not inverting."
+    },
+    {
+      "claim_id": "20250042206:12",
+      "grade": 0,
+      "reason": "Lifting a tire on a tire changer; not inverting."
+    },
+    {
+      "claim_id": "20250042206:5",
+      "grade": 0,
+      "reason": "Actuator retraction on tire changer lift; not inverting."
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "report": "run_20261111T005621Z.json",
+  "report": "run_20261111T063744Z.json",
   "scale": {
     "2": "The claim itself states what the question asks.",
     "1": "Right topic and a closely related detail, but the claim does not state what is asked.",
@@ -1220,6 +1220,3238 @@
       "20250115083:5": {
         "grade": 0,
         "reason": "Strain sensor mounting in a tire; unrelated."
+      }
+    },
+    "q11": {
+      "20240149609:1": {
+        "grade": 1,
+        "reason": "Describes a nipple head with a separate nipple base but does not say the base sits in the rim."
+      },
+      "20240149609:10": {
+        "grade": 1,
+        "reason": "Shape of the nipple base; related detail without rim seating."
+      },
+      "20240149609:11": {
+        "grade": 2,
+        "reason": "States the nipple base is seated on the edge of the spoke hole of the rim."
+      },
+      "20240149609:12": {
+        "grade": 1,
+        "reason": "Nipple base seated in the hub spoke hole rather than the rim."
+      },
+      "20240149609:13": {
+        "grade": 1,
+        "reason": "Materials of nipple base and body; related detail without rim seating."
+      },
+      "20240149609:14": {
+        "grade": 1,
+        "reason": "Materials of nipple base and body; related detail without rim seating."
+      },
+      "20240149609:15": {
+        "grade": 1,
+        "reason": "Tolerance detail between column and nipple base holes; does not state base seated in the rim."
+      },
+      "20240149609:2": {
+        "grade": 1,
+        "reason": "Shape of the nipple base; related detail without rim seating."
+      },
+      "20240149609:3": {
+        "grade": 1,
+        "reason": "Diameter detail of the nipple base and damping member; no rim seating stated."
+      },
+      "20240149609:4": {
+        "grade": 1,
+        "reason": "Materials of nipple base and body; related detail without rim seating."
+      },
+      "20240149609:5": {
+        "grade": 1,
+        "reason": "Materials of nipple base and body; related detail without rim seating."
+      },
+      "20240149609:6": {
+        "grade": 1,
+        "reason": "Adhesive between nipple base and damping member; related detail without rim seating."
+      },
+      "20240149609:7": {
+        "grade": 1,
+        "reason": "Tolerance detail between column and nipple base holes; does not state base seated in the rim."
+      },
+      "20240149609:8": {
+        "grade": 1,
+        "reason": "Detail of the nipple base and damping member coupling, without stating the base sits in the rim."
+      },
+      "20240149609:9": {
+        "grade": 2,
+        "reason": "States a nipple assembly with a separate nipple base fitted on the column and supported on the rim at the spoke hole."
+      },
+      "20250115075:1": {
+        "grade": 0,
+        "reason": "Nipples sleeved on spoke rope heads; no separate base fitted into the rim."
+      },
+      "20250115075:4": {
+        "grade": 0,
+        "reason": "Tapered mounting hole in the nipple fitting the spoke head; no separate base in the rim."
+      },
+      "20250115075:5": {
+        "grade": 1,
+        "reason": "Nipple inserted into a rim spoke hole and secured with a nut, close but not a separate base."
+      },
+      "20250115075:7": {
+        "grade": 0,
+        "reason": "Only states materials of mounting heads and nipples; no separate base in the rim."
+      }
+    },
+    "q12": {
+      "20240270012:1": {
+        "grade": 2,
+        "reason": "Commercial vehicle steel wheel of heat-treated hardened steel with thin walls and a high size-to-mass ratio, i.e. lightweight."
+      },
+      "20240270012:10": {
+        "grade": 1,
+        "reason": "Mentions the heat-treated and hardened disc or rim but only adds a surface roughness range."
+      },
+      "20240270012:11": {
+        "grade": 1,
+        "reason": "Commercial vehicle steel wheel, only adds spin forming of disc and rim with different thicknesses."
+      },
+      "20240270012:12": {
+        "grade": 1,
+        "reason": "Commercial vehicle steel wheel with hardness detail near a disc hole, not stating heat-treated hardened steel."
+      },
+      "20240270012:13": {
+        "grade": 2,
+        "reason": "States a commercial vehicle steel wheel whose rim is made of heat-treated and hardened martensitic steel."
+      },
+      "20240270012:14": {
+        "grade": 2,
+        "reason": "States a commercial vehicle steel wheel with rim and disc both made of heat-treated and hardened steel."
+      },
+      "20240270012:2": {
+        "grade": 1,
+        "reason": "Commercial vehicle steel wheel with thin rim/disc thickness limit related to light weight, but no heat-treated steel."
+      },
+      "20240270012:3": {
+        "grade": 1,
+        "reason": "Commercial vehicle steel wheel with rim/disc thickness limit related to light weight, but no heat-treated steel."
+      },
+      "20240270012:4": {
+        "grade": 1,
+        "reason": "Commercial vehicle steel wheel, only adds press-fit joint and thickness details."
+      },
+      "20240270012:5": {
+        "grade": 1,
+        "reason": "Commercial vehicle steel wheel with hardness detail around a weld's heated region, but does not state heat-treated hardened steel construction."
+      },
+      "20240270012:6": {
+        "grade": 1,
+        "reason": "Commercial vehicle steel wheel, only adds minimum diameter and width."
+      },
+      "20240270012:7": {
+        "grade": 0,
+        "reason": "Text is only the word 'claim', no content to judge."
+      },
+      "20240270012:8": {
+        "grade": 1,
+        "reason": "Commercial vehicle steel wheel, only adds a wheel diameter range."
+      },
+      "20240270012:9": {
+        "grade": 1,
+        "reason": "Commercial vehicle steel wheel, only adds a wheel width range."
+      }
+    },
+    "q13": {
+      "20250121628:1": {
+        "grade": 2,
+        "reason": "States a vent plug with a tapered conical vent aperture and a spring-biased poppet seal that closes against it."
+      },
+      "20250121628:10": {
+        "grade": 1,
+        "reason": "Vent plug coil spring around the poppet stem; related to self-closing but does not state the tapered passage."
+      },
+      "20250121628:11": {
+        "grade": 1,
+        "reason": "Vent plug pilot diameter and stem shape detail; does not state the tapered self-sealing passage."
+      },
+      "20250121628:12": {
+        "grade": 1,
+        "reason": "Conical surface leading to a pilot diameter with seal retention; closely related detail but does not state self-sealing."
+      },
+      "20250121628:13": {
+        "grade": 1,
+        "reason": "Poppet end surface position in the closed position; sealing mechanism detail only."
+      },
+      "20250121628:14": {
+        "grade": 1,
+        "reason": "Vent plug deformable retention apron; on topic but about mounting, not the tapered sealing passage."
+      },
+      "20250121628:15": {
+        "grade": 2,
+        "reason": "States a vent plug with a tapered conical vent aperture and a spring-biased poppet seal that closes against it."
+      },
+      "20250121628:16": {
+        "grade": 1,
+        "reason": "Vent plug pilot diameter and stem shape detail; on topic but does not state a tapered self-sealing passage."
+      },
+      "20250121628:17": {
+        "grade": 1,
+        "reason": "Conical surface leading to a pilot diameter with seal retention; closely related detail but does not state self-sealing."
+      },
+      "20250121628:18": {
+        "grade": 1,
+        "reason": "Poppet end surface position in the closed position; sealing mechanism detail only."
+      },
+      "20250121628:2": {
+        "grade": 1,
+        "reason": "Vent plug pilot diameter and stem shape detail; does not state the tapered self-sealing passage."
+      },
+      "20250121628:3": {
+        "grade": 1,
+        "reason": "Vent plug stem shoulders engaging the aperture; mechanism detail, not the tapered self-sealing passage."
+      },
+      "20250121628:4": {
+        "grade": 1,
+        "reason": "Vent plug coil spring around the poppet stem; related to self-closing but does not state the tapered passage."
+      },
+      "20250121628:5": {
+        "grade": 1,
+        "reason": "Conical surface leading to a pilot diameter with seal retention; closely related detail but does not state self-sealing."
+      },
+      "20250121628:6": {
+        "grade": 1,
+        "reason": "Vent plug poppet end surface position in the closed position; a detail of the sealing mechanism, not the tapered self-sealing passage itself."
+      },
+      "20250121628:7": {
+        "grade": 1,
+        "reason": "Vent plug deformable retention apron; on topic but about mounting, not the tapered sealing passage."
+      },
+      "20250121628:8": {
+        "grade": 2,
+        "reason": "States a vent plug with a tapered conical vent aperture and a spring-biased poppet seal that closes against it."
+      },
+      "20250121628:9": {
+        "grade": 1,
+        "reason": "Vent plug pilot diameter and stem shape detail; does not state the tapered self-sealing passage."
+      }
+    },
+    "q14": {
+      "20240059101:13": {
+        "grade": 0,
+        "reason": "Tire carcass and belt layers; unrelated."
+      },
+      "20240059101:24": {
+        "grade": 0,
+        "reason": "Tire carcass plies, unrelated to colour coats."
+      },
+      "20240100885:1": {
+        "grade": 0,
+        "reason": "Tire crown reinforcement; unrelated."
+      },
+      "20240100885:2": {
+        "grade": 0,
+        "reason": "Tire crown layers; unrelated."
+      },
+      "20240100885:3": {
+        "grade": 0,
+        "reason": "Tire crown working layers, not wheel colour coatings."
+      },
+      "20240100885:5": {
+        "grade": 0,
+        "reason": "Tire crown working layers; unrelated."
+      },
+      "20240116309:14": {
+        "grade": 0,
+        "reason": "Same gloss level of over-coating; no colour layers."
+      },
+      "20240116309:15": {
+        "grade": 1,
+        "reason": "Coloured over-coating on a wheel, but only one colour coat is stated."
+      },
+      "20240116309:16": {
+        "grade": 1,
+        "reason": "Wheel over-coating with several polymer layers, but colour not stated."
+      },
+      "20240116309:17": {
+        "grade": 1,
+        "reason": "Primer coating beneath an over-coating on a wheel; layered coats but not colour layers."
+      },
+      "20240116309:18": {
+        "grade": 1,
+        "reason": "Layered wheel coatings (intermediate over primer) but no colour coats stated."
+      },
+      "20240116309:19": {
+        "grade": 1,
+        "reason": "Layer stack on wheel (primer, metal layer, over-coat) but no two colour coats."
+      },
+      "20240116309:20": {
+        "grade": 0,
+        "reason": "Substrate visible through over-coat; no colour layers stated."
+      },
+      "20240116309:21": {
+        "grade": 0,
+        "reason": "Applique is three dimensional; nothing about coats."
+      },
+      "20240116309:22": {
+        "grade": 0,
+        "reason": "Applique is two dimensional; nothing about coats."
+      },
+      "20240116309:8": {
+        "grade": 1,
+        "reason": "Second coloured coating applied over a first coating on a wheel, but the first is transparent, not a colour coat."
+      },
+      "20240174024:29": {
+        "grade": 0,
+        "reason": "Article comprising a rubber composite; unrelated."
+      },
+      "20240190168:1": {
+        "grade": 1,
+        "reason": "States a second colour-giving coating layer covering a first one, but on a generic base body, not a wheel."
+      },
+      "20240190168:10": {
+        "grade": 1,
+        "reason": "Detail of removing the second coating layer in the two-layer paint method; layering on a wheel not stated."
+      },
+      "20240190168:11": {
+        "grade": 1,
+        "reason": "Mechanical removal of the second coating layer of the two-layer paint; does not itself state the layering on a wheel."
+      },
+      "20240190168:2": {
+        "grade": 1,
+        "reason": "States the component is a vehicle wheel, but the two colour layers are only in the main claim."
+      },
+      "20240190168:9": {
+        "grade": 1,
+        "reason": "Applies a second colour-giving layer covering a first, but to a generic base body, not a wheel."
+      },
+      "20240270016:10": {
+        "grade": 0,
+        "reason": "Only says the wheel is a composite material; nothing about colour coats."
+      },
+      "20240270016:17": {
+        "grade": 0,
+        "reason": "Only says the wheel is a composite material."
+      },
+      "20240270016:9": {
+        "grade": 0,
+        "reason": "Only says the wheel is a composite material."
+      },
+      "20240294035:18": {
+        "grade": 0,
+        "reason": "Printed image layers at depths, not colour coat layers on a wheel."
+      },
+      "20240294035:2": {
+        "grade": 0,
+        "reason": "Printed image layers at depths forming a 3D graphic, not colour coats on a wheel."
+      },
+      "20240294035:20": {
+        "grade": 0,
+        "reason": "Printed layers with different densities, not colour coats."
+      },
+      "20240294035:3": {
+        "grade": 0,
+        "reason": "Translucent printed layer of a wheel cover, not colour coats."
+      },
+      "20240294035:4": {
+        "grade": 0,
+        "reason": "Printed layers with different density, not colour coats."
+      },
+      "20240294035:5": {
+        "grade": 0,
+        "reason": "Printing process for a wheel cover image, not colour coat layers."
+      },
+      "20240424828:11": {
+        "grade": 0,
+        "reason": "Interchanging a coloured substrate, not coat layers on a wheel."
+      },
+      "20240424828:5": {
+        "grade": 0,
+        "reason": "Coloured surface and reflective spoke geometry, not coat layers."
+      },
+      "20240424828:6": {
+        "grade": 0,
+        "reason": "Spoke sets reflecting coloured surfaces, not colour coat layers."
+      },
+      "20240424828:7": {
+        "grade": 0,
+        "reason": "Lid covering the mount with a coloured surface underneath; not coat layers."
+      },
+      "20240424828:8": {
+        "grade": 0,
+        "reason": "Interchangeable coloured substrates in a lid, not coat layers."
+      },
+      "20240424828:9": {
+        "grade": 0,
+        "reason": "Surface textures of a reflective surface, not colour coats."
+      },
+      "20250128541:14": {
+        "grade": 0,
+        "reason": "Locking elements of a wheel cover; unrelated."
+      },
+      "20250128541:20": {
+        "grade": 0,
+        "reason": "Locking elements of a wheel cover; unrelated."
+      }
+    },
+    "q15": {
+      "20240100881:6": {
+        "grade": 0,
+        "reason": "Bond shear strengths of an airless tire; unrelated to spring stiffening."
+      },
+      "20240100881:7": {
+        "grade": 0,
+        "reason": "Bond shear strength of an airless tire; unrelated to spring stiffening."
+      },
+      "20240198723:12": {
+        "grade": 1,
+        "reason": "Spring-biased spoke in an airless tire, related springs but no threshold stiffening."
+      },
+      "20250026145:20": {
+        "grade": 0,
+        "reason": "Resilient wheel with directional power transfer and braking steps; no stiffening under compression."
+      },
+      "20250026145:27": {
+        "grade": 1,
+        "reason": "Two compression stages where contact stops bowing, closely related but no stated stiffer spring rate."
+      },
+      "20250026145:28": {
+        "grade": 1,
+        "reason": "First spring rate up to a threshold distance, closely related but does not state stiffening beyond it."
+      },
+      "20250026145:29": {
+        "grade": 2,
+        "reason": "Beyond a threshold distance the compressed elements act at a significantly higher second spring rate."
+      },
+      "20250026145:33": {
+        "grade": 1,
+        "reason": "Different spring rates in two compression stages, but does not state the second is stiffer or tied to a threshold."
+      },
+      "20250065669:22": {
+        "grade": 2,
+        "reason": "Elements have a higher second spring constant when compressed beyond a threshold compression."
+      },
+      "20250065669:23": {
+        "grade": 1,
+        "reason": "Peaks contact beyond a threshold deflection, but no stated increase in stiffness."
+      },
+      "20250065669:28": {
+        "grade": 0,
+        "reason": "Resilient wheel absorbing compression with directional power transfer; no stiffening past a threshold."
+      },
+      "20250065669:29": {
+        "grade": 2,
+        "reason": "Elements have a higher second spring constant when compressed beyond a threshold compression."
+      },
+      "20250065669:30": {
+        "grade": 1,
+        "reason": "Peaks of resilient elements contact each other beyond a threshold deflection, but the claim does not state the stiffness increases."
+      },
+      "20250065669:31": {
+        "grade": 0,
+        "reason": "Only locates the peaks of the resilient elements; nothing about stiffening."
+      },
+      "20250065669:34": {
+        "grade": 0,
+        "reason": "Only describes element thickness; nothing about stiffening."
+      },
+      "20250065669:35": {
+        "grade": 0,
+        "reason": "Resilient wheel absorbing compressive force; no stiffening past a threshold."
+      },
+      "20250065669:36": {
+        "grade": 2,
+        "reason": "Elements have a higher second spring constant when compressed beyond a threshold compression."
+      },
+      "20250065669:37": {
+        "grade": 1,
+        "reason": "Peaks contact beyond a threshold deflection, but no stated increase in stiffness."
+      },
+      "20250065669:38": {
+        "grade": 0,
+        "reason": "Only locates the peaks; nothing about stiffening."
+      },
+      "20250065669:39": {
+        "grade": 0,
+        "reason": "Only locates the peaks; nothing about stiffening."
+      },
+      "20250065669:40": {
+        "grade": 0,
+        "reason": "Only describes alternating peak locations; nothing about stiffening."
+      },
+      "20250065669:41": {
+        "grade": 0,
+        "reason": "Only describes element thickness; nothing about stiffening past a threshold."
+      }
+    },
+    "q16": {
+      "20240051335:1": {
+        "grade": 0,
+        "reason": "Text is only a fragment 'a semicircular plate (' and states nothing relevant."
+      },
+      "20240051335:2": {
+        "grade": 1,
+        "reason": "Expansible auxiliary wheel plate ribbing; related spare device but does not state fitting over a flat tire."
+      },
+      "20240051335:3": {
+        "grade": 1,
+        "reason": "Expansible auxiliary wheel parts made of metal; related spare device, function not stated."
+      },
+      "20240051335:4": {
+        "grade": 1,
+        "reason": "Cam hub shape of an expansible auxiliary wheel; related spare device, function not stated."
+      },
+      "20240051335:5": {
+        "grade": 1,
+        "reason": "Expansible auxiliary wheel with cam hub pushing arm out to working state; related, but fitting over a flat tire without a jack not stated."
+      },
+      "20240066916:1": {
+        "grade": 0,
+        "reason": "Wheel rim and brake seating space, unrelated."
+      },
+      "20240066916:10": {
+        "grade": 0,
+        "reason": "Brake air guiding channel, unrelated."
+      },
+      "20240066916:11": {
+        "grade": 0,
+        "reason": "Vehicle with a mounted wheel; no spare or flat tire."
+      },
+      "20240066916:2": {
+        "grade": 0,
+        "reason": "Rim air guide, unrelated."
+      },
+      "20240066916:5": {
+        "grade": 0,
+        "reason": "Spoke blade for air flow, unrelated."
+      },
+      "20240066916:6": {
+        "grade": 0,
+        "reason": "Asymmetric spoke shape, unrelated."
+      },
+      "20240066916:7": {
+        "grade": 0,
+        "reason": "Wheel, brake disk and hub system, unrelated."
+      },
+      "20240066916:9": {
+        "grade": 0,
+        "reason": "Brake cooling air channel, unrelated."
+      },
+      "20240149611:17": {
+        "grade": 0,
+        "reason": "Flexible wheel cover material, unrelated."
+      },
+      "20240149611:18": {
+        "grade": 0,
+        "reason": "Fender material, unrelated."
+      },
+      "20240149612:11": {
+        "grade": 0,
+        "reason": "Decorative wheel spacer, unrelated."
+      },
+      "20240165992:1": {
+        "grade": 0,
+        "reason": "Tire handling machine, not a spare wheel."
+      },
+      "20240165992:10": {
+        "grade": 0,
+        "reason": "Tire handler tilt actuator, unrelated."
+      },
+      "20240165992:11": {
+        "grade": 0,
+        "reason": "Tire handler arm coupling, unrelated."
+      },
+      "20240165992:12": {
+        "grade": 0,
+        "reason": "Tire handler wheel definition, unrelated."
+      },
+      "20240165992:15": {
+        "grade": 0,
+        "reason": "Self-propelled tire handler, unrelated."
+      },
+      "20240165992:4": {
+        "grade": 0,
+        "reason": "Tire handler battery, unrelated."
+      },
+      "20240165992:5": {
+        "grade": 0,
+        "reason": "Tire handler for trucks, not a spare wheel."
+      },
+      "20240181802:10": {
+        "grade": 0,
+        "reason": "Aerodynamic wheel cover, unrelated."
+      },
+      "20240181802:13": {
+        "grade": 0,
+        "reason": "Wheel cover fastening, unrelated."
+      },
+      "20240181802:15": {
+        "grade": 0,
+        "reason": "Wheel disc cover ring, unrelated."
+      },
+      "20240190169:41": {
+        "grade": 0,
+        "reason": "Rail vehicle chassis, unrelated."
+      },
+      "20240286440:15": {
+        "grade": 0,
+        "reason": "Wheel sound resonator clamps, unrelated."
+      },
+      "20240286440:16": {
+        "grade": 0,
+        "reason": "Resonator beads, unrelated."
+      },
+      "20240300270:26": {
+        "grade": 0,
+        "reason": "Jack hitch cargo method, unrelated."
+      },
+      "20240359502:1": {
+        "grade": 0,
+        "reason": "Wheel lock disc preventing rim dislodging, not a spare wheel."
+      },
+      "20240367459:4": {
+        "grade": 1,
+        "reason": "Replacing a vehicle wheel, related topic, but uses a jack and no over-tire spare."
+      },
+      "20240367459:6": {
+        "grade": 0,
+        "reason": "Hydraulic fluid detail of a jack method, unrelated."
+      },
+      "20240367468:1": {
+        "grade": 0,
+        "reason": "Vehicle hitch, unrelated."
+      },
+      "20240367468:24": {
+        "grade": 0,
+        "reason": "Hitch mechanism, unrelated."
+      },
+      "20240367468:8": {
+        "grade": 0,
+        "reason": "Hitch linkage detail, unrelated to spare wheels."
+      },
+      "20240416679:1": {
+        "grade": 1,
+        "reason": "Auxiliary wheel with detachable hubs, but nothing about fitting over a flat tire or avoiding a jack."
+      },
+      "20240416679:2": {
+        "grade": 0,
+        "reason": "Bearing clamp strip detail, no flat tire use."
+      },
+      "20240416679:3": {
+        "grade": 0,
+        "reason": "Hub mounting plate detail of an auxiliary wheel, no flat tire use stated."
+      },
+      "20240416679:4": {
+        "grade": 0,
+        "reason": "Bolt and nut connector detail, no flat tire use."
+      },
+      "20240416679:5": {
+        "grade": 0,
+        "reason": "Nut groove fixing detail, no flat tire use."
+      },
+      "20240416679:7": {
+        "grade": 0,
+        "reason": "Bolt connector detail, no flat tire use."
+      },
+      "20240416679:8": {
+        "grade": 0,
+        "reason": "Shaft installation hole detail, no flat tire use."
+      },
+      "20240416679:9": {
+        "grade": 0,
+        "reason": "Installation hole diameters, no flat tire use."
+      },
+      "20250010661:24": {
+        "grade": 0,
+        "reason": "Spoke assembly device latches, unrelated."
+      },
+      "20250026146:1": {
+        "grade": 0,
+        "reason": "Bicycle rim flange ratio, unrelated."
+      },
+      "20250026146:14": {
+        "grade": 0,
+        "reason": "Bicycle rim flange ratios, unrelated."
+      },
+      "20250026146:15": {
+        "grade": 0,
+        "reason": "Bicycle rim geometry, unrelated."
+      },
+      "20250026146:16": {
+        "grade": 0,
+        "reason": "Bicycle rim flange gap, unrelated."
+      },
+      "20250026146:17": {
+        "grade": 0,
+        "reason": "Bicycle rim flange gap, unrelated."
+      },
+      "20250026146:18": {
+        "grade": 0,
+        "reason": "Bicycle rim flange gap, unrelated."
+      },
+      "20250026146:19": {
+        "grade": 0,
+        "reason": "Bicycle rim flange gap, unrelated."
+      },
+      "20250026146:20": {
+        "grade": 0,
+        "reason": "Bicycle rim sidewall shape, not a spare wheel over a flat tire."
+      },
+      "20250026146:21": {
+        "grade": 0,
+        "reason": "Bicycle rim surface radius, unrelated."
+      },
+      "20250091381:12": {
+        "grade": 0,
+        "reason": "Wheel cover slit, unrelated."
+      },
+      "20250091381:13": {
+        "grade": 0,
+        "reason": "Wheel cover slit, unrelated."
+      }
+    },
+    "q17": {
+      "20240190172:1": {
+        "grade": 0,
+        "reason": "Suction ports suck particles into a collector; the wheel does not hold onto a wall."
+      },
+      "20240190172:11": {
+        "grade": 0,
+        "reason": "Two bladed particle suction structures; suction collects particles, not wall adhesion."
+      },
+      "20240190172:16": {
+        "grade": 0,
+        "reason": "Bladed particle suction structure connecting hub and ring; not adhesion to a surface."
+      },
+      "20240190172:2": {
+        "grade": 0,
+        "reason": "Suction port ramp for particle collection; not adhesion to a wall."
+      },
+      "20240190172:3": {
+        "grade": 0,
+        "reason": "Separation wall in the particle air passage; not adhesion to a structure."
+      },
+      "20240190172:4": {
+        "grade": 0,
+        "reason": "Blade shape of a particle suction structure; suction collects particles, not adhesion to a wall."
+      },
+      "20240190172:5": {
+        "grade": 0,
+        "reason": "Spokes formed by the particle suction blades; not adhesion to a wall."
+      },
+      "20240190172:6": {
+        "grade": 0,
+        "reason": "Placement of the particle suction blades in the rim; not adhesion to a surface."
+      },
+      "20240190172:7": {
+        "grade": 0,
+        "reason": "Tire channels toward particle suction ports; not about holding onto a surface."
+      },
+      "20240190172:9": {
+        "grade": 0,
+        "reason": "Rim layout for particle suction ports; not adhesion to a structure."
+      },
+      "20240326511:1": {
+        "grade": 2,
+        "reason": "Wheel with apertures in its outer surface whose stretchable materials are moved to control adhesion to a structure surface."
+      },
+      "20240326511:10": {
+        "grade": 1,
+        "reason": "States the structure surface is non-metallic; related detail about what the wheel adheres to."
+      },
+      "20240326511:11": {
+        "grade": 1,
+        "reason": "States the structure surface is metallic; related detail about what the wheel adheres to."
+      },
+      "20240326511:12": {
+        "grade": 2,
+        "reason": "Wheel with apertures in its outer surface and stretchable materials moved to control adhesion to a structure surface."
+      },
+      "20240326511:13": {
+        "grade": 1,
+        "reason": "States radial movement increases adhesion to the structure; related detail without the openings."
+      },
+      "20240326511:14": {
+        "grade": 1,
+        "reason": "States radial movement decreases adhesion to the structure; related detail without the openings."
+      },
+      "20240326511:17": {
+        "grade": 1,
+        "reason": "Wedge and spring mechanism that increases adhesion to the structure surface, but no openings stated."
+      },
+      "20240326511:18": {
+        "grade": 1,
+        "reason": "Wedge mechanism that decreases adhesion to the structure surface; related detail."
+      },
+      "20240326511:19": {
+        "grade": 2,
+        "reason": "Method using a wheel with apertures in its outer surface to control adhesion to a structure surface."
+      },
+      "20240326511:2": {
+        "grade": 1,
+        "reason": "States radial movement increases adhesion to the structure; related detail without the openings."
+      },
+      "20240326511:20": {
+        "grade": 1,
+        "reason": "States the structure surface may be metallic or non-metallic; related detail of the adhesion method."
+      },
+      "20240326511:3": {
+        "grade": 1,
+        "reason": "States radial movement decreases adhesion to the structure; related detail without the openings."
+      },
+      "20240326511:4": {
+        "grade": 1,
+        "reason": "Only states the diaphragm moving device is a linear actuator; detail of the suction wheel."
+      },
+      "20240326511:5": {
+        "grade": 1,
+        "reason": "Rod moving the diaphragm radially; detail of the adhesion mechanism."
+      },
+      "20240326511:6": {
+        "grade": 1,
+        "reason": "Motor gear moving the actuator rod for the diaphragm; detail of the adhesion mechanism."
+      },
+      "20240326511:7": {
+        "grade": 1,
+        "reason": "Only states the diaphragm moving device is a pump; detail of the suction wheel mechanism."
+      },
+      "20240326511:8": {
+        "grade": 1,
+        "reason": "Pump detail for moving the diaphragm of the adhesion wheel, but does not state wall adhesion through openings."
+      },
+      "20240326511:9": {
+        "grade": 1,
+        "reason": "Motor gear driving the pump for the diaphragm; detail of the adhesion mechanism."
+      }
+    },
+    "q18": {
+      "20240190172:1": {
+        "grade": 2,
+        "reason": "States rim suction ports between tires, a particle collector and a suction flow sucking particles through the ports."
+      },
+      "20240190172:10": {
+        "grade": 2,
+        "reason": "States suction ports through the rim groove bottom, a particle collector and a suction airflow sucking particles."
+      },
+      "20240190172:11": {
+        "grade": 1,
+        "reason": "Placement of bladed suction structures and suction ports; related detail."
+      },
+      "20240190172:12": {
+        "grade": 1,
+        "reason": "Detail of the air passage shape from the suction ports; does not itself state particle collection through rim ports."
+      },
+      "20240190172:13": {
+        "grade": 1,
+        "reason": "Arrangement of suction ports around the particle collector; related detail, not the full suction collection concept."
+      },
+      "20240190172:14": {
+        "grade": 1,
+        "reason": "Filtering body collector and air passage routing; related detail without stating rim ports collecting wear particles."
+      },
+      "20240190172:15": {
+        "grade": 2,
+        "reason": "States a rim with suction ports, particle collector and suction system sucking particles from the tire-ground interface."
+      },
+      "20240190172:16": {
+        "grade": 1,
+        "reason": "Bladed suction structure connecting hub to rim outer ring; related structural detail."
+      },
+      "20240190172:17": {
+        "grade": 1,
+        "reason": "Hub fixation and collector inlet/outlets; related detail."
+      },
+      "20240190172:18": {
+        "grade": 1,
+        "reason": "Suction ports through a circular groove bottom surface; related detail."
+      },
+      "20240190172:19": {
+        "grade": 1,
+        "reason": "Brake disc surrounded by suction ports; related detail."
+      },
+      "20240190172:2": {
+        "grade": 1,
+        "reason": "Suction port ramp geometry; related detail."
+      },
+      "20240190172:20": {
+        "grade": 1,
+        "reason": "Filtering body on one side of the wheel; related detail."
+      },
+      "20240190172:3": {
+        "grade": 1,
+        "reason": "Adds a separation wall in the air passage; related detail only."
+      },
+      "20240190172:4": {
+        "grade": 1,
+        "reason": "Blade and airfoil shape of the suction structure; related detail."
+      },
+      "20240190172:5": {
+        "grade": 1,
+        "reason": "Spokes formed by the bladed suction structure and non-pneumatic tire; related detail."
+      },
+      "20240190172:6": {
+        "grade": 1,
+        "reason": "Location of the bladed suction structure within the rim; related detail."
+      },
+      "20240190172:7": {
+        "grade": 1,
+        "reason": "Tire channels toward suction ports; related detail only."
+      },
+      "20240190172:9": {
+        "grade": 1,
+        "reason": "Suction ports crossing the rim outer ring; related detail without stating particle collection."
+      }
+    },
+    "q19": {
+      "20240190174:13": {
+        "grade": 0,
+        "reason": "Raceway geometry of a hub bearing unit, no greasing."
+      },
+      "20240190174:4": {
+        "grade": 0,
+        "reason": "Raceway geometry of a hub bearing unit, no greasing."
+      },
+      "20240359504:1": {
+        "grade": 0,
+        "reason": "Hub-bearing assembly structure with preload, no greasing."
+      },
+      "20240359504:10": {
+        "grade": 0,
+        "reason": "Bearing and spacer arrangement in the hub opening, no greasing."
+      },
+      "20240359504:12": {
+        "grade": 0,
+        "reason": "Hub-bearing assembly method with rolled edge and preload, no lubrication."
+      },
+      "20240359504:6": {
+        "grade": 0,
+        "reason": "Bearing and spacer arrangement in the hub opening, no greasing."
+      },
+      "20240383277:1": {
+        "grade": 0,
+        "reason": "Hub-bearing assembly structure, no greasing."
+      },
+      "20240383277:3": {
+        "grade": 0,
+        "reason": "Surface profile of the flanged hub, no greasing."
+      },
+      "20250058585:42": {
+        "grade": 0,
+        "reason": "Installation interface between bearing and axle, no greasing."
+      },
+      "20250058585:43": {
+        "grade": 0,
+        "reason": "Lists bearing installation parts, no greasing."
+      },
+      "20250058585:45": {
+        "grade": 0,
+        "reason": "Bolted installation of bearing, no greasing."
+      },
+      "20250058585:49": {
+        "grade": 0,
+        "reason": "About replacing the bearing installation without removing the axle, not greasing."
+      },
+      "20250058585:53": {
+        "grade": 0,
+        "reason": "Parts attaching bearing installation to the hub, no greasing."
+      },
+      "20250058585:57": {
+        "grade": 0,
+        "reason": "Second hub part adapted for bearing installation, no greasing."
+      },
+      "20250058585:58": {
+        "grade": 0,
+        "reason": "Bearing installation assembled as a unit, no greasing."
+      },
+      "20250083473:16": {
+        "grade": 0,
+        "reason": "Hub dimensions in a production method, no greasing."
+      },
+      "20250083473:3": {
+        "grade": 0,
+        "reason": "Hub dimensions, no greasing."
+      },
+      "20250091386:1": {
+        "grade": 2,
+        "reason": "Component with external port and channel so lubricant reaches the bearing while it stays assembled on the vehicle."
+      },
+      "20250091386:10": {
+        "grade": 2,
+        "reason": "Wheel hub with external port and channel so lubricant reaches the bearing while the hub stays assembled."
+      },
+      "20250091386:11": {
+        "grade": 0,
+        "reason": "Journal and bearing support arrangement, no greasing."
+      },
+      "20250091386:12": {
+        "grade": 1,
+        "reason": "Places the channel's first side on the wheel side, a related detail of outside greasing, but does not state greasing."
+      },
+      "20250091386:13": {
+        "grade": 0,
+        "reason": "Only describes a socket and shaft receiving hole, nothing about greasing."
+      },
+      "20250091386:14": {
+        "grade": 0,
+        "reason": "Shape of surfaces, nothing about greasing."
+      },
+      "20250091386:15": {
+        "grade": 0,
+        "reason": "Geometry of surfaces joining a face, no greasing."
+      },
+      "20250091386:16": {
+        "grade": 1,
+        "reason": "Groove valleys collect lubricant from the port, a related lubrication detail only."
+      },
+      "20250091386:17": {
+        "grade": 0,
+        "reason": "Mounting structures and brake rotor contact, no greasing."
+      },
+      "20250091386:18": {
+        "grade": 1,
+        "reason": "Location of the lubricant port inside grooves, a related detail only."
+      },
+      "20250091386:19": {
+        "grade": 2,
+        "reason": "Bearing carrier with ports and channel so lubricant is applied to the bearing while assembled on the vehicle."
+      },
+      "20250091386:2": {
+        "grade": 0,
+        "reason": "Only states the component is a wheel hub."
+      },
+      "20250091386:20": {
+        "grade": 0,
+        "reason": "Only states the bearing carrier is a knuckle or spindle."
+      },
+      "20250091386:3": {
+        "grade": 0,
+        "reason": "Only states the component is a knuckle."
+      },
+      "20250091386:4": {
+        "grade": 0,
+        "reason": "Bearing supports a driven shaft, nothing about greasing."
+      },
+      "20250091386:6": {
+        "grade": 1,
+        "reason": "Greasing tool applies grease to the bearing through the port and channel, but does not state it is done without disassembly."
+      },
+      "20250091386:7": {
+        "grade": 1,
+        "reason": "Port threading that meshes with a greasing tool, a related greasing detail only."
+      },
+      "20250091386:8": {
+        "grade": 1,
+        "reason": "Zerk grease fitting threading, a related greasing detail only."
+      },
+      "20250091386:9": {
+        "grade": 0,
+        "reason": "Bearing installable without a tool, not about greasing."
+      }
+    },
+    "q20": {
+      "20240051337:1": {
+        "grade": 0,
+        "reason": "Wheel carrier and bearing structure of a vehicle, not a lift tool."
+      },
+      "20240075774:10": {
+        "grade": 1,
+        "reason": "Actuated lifting platform raises a wheel onto a tyre changer wheel-holder; related wheel lifting but not mounting on a car."
+      },
+      "20240075774:15": {
+        "grade": 1,
+        "reason": "Lifting platform places a wheel on a tyre changer; related wheel lifting, not mounting on a car."
+      },
+      "20240109368:14": {
+        "grade": 1,
+        "reason": "Mounting brackets bolted to the wheel component; related holding detail only."
+      },
+      "20240109368:15": {
+        "grade": 0,
+        "reason": "Only states the handled component is a wheel spacer/adaptor; no lift or holding of a wheel."
+      },
+      "20240109368:2": {
+        "grade": 1,
+        "reason": "Telescoping height-adjustable support for wheel components; related but not a motorized upright wheel lift."
+      },
+      "20240109368:5": {
+        "grade": 1,
+        "reason": "Movable base of a wheel-component handling support; related detail only."
+      },
+      "20240109368:6": {
+        "grade": 1,
+        "reason": "Rotary drive for a wheel-component handling apparatus; related powered handling detail but not a wheel lift holding it upright."
+      },
+      "20240109368:7": {
+        "grade": 1,
+        "reason": "Linear actuator rotary drive of the handling apparatus; related powered detail only."
+      },
+      "20240140138:1": {
+        "grade": 2,
+        "reason": "DC gear-motor scissor lift raises and lowers a wheel held stable and vertical by a stabilizing arm."
+      },
+      "20240140138:2": {
+        "grade": 1,
+        "reason": "Telescoping stabilizing arm lockable by the mechanic; related detail of the wheel lifter."
+      },
+      "20240140138:3": {
+        "grade": 1,
+        "reason": "Stabilizing arm head rollers hold the wheel vertical, but no motorized lift stated in this claim."
+      },
+      "20240140138:4": {
+        "grade": 1,
+        "reason": "Power supply and drive train of the wheel lifter motor; related detail only."
+      },
+      "20240140138:5": {
+        "grade": 1,
+        "reason": "DC gear motor sized to raise the wheel to the mounting studs; closely related motor detail but does not state holding the wheel upright."
+      },
+      "20240140138:6": {
+        "grade": 1,
+        "reason": "Rollers on the scissor lift table supporting the wheel; related detail without stating the motorized upright-holding lift."
+      },
+      "20240300270:16": {
+        "grade": 0,
+        "reason": "Electric motor in a trailer jack hitch, not a wheel lift."
+      },
+      "20240367459:7": {
+        "grade": 0,
+        "reason": "Only states the hydraulic fluid is a liquid."
+      },
+      "20240375436:12": {
+        "grade": 0,
+        "reason": "Walk-behind ground care vehicle; unrelated."
+      },
+      "20240375436:13": {
+        "grade": 0,
+        "reason": "Electric motor and battery of a work vehicle with locking casters."
+      },
+      "20240391275:1": {
+        "grade": 0,
+        "reason": "Fixing swivel wheels of a non-motorized vehicle; unrelated."
+      },
+      "20240391275:3": {
+        "grade": 0,
+        "reason": "Non-motorized vehicle with swivel wheel fixation; unrelated."
+      },
+      "20240391275:4": {
+        "grade": 0,
+        "reason": "Swivel wheel locking pivots on a non-motorized vehicle; unrelated."
+      },
+      "20240391282:16": {
+        "grade": 0,
+        "reason": "Trailer hitch mount actuator, unrelated to wheel lifting."
+      },
+      "20250042206:13": {
+        "grade": 0,
+        "reason": "Lifting a tire relative to its wheel, i.e. tire demounting, not mounting a wheel on a car."
+      },
+      "20250042206:17": {
+        "grade": 0,
+        "reason": "Detecting actuator position relative to tire/wheel; not a wheel mounting lift."
+      },
+      "20250042206:18": {
+        "grade": 0,
+        "reason": "Detecting implement position relative to tire/wheel; not about lifting a wheel onto a car."
+      },
+      "20250042206:7": {
+        "grade": 0,
+        "reason": "Sensors detecting actuator position relative to a tire/wheel; nothing about lifting a wheel for mounting on a car."
+      },
+      "20250042206:8": {
+        "grade": 0,
+        "reason": "Sensors detecting implement position; not a wheel lift for mounting."
+      }
+    },
+    "q21": {
+      "20250026148:1": {
+        "grade": 2,
+        "reason": "Claims an extraction apparatus threaded into the locking element of a centre-lock wheel nut, with torque input and bearing on the nut."
+      },
+      "20250026148:10": {
+        "grade": 1,
+        "reason": "Engagement element is a recess with limited rotational symmetry; related tool detail."
+      },
+      "20250026148:11": {
+        "grade": 1,
+        "reason": "Square recess of the engagement element; minor tool detail."
+      },
+      "20250026148:12": {
+        "grade": 2,
+        "reason": "Apparatus with threaded end engaging the locking element, torque engagement and bearing surface on the wheel nut, i.e. the removal tool."
+      },
+      "20250026148:17": {
+        "grade": 2,
+        "reason": "Method using an extraction tool threaded into the locking element with a spacer against the wheel nut to translate the locking element out."
+      },
+      "20250026148:2": {
+        "grade": 1,
+        "reason": "Detail of the locking element splines; right topic but not the removal tool."
+      },
+      "20250026148:3": {
+        "grade": 1,
+        "reason": "Detail of thread engagement length between extraction tool and locking element; related but does not state the removal tool."
+      },
+      "20250026148:4": {
+        "grade": 1,
+        "reason": "Circular trench in the bearing face for the wheel nut edge; related tool detail."
+      },
+      "20250026148:5": {
+        "grade": 0,
+        "reason": "Only adds a wheel mounted on the hub; says nothing about removing the locking element."
+      },
+      "20250026148:6": {
+        "grade": 1,
+        "reason": "Engagement element projects outward to assist removal; related tool detail."
+      },
+      "20250026148:7": {
+        "grade": 1,
+        "reason": "Location of the bearing surface of the extraction apparatus; related detail only."
+      },
+      "20250026148:8": {
+        "grade": 1,
+        "reason": "Describes the extraction apparatus split into extraction tool and spacer, a detail of the removal tool rather than the tool removing the locking element itself."
+      },
+      "20250026148:9": {
+        "grade": 1,
+        "reason": "Only states the spacer tool is annular; closely related tool detail."
+      }
+    },
+    "q22": {
+      "20240165992:1": {
+        "grade": 2,
+        "reason": "Tire handler grips and lifts the tire and a tilt assembly moves it between vertical and horizontal to lay the tire flat."
+      },
+      "20240165992:10": {
+        "grade": 2,
+        "reason": "States a tilt actuator moving the tire-gripping arm assembly between vertical and horizontal positions, i.e. tilting the tire flat."
+      },
+      "20240165992:11": {
+        "grade": 1,
+        "reason": "Describes how the arm assembly couples to the tilt assembly, closely related to tilting but does not state laying the tire flat."
+      },
+      "20240165992:12": {
+        "grade": 1,
+        "reason": "Specifies the handled tire includes a rim, a related detail but no tilting or laying flat."
+      },
+      "20240165992:13": {
+        "grade": 0,
+        "reason": "Only describes a U-shaped frame."
+      },
+      "20240165992:15": {
+        "grade": 0,
+        "reason": "Only states the handler is self-propelled with a motor."
+      },
+      "20240165992:16": {
+        "grade": 1,
+        "reason": "Tire handler gripping arms shift the tire laterally, a related handling detail but not tilting or laying flat."
+      },
+      "20240165992:17": {
+        "grade": 1,
+        "reason": "Double-ended telescoping arms allow lateral movement of the gripping arms, a related handling detail but not tilting."
+      },
+      "20240165992:2": {
+        "grade": 0,
+        "reason": "Only adds a remote control unit."
+      },
+      "20240165992:3": {
+        "grade": 0,
+        "reason": "Only adds front and rear wheels to the frame; nothing about tilting or laying a tire flat."
+      },
+      "20240165992:4": {
+        "grade": 0,
+        "reason": "Only adds a battery for power."
+      },
+      "20240165992:5": {
+        "grade": 0,
+        "reason": "Only states the vehicle is a truck."
+      },
+      "20240165992:6": {
+        "grade": 0,
+        "reason": "Only states the handler is remotely controllable."
+      },
+      "20240165992:7": {
+        "grade": 0,
+        "reason": "Only states the handler is locally controllable."
+      },
+      "20240165992:8": {
+        "grade": 0,
+        "reason": "Only adds an operator platform or deck."
+      },
+      "20240165992:9": {
+        "grade": 1,
+        "reason": "Actuators of the tire handler are hydraulic cylinders, a related mechanism detail without stating tilt or lay flat."
+      }
+    },
+    "q23": {
+      "20240198726:1": {
+        "grade": 1,
+        "reason": "Caster with brake ring and brake block in body; no spring."
+      },
+      "20240198726:10": {
+        "grade": 1,
+        "reason": "Caster brake ring alignment; no spring."
+      },
+      "20240198726:11": {
+        "grade": 1,
+        "reason": "Caster brake ring mounting on hub; no spring."
+      },
+      "20240198726:12": {
+        "grade": 1,
+        "reason": "Caster brake ring material; no spring."
+      },
+      "20240198726:15": {
+        "grade": 1,
+        "reason": "Caster brake block material; no spring."
+      },
+      "20240198726:16": {
+        "grade": 1,
+        "reason": "Caster brake block vertical movement; no spring."
+      },
+      "20240198726:20": {
+        "grade": 1,
+        "reason": "Caster with integrated brake block and ring; no spring."
+      },
+      "20240198726:21": {
+        "grade": 1,
+        "reason": "Caster brake ring alignment; no spring."
+      },
+      "20240198726:22": {
+        "grade": 1,
+        "reason": "Caster brake ring mounting on hub; no spring."
+      },
+      "20240198726:23": {
+        "grade": 1,
+        "reason": "Caster brake block material; no spring."
+      },
+      "20240198726:26": {
+        "grade": 1,
+        "reason": "Caster brake ring material; no spring."
+      },
+      "20240198726:27": {
+        "grade": 1,
+        "reason": "Caster brake block vertical movement; no spring."
+      },
+      "20240198726:9": {
+        "grade": 1,
+        "reason": "Caster with integrated brake ring and block; no spring."
+      },
+      "20240208265:1": {
+        "grade": 2,
+        "reason": "Caster with spring assembly between receptacle and wheel shaft and an integrated braking unit."
+      },
+      "20240208265:2": {
+        "grade": 1,
+        "reason": "Caster braking units on wheel rims; no spring stated."
+      },
+      "20240208265:3": {
+        "grade": 1,
+        "reason": "Braking pieces mounted in caster receptacle housing; no spring stated."
+      },
+      "20240208265:4": {
+        "grade": 1,
+        "reason": "Braking piece engagement with caster housing walls; no spring."
+      },
+      "20240208265:5": {
+        "grade": 0,
+        "reason": "Only a protuberance between protrusion and wall edge; no brake or spring stated."
+      },
+      "20240208265:6": {
+        "grade": 0,
+        "reason": "Only states a protuberance shape; no brake or spring."
+      },
+      "20240208265:7": {
+        "grade": 1,
+        "reason": "Braking piece retention in caster housing; no spring."
+      },
+      "20240208265:8": {
+        "grade": 1,
+        "reason": "Caster braking surface shape; no spring stated."
+      },
+      "20240208265:9": {
+        "grade": 1,
+        "reason": "Caster brake teeth structure detail; no spring stated."
+      },
+      "20240278599:1": {
+        "grade": 1,
+        "reason": "Caster with built-in brake arm and lever but no spring."
+      },
+      "20240278599:10": {
+        "grade": 1,
+        "reason": "Caster brake arm buffer pad; no spring."
+      },
+      "20240278599:14": {
+        "grade": 0,
+        "reason": "Only lever arm clevis joint to dolly frame; no brake or spring stated."
+      },
+      "20240278599:2": {
+        "grade": 0,
+        "reason": "Only a cam on the lever arm engaging the pin; no brake or spring stated."
+      },
+      "20240278599:3": {
+        "grade": 1,
+        "reason": "Caster brake arm bracket detail; no spring."
+      },
+      "20240278599:4": {
+        "grade": 0,
+        "reason": "Only lever arm handle geometry; no brake or spring stated."
+      },
+      "20240278599:5": {
+        "grade": 0,
+        "reason": "Only an angle range; no brake or spring stated."
+      },
+      "20240278599:6": {
+        "grade": 1,
+        "reason": "Lever orientation relative to brake arm positions; no spring."
+      },
+      "20240278599:7": {
+        "grade": 0,
+        "reason": "Only pin diameters; no brake or spring stated."
+      },
+      "20240278599:8": {
+        "grade": 0,
+        "reason": "Only pin geometry; no brake or spring stated."
+      },
+      "20240278599:9": {
+        "grade": 0,
+        "reason": "Only pin material; no brake or spring stated."
+      },
+      "20240300263:4": {
+        "grade": 1,
+        "reason": "Caster brake member with resilient member biasing it, but the spring is in the brake, not between wheel and housing."
+      },
+      "20250033409:14": {
+        "grade": 1,
+        "reason": "Castor brake pedal and shoe thickness; no spring."
+      },
+      "20250033409:16": {
+        "grade": 0,
+        "reason": "Only wheel toe angle; no brake or spring stated."
+      },
+      "20250033409:17": {
+        "grade": 1,
+        "reason": "Castor brake shoe hardness; no spring."
+      },
+      "20250033409:18": {
+        "grade": 1,
+        "reason": "Castor brake shoe hardness; no spring."
+      },
+      "20250033409:2": {
+        "grade": 1,
+        "reason": "Castor brake pedal axle placement; no spring."
+      },
+      "20250033409:3": {
+        "grade": 1,
+        "reason": "Castor brake pedal axle placement; no spring."
+      },
+      "20250033409:4": {
+        "grade": 1,
+        "reason": "Castor brake pedal axle position; no spring between wheel and housing."
+      },
+      "20250033409:5": {
+        "grade": 1,
+        "reason": "Castor brake shoe placement; no spring."
+      },
+      "20250033409:6": {
+        "grade": 1,
+        "reason": "Castor braking device pressing wheels; no spring."
+      },
+      "20250033409:9": {
+        "grade": 1,
+        "reason": "Castor brake shoe position; no spring."
+      }
+    },
+    "q24": {
+      "20240165995:1": {
+        "grade": 2,
+        "reason": "States a retaining member sized so the wheel is retained on the sleeve when the bearing fails."
+      },
+      "20240165995:10": {
+        "grade": 1,
+        "reason": "Retaining diameter larger than bearing diameter, related sizing detail only."
+      },
+      "20240165995:11": {
+        "grade": 1,
+        "reason": "Retaining diameter larger than bearing outer race, related sizing detail without stating the failure retention."
+      },
+      "20240165995:12": {
+        "grade": 2,
+        "reason": "States the wheel is retained and does not separate from the wheel mount when the bearing fails."
+      },
+      "20240165995:13": {
+        "grade": 1,
+        "reason": "Weldment engaging bolt head, related construction detail only."
+      },
+      "20240165995:14": {
+        "grade": 1,
+        "reason": "Shape of the retaining member, related detail but no statement of retention on bearing failure."
+      },
+      "20240165995:15": {
+        "grade": 2,
+        "reason": "States a retaining member that keeps the wheel on the sleeve when the wheel bearing fails."
+      },
+      "20240165995:16": {
+        "grade": 2,
+        "reason": "States the wheel is retained and does not separate from the mount when the bearing fails."
+      },
+      "20240165995:18": {
+        "grade": 1,
+        "reason": "Shape of the retaining member, related detail only."
+      },
+      "20240165995:19": {
+        "grade": 1,
+        "reason": "Places the wheel retainer outward of the bearing, a related detail, but does not itself state retention on bearing failure."
+      },
+      "20240165995:2": {
+        "grade": 1,
+        "reason": "Retaining diameter greater than bearing diameter, related sizing detail only."
+      },
+      "20240165995:20": {
+        "grade": 0,
+        "reason": "Only describes wheel ground-engagement orientation, nothing about retention or bearing failure."
+      },
+      "20240165995:3": {
+        "grade": 1,
+        "reason": "Retaining diameter larger than outer race inner diameter, related sizing detail only."
+      },
+      "20240165995:4": {
+        "grade": 2,
+        "reason": "States the wheel is retained and does not fully separate from the mount when the bearing fails."
+      },
+      "20240165995:5": {
+        "grade": 1,
+        "reason": "Weld attachment of the retaining member, related detail only."
+      },
+      "20240165995:6": {
+        "grade": 1,
+        "reason": "Weldment engaging the bolt head, related construction detail only."
+      },
+      "20240165995:7": {
+        "grade": 1,
+        "reason": "Material of the retainer sleeve and retaining member, a related detail without stating retention on bearing failure."
+      },
+      "20240165995:8": {
+        "grade": 1,
+        "reason": "Sleeve and retaining member integrally formed, related detail only."
+      },
+      "20240165995:9": {
+        "grade": 2,
+        "reason": "States a wheel retainer that keeps the wheel on the sleeve when the wheel bearing fails."
+      },
+      "20250100329:18": {
+        "grade": 0,
+        "reason": "Gauge wheel tire protrusion for cleaning debris, unrelated to retaining the wheel on bearing failure."
+      }
+    },
+    "q25": {
+      "20240336089:1": {
+        "grade": 2,
+        "reason": "Recites the tube with sprocket, brake assembly and wheel mounting plates, i.e. the wheel adapter with sprocket and brake mounts."
+      },
+      "20240336089:10": {
+        "grade": 1,
+        "reason": "Detail of the tube inserted into the brake drum center; does not itself state the adapter with sprocket and brake mounts."
+      },
+      "20240336089:2": {
+        "grade": 1,
+        "reason": "Only adds relative diameters of the mounting plates; a closely related adapter detail."
+      },
+      "20240336089:3": {
+        "grade": 1,
+        "reason": "Only adds cutout regions in the wheel mounting plate; related adapter detail."
+      },
+      "20240336089:4": {
+        "grade": 1,
+        "reason": "Only adds relative plate thicknesses; related adapter detail."
+      },
+      "20240336089:5": {
+        "grade": 2,
+        "reason": "States sprocket, brake drum and wheel all fastened to their mounting plates on the adapter tube."
+      },
+      "20240336089:6": {
+        "grade": 1,
+        "reason": "Only adds aligned bolt patterns between sprocket plate and sprocket; related detail."
+      },
+      "20240336089:7": {
+        "grade": 1,
+        "reason": "Only adds aligned bolt patterns between brake plate and brake drum; related detail."
+      },
+      "20240336089:8": {
+        "grade": 1,
+        "reason": "Only adds aligned bolt patterns between wheel plate and wheel; related detail."
+      },
+      "20240336089:9": {
+        "grade": 1,
+        "reason": "Only adds the tube inserted into the sprocket center; related detail."
+      }
+    },
+    "q26": {
+      "20240246364:7": {
+        "grade": 0,
+        "reason": "Communication device placement in a retreaded tire, not about sidewall rubber degradation."
+      },
+      "20240286436:25": {
+        "grade": 0,
+        "reason": "Placement of a radio device relative to the inner liner, unrelated to retreading."
+      },
+      "20240286436:26": {
+        "grade": 0,
+        "reason": "Cure times of RFID rubber layers, not retreading."
+      },
+      "20240286436:32": {
+        "grade": 0,
+        "reason": "Cure package ratios for RFID rubber layers, not retreading."
+      },
+      "20240286438:1": {
+        "grade": 0,
+        "reason": "Bicycle tire sidewall drive strip, not retreading."
+      },
+      "20240286439:26": {
+        "grade": 0,
+        "reason": "Cure package of an RFID rubber layer, not retreading."
+      },
+      "20240286439:28": {
+        "grade": 0,
+        "reason": "Curing an uncured carcass with an RFID module, not retreading."
+      },
+      "20240286439:29": {
+        "grade": 0,
+        "reason": "Curing bladder for an RFID tire, not retreading or sidewall degradation."
+      },
+      "20240286439:34": {
+        "grade": 0,
+        "reason": "Cure package for RFID rubber layer method, not retreading."
+      },
+      "20250018747:7": {
+        "grade": 0,
+        "reason": "Rubber layer modulus change under dynamic stimulus, not retreading."
+      },
+      "20250018747:8": {
+        "grade": 0,
+        "reason": "Rubber layer property change under dynamic stimulus, not retreading."
+      },
+      "20250018750:4": {
+        "grade": 0,
+        "reason": "Communication device contacting side rubber, unrelated to retreading."
+      },
+      "20250018750:7": {
+        "grade": 0,
+        "reason": "Communication device contacting side rubber, unrelated to retreading."
+      },
+      "20250018750:8": {
+        "grade": 0,
+        "reason": "Communication device contacting side rubber, unrelated to retreading."
+      },
+      "20250042200:1": {
+        "grade": 2,
+        "reason": "Claims retreading a base tire whose sidewall contains a specific degradation-resistant rubbery polymer, the asked solution."
+      },
+      "20250042200:10": {
+        "grade": 1,
+        "reason": "Aspect ratio of the retreaded tire; on topic but not about sidewall degradation."
+      },
+      "20250042200:11": {
+        "grade": 1,
+        "reason": "Retreading method limited to truck/bus tires; on topic but no sidewall heat detail."
+      },
+      "20250042200:12": {
+        "grade": 1,
+        "reason": "Retreading method limited to passenger car tires; on topic but no sidewall heat detail."
+      },
+      "20250042200:2": {
+        "grade": 1,
+        "reason": "Sidewall polymer constituent in a retreading method; related detail only."
+      },
+      "20250042200:3": {
+        "grade": 1,
+        "reason": "Hydrogenated rubber in the sidewall of a retreaded tire; related but does not state heat degradation is avoided."
+      },
+      "20250042200:4": {
+        "grade": 1,
+        "reason": "Retreading method detail on hydrogenation of the sidewall polymer, but does not state protection from bonding heat."
+      },
+      "20250042200:5": {
+        "grade": 1,
+        "reason": "Functional group of the sidewall polymer in a retreading method; related detail only."
+      },
+      "20250042200:6": {
+        "grade": 1,
+        "reason": "Sidewall silica content in a retreading method; related detail, no mention of heat degradation."
+      },
+      "20250042200:7": {
+        "grade": 1,
+        "reason": "Sidewall natural rubber content in a retreading method; related detail only."
+      },
+      "20250042200:8": {
+        "grade": 1,
+        "reason": "Sidewall butadiene rubber content in a retreading method; related detail only."
+      },
+      "20250042200:9": {
+        "grade": 1,
+        "reason": "Sidewall rubber composition for a retreading method; related detail without stating heat resistance."
+      }
+    },
+    "q27": {
+      "20240286436:22": {
+        "grade": 1,
+        "reason": "Two rubber layers with different T50 cure times, but the visible text does not mention the RFID device."
+      },
+      "20240286436:25": {
+        "grade": 1,
+        "reason": "Positions the radio device relative to the two layers and inner liner, without stating different cure speeds."
+      },
+      "20240286436:26": {
+        "grade": 1,
+        "reason": "Gives different T50 cure time ranges for the two layers but does not mention the RFID device."
+      },
+      "20240286436:27": {
+        "grade": 1,
+        "reason": "Two rubber layers with different T50 cure times, but the visible text does not mention the RFID device."
+      },
+      "20240286436:30": {
+        "grade": 1,
+        "reason": "Rubber compositions of the two layers only; neither the RFID nor the cure speeds are stated."
+      },
+      "20240286436:31": {
+        "grade": 1,
+        "reason": "Filler content of the two layers only; neither the RFID nor the cure speeds are stated."
+      },
+      "20240286436:32": {
+        "grade": 1,
+        "reason": "Different accelerator to sulfur ratios for the two layers relate to cure speed, but the RFID placement is not stated."
+      },
+      "20240286436:33": {
+        "grade": 1,
+        "reason": "Positions the radio device relative to the two layers and inner liner, without stating different cure speeds."
+      },
+      "20240286436:34": {
+        "grade": 2,
+        "reason": "States a radio device between a first and second rubber layer where the second layer has a longer T50 cure time."
+      },
+      "20240286436:35": {
+        "grade": 0,
+        "reason": "Only adds a pebble-surface curing bladder; nothing about the RFID or the layers."
+      },
+      "20240286436:38": {
+        "grade": 1,
+        "reason": "Rubber compositions of the two layers only; neither the RFID nor the cure speeds are stated."
+      },
+      "20240286436:39": {
+        "grade": 1,
+        "reason": "Filler content of the two layers only; neither the RFID nor the cure speeds are stated."
+      },
+      "20240286436:40": {
+        "grade": 1,
+        "reason": "Different accelerator to sulfur ratios for the two layers relate to cure speed, but the RFID placement is not stated."
+      },
+      "20240286436:41": {
+        "grade": 1,
+        "reason": "Places the radio device with the second layer against the inner liner, but does not state the different cure speeds."
+      },
+      "20240286439:26": {
+        "grade": 0,
+        "reason": "Only the cure package of a single rubber layer; no two layers curing at different speeds."
+      },
+      "20240416682:28": {
+        "grade": 1,
+        "reason": "RFID tag inserted between rubber sheet layers, but no different cure speeds."
+      },
+      "20240416682:30": {
+        "grade": 1,
+        "reason": "RFID tag covered by an unvulcanized rubber coating layer, but no different cure speeds."
+      },
+      "20240416686:30": {
+        "grade": 1,
+        "reason": "RFID tag inserted between rubber sheet layers, but no different cure speeds."
+      }
+    },
+    "q28": {
+      "20240066922:2": {
+        "grade": 0,
+        "reason": "Ratio of tread arc radii, not rim width to tire width."
+      },
+      "20240270020:1": {
+        "grade": 2,
+        "reason": "Aircraft radial tire with rim width RW to tire maximum width W satisfying RW/W<=0.7."
+      },
+      "20240270020:2": {
+        "grade": 1,
+        "reason": "Aircraft radial tire on its applicable rim with a dimensional ratio near the rim flange, but not rim width to tire width."
+      },
+      "20240270020:3": {
+        "grade": 0,
+        "reason": "Aircraft tire stiffener sheet rubber; nothing about rim width ratio."
+      },
+      "20240270020:5": {
+        "grade": 0,
+        "reason": "Aircraft tire stiffener tan delta comparison; nothing about rim width ratio."
+      },
+      "20240270020:7": {
+        "grade": 0,
+        "reason": "Aircraft tire stiffener tan delta comparison; nothing about rim width ratio."
+      },
+      "20240270020:8": {
+        "grade": 0,
+        "reason": "Aircraft tire stiffener tan delta comparison; nothing about rim width ratio."
+      },
+      "20240270020:9": {
+        "grade": 0,
+        "reason": "Aircraft tire stiffener tan delta comparison; nothing about rim width ratio."
+      },
+      "20240408915:1": {
+        "grade": 0,
+        "reason": "Passenger tire SW/OD and single main groove; no rim width to tire width ratio."
+      },
+      "20240408916:2": {
+        "grade": 0,
+        "reason": "Passenger tire SW/OD and groove layout; no rim width to tire width ratio."
+      },
+      "20240408916:3": {
+        "grade": 0,
+        "reason": "Passenger tire SW/OD and tread gauge; no rim width to tire width ratio."
+      },
+      "20240416685:1": {
+        "grade": 0,
+        "reason": "Passenger tire SW/OD and communication device placement; no rim width ratio."
+      },
+      "20240416685:5": {
+        "grade": 0,
+        "reason": "Only states the communication device is an RF tag."
+      },
+      "20240424835:1": {
+        "grade": 0,
+        "reason": "Passenger tire SW/OD ratio and negative ratio; no rim width to tire width ratio."
+      },
+      "20240424835:10": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20240424835:11": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20240424835:2": {
+        "grade": 0,
+        "reason": "Passenger tire SW/OD and contact length; no rim width to tire width ratio."
+      },
+      "20240424835:3": {
+        "grade": 0,
+        "reason": "Passenger tire SW/OD and tread gauge; no rim width to tire width ratio."
+      },
+      "20240424835:4": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20240424835:5": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20240424835:6": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20240424835:8": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20250001808:1": {
+        "grade": 0,
+        "reason": "Passenger tire width to outer diameter ratio, not rim width to tire width in an aircraft tire."
+      },
+      "20250001808:10": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20250001808:11": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20250001808:2": {
+        "grade": 0,
+        "reason": "Passenger tire SW/OD and contact length; no rim width to tire width ratio."
+      },
+      "20250001808:3": {
+        "grade": 0,
+        "reason": "Passenger tire SW/OD and tread gauge; no rim width to tire width ratio."
+      },
+      "20250001808:4": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20250001808:5": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20250001808:6": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20250001808:8": {
+        "grade": 0,
+        "reason": "Sipes on a passenger tire land portion; unrelated to rim width ratio."
+      },
+      "20250026146:7": {
+        "grade": 0,
+        "reason": "Bicycle rim flange corner radius ratio, not aircraft rim to tire width."
+      }
+    },
+    "q29": {
+      "20240100881:3": {
+        "grade": 0,
+        "reason": "Thermoplastic resin of an ordinary airless tire; not relevant to rovers."
+      },
+      "20240100881:4": {
+        "grade": 0,
+        "reason": "Resin elastic modulus of an ordinary airless tire; not about rovers or planetary wheels."
+      },
+      "20240100881:5": {
+        "grade": 0,
+        "reason": "Volume resistivity of resin in an ordinary airless tire; not relevant."
+      },
+      "20240100881:7": {
+        "grade": 0,
+        "reason": "Bond shear strength in an ordinary airless tire; not relevant to rovers."
+      },
+      "20240165991:4": {
+        "grade": 0,
+        "reason": "Omni wheel as driving wheel; not airless or planetary."
+      },
+      "20240165991:5": {
+        "grade": 0,
+        "reason": "Middle wheel as driving wheel; not relevant."
+      },
+      "20240198723:12": {
+        "grade": 1,
+        "reason": "Spring-biased spoke of an airless tire; airless wheel structure but no rover or planetary use."
+      },
+      "20240198723:3": {
+        "grade": 0,
+        "reason": "Air tank feeding a stud spoke; not about airless rover wheels."
+      },
+      "20240198723:5": {
+        "grade": 0,
+        "reason": "Air distribution manifold for stud spokes; not about airless rover wheels."
+      },
+      "20240198723:6": {
+        "grade": 0,
+        "reason": "Air compressor for a stud spoke system; not about an airless rover wheel."
+      },
+      "20240198723:7": {
+        "grade": 0,
+        "reason": "Generator for a pressure system; not about airless rover wheels."
+      },
+      "20250121629:1": {
+        "grade": 1,
+        "reason": "Hub, laminated strip, metal cables, insulation and heating describe an airless wheel but do not state rover use."
+      },
+      "20250121629:10": {
+        "grade": 1,
+        "reason": "Deformation and stress measurement of the laminated strip; wheel detail only."
+      },
+      "20250121629:11": {
+        "grade": 1,
+        "reason": "Hub, laminated strip and metal cables with thermal insulation describe an airless wheel structure but do not state rover use."
+      },
+      "20250121629:12": {
+        "grade": 1,
+        "reason": "Rotating electrical contacts to the laminated strip; wheel detail only."
+      },
+      "20250121629:15": {
+        "grade": 1,
+        "reason": "Placement of heating wires in the strip; wheel detail only."
+      },
+      "20250121629:18": {
+        "grade": 1,
+        "reason": "Metallic coating on thermal insulation of the wheel; related detail."
+      },
+      "20250121629:20": {
+        "grade": 1,
+        "reason": "Bragg grating optical fibers in the wheel; detail only."
+      },
+      "20250121629:3": {
+        "grade": 1,
+        "reason": "Electric heating wires in the laminated strip ferrules; related detail."
+      },
+      "20250121629:8": {
+        "grade": 1,
+        "reason": "Metallic coating limiting radiative heat transfer on a non-pneumatic wheel; related detail."
+      },
+      "20250121629:9": {
+        "grade": 1,
+        "reason": "Temperature measurement of the interposition layers; wheel detail only."
+      },
+      "20250121631:1": {
+        "grade": 1,
+        "reason": "Hub, deformable tread and radial reinforcements describe an airless wheel but do not state non-pneumatic or rover use."
+      },
+      "20250121631:10": {
+        "grade": 1,
+        "reason": "Two stop discs on the hub of the deformable wheel; detail only."
+      },
+      "20250121631:11": {
+        "grade": 1,
+        "reason": "Metal shear strip tread layer of the deformable wheel; closely related structural detail."
+      },
+      "20250121631:12": {
+        "grade": 2,
+        "reason": "Claims a vehicle with a deformable non-pneumatic load-bearing wheel and its full structure, i.e. an airless rover wheel."
+      },
+      "20250121631:13": {
+        "grade": 1,
+        "reason": "Hub, deformable tread and radial reinforcements describe an airless wheel structure but do not state non-pneumatic or planetary use."
+      },
+      "20250121631:14": {
+        "grade": 1,
+        "reason": "Rotatable stop disc of the deformable wheel; wheel detail only."
+      },
+      "20250121631:15": {
+        "grade": 1,
+        "reason": "Outer surface contacts the ground; minor wheel detail."
+      },
+      "20250121631:16": {
+        "grade": 1,
+        "reason": "Stop disc on a roller bearing; wheel detail only."
+      },
+      "20250121631:17": {
+        "grade": 1,
+        "reason": "Roller bearing detail of the stop disc; wheel detail only."
+      },
+      "20250121631:18": {
+        "grade": 1,
+        "reason": "Spring-connected outer strip of the stop disc; wheel detail only."
+      },
+      "20250121631:19": {
+        "grade": 1,
+        "reason": "Deformable ring spring connections; wheel detail only."
+      },
+      "20250121631:2": {
+        "grade": 1,
+        "reason": "Stop disc mounted by a roller bearing; wheel detail only."
+      },
+      "20250121631:20": {
+        "grade": 1,
+        "reason": "Stainless steel strip windings of the deformable ring; wheel detail only."
+      },
+      "20250121631:4": {
+        "grade": 1,
+        "reason": "Stop disc spring detail of a deformable non-pneumatic wheel; no rover or planetary use stated."
+      },
+      "20250121631:5": {
+        "grade": 1,
+        "reason": "Spring connections formed by deformable rings; wheel detail only."
+      },
+      "20250121631:7": {
+        "grade": 1,
+        "reason": "Bushing stop in the spring connection; wheel detail only."
+      },
+      "20250121631:8": {
+        "grade": 1,
+        "reason": "Distribution of cylindrical rollers on the hub; wheel detail only."
+      },
+      "20250121631:9": {
+        "grade": 1,
+        "reason": "Leather protection on the stop disc strip; wheel detail only."
+      }
+    },
+    "q30": {
+      "20240383280:1": {
+        "grade": 1,
+        "reason": "Compressible tire body with a circular array of hollow cavities, but irrigation tower not stated in remaining text."
+      },
+      "20240383280:18": {
+        "grade": 1,
+        "reason": "Relates raised central area to hollow cavity width; no irrigation tower."
+      },
+      "20240383280:19": {
+        "grade": 1,
+        "reason": "Describes arrangement of hollow cavities in a single array; no irrigation tower."
+      },
+      "20240383280:20": {
+        "grade": 1,
+        "reason": "Tire segments each with a hollow cavity, but no irrigation tower."
+      },
+      "20240383280:21": {
+        "grade": 1,
+        "reason": "Compressible tire body with an array of hollow cavities, but irrigation tower not stated in remaining text."
+      },
+      "20240383280:22": {
+        "grade": 0,
+        "reason": "Own text only refers to feature (a) of another claim; states nothing itself."
+      },
+      "20240383280:23": {
+        "grade": 0,
+        "reason": "Own text only refers to feature (b) of another claim; states nothing itself."
+      },
+      "20240383280:24": {
+        "grade": 0,
+        "reason": "Own text only refers to feature (c) of another claim; states nothing itself."
+      },
+      "20240383280:25": {
+        "grade": 1,
+        "reason": "Non-pneumatic tire for an irrigation system wheeled tower, but no hollow cavities."
+      },
+      "20240383280:26": {
+        "grade": 0,
+        "reason": "Only describes non-treaded areas between raised treads."
+      },
+      "20240383280:27": {
+        "grade": 0,
+        "reason": "Only describes uniform radial measure at raised treads."
+      },
+      "20240383280:28": {
+        "grade": 0,
+        "reason": "Only describes uniform radial measure at raised treads."
+      },
+      "20240383280:29": {
+        "grade": 0,
+        "reason": "Only describes a staggered tread pattern."
+      },
+      "20240383280:3": {
+        "grade": 1,
+        "reason": "Describes cavity cross-section shape; no irrigation tower."
+      },
+      "20240383280:30": {
+        "grade": 0,
+        "reason": "Only describes tread sloped and raised areas; no cavities or irrigation tower."
+      },
+      "20240383280:31": {
+        "grade": 0,
+        "reason": "Only describes radial measure at the central tread area."
+      },
+      "20240383280:32": {
+        "grade": 0,
+        "reason": "Only describes uniform radial measure at the central tread area."
+      },
+      "20240383280:33": {
+        "grade": 1,
+        "reason": "States the tire installed on an irrigation system wheeled tower, but its own text does not state hollow cavities or airless."
+      },
+      "20240383280:34": {
+        "grade": 2,
+        "reason": "States non-pneumatic tires with tapered hollow cavities used on the irrigation system."
+      },
+      "20240383280:5": {
+        "grade": 1,
+        "reason": "Details hollow cavity width through the tire body but no irrigation tower."
+      },
+      "20240383280:6": {
+        "grade": 1,
+        "reason": "Details tapering of hollow cavities but no irrigation tower."
+      },
+      "20240383280:7": {
+        "grade": 1,
+        "reason": "Details hollow cavities through the tire body but does not mention airless use on an irrigation tower."
+      },
+      "20240383280:8": {
+        "grade": 1,
+        "reason": "Describes collapse of hollow cavities during rolling; no irrigation tower."
+      },
+      "20240383280:9": {
+        "grade": 1,
+        "reason": "Relates tread profile to hollow cavity widths; no irrigation tower."
+      }
+    },
+    "q31": {
+      "20240239140:1": {
+        "grade": 0,
+        "reason": "Steel cord of twisted wires, not a two-yarn cord for a belt bandage."
+      },
+      "20240316989:11": {
+        "grade": 1,
+        "reason": "States a cord of two twisted yarns but not its use in a tire belt bandage."
+      },
+      "20240316989:12": {
+        "grade": 1,
+        "reason": "Only narrows the linear density ratio of the two yarns."
+      },
+      "20240316989:13": {
+        "grade": 1,
+        "reason": "Only adds the Z value of the first yarn."
+      },
+      "20240316989:14": {
+        "grade": 1,
+        "reason": "Only adds the material of the first yarn."
+      },
+      "20240316989:15": {
+        "grade": 1,
+        "reason": "Only adds the linear density of the first yarn."
+      },
+      "20240316989:16": {
+        "grade": 1,
+        "reason": "Only adds the linear density of the second yarn."
+      },
+      "20240316989:19": {
+        "grade": 1,
+        "reason": "Cords of two twisted yarns in a composite, with no belt bandage stated."
+      },
+      "20240316989:20": {
+        "grade": 1,
+        "reason": "Adds a belt bandage having the cords, but the two twisted yarns are only in the parent claim."
+      },
+      "20240316989:21": {
+        "grade": 1,
+        "reason": "States a cord of two yarns twisted together but not its use in a tire belt bandage."
+      },
+      "20250018746:1": {
+        "grade": 2,
+        "reason": "States a tire belt bandage ply with cords of exactly two end-twisted yarns."
+      },
+      "20250018746:10": {
+        "grade": 2,
+        "reason": "States a belt bandage ply reinforced by cords of two end-twisted polyamide yarns in a tire."
+      },
+      "20250018746:2": {
+        "grade": 1,
+        "reason": "Only adds the belt bandage ply tangent modulus."
+      },
+      "20250018746:3": {
+        "grade": 1,
+        "reason": "Gives a two-yarn cord structure but does not itself state the belt bandage use."
+      },
+      "20250018746:4": {
+        "grade": 1,
+        "reason": "Only adds the cord thread density."
+      },
+      "20250018746:5": {
+        "grade": 1,
+        "reason": "Only adds the cord twist factor for the belt bandage tire."
+      },
+      "20250018746:6": {
+        "grade": 1,
+        "reason": "Only adds an adhesive impregnation of the cords."
+      },
+      "20250018746:7": {
+        "grade": 1,
+        "reason": "Only adds that the cord spans the belt's axial extent."
+      },
+      "20250018746:8": {
+        "grade": 1,
+        "reason": "Only adds that the tire is on a passenger car."
+      },
+      "20250018746:9": {
+        "grade": 1,
+        "reason": "Only adds that the tire is on a light-duty vehicle or van."
+      }
+    },
+    "q32": {
+      "20240174031:20": {
+        "grade": 1,
+        "reason": "Tread block with 3D recess/protrusion wall pattern; related to grip but no snow/noise balance stated."
+      },
+      "20240174031:28": {
+        "grade": 1,
+        "reason": "Wavy 3D pattern on tread block walls; related tread detail, no noise balance stated."
+      },
+      "20240174031:29": {
+        "grade": 1,
+        "reason": "Spacing detail of a 3D tread block wall pattern; no snow grip or noise balance stated."
+      },
+      "20240174031:32": {
+        "grade": 1,
+        "reason": "Crest height range of tread block wall pattern; related detail only."
+      },
+      "20240174031:33": {
+        "grade": 1,
+        "reason": "Crest height of tread block wall pattern; related detail only."
+      },
+      "20240174031:35": {
+        "grade": 1,
+        "reason": "Crest-trough distance of tread block wall pattern; related detail only."
+      },
+      "20240174031:39": {
+        "grade": 1,
+        "reason": "Zigzag 3D pattern on tread block walls; related tread detail, no noise balance stated."
+      },
+      "20250058589:1": {
+        "grade": 1,
+        "reason": "Tread pattern with elements of differing pitch and angled portions; does not state the snow grip versus noise balance."
+      },
+      "20250058589:10": {
+        "grade": 1,
+        "reason": "Void width of tread pattern portions; related detail, no snow/noise balance stated."
+      },
+      "20250058589:11": {
+        "grade": 1,
+        "reason": "Void depth of tread pattern; related detail, balance not stated."
+      },
+      "20250058589:12": {
+        "grade": 1,
+        "reason": "Overall volumetric void ratio of tread; related detail, balance not stated."
+      },
+      "20250058589:13": {
+        "grade": 1,
+        "reason": "Surface void ratio of tread; related detail, balance not stated."
+      },
+      "20250058589:14": {
+        "grade": 1,
+        "reason": "Pitch ratio of tread pattern elements, a noise-related detail, but the balance is not stated."
+      },
+      "20250058589:15": {
+        "grade": 1,
+        "reason": "Pitch range of tread pattern elements, related to noise, but the balance is not stated."
+      },
+      "20250058589:16": {
+        "grade": 1,
+        "reason": "Equal volumetric void ratio across tread pattern elements; related detail only."
+      },
+      "20250058589:17": {
+        "grade": 1,
+        "reason": "Tread rubber Tg and modulus, a related tread detail, but no pattern or snow/noise balance stated."
+      },
+      "20250058589:18": {
+        "grade": 1,
+        "reason": "3PMSF snow certification relates to snow grip but says nothing of noise or the pattern balance."
+      },
+      "20250058589:2": {
+        "grade": 1,
+        "reason": "Pitch sequence ratios of tread pattern elements, noise-related, but the balance is not stated."
+      },
+      "20250058589:3": {
+        "grade": 1,
+        "reason": "Curved tread pattern portions; related pattern geometry without the snow/noise balance."
+      },
+      "20250058589:4": {
+        "grade": 1,
+        "reason": "V-shaped directional tread pattern; related geometry, no snow/noise balance stated."
+      },
+      "20250058589:5": {
+        "grade": 1,
+        "reason": "Symmetric tread pattern portions; related geometry, no snow/noise balance stated."
+      },
+      "20250058589:8": {
+        "grade": 1,
+        "reason": "Sipe depth in tread pattern elements; related detail, balance not stated."
+      },
+      "20250058589:9": {
+        "grade": 1,
+        "reason": "Sipe width of tread pattern elements; related detail without stating the snow/noise balance."
+      }
+    },
+    "q33": {
+      "20250083477:1": {
+        "grade": 2,
+        "reason": "Sidewall with a circumferential recess anchoring means intended to interact with a sidewall insert."
+      },
+      "20250083477:10": {
+        "grade": 1,
+        "reason": "Only the protuberance height relative to recess depth."
+      },
+      "20250083477:11": {
+        "grade": 1,
+        "reason": "Only the anchoring means position relative to a protective ridge."
+      },
+      "20250083477:12": {
+        "grade": 1,
+        "reason": "Only the radial position of the anchoring means."
+      },
+      "20250083477:13": {
+        "grade": 2,
+        "reason": "Claims a sidewall insert engaging in the tire sidewall recess and attaching over the protuberance."
+      },
+      "20250083477:14": {
+        "grade": 1,
+        "reason": "Insert profile matching the protuberance profile; related detail."
+      },
+      "20250083477:15": {
+        "grade": 1,
+        "reason": "Truncated insert width difference detail."
+      },
+      "20250083477:16": {
+        "grade": 1,
+        "reason": "Insert and protuberance width geometry detail."
+      },
+      "20250083477:17": {
+        "grade": 1,
+        "reason": "Insert diameter relative to anchoring means; a related fitting detail."
+      },
+      "20250083477:18": {
+        "grade": 1,
+        "reason": "Only the insert material."
+      },
+      "20250083477:19": {
+        "grade": 1,
+        "reason": "Insert material modulus relative to anchoring rubber; related detail."
+      },
+      "20250083477:2": {
+        "grade": 1,
+        "reason": "Only a recess depth limit."
+      },
+      "20250083477:20": {
+        "grade": 1,
+        "reason": "Insert material modulus relative to anchoring rubber; related detail."
+      },
+      "20250083477:21": {
+        "grade": 1,
+        "reason": "Insert has different colour or texture (decorative) but the claim text does not state the recess anchoring."
+      },
+      "20250083477:22": {
+        "grade": 2,
+        "reason": "Claims a tire plus sidewall insert engaging in the sidewall recess and attaching over the protuberance."
+      },
+      "20250083477:3": {
+        "grade": 1,
+        "reason": "Only a recess depth limit."
+      },
+      "20250083477:4": {
+        "grade": 1,
+        "reason": "Only a sidewall layer thickness versus recess depth detail."
+      },
+      "20250083477:5": {
+        "grade": 1,
+        "reason": "Only a recess width limit."
+      },
+      "20250083477:6": {
+        "grade": 1,
+        "reason": "Only a recess width limit."
+      },
+      "20250083477:7": {
+        "grade": 1,
+        "reason": "Only the material of the layer holding the recess."
+      },
+      "20250083477:8": {
+        "grade": 1,
+        "reason": "Only the angle of the recess walls."
+      },
+      "20250083477:9": {
+        "grade": 1,
+        "reason": "Only the protuberance height relative to recess depth."
+      }
+    },
+    "q34": {
+      "20240083199:1": {
+        "grade": 2,
+        "reason": "Inner tube automatically inflated when pressure monitoring detects tire pressure loss."
+      },
+      "20240083199:10": {
+        "grade": 1,
+        "reason": "Inner belt inside the inner tube, a structural detail not about automatic inflation."
+      },
+      "20240083199:11": {
+        "grade": 0,
+        "reason": "Only the inner belt material, not the automatic inflation."
+      },
+      "20240083199:12": {
+        "grade": 0,
+        "reason": "Only the inner belt material, not the automatic inflation."
+      },
+      "20240083199:2": {
+        "grade": 2,
+        "reason": "Pressurized gas flows into the inner tube immediately upon detected pressure loss."
+      },
+      "20240083199:3": {
+        "grade": 2,
+        "reason": "Gas generator directs gas into the inner tube immediately upon detected pressure loss."
+      },
+      "20240083199:4": {
+        "grade": 1,
+        "reason": "Propellant detail of the inflation mechanism, does not itself state automatic inner tube inflation."
+      },
+      "20240083199:5": {
+        "grade": 1,
+        "reason": "Propellant chemistry of the inflation mechanism, a related detail."
+      },
+      "20240083199:6": {
+        "grade": 1,
+        "reason": "Type of pressure monitoring for the system, a related detail only."
+      },
+      "20240083199:7": {
+        "grade": 1,
+        "reason": "Type of pressure monitoring for the system, a related detail only."
+      },
+      "20240083199:8": {
+        "grade": 1,
+        "reason": "Pressure sensor placement in the inflation valve, a related detail."
+      },
+      "20240351376:1": {
+        "grade": 1,
+        "reason": "Inner tube and inflating valve in a tire, but no automatic inflation on a flat."
+      },
+      "20240391279:1": {
+        "grade": 0,
+        "reason": "Peristaltic chamber powering a generator; no inner tube or flat-tire inflation."
+      },
+      "20240391279:12": {
+        "grade": 0,
+        "reason": "Only about a coil generating current, nothing on inner tube inflation."
+      },
+      "20240391279:4": {
+        "grade": 1,
+        "reason": "Chamber aperture connected to tire interior or inner tube, but no automatic inflation when flat stated."
+      },
+      "20240391279:7": {
+        "grade": 1,
+        "reason": "Peristaltic chamber connected to tire cavity or inner tube, but no inflation upon going flat stated."
+      }
+    },
+    "q35": {
+      "20250108667:1": {
+        "grade": 2,
+        "reason": "Conductive layers on the sealant with a sensor detecting increased conductivity between them, i.e. puncture detection."
+      },
+      "20250108667:10": {
+        "grade": 1,
+        "reason": "Only says a conductive layer is insulated."
+      },
+      "20250108667:11": {
+        "grade": 1,
+        "reason": "Layer placement and sealant resistivity, related detail without detection."
+      },
+      "20250108667:12": {
+        "grade": 1,
+        "reason": "Places the second conductive layer on the outer side of the sealant but states no detection."
+      },
+      "20250108667:13": {
+        "grade": 2,
+        "reason": "Measurement circuit detects a short-circuit between the two conductive layers, the puncture detection itself."
+      },
+      "20250108667:15": {
+        "grade": 1,
+        "reason": "Sensor measures current between the layers, a closely related detail without stating puncture detection."
+      },
+      "20250108667:16": {
+        "grade": 1,
+        "reason": "Wiring of the measurement circuit to the layers, a related detail without stating detection."
+      },
+      "20250108667:19": {
+        "grade": 1,
+        "reason": "Only says the sensor system includes an RFID tag."
+      },
+      "20250108667:2": {
+        "grade": 1,
+        "reason": "Only lists forms of the first conductive layer."
+      },
+      "20250108667:20": {
+        "grade": 2,
+        "reason": "Conductive layers inside and above the sealant with a sensor detecting a short-circuit between them and transmitting it."
+      },
+      "20250108667:3": {
+        "grade": 1,
+        "reason": "Only lists materials of the conductive layers."
+      },
+      "20250108667:4": {
+        "grade": 1,
+        "reason": "Only gives the conductive layer thickness."
+      },
+      "20250108667:5": {
+        "grade": 1,
+        "reason": "Only gives the sealant layer thickness."
+      },
+      "20250108667:8": {
+        "grade": 1,
+        "reason": "Only gives how much of the sealant surface the layers cover."
+      }
+    },
+    "q36": {
+      "20240157727:1": {
+        "grade": 0,
+        "reason": "Rim cover accelerometer for wheel inclination, not inside the tire."
+      },
+      "20240157727:10": {
+        "grade": 0,
+        "reason": "Rim accessory sensor axis; not relevant."
+      },
+      "20240157727:2": {
+        "grade": 0,
+        "reason": "Rim accessory sensor placement; not relevant."
+      },
+      "20240157727:3": {
+        "grade": 0,
+        "reason": "Rim accessory for wheel angle, not a sensor glued inside the tire."
+      },
+      "20240157727:4": {
+        "grade": 0,
+        "reason": "Rim cover housing clamped to the central hole; not relevant."
+      },
+      "20240157727:5": {
+        "grade": 0,
+        "reason": "Rim accessory circuit board; not relevant."
+      },
+      "20240157727:9": {
+        "grade": 0,
+        "reason": "Battery of a rim accessory; not relevant."
+      },
+      "20240278598:22": {
+        "grade": 0,
+        "reason": "Wheel hub temperature sensor, not a tire deformation sensor."
+      },
+      "20240278598:31": {
+        "grade": 0,
+        "reason": "Battery in a wheel hub sensor node; not relevant."
+      },
+      "20240278598:33": {
+        "grade": 0,
+        "reason": "Wheel hub sensor node potting; not relevant."
+      },
+      "20240336092:14": {
+        "grade": 1,
+        "reason": "Sensor fastened in the tire casing to identify deformation, but no housing or adhesive is stated."
+      },
+      "20240336092:16": {
+        "grade": 1,
+        "reason": "Angular pitch detail of a tire deformation method; no glued housing."
+      },
+      "20240336092:19": {
+        "grade": 1,
+        "reason": "Data aggregation detail of a tire deformation method; no glued housing."
+      },
+      "20240336092:22": {
+        "grade": 1,
+        "reason": "Threshold detail of a tire deformation method; no glued housing."
+      },
+      "20240336092:26": {
+        "grade": 1,
+        "reason": "Formula detail of a tire deformation method; no glued housing."
+      },
+      "20240367466:1": {
+        "grade": 1,
+        "reason": "Sensor housing joined to the tire inner surface, but no deformation measurement."
+      },
+      "20240367466:10": {
+        "grade": 1,
+        "reason": "Shape of a tire sensor fixing device; no deformation measurement."
+      },
+      "20240367466:11": {
+        "grade": 1,
+        "reason": "Side wall inclination of a tire sensor fixing device; no deformation measurement."
+      },
+      "20240367466:12": {
+        "grade": 1,
+        "reason": "Material of a tire sensor fixing device; no deformation measurement."
+      },
+      "20240367466:14": {
+        "grade": 1,
+        "reason": "Notches in the base of a tire sensor fixing device; no deformation measurement."
+      },
+      "20240367466:16": {
+        "grade": 1,
+        "reason": "Sensor housed between base and cover and glued to the tire, but no deformation measurement."
+      },
+      "20240367466:18": {
+        "grade": 1,
+        "reason": "Shape detail of a tire sensor fixing device; no deformation measurement."
+      },
+      "20240367466:2": {
+        "grade": 1,
+        "reason": "Cover detail of a tire sensor fixing device; no deformation measurement."
+      },
+      "20240367466:3": {
+        "grade": 1,
+        "reason": "Cover seat detail of a tire sensor fixing device; no deformation measurement."
+      },
+      "20240367466:4": {
+        "grade": 1,
+        "reason": "Fin detail of a tire sensor fixing device; no deformation measurement."
+      },
+      "20240367466:5": {
+        "grade": 1,
+        "reason": "Channel detail of a tire sensor fixing device; no deformation measurement."
+      },
+      "20240367466:6": {
+        "grade": 1,
+        "reason": "Cover detail of a tire sensor fixing device; no deformation measurement."
+      },
+      "20240367466:7": {
+        "grade": 1,
+        "reason": "Cover detail of a tire sensor fixing device; no deformation measurement."
+      },
+      "20240367466:9": {
+        "grade": 1,
+        "reason": "Cavity detail of a tire sensor fixing device; no deformation measurement."
+      },
+      "20250108668:1": {
+        "grade": 1,
+        "reason": "Component glued to the tire inner surface, but no sensor or deformation is stated."
+      },
+      "20250108668:10": {
+        "grade": 1,
+        "reason": "Sensor container with an attachment surface; no gluing to the tire or deformation measurement stated."
+      },
+      "20250108668:11": {
+        "grade": 1,
+        "reason": "Gluing a component to the tire inner surface, but the component is not stated to be a sensor."
+      },
+      "20250108668:14": {
+        "grade": 1,
+        "reason": "Molding of an attached container; no sensor deformation measurement."
+      },
+      "20250108668:18": {
+        "grade": 1,
+        "reason": "Sensor container attached to the tire inner surface, but no deformation measurement."
+      },
+      "20250108668:20": {
+        "grade": 1,
+        "reason": "Sensor container with an attachment surface, but it carries a pressure sensor, not a deformation sensor."
+      },
+      "20250108668:3": {
+        "grade": 1,
+        "reason": "Rib pattern of an attached component's surface; no sensor or deformation."
+      },
+      "20250108668:6": {
+        "grade": 1,
+        "reason": "Surface pattern of the tire inner surface for an attached component; no sensor or deformation."
+      },
+      "20250108668:7": {
+        "grade": 1,
+        "reason": "Adhesive between the elevations of a component attached to the tire; no sensor or deformation stated."
+      },
+      "20250108668:8": {
+        "grade": 1,
+        "reason": "Surface pattern detail of an attached component; no sensor or deformation."
+      },
+      "20250115083:1": {
+        "grade": 2,
+        "reason": "Housing bonded to the tire inner surface by elastic adhesive with a strain element that detects tire strain."
+      },
+      "20250115083:3": {
+        "grade": 1,
+        "reason": "Cross-section shape of the elastic member of a strain detection device; a minor detail."
+      },
+      "20250115083:4": {
+        "grade": 1,
+        "reason": "Elastic member engagement detail of a strain detection device; a minor detail."
+      },
+      "20250115083:5": {
+        "grade": 2,
+        "reason": "Strain detection element in the housing recess faces the tire inner surface through elastic adhesive."
+      }
+    },
+    "q37": {
+      "20240075773:16": {
+        "grade": 0,
+        "reason": "Bead breaker driving element positions; not inverting."
+      },
+      "20240075773:17": {
+        "grade": 0,
+        "reason": "Lifting and rotating on a tyre changer; not inverting."
+      },
+      "20240075773:8": {
+        "grade": 0,
+        "reason": "Lifting platform stop on tyre changer; not inverting."
+      },
+      "20240075774:12": {
+        "grade": 0,
+        "reason": "Lubricant nozzle on bead breaker; not inverting."
+      },
+      "20240075774:14": {
+        "grade": 0,
+        "reason": "Control ring for bead breaker; not inverting."
+      },
+      "20240075774:17": {
+        "grade": 0,
+        "reason": "Lubricating step in bead breaking; not inverting."
+      },
+      "20240075774:2": {
+        "grade": 0,
+        "reason": "Elastic return of driving element; not inverting."
+      },
+      "20240075774:20": {
+        "grade": 0,
+        "reason": "Handle command component on tyre changer; not inverting."
+      },
+      "20240075774:3": {
+        "grade": 0,
+        "reason": "Driving element handle on tyre changer; not inverting."
+      },
+      "20240075774:4": {
+        "grade": 0,
+        "reason": "Bead breaker actuator connection; not inverting."
+      },
+      "20240075774:5": {
+        "grade": 0,
+        "reason": "Coupling pin adjustment on tyre changer; not inverting."
+      },
+      "20240075774:6": {
+        "grade": 0,
+        "reason": "Bead breaker tool adjustment; not inverting."
+      },
+      "20240075774:7": {
+        "grade": 0,
+        "reason": "Bead breaker tool rotation on a tyre changer; not inverting."
+      },
+      "20240075774:8": {
+        "grade": 0,
+        "reason": "Five-way valve for bead breaker; not inverting."
+      },
+      "20240075774:9": {
+        "grade": 0,
+        "reason": "Bead breaking arm shape; not inverting."
+      },
+      "20240116316:12": {
+        "grade": 0,
+        "reason": "Bicycle tire types; unrelated."
+      },
+      "20240165992:15": {
+        "grade": 0,
+        "reason": "Self-propelled tire handler; not inverting."
+      },
+      "20240165992:2": {
+        "grade": 0,
+        "reason": "Remote control for a tire handler; no inverting."
+      },
+      "20240165992:9": {
+        "grade": 0,
+        "reason": "Hydraulic actuators of tire handler; not inverting."
+      },
+      "20240198725:10": {
+        "grade": 0,
+        "reason": "Sensor protection on rim tape machine; unrelated."
+      },
+      "20240198725:13": {
+        "grade": 0,
+        "reason": "Rim taping method; unrelated."
+      },
+      "20240198725:2": {
+        "grade": 0,
+        "reason": "Rim tape application machine; unrelated to inverting a tire."
+      },
+      "20240198725:6": {
+        "grade": 0,
+        "reason": "Tape cutting system; unrelated."
+      },
+      "20240198725:9": {
+        "grade": 0,
+        "reason": "Hole punch on rim tape machine; unrelated."
+      },
+      "20240286438:1": {
+        "grade": 0,
+        "reason": "Bicycle tire with drive strip; unrelated."
+      },
+      "20240286438:2": {
+        "grade": 0,
+        "reason": "Vehicle with roller-driven tire; unrelated."
+      },
+      "20240367467:1": {
+        "grade": 2,
+        "reason": "Device with stand, holder and pusher that inverts a tire."
+      },
+      "20240367467:10": {
+        "grade": 2,
+        "reason": "Method of inverting a tire placed on the inverting stand, with bead preparation."
+      },
+      "20240367467:11": {
+        "grade": 2,
+        "reason": "Method of inverting a tire with pushing mechanism engaging the bead."
+      },
+      "20240367467:12": {
+        "grade": 2,
+        "reason": "Method of inverting a tire with a rim on the pushing mechanism."
+      },
+      "20240367467:14": {
+        "grade": 2,
+        "reason": "Method of inverting a tire using an adjustable strap holding device."
+      },
+      "20240367467:17": {
+        "grade": 2,
+        "reason": "Method of inverting a tire with a powered extending pushing mechanism."
+      },
+      "20240367467:18": {
+        "grade": 2,
+        "reason": "Method of inverting a tire with automatic release of the holding device."
+      },
+      "20240367467:19": {
+        "grade": 1,
+        "reason": "Sidewall removal step in tire inverting method; no machine detail stated."
+      },
+      "20240367467:20": {
+        "grade": 1,
+        "reason": "Step after inverting a tire (reattaching sidewall), but no machine stated."
+      },
+      "20240367467:4": {
+        "grade": 2,
+        "reason": "Tire inverting device with a wheel rim on the pusher."
+      },
+      "20240367467:8": {
+        "grade": 2,
+        "reason": "Tire inverting device with powered pushing mechanism."
+      },
+      "20240367467:9": {
+        "grade": 2,
+        "reason": "Method using a tire inverting device to push a tire edge until it inverts."
+      },
+      "20240391279:1": {
+        "grade": 0,
+        "reason": "Self-reinflating tire with generator; unrelated."
+      },
+      "20240391279:10": {
+        "grade": 0,
+        "reason": "Power generator types in a tire; unrelated."
+      },
+      "20240391279:12": {
+        "grade": 0,
+        "reason": "Coil generating current; unrelated."
+      },
+      "20250033415:2": {
+        "grade": 0,
+        "reason": "Heating step in making steel spokes; unrelated."
+      },
+      "20250033415:3": {
+        "grade": 0,
+        "reason": "Quenching steel blanks; unrelated."
+      },
+      "20250033415:4": {
+        "grade": 0,
+        "reason": "Machining spoke edges; unrelated."
+      },
+      "20250042206:1": {
+        "grade": 0,
+        "reason": "Lifting system for a tire changing machine; does not turn a tire inside out."
+      },
+      "20250042206:10": {
+        "grade": 0,
+        "reason": "Actuator mounting on tire changer chassis; not inverting."
+      },
+      "20250042206:11": {
+        "grade": 0,
+        "reason": "Actuator mounting surface; not inverting."
+      },
+      "20250042206:12": {
+        "grade": 0,
+        "reason": "Lifting a tire on a tire changer; not inverting."
+      },
+      "20250042206:5": {
+        "grade": 0,
+        "reason": "Actuator retraction on tire changer lift; not inverting."
+      }
+    },
+    "q38": {
+      "20240239144:1": {
+        "grade": 2,
+        "reason": "States a receptacle for a GPS tracker and a connector attaching the housing to the inflation valve."
+      },
+      "20240239144:10": {
+        "grade": 1,
+        "reason": "Stem aperture accepting the valve base; related attachment detail without GPS tracker."
+      },
+      "20240239144:11": {
+        "grade": 2,
+        "reason": "States a housing with GPS receptacle and a connector attaching it to the inflation valve."
+      },
+      "20240239144:12": {
+        "grade": 2,
+        "reason": "States the tracker housing is attached to the inflation valve."
+      },
+      "20240239144:15": {
+        "grade": 1,
+        "reason": "Housing fitted to a tyre rim; related placement detail only."
+      },
+      "20240239144:16": {
+        "grade": 2,
+        "reason": "Inflation valve comprising a housing with a receptacle for a GPS tracker."
+      },
+      "20240239144:17": {
+        "grade": 1,
+        "reason": "Describes the head with the GPS receptacle on an inflation valve but not how it attaches."
+      },
+      "20240239144:18": {
+        "grade": 1,
+        "reason": "Recess shaped to accept a GPS tracker; attachment to valve not stated."
+      },
+      "20240239144:2": {
+        "grade": 1,
+        "reason": "Housing for a GPS tracker with head and connector stem; valve attachment not stated here."
+      },
+      "20240239144:20": {
+        "grade": 1,
+        "reason": "Cap forming a cavity enclosing a GPS tracker on the valve housing; attachment not stated."
+      },
+      "20240239144:21": {
+        "grade": 0,
+        "reason": "Only the material of the head or cap."
+      },
+      "20240239144:22": {
+        "grade": 0,
+        "reason": "Only the material of the head."
+      },
+      "20240239144:23": {
+        "grade": 0,
+        "reason": "Only the material of the cap."
+      },
+      "20240239144:24": {
+        "grade": 1,
+        "reason": "Kit of inflation valve, GPS tracker and parts; holder attachment not stated in the text."
+      },
+      "20240239144:25": {
+        "grade": 2,
+        "reason": "Inflation valve with the GPS tracker held in the housing receptacle."
+      },
+      "20240239144:26": {
+        "grade": 0,
+        "reason": "Grommet fitted to the valve, not the tracker holder."
+      },
+      "20240239144:27": {
+        "grade": 0,
+        "reason": "Only says the valve is fitted to a tyre rim."
+      },
+      "20240239144:28": {
+        "grade": 1,
+        "reason": "GPS tracker mounting attached to the tyre rim, not to the valve."
+      },
+      "20240239144:29": {
+        "grade": 1,
+        "reason": "Rim, GPS tracker mounting and tracker; mounted on rim, not valve."
+      },
+      "20240239144:3": {
+        "grade": 1,
+        "reason": "Recess shaped to accept a GPS tracker; attachment not stated."
+      },
+      "20240239144:30": {
+        "grade": 1,
+        "reason": "Rim fitted with a GPS tracker mounting, not the valve."
+      },
+      "20240239144:5": {
+        "grade": 1,
+        "reason": "Cap forming a cavity enclosing a GPS tracker; attachment not stated."
+      },
+      "20240239144:6": {
+        "grade": 0,
+        "reason": "Only the material of the base or cap."
+      },
+      "20240239144:7": {
+        "grade": 0,
+        "reason": "Only the material of the base."
+      },
+      "20240239144:8": {
+        "grade": 0,
+        "reason": "Only the material of the cap."
+      },
+      "20240239144:9": {
+        "grade": 0,
+        "reason": "Air and sealant apertures in the stem, not the tracker attachment."
+      }
+    },
+    "q39": {
+      "20240294043:12": {
+        "grade": 0,
+        "reason": "Hitch alignment guide, no weighing."
+      },
+      "20240294043:17": {
+        "grade": 0,
+        "reason": "Trailer proximity sensing for hitching, no weighing."
+      },
+      "20240294043:19": {
+        "grade": 0,
+        "reason": "Tongue position sensing for hitching, no weighing."
+      },
+      "20240294043:4": {
+        "grade": 0,
+        "reason": "Camera based trailer proximity sensing, no weighing."
+      },
+      "20240359511:1": {
+        "grade": 1,
+        "reason": "Scale frame mounted on the hitch with adjacent weighing station, height match not stated."
+      },
+      "20240359511:10": {
+        "grade": 1,
+        "reason": "Screw lock fixing scale to towing vehicle hitch, related mounting detail only."
+      },
+      "20240359511:11": {
+        "grade": 1,
+        "reason": "Weighing station is a mock towball, related but no height statement."
+      },
+      "20240359511:12": {
+        "grade": 1,
+        "reason": "Mock towball load cell measuring vertical load, but height relative to hitch not stated."
+      },
+      "20240359511:14": {
+        "grade": 0,
+        "reason": "Fastening of a load cell actuator pin only."
+      },
+      "20240359511:15": {
+        "grade": 0,
+        "reason": "Only about alert lights for load conditions."
+      },
+      "20240359511:16": {
+        "grade": 0,
+        "reason": "Only about a loudspeaker for alerts."
+      },
+      "20240359511:17": {
+        "grade": 0,
+        "reason": "Only about power supply via trailer plug."
+      },
+      "20240359511:18": {
+        "grade": 0,
+        "reason": "Only about powering the weighing station from trailer plug pins, not weighing height."
+      },
+      "20240359511:2": {
+        "grade": 1,
+        "reason": "Towball weighing station measures vertical towball load, but not at hitch height explicitly."
+      },
+      "20240359511:3": {
+        "grade": 1,
+        "reason": "Scale mount receives the hitch, related but does not state weighing at hitch height."
+      },
+      "20240359511:4": {
+        "grade": 1,
+        "reason": "Scale mounting on the towball, related to hitch weighing but no height statement."
+      },
+      "20240359511:5": {
+        "grade": 1,
+        "reason": "Skirt locates scale frame on hitch tongue, related mounting detail without height statement."
+      },
+      "20240359511:7": {
+        "grade": 1,
+        "reason": "Layout of weighing station relative to hitch receiving zone, no height matching stated."
+      },
+      "20240359511:8": {
+        "grade": 2,
+        "reason": "Adjuster sets the level of the weighing station relative to the hitch mount."
+      },
+      "20240359511:9": {
+        "grade": 1,
+        "reason": "Locks the scale frame onto the hitch tongue, related mounting detail only."
+      },
+      "20250135810:11": {
+        "grade": 1,
+        "reason": "Load cell housing in the height adjustable tongue weight scale, structural detail only."
+      },
+      "20250135810:13": {
+        "grade": 1,
+        "reason": "Display of tongue weight load cell output, related but no height statement."
+      },
+      "20250135810:14": {
+        "grade": 1,
+        "reason": "Height adjustable trailer coupler weighing device, but does not tie the height to the tow hitch."
+      },
+      "20250135810:15": {
+        "grade": 1,
+        "reason": "Trailer coupling head load cell mechanism, but no hitch height matching stated."
+      },
+      "20250135810:16": {
+        "grade": 2,
+        "reason": "Height adjustable assembly secured at a selected weight measurement height for the trailer coupler."
+      },
+      "20250135810:17": {
+        "grade": 1,
+        "reason": "Load cell housing fitting in height adjustable assembly, structural detail only."
+      },
+      "20250135810:18": {
+        "grade": 0,
+        "reason": "Bolt and aperture detail of the display assembly, not about weighing height."
+      },
+      "20250135810:19": {
+        "grade": 1,
+        "reason": "Load cell mounting in tongue weight scale, structural detail only."
+      }
+    },
+    "q40": {
+      "20240075776:10": {
+        "grade": 0,
+        "reason": "Four-bar linkage for height adjustment, unrelated to rattle."
+      },
+      "20240075776:11": {
+        "grade": 0,
+        "reason": "Load measuring hitch receiver, unrelated to rattle."
+      },
+      "20240075776:12": {
+        "grade": 0,
+        "reason": "Bearings for load measuring receiver, unrelated to rattle."
+      },
+      "20240075776:2": {
+        "grade": 0,
+        "reason": "Plural linkages for height adjustment, unrelated."
+      },
+      "20240075776:24": {
+        "grade": 0,
+        "reason": "Method of measuring hitch tongue load, unrelated to rattle."
+      },
+      "20240075776:3": {
+        "grade": 0,
+        "reason": "Transverse support for linkage mechanisms, unrelated to rattle."
+      },
+      "20240075776:4": {
+        "grade": 0,
+        "reason": "Multiple actuators for height adjustment, unrelated."
+      },
+      "20240075776:5": {
+        "grade": 0,
+        "reason": "Actuator type for height adjustment, unrelated to rattle."
+      },
+      "20240075776:6": {
+        "grade": 0,
+        "reason": "Hydraulic or pneumatic actuator for height adjustment, unrelated."
+      },
+      "20240075776:7": {
+        "grade": 0,
+        "reason": "Linear actuator coupling for height adjustment, unrelated."
+      },
+      "20240075776:9": {
+        "grade": 1,
+        "reason": "Shock absorber minimizing receiver portion movement in transit is related but not between mount and receiver."
+      },
+      "20240391281:1": {
+        "grade": 2,
+        "reason": "Claims a dampener compressed between the tow mount base and the hitch platform that sits in the receiver tube, squarely coupling them."
+      },
+      "20240391281:10": {
+        "grade": 2,
+        "reason": "Claims a dampener compressed against the channel member when the tow mount is secured to the hitch platform inserted in the receiver tube."
+      },
+      "20240391281:11": {
+        "grade": 0,
+        "reason": "Only describes three hitch balls of different diameters."
+      },
+      "20240391281:12": {
+        "grade": 0,
+        "reason": "Only lists tow accessory mount types."
+      },
+      "20240391281:13": {
+        "grade": 1,
+        "reason": "Cross members giving lateral support to the mount base relate to fit and play but no damping stated."
+      },
+      "20240391281:14": {
+        "grade": 0,
+        "reason": "Only describes three hitch balls of different diameters."
+      },
+      "20240391281:15": {
+        "grade": 0,
+        "reason": "Only adds step or hook accessory mounts."
+      },
+      "20240391281:16": {
+        "grade": 0,
+        "reason": "Only adds a pintle hook."
+      },
+      "20240391281:17": {
+        "grade": 1,
+        "reason": "Dampener adhered or fused to the hitch platform; related dampener detail only."
+      },
+      "20240391281:18": {
+        "grade": 1,
+        "reason": "How the dampener is attached by screws; related detail only."
+      },
+      "20240391281:19": {
+        "grade": 1,
+        "reason": "Placement of the dampener on the recessed column; related detail only."
+      },
+      "20240391281:2": {
+        "grade": 1,
+        "reason": "Fit between hitch platform front surface and mount base is related to play, but no damping or rattle stated."
+      },
+      "20240391281:20": {
+        "grade": 1,
+        "reason": "Dampener member is detachable; related dampener detail only."
+      },
+      "20240391281:3": {
+        "grade": 0,
+        "reason": "Text is only a fragment with no content."
+      },
+      "20240391281:4": {
+        "grade": 1,
+        "reason": "Dampener affixed by adhesion, fusion or coating; related detail only."
+      },
+      "20240391281:5": {
+        "grade": 1,
+        "reason": "Placement of the dampener border on the mount base; related detail, does not state rattle reduction."
+      },
+      "20240391281:6": {
+        "grade": 1,
+        "reason": "Detail of the dampener member shape, not the rattle reduction itself."
+      },
+      "20240391281:7": {
+        "grade": 1,
+        "reason": "Dampener is detachably affixed; related dampener detail only."
+      },
+      "20240391281:8": {
+        "grade": 0,
+        "reason": "Only describes dual hitch balls of different diameters."
+      },
+      "20240391282:18": {
+        "grade": 0,
+        "reason": "Locking mechanisms for stowed/deployed positions, nothing on rattle or damping."
       }
     }
   }
