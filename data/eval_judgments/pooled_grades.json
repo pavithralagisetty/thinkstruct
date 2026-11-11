@@ -1,5 +1,5 @@
 {
-  "report": "run_20261110T012704Z.json",
+  "report": "run_20261111T005621Z.json",
   "scale": {
     "2": "The claim itself states what the question asks.",
     "1": "Right topic and a closely related detail, but the claim does not state what is asked.",
@@ -116,6 +116,10 @@
       "20240217268:10": {
         "grade": 1,
         "reason": "Vehicle with an anti-aquaplaning system, but states nothing about the washer reservoir or spraying ahead of tires."
+      },
+      "20240217268:2": {
+        "grade": 1,
+        "reason": "Anti-aquaplaning liquid supply with pump and tanks, but the claim text does not state reusing the windshield washer reservoir or spraying ahead of the tires."
       },
       "20240217268:3": {
         "grade": 2,
@@ -244,6 +248,10 @@
       "20250058591:7": {
         "grade": 0,
         "reason": "Vehicle with tire pressure regulation system, not relevant."
+      },
+      "20250091386:1": {
+        "grade": 0,
+        "reason": "Wheel hub greasing without disassembly; nothing about spraying liquid ahead of tires or hydroplaning."
       },
       "20250115081:2": {
         "grade": 0,
@@ -401,6 +409,10 @@
         "grade": 0,
         "reason": "Hole punch of tape machine; no material."
       },
+      "20240316986:1": {
+        "grade": 1,
+        "reason": "Elastomeric rim seal with a force generating backing, related topic, but the backing material is not stated and it is not a tape."
+      },
       "20240316986:10": {
         "grade": 0,
         "reason": "Hollow bolt air channel; unrelated."
@@ -436,6 +448,14 @@
       "20240316986:19": {
         "grade": 0,
         "reason": "End caps and threaded couplers of spine; unrelated."
+      },
+      "20240316986:22": {
+        "grade": 0,
+        "reason": "Only describes a resilient seal in the rim beadwell; no tape, backing film or material."
+      },
+      "20240316986:23": {
+        "grade": 1,
+        "reason": "Rim seal with a backing layer, a related idea, but no tape and no backing material is stated."
       },
       "20240316986:6": {
         "grade": 0,
@@ -515,6 +535,10 @@
         "grade": 2,
         "reason": "Claims a strap through slots that cinches adjacent recovery boards together."
       },
+      "20240375437:17": {
+        "grade": 0,
+        "reason": "Describes stacked polygonal prisms forming a gripping feature, with no statement about strapping boards together or stacking them for storage."
+      },
       "20240375437:18": {
         "grade": 0,
         "reason": "Hexagonal prism gripping features; not about storage."
@@ -546,6 +570,10 @@
       "20240375437:5": {
         "grade": 0,
         "reason": "Polygonal prism gripping feature shape; not about storage."
+      },
+      "20240375437:6": {
+        "grade": 0,
+        "reason": "Only specifies hexagonal prism shapes of the board features; says nothing about strapping or stacking boards for storage."
       },
       "20240375437:7": {
         "grade": 0,
@@ -853,6 +881,10 @@
         "grade": 2,
         "reason": "States the gap between adjacent sound absorbers in the tire as 1% to 99% of circumferential length."
       },
+      "20240059105:18": {
+        "grade": 1,
+        "reason": "Discrete sound absorbers distributed circumferentially on the rim, but no spacing size between them is stated."
+      },
       "20240059105:21": {
         "grade": 2,
         "reason": "States the gap between adjacent sound absorbers on the rim as 1% to 99% of rim circumference."
@@ -975,6 +1007,10 @@
         "grade": 0,
         "reason": "Omni wheel roller component structure; no drive motor."
       },
+      "20240149613:3": {
+        "grade": 0,
+        "reason": "Omni wheel roller shaft threaded connection; no drive motor or in-hub packaging."
+      },
       "20240149613:4": {
         "grade": 0,
         "reason": "Roller component connection structure; no motor."
@@ -986,6 +1022,18 @@
       "20240149613:9": {
         "grade": 0,
         "reason": "Roller shaft locking; no motor."
+      },
+      "20240270013:10": {
+        "grade": 1,
+        "reason": "Mecanum wheel module with a motor, but the claim only describes the motor's shaft bearings, not that it sits inside the hub."
+      },
+      "20240270013:7": {
+        "grade": 2,
+        "reason": "States the hub has a recess that receives the motor, i.e. the motor is packaged inside the hub of the wheel module."
+      },
+      "20240270013:9": {
+        "grade": 1,
+        "reason": "Mecanum wheel with motor shaft driving the hub coaxially, but does not state the motor is housed inside the hub."
       },
       "20240326512:1": {
         "grade": 0,
@@ -1081,6 +1129,10 @@
         "grade": 1,
         "reason": "States a 3D Hall effect sensor, but not the magnet or position detection itself."
       },
+      "20240116318:17": {
+        "grade": 1,
+        "reason": "Lists fifth wheel operational states (worn, locked, unlocked) tied to position sensing, but the claim itself does not state a magnet or Hall sensor."
+      },
       "20240116318:18": {
         "grade": 0,
         "reason": "Memory storing sensor data for observing operation; not about magnet position sensing."
@@ -1116,6 +1168,10 @@
       "20240116318:9": {
         "grade": 1,
         "reason": "States a 3D Hall effect sensor, but not the magnet or position detection itself."
+      },
+      "20240157727:3": {
+        "grade": 0,
+        "reason": "Only places a wheel angle sensor module in the rim's central hole; no magnet or position sensing of a moving part."
       },
       "20240208266:1": {
         "grade": 0,

@@ -13,7 +13,8 @@ class Embedder:
                  query_prefix: str = config.QUERY_PREFIX,
                  batch_size: int = config.EMBED_BATCH_SIZE,
                  trust_remote_code: bool = True,
-                 device: str | None = None):
+                 device: str | None = None,
+                 max_seq_length: int | None = None):
         from sentence_transformers import SentenceTransformer
 
         self.model_name = model_name
@@ -27,6 +28,22 @@ class Embedder:
             model_name, revision=revision, trust_remote_code=trust_remote_code,
             model_kwargs=pinned, config_kwargs=pinned, device=device,
         )
+        if max_seq_length is not None:
+            self.model.max_seq_length = max_seq_length
+
+    @property
+    def pooling(self) -> str:
+        """The pooling the model's own sentence-transformers config sets up ("mean", "cls",
+        "lasttoken" for Qwen, ...), so it can be checked and recorded."""
+        modes = []
+        for module in self.model:
+            if type(module).__name__ != "Pooling":
+                continue
+            mode = getattr(module, "pooling_mode", None)            # sentence-transformers 5
+            if mode is None:
+                mode = module.get_pooling_mode_str()                  # older versions
+            modes.append(mode if isinstance(mode, str) else "+".join(mode))
+        return "+".join(modes) if modes else "none"
 
     @property
     def dimension(self) -> int:

@@ -28,6 +28,11 @@
       "reason": "States a 3D Hall effect sensor, but not the magnet or position detection itself."
     },
     {
+      "claim_id": "20240116318:17",
+      "grade": 1,
+      "reason": "Lists fifth wheel operational states (worn, locked, unlocked) tied to position sensing, but the claim itself does not state a magnet or Hall sensor."
+    },
+    {
       "claim_id": "20240116318:18",
       "grade": 0,
       "reason": "Memory storing sensor data for observing operation; not about magnet position sensing."
@@ -71,6 +76,11 @@
       "claim_id": "20240116318:9",
       "grade": 1,
       "reason": "States a 3D Hall effect sensor, but not the magnet or position detection itself."
+    },
+    {
+      "claim_id": "20240157727:3",
+      "grade": 0,
+      "reason": "Only places a wheel angle sensor module in the rim's central hole; no magnet or position sensing of a moving part."
     },
     {
       "claim_id": "20240208266:1",

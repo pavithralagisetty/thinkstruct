@@ -165,8 +165,9 @@ def make_embedder(spec: dict, device: str):
     return Embedder(
         model_name=spec["model_name"], revision=spec["revision"], code_revision=spec.get("code_revision"),
         document_prefix=spec.get("document_prefix", ""), query_prefix=spec.get("query_prefix", ""),
-        batch_size=config.EVAL_BATCH_SIZE, trust_remote_code=spec.get("trust_remote_code", False),
-        device=device,
+        batch_size=spec.get("batch_size", config.EVAL_BATCH_SIZE),
+        trust_remote_code=spec.get("trust_remote_code", False),
+        device=device, max_seq_length=spec.get("max_seq_length"),
     )
 
 
@@ -199,6 +200,8 @@ def cached_vectors(name: str, spec: dict, embedder, claim_texts: list[str], pate
         "code_revision": spec.get("code_revision"), "document_prefix": spec.get("document_prefix", ""),
         "texts_sha256": texts_hash(claim_texts, patent_texts),
     }
+    if spec.get("max_seq_length") is not None:     # only when set, so existing caches stay valid
+        key["max_seq_length"] = spec["max_seq_length"]
     folder = Path(cache_dir) / name
     meta_path = folder / "meta.json"
     if meta_path.exists() and json.loads(meta_path.read_text()).get("key") == key:
@@ -264,6 +267,9 @@ def run(candidates: list[str] | None = None, questions: list[dict] | None = None
             embedder = embedder_factory(spec, device)
             info.update({k: spec.get(k) for k in ("model_name", "revision", "code_revision",
                                                   "query_prefix", "document_prefix")})
+            info["batch_size"] = getattr(embedder, "batch_size", None)
+            info["max_seq_length"] = getattr(getattr(embedder, "model", None), "max_seq_length", None)
+            info["pooling"] = getattr(embedder, "pooling", None)
             if spec.get("reuse_index"):
                 vectors, info["vectors"] = index.vectors, "data/index"
             else:

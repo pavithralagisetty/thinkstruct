@@ -8,6 +8,11 @@
       "reason": "States the gap between adjacent sound absorbers in the tire as 1% to 99% of circumferential length."
     },
     {
+      "claim_id": "20240059105:18",
+      "grade": 1,
+      "reason": "Discrete sound absorbers distributed circumferentially on the rim, but no spacing size between them is stated."
+    },
+    {
       "claim_id": "20240059105:21",
       "grade": 2,
       "reason": "States the gap between adjacent sound absorbers on the rim as 1% to 99% of rim circumference."

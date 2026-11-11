@@ -82,7 +82,11 @@ BM25_K1 = 1.5
 BM25_B = 0.75
 
 # Embedding models to compare. "nomic" is the production model and reuses data/index.
+# Optional per model: batch_size (default EVAL_BATCH_SIZE) and max_seq_length (default: the
+# model's own limit).
 BGE_QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
+# Qwen's own format: an instruction, a real line break, then "Query:" with no space after it.
+QWEN_QUERY_PREFIX = "Instruct: Given a patent search question, retrieve patent claims that answer it\nQuery:"
 EVAL_MODELS = {
     "nomic": {
         "model_name": MODEL_NAME, "revision": MODEL_REVISION, "code_revision": MODEL_CODE_REVISION,
@@ -104,5 +108,11 @@ EVAL_MODELS = {
     "minilm": {
         "model_name": "sentence-transformers/all-MiniLM-L6-v2", "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
         "query_prefix": "", "document_prefix": "",
+    },
+    # 0.6B parameters: batches of 16 overflow 16 GB on mps, so 4. Capped at nomic's 8,192 tokens
+    # (its own limit is 131,072); the longest text here is 1,151 Qwen tokens, so nothing is cut.
+    "qwen3-0.6b": {
+        "model_name": "Qwen/Qwen3-Embedding-0.6B", "revision": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+        "query_prefix": QWEN_QUERY_PREFIX, "document_prefix": "", "batch_size": 4, "max_seq_length": 8192,
     },
 }

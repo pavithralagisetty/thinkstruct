@@ -103,6 +103,11 @@
       "reason": "Hole punch of tape machine; no material."
     },
     {
+      "claim_id": "20240316986:1",
+      "grade": 1,
+      "reason": "Elastomeric rim seal with a force generating backing, related topic, but the backing material is not stated and it is not a tape."
+    },
+    {
       "claim_id": "20240316986:10",
       "grade": 0,
       "reason": "Hollow bolt air channel; unrelated."
@@ -146,6 +151,16 @@
       "claim_id": "20240316986:19",
       "grade": 0,
       "reason": "End caps and threaded couplers of spine; unrelated."
+    },
+    {
+      "claim_id": "20240316986:22",
+      "grade": 0,
+      "reason": "Only describes a resilient seal in the rim beadwell; no tape, backing film or material."
+    },
+    {
+      "claim_id": "20240316986:23",
+      "grade": 1,
+      "reason": "Rim seal with a backing layer, a related idea, but no tape and no backing material is stated."
     },
     {
       "claim_id": "20240316986:6",

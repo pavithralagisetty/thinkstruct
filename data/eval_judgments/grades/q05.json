@@ -38,6 +38,11 @@
       "reason": "Claims a strap through slots that cinches adjacent recovery boards together."
     },
     {
+      "claim_id": "20240375437:17",
+      "grade": 0,
+      "reason": "Describes stacked polygonal prisms forming a gripping feature, with no statement about strapping boards together or stacking them for storage."
+    },
+    {
       "claim_id": "20240375437:18",
       "grade": 0,
       "reason": "Hexagonal prism gripping features; not about storage."
@@ -76,6 +81,11 @@
       "claim_id": "20240375437:5",
       "grade": 0,
       "reason": "Polygonal prism gripping feature shape; not about storage."
+    },
+    {
+      "claim_id": "20240375437:6",
+      "grade": 0,
+      "reason": "Only specifies hexagonal prism shapes of the board features; says nothing about strapping or stacking boards for storage."
     },
     {
       "claim_id": "20240375437:7",

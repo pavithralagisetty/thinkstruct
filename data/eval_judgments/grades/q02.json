@@ -23,6 +23,11 @@
       "reason": "Vehicle with an anti-aquaplaning system, but states nothing about the washer reservoir or spraying ahead of tires."
     },
     {
+      "claim_id": "20240217268:2",
+      "grade": 1,
+      "reason": "Anti-aquaplaning liquid supply with pump and tanks, but the claim text does not state reusing the windshield washer reservoir or spraying ahead of the tires."
+    },
+    {
       "claim_id": "20240217268:3",
       "grade": 2,
       "reason": "Anti-aquaplaning system whose main tank is the vehicle's windscreen washer liquid tank."
@@ -181,6 +186,11 @@
       "claim_id": "20250058591:7",
       "grade": 0,
       "reason": "Vehicle with tire pressure regulation system, not relevant."
+    },
+    {
+      "claim_id": "20250091386:1",
+      "grade": 0,
+      "reason": "Wheel hub greasing without disassembly; nothing about spraying liquid ahead of tires or hydroplaning."
     },
     {
       "claim_id": "20250115081:2",

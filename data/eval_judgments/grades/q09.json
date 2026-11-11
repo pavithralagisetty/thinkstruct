@@ -28,6 +28,11 @@
       "reason": "Omni wheel roller component structure; no drive motor."
     },
     {
+      "claim_id": "20240149613:3",
+      "grade": 0,
+      "reason": "Omni wheel roller shaft threaded connection; no drive motor or in-hub packaging."
+    },
+    {
       "claim_id": "20240149613:4",
       "grade": 0,
       "reason": "Roller component connection structure; no motor."
@@ -41,6 +46,21 @@
       "claim_id": "20240149613:9",
       "grade": 0,
       "reason": "Roller shaft locking; no motor."
+    },
+    {
+      "claim_id": "20240270013:10",
+      "grade": 1,
+      "reason": "Mecanum wheel module with a motor, but the claim only describes the motor's shaft bearings, not that it sits inside the hub."
+    },
+    {
+      "claim_id": "20240270013:7",
+      "grade": 2,
+      "reason": "States the hub has a recess that receives the motor, i.e. the motor is packaged inside the hub of the wheel module."
+    },
+    {
+      "claim_id": "20240270013:9",
+      "grade": 1,
+      "reason": "Mecanum wheel with motor shaft driving the hub coaxially, but does not state the motor is housed inside the hub."
     },
     {
       "claim_id": "20240326512:1",

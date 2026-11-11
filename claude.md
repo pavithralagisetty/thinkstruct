@@ -279,12 +279,13 @@ A model comparison runner, so the embedding model can be chosen on evidence. It 
   | `bge-base` | `BAAI/bge-base-en-v1.5` | same as bge-small | none | 512 |
   | `patentsberta` | `AI-Growth-Lab/PatentSBERTa` | none | none | 512 |
   | `minilm` | `sentence-transformers/all-MiniLM-L6-v2` | none | none | 256 |
+  | `qwen3-0.6b` | `Qwen/Qwen3-Embedding-0.6B` | `Instruct: Given a patent search question, retrieve patent claims that answer it` + line break + `Query:` (no space after `Query:`, Qwen's own format) | none | 8,192 (capped) |
 
-  Each has a pinned revision in config. `nomic` reuses `data/index`; the others embed the same claim and patent texts the build stored (`claims.embed_text`, and `{title}. {abstract}`).
+  Each has a pinned revision in config. An entry may also set `batch_size` (default `EVAL_BATCH_SIZE`, 32) and `max_seq_length` (default: the model's own limit). `qwen3-0.6b` is 0.6B parameters, 1,024 numbers per vector: batches of 16 overflow 16 GB of memory on mps, so it uses 4. Its own limit is 131,072 tokens; it is capped at nomic's 8,192 so the two long-context models read the same, and nothing is cut either way (the longest stored text is 1,151 Qwen tokens; bge and PatentSBERTa cut 152 texts at 512). It loads through `SentenceTransformer` with the model's own modules (Transformer, last-token Pooling, Normalize), not mean pooling; `Embedder.pooling` reads the mode from the loaded Pooling module and the report records it (`lasttoken` for Qwen, `mean` for MiniLM). Last-token pooling finds the last real token from the attention mask, so padding in a batch does not change a vector (checked: cosine 1.0). `nomic` reuses `data/index`; the others embed the same claim and patent texts the build stored (`claims.embed_text`, and `{title}. {abstract}`).
 * **Same search for everyone.** Every candidate goes through the production `Index.search` with the same weights (`W_CLAIM`, `W_PATENT`), filter and tie order; only the vectors change (`Index.with_store`). `bm25` is `BM25Store` in `evaluate.py`, shaped like `VectorStore`: Okapi BM25 (`BM25_K1 = 1.5`, `BM25_B = 0.75`) over lowercase word tokens of the same texts, with each query's scores divided by the best document's score so they lie in 0 to 1 like a cosine similarity.
-* **Cache.** Vectors for non-nomic models are cached in `data/eval_cache/<name>/` (git ignored), keyed by model, revision, code revision, document prefix and a SHA-256 of the claim and patent texts. Any change re-embeds.
+* **Cache.** Vectors for non-nomic models are cached in `data/eval_cache/<name>/` (git ignored), keyed by model, revision, code revision, document prefix, `max_seq_length` (only when the entry sets one, so older caches stay valid) and a SHA-256 of the claim and patent texts. Any change re-embeds.
 * **CLI:** `python -m patent_search eval [--models NAME ...] [--device DEVICE] [-n TOP]`. Defaults: bm25 plus every model in `EVAL_MODELS`, the device is `mps` when available (else `cpu`), top 10. It prints the top 3 per question per candidate.
-* **Report:** `data/eval_results/run_<UTC time>.json` with the index meta, settings, questions, each candidate's model, revision, prefixes, where its vectors came from (`data/index`, `cache` or `embedded`) and run time, and for every candidate and question the top 10 `claim_id`s with scores.
+* **Report:** `data/eval_results/run_<UTC time>.json` with the index meta, settings, questions, each candidate's model, revision, prefixes, batch size, max length, pooling, where its vectors came from (`data/index`, `cache` or `embedded`) and run time, and for every candidate and question the top 10 `claim_id`s with scores.
 * **Metrics** (`evaluate.py`), each taking the ranked claim ids and a `{claim_id: grade}` dict. Grades are 0 (not relevant), 1 (partly), 2 (fully); claims without a grade count as 0. Relevant means grade ≥ `EVAL_RELEVANT_GRADE` (1).
   * `hit@5`: 1 if any relevant claim is in the top 5.
   * `p@5`: relevant claims in the top 5, divided by 5.
@@ -302,6 +303,20 @@ The only source of relevance labels (`grading.py`, `python -m patent_search grad
 3. **Reuse.** Grades live in `data/eval_judgments/grades/<qid>.json` and are never changed once written. Only pooled claims without a grade go into a packet, so a new model only needs its new claims graded. A question with nothing left to grade gets no packet.
 4. **Judges.** One blind subagent per packet. It may read only its packet and write only `data/eval_judgments/incoming/<qid>.json`; it never sees which model returned a claim or any eval result. Scale: **2** = the claim itself states what is asked, **1** = right topic and a closely related detail, **0** = not relevant. It judges the claim's own text (the main claim is context only) and gives one short reason per claim.
 5. **Score.** `grade score` checks each incoming file (every packet claim graded exactly once, grade 0, 1 or 2, a reason, nothing extra), merges it into `grades/`, writes all pooled grades to `data/eval_judgments/pooled_grades.json`, scores every candidate with the metric functions above (claims never graded count as 0, with a warning) and prints the comparison table and the rank of the first fully relevant claim per question. The result is saved to `data/eval_results/scores_<UTC time>.json`.
+
+**Results** (`scores_20261111T005725Z.json`, from `run_20261111T005621Z.json`, all 7 candidates, 299 graded claims):
+
+| Model | Hit@5 | P@5 | R@10 | MRR | nDCG@10 | Full@10 |
+|---|---|---|---|---|---|---|
+| bm25 | 0.900 | 0.500 | 0.353 | 0.733 | 0.397 | 5/10 |
+| nomic (production) | 0.800 | 0.660 | 0.512 | 0.760 | 0.566 | 8/10 |
+| bge-small | 0.800 | 0.660 | 0.462 | 0.800 | 0.519 | 7/10 |
+| bge-base | 0.900 | 0.780 | 0.559 | 0.825 | 0.534 | 9/10 |
+| patentsberta | 0.900 | 0.740 | 0.546 | 0.825 | 0.567 | 9/10 |
+| minilm | 0.800 | 0.620 | 0.462 | 0.800 | 0.527 | 8/10 |
+| qwen3-0.6b | 0.900 | 0.760 | 0.666 | 0.917 | 0.674 | 9/10 |
+
+`Full@10` counts the questions with a fully relevant claim in the top 10. The first round graded 285 pooled claims for the first six candidates. Adding `qwen3-0.6b` (embedding took 41 minutes on mps at batch size 4, about 6.4 GB) brought 14 new claims into the pool (q02 2, q04 3, q05 2, q08 1, q09 4, q10 2); only those were graded, by six blind judges with the same prompt, and the 285 existing grades did not change. The other six candidates' rankings are identical to the first run; their recall and nDCG dropped slightly because the pool now holds relevant claims only Qwen found (for example nomic recall 0.529 to 0.512), while Hit@5, P@5, MRR and Full@10 are unchanged. Qwen leads on recall, MRR and nDCG and is the only model with a fully relevant claim for q09 (rank 6), but misses q04, which bge-base, PatentSBERTa and MiniLM find. With 10 questions and one judge per claim this is a lead, not proof (see Limits); Qwen is also 1,024 numbers per vector (nomic 768) and would need a rebuild to use in production.
 
 **Limits.**
 
@@ -377,7 +392,7 @@ patent_search/
     eval/questions.json     the evaluation questions
 ```
 
-Stack: Python 3.11, `sentence-transformers`, `numpy`, `fastapi`, `uvicorn`, `pytest`. Nothing else unless needed. Pin `transformers>=4.44,<5`: the nomic model's remote code breaks on transformers 5.
+Stack: Python 3.11, `sentence-transformers`, `numpy`, `fastapi`, `uvicorn`, `pytest`. Nothing else unless needed. Pin `transformers>=4.51,<5`: Qwen3-Embedding needs 4.51 or newer, and the nomic model's remote code breaks on transformers 5. `sentence-transformers` must be 2.7 or newer for Qwen (installed: 5.7.0, with transformers 4.57.6).
 
 ## Rules
 

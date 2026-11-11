@@ -124,3 +124,40 @@ def test_questions_file():
     questions = evaluate.load_questions()
     assert [q["id"] for q in questions] == [f"q{i:02d}" for i in range(1, 11)]
     assert all(set(q) == {"id", "text"} and q["text"] for q in questions)
+
+
+def test_make_embedder_uses_per_model_batch_size_and_length(monkeypatch):
+    import patent_search.embedder as embedder_module
+    from patent_search import config
+    from patent_search.evaluate import make_embedder
+    seen = []
+    monkeypatch.setattr(embedder_module, "Embedder", lambda **kw: seen.append(kw) or kw)
+    make_embedder({"model_name": "m", "revision": "r", "batch_size": 4, "max_seq_length": 8192}, "cpu")
+    make_embedder({"model_name": "m", "revision": "r"}, "cpu")
+    assert (seen[0]["batch_size"], seen[0]["max_seq_length"]) == (4, 8192)
+    assert (seen[1]["batch_size"], seen[1]["max_seq_length"]) == (config.EVAL_BATCH_SIZE, None)
+
+
+def test_qwen_entry():
+    from patent_search import config
+    spec = config.EVAL_MODELS["qwen3-0.6b"]
+    assert spec["model_name"] == "Qwen/Qwen3-Embedding-0.6B" and len(spec["revision"]) == 40
+    assert spec["document_prefix"] == "" and spec["batch_size"] == 4 and spec["max_seq_length"] == 8192
+    assert spec["query_prefix"] == ("Instruct: Given a patent search question, retrieve patent claims "
+                                    "that answer it\nQuery:")
+
+
+def test_embedder_reports_pooling():
+    from patent_search.embedder import Embedder
+
+    class Pooling:                                   # named like the sentence-transformers module
+        def __init__(self, mode):
+            self.pooling_mode = mode
+
+    e = Embedder.__new__(Embedder)
+    e.model = [object(), Pooling("lasttoken"), object()]
+    assert e.pooling == "lasttoken"
+    e.model = [Pooling(("mean", "max"))]
+    assert e.pooling == "mean+max"
+    e.model = [object()]
+    assert e.pooling == "none"
