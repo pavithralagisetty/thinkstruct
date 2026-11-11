@@ -15,7 +15,6 @@ import time
 
 from patent_search.embedder import Embedder
 from patent_search.evaluate import load_questions
-from patent_search.request_words import strip_request_words
 from patent_search.search import Index
 
 CASES = [
@@ -37,7 +36,7 @@ class CachedEmbedder:
     """Query vectors embedded once up front, so search timings leave out the model."""
 
     def __init__(self, embedder, questions):
-        self.vectors = {strip_request_words(q): embedder.embed_query(strip_request_words(q)) for q in questions}
+        self.vectors = {q.strip(): embedder.embed_query(q.strip()) for q in questions}
 
     def embed_query(self, text):
         return self.vectors[text]
@@ -70,7 +69,7 @@ def main(repeats=20):
           f"({platform.platform()}, {platform.machine()})")
     print(f"Startup: index {load_s:.2f} s, model {model_s:.2f} s (once per process)\n")
 
-    embed = [t for q in questions for t in timed(lambda: embedder.embed_query(strip_request_words(q)), repeats)]
+    embed = [t for q in questions for t in timed(lambda: embedder.embed_query(q.strip()), repeats)]
     fast = index.with_store(index.vectors, CachedEmbedder(embedder, questions))
 
     print(f"{'case':38} {'claims scored':>13} {'median ms':>10} {'p95 ms':>8} {'vs none':>8} {'filters only ms':>16}")
