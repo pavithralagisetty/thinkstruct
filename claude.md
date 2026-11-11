@@ -310,6 +310,42 @@ The only source of relevance labels (`grading.py`, `python -m patent_search grad
 * A model is only worth switching to if it clearly beats the current one (nomic) on these metrics, not by a hair; switching means a rebuild and a different cost and context length.
 * If nomic does not beat bm25, the embedding step is not earning its cost and plain word matching should be considered instead.
 
+## Timing
+
+`python -m patent_search.benchmark [REPEATS]` (one file, `benchmark.py`, cases listed in it) times the production `Index.search` on the 10 evaluation questions, with no filters and with each hybrid filter, REPEATS (default 20) timed runs per question per case after one warm-up. Embedding the question costs the same whatever the filters are, so it is timed on its own and the search timings reuse a vector embedded up front: they cover request-word removal, the keyword and filter step, scoring the claims that passed it, sorting and building the response. Each filtered case is also timed without a question ("filters only": the exact step alone). It prints the table; nothing is saved.
+
+Results on the full data (10,411 claims, 768-number vectors, Apple silicon Mac):
+
+| Case | Claims scored | Median ms | p95 ms | vs no filters | Filters only ms |
+|---|---|---|---|---|---|
+| No filters (semantic only) | 10,411 | 8.20 | 9.21 | 1.00x | - |
+| No filters, grouped by patent | 10,411 | 10.39 | 12.68 | 1.27x | - |
+| Classification `B60B` | 4,782 | 3.95 | 4.60 | 0.48x | 0.89 |
+| Classification `B60C 11` | 1,658 | 1.56 | 1.75 | 0.19x | 0.62 |
+| Claim keyword `tire*` | 3,383 | 32.95 | 37.17 | 4.02x | 30.30 |
+| Claim keyword `sipe` | 222 | 43.54 | 45.48 | 5.31x | 43.19 |
+| Title or abstract keyword `wheel*` | 4,495 | 7.20 | 7.59 | 0.88x | 4.37 |
+| Published 2024-06 to 2024-12 | 4,884 | 3.80 | 4.20 | 0.46x | 0.80 |
+| Main claims only | 120 | 0.48 | 0.50 | 0.06x | 0.41 |
+| All: `B60B` + `spoke*` + `wheel*` + 2024 | 284 | 11.86 | 12.61 | 1.45x | 11.44 |
+
+Embedding one question: median 13.3 ms (p95 24.3 ms). Once per process: loading the index 0.5 s, loading the model 8 s.
+
+**What it shows.**
+
+* The exact step runs before scoring, so a filter that removes claims also removes their scoring. Filters decided per patent (classification, dates) or by a stored flag (main claims only) are cheap, so with them a search is faster than without: `B60B` halves the time, `B60C 11` takes a fifth, main claims only takes 0.5 ms.
+* Claim keywords are the slow part, 4 to 5 times slower than no filter. The keyword filter is a regular expression run over every claim text (3.1 million characters) on every search, about 30 to 43 ms whatever the question. A rare word is the slowest (`sipe`, 43 ms for 222 matches) because the search only stops early in texts that contain the word. Title or abstract keywords scan 640 short texts, about 4 ms.
+* Without filters, the vector work is small: copying the selected rows and multiplying takes 1.7 ms (multiplying the whole matrix without the copy, 0.5 ms). Most of the 8 ms is Python looping over all 10,411 claims (building the list that passed, rounding every score, sorting all of them).
+* With a question, embedding it (13 ms) costs more than the search itself unless claim keywords are set.
+
+**Already used to keep it fast.** Filters run first and scoring runs only on what passed. Patent filters are checked once per patent (640), not per claim. CPC codes are split once when the index loads. Vectors are normalized when stored, so similarity is one matrix product. The model loads only when a question is given; keyword and filter searches never load it.
+
+**What would make it faster (not built).**
+
+* An inverted index for keywords (word to claim ids, for example SQLite FTS5, Tantivy or Lucene). Intersect the id lists, then run the exact regular expression only on those candidates, so the phrase, `*` and hyphen rules stay exact while the cost follows the number of matches instead of the size of the collection.
+* Filters and scores as numpy arrays: a boolean mask per classification part and date, the scores computed for all claims at once without copying rows, and `np.argpartition` to take the top `top_n` instead of sorting every claim.
+* At 10 million patents (well over 100 million claims) exact scoring of every claim is too slow, so an approximate nearest neighbour index (HNSW or IVF-PQ in FAISS or Qdrant) is needed. A filter then decides the plan: when it is selective (a narrow CPC group, a rare keyword), score its candidates exactly, which is what makes hybrid search faster than plain semantic search; when it is broad, search the ANN index with the filter applied inside it (filtered HNSW, Qdrant payload filters) instead of filtering afterwards, which can leave fewer than `top_n` results.
+
 ## Project layout
 
 ```
@@ -333,6 +369,7 @@ patent_search/
     search.py
     evaluate.py             model comparison: BM25 baseline, cached vectors, metrics
     grading.py              pooled blind grading and scoring
+    benchmark.py            timing with and without the hybrid filters (python -m patent_search.benchmark)
     api.py
     __main__.py             CLI
     static/index.html       the web page
