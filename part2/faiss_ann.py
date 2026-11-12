@@ -172,9 +172,8 @@ def two_stage(claims, patents, claim_patent_row, queries, hnsw, repeats):
     """ANN on claim vectors gives candidates, the exact production score reranks them."""
     out("### Two-stage: HNSW candidates, then the production score")
     out()
-    out(f"Production score = {config.W_CLAIM} x claim similarity + {config.W_PATENT} x patent similarity, "
-        "over every claim. The ANN index only knows claim vectors, so it fetches K candidates "
-        "and the full score is computed on those.")
+    out(f"HNSW returns K candidates; they are re-scored with {config.W_CLAIM} x claim + "
+        f"{config.W_PATENT} x patent similarity and compared with the exact top 10 over all claims.")
     out()
     has = claim_patent_row >= 0
     def prod_scores(q, rows):
@@ -208,10 +207,8 @@ def two_stage(claims, patents, claim_patent_row, queries, hnsw, repeats):
 def filtered(claims, queries, hnsw, filters, repeats):
     out("### Filters with an ANN index")
     out()
-    out("Truth is the exact top 10 among the claims that pass the filter. "
-        "*Post-filter*: ask HNSW for k results, drop those that fail the filter. "
-        "*In-index*: FAISS `IDSelectorBatch`, HNSW only returns rows that pass. "
-        "*Exact on subset*: what production does today (filter first, score what passed).")
+    out("Compared with the exact top 10 among claims that pass the filter. Post-filter = HNSW, then drop "
+        "failing hits. In-index = filter inside HNSW. Exact on subset = Part 1 today.")
     out()
     out("| Filter | Claims passing | Method | Avg hits returned (of 10) | Recall@10 | Median ms |")
     out("|---|---|---|---|---|---|")
@@ -285,10 +282,9 @@ def main():
 
     out("# Part 2 proof of concept: approximate vector search with FAISS")
     out()
-    out(f"FAISS {faiss.__version__}, {len(queries)} evaluation questions embedded with "
-        f"{config.MODEL_NAME}, {claims.shape[1]} dims, k = {K}. Latency is one question at a time "
-        f"on one CPU core (FAISS) after a warm-up, {args.repeats} rounds. numpy exact uses Accelerate (all cores). "
-        "Recall@10 = share of the exact top 10 (by claim similarity) that the method returns.")
+    out(f"FAISS {faiss.__version__}, {len(queries)} evaluation questions, {claims.shape[1]}-dim nomic vectors. "
+        "Recall@10 = share of the exact top 10 found. Time = one question, one core, median of "
+        f"{args.repeats} rounds.")
     out()
 
     truth = exact_topk(claims, queries)

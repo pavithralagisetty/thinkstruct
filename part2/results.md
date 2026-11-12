@@ -1,6 +1,6 @@
 # Part 2 proof of concept: approximate vector search with FAISS
 
-FAISS 1.16.0, 40 evaluation questions embedded with nomic-ai/nomic-embed-text-v1.5, 768 dims, k = 10. Latency is one question at a time on one CPU core (FAISS) after a warm-up, 3 rounds. numpy exact uses Accelerate (all cores). Recall@10 = share of the exact top 10 (by claim similarity) that the method returns.
+FAISS 1.16.0, 40 evaluation questions, 768-dim nomic vectors. Recall@10 = share of the exact top 10 found. Time = one question, one core, median of 3 rounds.
 
 ### Real claim vectors (10,411)
 
@@ -22,7 +22,7 @@ FAISS 1.16.0, 40 evaluation questions embedded with nomic-ai/nomic-embed-text-v1
 
 ### Two-stage: HNSW candidates, then the production score
 
-Production score = 0.8 x claim similarity + 0.2 x patent similarity, over every claim. The ANN index only knows claim vectors, so it fetches K candidates and the full score is computed on those.
+HNSW returns K candidates; they are re-scored with 0.8 x claim + 0.2 x patent similarity and compared with the exact top 10 over all claims.
 
 | Candidates K | efSearch | Overlap with production top 10 | Median ms |
 |---|---|---|---|
@@ -33,7 +33,7 @@ Production score = 0.8 x claim similarity + 0.2 x patent similarity, over every 
 
 ### Filters with an ANN index
 
-Truth is the exact top 10 among the claims that pass the filter. *Post-filter*: ask HNSW for k results, drop those that fail the filter. *In-index*: FAISS `IDSelectorBatch`, HNSW only returns rows that pass. *Exact on subset*: what production does today (filter first, score what passed).
+Compared with the exact top 10 among claims that pass the filter. Post-filter = HNSW, then drop failing hits. In-index = filter inside HNSW. Exact on subset = Part 1 today.
 
 | Filter | Claims passing | Method | Avg hits returned (of 10) | Recall@10 | Median ms |
 |---|---|---|---|---|---|
