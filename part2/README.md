@@ -1,5 +1,7 @@
 # Part 2 proof of concept: approximate vector search (FAISS)
 
+The system design for 10M patents is in [`DESIGN.md`](DESIGN.md). This file is the proof of concept for its key choice.
+
 ## In short
 
 * **Is the current search bad?** No. Part 1 compares the question with every claim, so it
@@ -65,6 +67,7 @@ written to `part2/results.md`.
 
 ## Files
 
+* `DESIGN.md`: the system design for 10M patents (components, pipelines, errors, status, cost, challenges, build order).
 * `faiss_ann.py`: the script (quick proof-of-concept code, not part of the package).
 * `results.md`: every table from the last run.
 * `README.md`: this file.
