@@ -12,6 +12,7 @@ dependencies = [
     "transformers>=4.51,<5",
     "einops",
     "numpy",
+    "scikit-learn",  # t-SNE for the patent map (installed with sentence-transformers)
     "fastapi",
     "uvicorn",
 ]

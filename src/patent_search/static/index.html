@@ -24,6 +24,9 @@
     --glow: rgba(232, 98, 42, 0.14);
     --mark: rgba(250, 204, 21, 0.38);
     --shadow: 0 1px 2px rgba(20, 20, 25, 0.04), 0 4px 16px rgba(20, 20, 25, 0.05);
+    /* Map: one hue per large subclass (validated for a scatter), the rest grey */
+    --s-b60c: #2a78d6; --s-b60b: #eb6834; --s-b60d: #1baf7a; --s-other: #898781;
+    --dimmed: #cfcdc7;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -42,6 +45,8 @@
       --glow: rgba(232, 98, 42, 0.16);
       --mark: rgba(250, 204, 21, 0.26);
       --shadow: none;
+      --s-b60c: #3987e5; --s-b60b: #d95926; --s-b60d: #199e70; --s-other: #898781;
+      --dimmed: #3a3a3e;
     }
   }
 
@@ -127,7 +132,7 @@
   .search-btn:hover:not(:disabled) { background: var(--accent-hover); }
   .search-btn:disabled { opacity: 0.7; cursor: progress; }
 
-  /* Show: Claims | Patents */
+  /* Show: Claims | Patents | Map */
   .show { margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 12px; }
   .show-label { color: var(--muted); font-size: 15px; }
   .segmented {
@@ -191,6 +196,7 @@
   .span-3 { grid-column: span 3; }
   .span-5 { grid-column: span 5; }
   .span-6 { grid-column: span 6; }
+  .results-field input { max-width: 160px; }
   .group-label { grid-column: span 6; margin: 4px 0 -8px; font-size: 14px; font-weight: 600; }
   .field select {
     width: 100%;
@@ -253,6 +259,29 @@
   .summary { color: var(--muted); font-size: 17px; margin: 0 0 16px; }
   .empty { color: var(--muted); text-align: center; padding: 32px 0; }
   .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  /* Map view */
+  .mapview { display: flex; flex-direction: column; gap: 16px; }
+  .mapview[hidden] { display: none; }
+  .viz { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 20px 22px; box-shadow: var(--shadow); min-width: 0; }
+  .viz-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 10px 16px; margin-bottom: 12px; }
+  .viz-head h2 { font-size: 18px; margin: 0; letter-spacing: -0.01em; }
+  .viz-head p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .legend b { color: var(--text); font-weight: 600; }
+  .plot { position: relative; width: 100%; }
+  .plot svg { display: block; width: 100%; overflow: visible; }
+  .plot .cluster { font-size: 12px; fill: var(--muted); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
+  .plot .rank { font-size: 11px; font-weight: 700; fill: var(--text); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; pointer-events: none; }
+  .tip {
+    position: absolute; z-index: 3; pointer-events: none; max-width: 300px; padding: 10px 12px; border-radius: 10px;
+    background: var(--surface); border: 1px solid var(--border); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14); font-size: 14px;
+  }
+  .tip strong { display: block; font-size: 15px; margin-bottom: 2px; }
+  .tip .t { color: var(--text); font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
+  .tip .m { color: var(--muted); }
+
   @media (max-width: 760px) {
     .grid { grid-template-columns: 1fr; }
     .filters-body { grid-template-columns: 1fr; }
@@ -379,6 +408,7 @@
       <div class="segmented" role="group" aria-labelledby="show-label">
         <button type="button" id="show-claims" data-group="claim" aria-pressed="true">Claims</button>
         <button type="button" id="show-patents" data-group="patent" aria-pressed="false">Patents</button>
+        <button type="button" id="show-map" data-group="map" aria-pressed="false">Map</button>
       </div>
     </div>
 
@@ -397,14 +427,10 @@
         </span>
       </button>
       <div class="filters-body" id="filters-body" hidden>
-        <div class="field span-5">
+        <div class="field span-6">
           <label for="keywords">Claim keywords <span class="optional">(optional)</span></label>
           <input id="keywords" type="text" autocomplete="off" placeholder='sipe "tread block" spoke*'>
           <p class="hint">Every keyword must appear in the claim. <code>"quotes"</code> for a phrase, <code>*</code> at the end for word starts.</p>
-        </div>
-        <div class="field">
-          <label for="top-n">Results</label>
-          <input id="top-n" type="number" min="1" max="100" step="1" value="10" inputmode="numeric">
         </div>
         <div class="field span-6">
           <label for="title-abstract">Title or abstract keywords <span class="optional">(optional)</span></label>
@@ -446,6 +472,11 @@
           <p class="hint" style="margin-bottom: 12px;">Inclusive. Pick a day, or type <code>2024</code>, <code>2024-06</code> or <code>2024-06-15</code>.</p>
         </div>
 
+        <div class="field span-6 results-field">
+          <label for="top-n">Number of results</label>
+          <input id="top-n" type="number" min="1" max="100" step="1" value="10" inputmode="numeric">
+        </div>
+
         <label class="check span-5" for="main-only">
           <input id="main-only" type="checkbox">
           <span>Main claims only <span class="hint">(claims whose start is missing have an unknown type and are left out)</span></span>
@@ -456,6 +487,19 @@
   </form>
 
   <section class="results" id="results" aria-live="polite"></section>
+  <section class="results mapview" id="mapview" hidden aria-live="polite">
+    <p class="summary" id="map-status"></p>
+    <div class="viz">
+      <div class="viz-head">
+        <div>
+          <h2>Patent landscape</h2>
+          <p id="mapsub">Every patent placed by meaning: similar inventions sit close together.</p>
+        </div>
+      </div>
+      <div class="legend" id="maplegend"></div>
+      <div class="plot" id="mapplot"></div>
+    </div>
+  </section>
 </main>
 
 <script>
@@ -465,8 +509,6 @@
     { label: "Bassinet arm", query: "bassinet arm that rotates the infant tub", keywords: "" },
     { label: "Tire sensor setup", query: "setting up a tire pressure sensor from a phone", keywords: "" },
     { label: "Wall-climbing robots", query: "robot that drives up walls using magnetic wheels", keywords: "" },
-    { label: "Keyword: sipe", query: "", keywords: "sipe" },
-    { label: "Heavy truck tires + tread", query: "tire for heavy trucks", keywords: "tread" },
   ];
 
   const TOP_N_MAX = 100, MORE_STEP = 10;   // TOP_N_MAX matches config.TOP_N_MAX
@@ -748,12 +790,14 @@
   }
 
   function showError(message) {
+    mapview.hidden = true;
+    results.hidden = false;
     results.replaceChildren(el("div", "error", message));
   }
 
   // "See more" under the results: the same search again with MORE_STEP more results.
   // Ranking is deterministic, so the results already shown stay where they are. The
-  // Results box is left alone, so the next new search starts from its number again.
+  // "Number of results" box is left alone, so the next new search starts from its number again.
   function seeMore(data, shown, unit) {
     if (shown < data.top_n || shown >= data.total_matches) return null;   // nothing left to show
     const box = el("div", "see-more");
@@ -787,6 +831,8 @@
     const parts = [el("p", "summary", summary)];
     if (!shown) {
       parts.push(el("p", "empty", patents ? "No patents matched." : "No claims matched."));
+      mapview.hidden = true;
+      results.hidden = false;
       results.replaceChildren(...parts);
       return;
     }
@@ -796,6 +842,8 @@
     parts.push(grid);
     const more = seeMore(data, shown, unit);
     if (more) parts.push(more);
+    mapview.hidden = true;
+    results.hidden = false;
     results.replaceChildren(...parts);
     // Only offer "Show full ..." where the text is actually cut off.
     for (const c of clamps) c.more.hidden = c.text.scrollHeight <= c.text.clientHeight + 1;
@@ -807,7 +855,8 @@
     const classification = classificationCode();
     const dateFrom = fromBox.value.trim(), dateTo = toBox.value.trim();
     const titleAbstract = titleAbstractBox.value.trim();
-    if (!query && !keywords && !titleAbstract && !classification && !dateFrom && !dateTo && !mainOnly.checked) {
+    const anyInput = Boolean(query || keywords || titleAbstract || classification || dateFrom || dateTo || mainOnly.checked);
+    if (groupBy !== "map" && !anyInput) {
       showError("Type a question or a keyword, or choose a filter");
       return;
     }
@@ -825,6 +874,11 @@
     button.disabled = true;
     button.textContent = "Searching...";
     try {
+      if (groupBy === "map") {
+        const { top_n, group_by, ...filters } = body;
+        await renderMap(anyInput ? filters : null, Number.isInteger(topN) && topN > 0 ? topN : 10, id);
+        return;
+      }
       const response = await fetch("/search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -843,7 +897,7 @@
       data.ranked_all = Boolean(query) && !keywords && !titleAbstract && !classification && !dateFrom && !dateTo && !mainOnly.checked;
       render(data);
     } catch (e) {
-      if (id === requestId) showError("Could not reach the search server.");
+      if (id === requestId) showError(e instanceof MapError ? e.message : "Could not reach the search server.");
     } finally {
       if (id === requestId) {
         button.disabled = false;
@@ -851,6 +905,212 @@
       }
     }
   }
+
+  // ---------- map: patent landscape ----------
+
+  const mapview = $("mapview"), mapplot = $("mapplot"), mapStatus = $("map-status");
+  class MapError extends Error {}
+  let mapData = null;     // {points, classifications} from GET /map
+  let mapMatches = null;  // doc_number -> {rank, score, matching_claims, best_claim}, or null without a search
+  let pinned = null;
+  let mapRanked = false, mapTopN = 10;  // with a question only the top N are lit; otherwise every match is
+  const lit = (m) => Boolean(m) && (!mapRanked || m.rank <= mapTopN);
+  const NS = "http://www.w3.org/2000/svg";
+  // Color follows the subclass; only three hues stay apart in a scatter, the rest fold into "Other".
+  const SUBS = [["B60C", "--s-b60c"], ["B60B", "--s-b60b"], ["B60D", "--s-b60d"]];
+  const subVar = (sub) => (SUBS.find(([s]) => s === sub) || [null, "--s-other"])[1];
+  const svgEl = (tag, attrs, text) => {
+    const e = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v);
+    if (text !== undefined) e.textContent = text;
+    return e;
+  };
+
+  async function getJSON(url, options) {
+    const response = await fetch(url, options);
+    let data = null;
+    try { data = await response.json(); } catch { /* not JSON */ }
+    if (!response.ok) throw new MapError((data && data.error) || `Request failed (HTTP ${response.status}).`);
+    return data;
+  }
+
+  // filters: the search fields, or null to show every patent. topN: how many to light with a question.
+  async function renderMap(filters, topN, id) {
+    results.hidden = true;
+    mapview.hidden = false;
+    mapview.style.opacity = mapData ? "0.55" : "";   // a new search keeps the map in place
+    try {
+      if (!mapData) {
+        mapStatus.textContent = "Laying out the map...";
+        mapData = await getJSON("/map");
+      }
+      let matches = null;
+      if (filters) {
+        matches = await getJSON("/map/matches", {
+          method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(filters),
+        });
+      }
+      if (id !== requestId) return;
+      const total = mapData.points.length;
+      if (matches) {
+        mapMatches = new Map(matches.matches.map((m, i) => [m.doc_number, { ...m, rank: i + 1 }]));
+        mapRanked = Boolean(filters.query);
+        mapTopN = topN;
+        const n = matches.total_matches, shown = Math.min(mapTopN, n);
+        mapStatus.textContent = n === 0 ? "No patents matched."
+          : mapRanked ? `Top ${shown} of ${n} ${n === total ? "" : "matching "}patents highlighted`
+          : `${n} of ${total} patents match`;
+      } else {
+        mapMatches = null;
+        mapRanked = false;
+        mapStatus.textContent = `${total} patents`;
+      }
+      pinned = null;
+      drawAll();
+    } finally {
+      mapview.style.opacity = "";
+    }
+  }
+
+  function mapGroupTitles() {
+    const t = new Map();
+    for (const sc of mapData.classifications) for (const g of sc.groups) t.set(g.code, g.title);
+    return t;
+  }
+
+  function drawAll() {
+    if (!mapData || mapview.hidden) return;
+    drawLegend();
+    drawMap();
+    $("mapsub").textContent = mapMatches && mapRanked
+      ? `The ${mapTopN} best matching patents keep their color; the top 5 are numbered. Hover any point for its rank and score, click to pin it.`
+      : mapMatches ? "Matching patents keep their color. Hover a point for details, click to pin it."
+      : "Every patent placed by meaning: similar inventions sit close together. Hover a point for details.";
+  }
+
+  function drawLegend() {
+    const lg = $("maplegend");
+    lg.replaceChildren();
+    const counts = new Map();
+    for (const p of mapData.points) {
+      const k = SUBS.some(([s]) => s === p.subclass) ? p.subclass : "Other";
+      counts.set(k, (counts.get(k) || 0) + 1);
+    }
+    // Scheme titles are long and in capitals; the legend keeps the first part ("Vehicle tyres").
+    const short = (t) => { const f = (t || "").split(";")[0].trim().toLowerCase(); return f.charAt(0).toUpperCase() + f.slice(1); };
+    const titles = new Map(mapData.classifications.map((c) => [c.code, short(c.title)]));
+    for (const [sub, v] of [...SUBS, ["Other", "--s-other"]]) {
+      if (!counts.get(sub)) continue;
+      const item = el("span"), dot = el("i");
+      dot.style.background = `var(${v})`;
+      item.append(dot, el("b", null, sub));
+      item.append(document.createTextNode(` ${sub === "Other" ? "subclasses" : titles.get(sub) || ""} · ${counts.get(sub)}`));
+      lg.append(item);
+    }
+    if (mapMatches) {
+      const item = el("span"), dot = el("i");
+      dot.style.background = "var(--dimmed)";
+      item.append(dot, document.createTextNode(mapRanked ? `Outside the top ${mapTopN}` : "Not matching"));
+      lg.append(item);
+    }
+  }
+
+  function tipFor(p) {
+    const tip = el("div", "tip");
+    tip.append(el("div", "t", p.title || "(no title)"));
+    tip.append(el("div", "m", [p.cpc_code, mapGroupTitles().get(p.group)].filter(Boolean).join(" · ")));
+    tip.append(el("div", "m", `${formatNumber(p.doc_number)} · ${p.pub_date || "no date"}`));
+    if (mapMatches) {
+      const m = mapMatches.get(p.doc_number), line = el("div", "m");
+      if (m) {
+        line.append(el("strong", null, m.score !== null ? `${m.score.toFixed(2)} match · rank ${m.rank}` : "Matches"));
+        line.append(document.createTextNode(`${m.matching_claims} matching claim${m.matching_claims === 1 ? "" : "s"}, best is claim ${m.best_claim}`));
+      } else {
+        line.textContent = "Does not match this search";
+      }
+      tip.append(line);
+    }
+    return tip;
+  }
+
+  function drawMap() {
+    mapplot.replaceChildren();
+    const W = mapplot.clientWidth, H = Math.round(Math.max(320, Math.min(620, W * 0.62))), pad = 18;
+    const X = (x) => pad + x * (W - 2 * pad), Y = (y) => pad + (1 - y) * (H - 2 * pad);
+    const svg = svgEl("svg", { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: "img",
+      "aria-label": "Map of patents placed by similarity" });
+
+    const pts = mapData.points.map((p) => ({ ...p, px: X(p.x), py: Y(p.y), m: mapMatches?.get(p.doc_number) }));
+    // Paint order: dimmed first, then lit points with the best rank on top.
+    pts.sort((a, b) => (lit(a.m) ? 1e6 - a.m.rank : -1) - (lit(b.m) ? 1e6 - b.m.rank : -1));
+    for (const p of pts) {
+      const c = svgEl("circle", { cx: p.px.toFixed(1), cy: p.py.toFixed(1), r: mapRanked && lit(p.m) ? 6.5 : 4.5 });
+      c.style.fill = mapMatches && !lit(p.m) ? "var(--dimmed)" : `var(${subVar(p.subclass)})`;
+      c.style.stroke = "var(--surface)";   // a 2px ring keeps overlapping dots apart
+      c.style.strokeWidth = "2";
+      svg.append(c);
+    }
+
+    // Labels: ranks first (they matter most), then main group names at their median position.
+    // A label that would overlap one already placed is skipped.
+    const placed = [];
+    const fits = (x, y, w, h) => {
+      if (x < 0 || x + w > W || y < 0 || y + h > H) return false;
+      if (placed.some((b) => x < b.x + b.w && x + w > b.x && y < b.y + b.h && y + h > b.y)) return false;
+      placed.push({ x, y, w, h });
+      return true;
+    };
+    if (mapMatches && mapRanked) {
+      for (const p of pts.filter((q) => q.m && q.m.rank <= Math.min(5, mapTopN))) {
+        const t = String(p.m.rank);
+        if (fits(p.px + 7, p.py - 20, 8 * t.length + 4, 14)) svg.append(svgEl("text", { x: p.px + 8, y: p.py - 9, class: "rank" }, t));
+      }
+    }
+    const titles = mapGroupTitles(), byGroup = new Map();
+    for (const p of pts) if (p.group) (byGroup.get(p.group) || byGroup.set(p.group, []).get(p.group)).push(p);
+    const median = (a) => { const s = [...a].sort((u, v) => u - v); return s[Math.floor(s.length / 2)]; };
+    [...byGroup.entries()].filter(([, a]) => a.length >= 12).sort((a, b) => b[1].length - a[1].length).forEach(([g, a]) => {
+      const name = (titles.get(g) || g).split(/[;,]/)[0];
+      const cx = median(a.map((p) => p.px)), cy = median(a.map((p) => p.py)), w = name.length * 6.4 + 6;
+      if (fits(cx - w / 2, cy - 14, w, 16)) svg.append(svgEl("text", { x: cx, y: cy, "text-anchor": "middle", class: "cluster" }, name));
+    });
+
+    const ring = svgEl("circle", { r: 9, fill: "none", visibility: "hidden" });
+    ring.style.stroke = "var(--text)";
+    ring.style.strokeWidth = "1.5";
+    svg.append(ring);
+    mapplot.append(svg);
+
+    let tip = null;
+    const show = (p) => {
+      tip?.remove();
+      tip = null;
+      if (!p) { ring.setAttribute("visibility", "hidden"); return; }
+      ring.setAttribute("cx", p.px); ring.setAttribute("cy", p.py); ring.setAttribute("visibility", "visible");
+      tip = tipFor(p);
+      mapplot.append(tip);
+      const left = p.px + 16 + tip.offsetWidth > W ? p.px - 16 - tip.offsetWidth : p.px + 16;
+      tip.style.left = `${Math.max(0, left)}px`;
+      tip.style.top = `${Math.min(Math.max(0, p.py - 20), H - tip.offsetHeight)}px`;
+    };
+    // The nearest point within 24px, so the pointer only has to be close, not on the dot.
+    const nearest = (ev) => {
+      const r = svg.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
+      let best = null, bd = 24 * 24;
+      for (const p of pts) { const d = (p.px - x) ** 2 + (p.py - y) ** 2; if (d < bd) { bd = d; best = p; } }
+      return best;
+    };
+    svg.addEventListener("pointermove", (ev) => { if (!pinned) show(nearest(ev)); });
+    svg.addEventListener("pointerleave", () => { if (!pinned) show(null); });
+    svg.addEventListener("click", (ev) => { const p = nearest(ev); pinned = p && pinned?.doc_number !== p.doc_number ? p : null; show(pinned); });
+    if (pinned) show(pts.find((p) => p.doc_number === pinned.doc_number));
+  }
+
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(drawAll, 150);
+  });
 
   // ---------- wiring ----------
 
@@ -882,7 +1142,7 @@
       for (const other of document.querySelectorAll(".segmented button")) {
         other.setAttribute("aria-pressed", String(other === b));
       }
-      if (searched) runSearch();
+      if (searched || groupBy === "map") runSearch();
     });
   }
 

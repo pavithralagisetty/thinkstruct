@@ -1,4 +1,4 @@
-"""HTTP API: POST /search and the web page at GET /."""
+"""HTTP API: POST /search, the patent map and the web page at GET /."""
 
 import threading
 from pathlib import Path
@@ -87,6 +87,54 @@ def get_classifications():
     except IndexNotReady as e:
         return _error(503, str(e))
     return {"subclasses": index.classification_tree()}
+
+
+class MapRequest(BaseModel):
+    """The search fields without top_n and group_by: the map lights every matching patent."""
+    query: str | None = None
+    keywords: str | list[str] | None = None
+    classification: str | list[str] | None = None
+    date_from: str | int | None = None
+    date_to: str | int | None = None
+    independent_only: bool = False
+    title_abstract_keywords: str | list[str] | None = None
+
+
+@app.get("/map")
+def get_map():
+    """One point per patent (x, y in 0 to 1), with what the page needs to color and label it."""
+    from patent_search.landscape import patent_map
+    try:
+        with _index_lock:
+            index = search_module.get_index()
+            if getattr(index, "_map_points", None) is None:
+                xy = patent_map(index)
+                points = []
+                for doc, (x, y) in sorted(xy.items()):
+                    p, c = index.patents[doc], index.patents[doc]["cpc"]
+                    points.append({"doc_number": doc, "x": x, "y": y, "title": p["title"],
+                                   "pub_date": p["pub_date"], "cpc_code": p["cpc_code"],
+                                   "subclass": c.subclass if c else "",
+                                   "group": f"{c.subclass} {c.group}" if c and c.group is not None else ""})
+                index._map_points = points
+    except IndexNotReady as e:
+        return _error(503, str(e))
+    return {"points": index._map_points, "classifications": index.classification_tree()}
+
+
+@app.post("/map/matches")
+def post_map_matches(body: MapRequest):
+    """Every patent that passes the search (not only the top n), best first."""
+    try:
+        with _index_lock:
+            index = search_module.get_index()
+        matches = index.patent_matches(body.query, body.keywords, body.classification, body.date_from,
+                                       body.date_to, body.independent_only, body.title_abstract_keywords)
+    except ValueError as e:
+        return _error(400, str(e))
+    except IndexNotReady as e:
+        return _error(503, str(e))
+    return {"total_matches": len(matches), "matches": matches}
 
 
 @app.get("/", include_in_schema=False)

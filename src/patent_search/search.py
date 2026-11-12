@@ -282,13 +282,45 @@ class Index:
                date_from=None, date_to=None, independent_only: bool = False,
                group_by: str = "claim",
                title_abstract_keywords: str | list[str] | None = None) -> SearchResponse:
-        query = query.strip() if query else None
-        patterns = compile_keywords(keywords)
-        filters = make_filters(classification, date_from, date_to, independent_only, title_abstract_keywords)
         if group_by not in GROUP_BY:
             raise ValueError(f"group_by must be one of: {', '.join(GROUP_BY)}.")
         if not isinstance(top_n, int) or isinstance(top_n, bool) or not 1 <= top_n <= config.TOP_N_MAX:
             raise ValueError(f"top_n must be a whole number from 1 to {config.TOP_N_MAX}.")
+        matched, ranked, patterns = self._rank(query, keywords, classification, date_from, date_to,
+                                               independent_only, title_abstract_keywords)
+
+        if group_by == "claim":
+            return SearchResponse(len(matched), [self.hit(i, s, patterns) for s, i in ranked[:top_n]], "claim")
+
+        groups = self._by_patent(ranked)
+        hits = [self.patent_hit(d, g, patterns) for d, g in list(groups.items())[:top_n]]
+        return SearchResponse(len(groups), hits, "patent")
+
+    def patent_matches(self, query: str | None = None, keywords: str | list[str] | None = None,
+                       classification: str | list[str] | None = None, date_from=None, date_to=None,
+                       independent_only: bool = False,
+                       title_abstract_keywords: str | list[str] | None = None) -> list[dict]:
+        """Every patent with a claim that passes the search, ranked as group_by="patent" ranks them,
+        not cut at TOP_N_MAX. Used by the map, which lights up matches among all patents."""
+        _, ranked, _ = self._rank(query, keywords, classification, date_from, date_to,
+                                  independent_only, title_abstract_keywords)
+        return [{"doc_number": d, "score": g[0][0], "matching_claims": len(g),
+                 "best_claim": self.claims[g[0][1]]["claim_number"]}
+                for d, g in self._by_patent(ranked).items()]
+
+    def _by_patent(self, ranked: list[tuple[float | None, int]]) -> dict[str, list[tuple[float | None, int]]]:
+        """Group ranked claims by patent in ranked order: a patent ranks by its best claim."""
+        groups: dict[str, list[tuple[float | None, int]]] = {}
+        for s, i in ranked:
+            groups.setdefault(self.claims[i]["doc_number"], []).append((s, i))
+        return groups
+
+    def _rank(self, query, keywords, classification, date_from, date_to, independent_only,
+              title_abstract_keywords):
+        """Steps 1 and 2: the claims that pass, and them as (score, claim index), best first."""
+        query = query.strip() if query else None
+        patterns = compile_keywords(keywords)
+        filters = make_filters(classification, date_from, date_to, independent_only, title_abstract_keywords)
         if not query and not patterns and not filters.active:
             raise ValueError("Give a query, at least one keyword, or a filter.")
 
@@ -317,16 +349,7 @@ class Index:
             ranked = [(round(float(s), 6), i) for s, i in zip(scores, matched)]
             # Ties: doc_number then claim_number, which is the order of i.
             ranked.sort(key=lambda t: (-t[0], t[1]))
-
-        if group_by == "claim":
-            return SearchResponse(len(matched), [self.hit(i, s, patterns) for s, i in ranked[:top_n]], "claim")
-
-        # Group by patent in ranked order: a patent ranks by its best claim.
-        groups: dict[str, list[tuple[float | None, int]]] = {}
-        for s, i in ranked:
-            groups.setdefault(self.claims[i]["doc_number"], []).append((s, i))
-        hits = [self.patent_hit(d, g, patterns) for d, g in list(groups.items())[:top_n]]
-        return SearchResponse(len(groups), hits, "patent")
+        return matched, ranked, patterns
 
 
 @lru_cache(maxsize=1)

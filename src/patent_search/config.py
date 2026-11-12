@@ -33,6 +33,10 @@ TOP_N_DEFAULT = 10
 TOP_N_MAX = 100
 CLAIMS_PER_PATENT = 3     # claims shown per patent when results are grouped by patent
 
+# Patent map (landscape.py): t-SNE of the patent vectors, cached next to the index
+MAP_SEED = 42
+MAP_PERPLEXITY = 30
+
 # Web server
 HOST = "127.0.0.1"
 PORT = 8000

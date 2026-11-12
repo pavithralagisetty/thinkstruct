@@ -112,6 +112,7 @@ Small data, keep everything in files and load it into memory at search time.
   * `claims(claim_id PK, doc_number, claim_number, text, embed_text, parent_number, root_number, is_independent, opening_missing, vec_row)`
 * `data/index/claim_vectors.npy` and `data/index/patent_vectors.npy`, rows matching `vec_row`
 * `data/index/meta.json`: model name, revision, code revision, vector size, build time, counts
+* `data/index/patent_map.json`: the map layout cache (see `GET /map`), written on first use, not by the build
 
 The build writes every file under a `.tmp` name first and renames them into place at the end (`meta.json` last), so a failed build never leaves a half written index.
 
@@ -194,6 +195,8 @@ When `opening_missing` is true, show the text as it is. The flag lets the caller
   * `search "<question>"` with an optional repeatable keyword option and an optional top option: `search "<question>" -k KEYWORD -n TOP --json`, plus `--by claim|patent`, `-c/--classification CODE` (repeatable, commas allowed, any code matches), `--from DATE`, `--to DATE`, `--main-only` (independent claims only) and `-t/--title-abstract KEYWORD` (repeatable, split by the same keyword parser; every keyword must be in the title or the abstract). The question is optional when `-k` or a filter is given. Each `-k` value is split by the same keyword parser as the API (`-k 'sipe "tread block"'` gives two keywords). `--json` prints the response as JSON.
 * HTTP with FastAPI: `POST /search` with body `{"query": ..., "keywords": ..., "top_n": 10, "classification": ..., "date_from": ..., "date_to": ..., "independent_only": false, "group_by": "claim", "title_abstract_keywords": ...}` (all optional; `title_abstract_keywords` is a string or a list of strings, like `keywords`) returning the response above. `classification` is a string (commas allowed) or a list of strings; the dates are strings, or a number for a year. `keywords` may be a list of strings or one string. A string is split by the same function the CLI uses (spaces separate keywords, text in double quotes stays one phrase), so there is only one keyword parser. Errors come back as `{"error": "<message>"}`: `400` for bad input (no query, keyword or filter, `top_n` out of range, a bad code, date or `group_by`, wrong types, a body that is not JSON) and `503` when the index is missing or was built with a different model. The index loads on the first request, and the model on the first request with a query.
 * `GET /classifications`: the dropdown data, built from the data in the index: `{"subclasses": [{code, count, title?, groups: [{code, count, title?, subgroups: [{code, count}]}]}]}`. `code` is a valid `classification` query, `count` is the number of patents it matches with the same `cpc.matches` as the filter (so `15/02` counts `15/024` too), and `title` is there only when the scheme title is known. Subgroups are in scheme order (`02` < `024` < `10`).
+* `GET /map`: the patent map. `{"points": [{doc_number, x, y, title, pub_date, cpc_code, subclass, group}], "classifications": <same tree as /classifications>}`, one point per patent with a vector (all 640), `x` and `y` in 0 to 1. The layout (`landscape.py`) is t-SNE on the patent vectors with cosine distance, `init="pca"`, `MAP_SEED` (42) and `MAP_PERPLEXITY` (30) from config, so the same index always gives the same map. It takes about 2 seconds, so it is cached in `data/index/patent_map.json`, keyed by the index build time, model, seed and perplexity; a rebuild or a changed setting lays it out again.
+* `POST /map/matches`: the `/search` body without `top_n` and `group_by`, returning `{"total_matches", "matches": [{doc_number, score, matching_claims, best_claim}]}` for **every** patent with a claim that passes (not cut at `TOP_N_MAX`), ranked as `group_by = "patent"` ranks them (`Index.patent_matches`, which shares steps 1 and 2 with `search`). Same errors as `/search`.
 * Web page at `GET /` (see Frontend).
 
 ## Frontend
@@ -203,11 +206,11 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 **Page contents**
 
 * A text box for the question.
-* A "Show: Claims | Patents" toggle under the search bar. It sets `group_by` (`claim` or `patent`) and reruns the current search if one has run.
+* A "Show: Claims | Patents | Map" toggle under the search bar. Claims and Patents set `group_by` (`claim` or `patent`) and rerun the current search if one has run. Map switches to the map view (below) and runs at once, even with nothing typed.
 * A collapsible "Exact filters" panel with:
   * a "Claim keywords" text box, marked optional. Placeholder: `sipe "tread block" spoke*`
   * a "Title or abstract keywords" text box (`title_abstract_keywords`), marked optional. Placeholder: `bassinet "spoke star" sensor*`
-  * a number box for how many results (claims or patents), default 10
+  * a number box labelled "Number of results" (claims or patents), default 10
   * three linked classification dropdowns, Subclass, Main group and Subgroup, filled from `GET /classifications`. Each option shows the code, the title when known and the patent count (`11 — Tyre tread bands; … (101)`). Each later dropdown is disabled until the one before it is chosen; changing one resets the ones after it. The most specific choice is sent as one `classification` code (`B60C`, `B60C 11` or `B60C 11/12`). Subgroups listed are the ones in the data (not `/00`, which is the group itself)
   * "Published from" and "Published to" text boxes (`2024`, `2024-06` or `2024-06-15`, inclusive; the server checks them). Each has a calendar button inside it that opens the browser's own date picker (`showPicker()` on a hidden `<input type="date">`); the chosen day replaces the box's text. The picker opens on what the box already says (a year or month at its first day for "from", its last day for "to"). Typing stays possible because a picker can only give a full day, while the filter also takes a year or a month
   * a "Main claims only" checkbox (`independent_only`), with a note that claims whose start is missing have an unknown type and are left out
@@ -239,18 +242,22 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
   * each shown claim (up to 3) in a soft panel: bold "Claim N", a quiet "Main" or "Dependent" tag (none when unknown), a dashed "Start missing" tag when `opening_missing` (its tooltip is the full note "The start of this claim is missing in the source data."), its score on the right (when there is a question), and the text clamped to 3 lines with "Show full claim". The best claim's panel has a thin orange border (only when there is a question)
   * no score repeated at the bottom
 * Keyword matches are marked with a soft yellow highlight (`<mark>`, a token for light and one for dark) in claim cards and in the claims of patent cards, using the `highlights` spans from the server; the page does not re-implement the keyword rules. Spans are code point offsets, so the page slices an array of code points (`Array.from(text)`), not the UTF-16 string, and builds the text from text nodes (no HTML from the data).
-* A "See more" button under the results runs the same search again with 10 more (`top_n` + 10, up to `TOP_N_MAX`). Ranking is deterministic, so the results already shown keep their places. It shows only while the last search filled its `top_n` and there are more matches; at 100 it is replaced by a note that 100 is the most one search returns and keywords or filters narrow it down. It does not change the Results box, so a new search, an example chip or the Show toggle starts again from the box's number.
+* A "See more" button under the results runs the same search again with 10 more (`top_n` + 10, up to `TOP_N_MAX`). Ranking is deterministic, so the results already shown keep their places. It shows only while the last search filled its `top_n` and there are more matches; at 100 it is replaced by a note that 100 is the most one search returns and keywords or filters narrow it down. It does not change the "Number of results" box, so a new search, an example chip or the Show toggle starts again from the box's number.
 * No results: show "No claims matched." or "No patents matched."
 * API errors: show the error message in red above the results.
 * If `/classifications` cannot be loaded, the subclass dropdown says "Classifications unavailable" and the other searches still work.
+**Map view** (Show: Map). Works with no input, which shows every patent. The line above the map says `{n} patents`, `Top {shown} of {total} patents highlighted` (with a question) or `{n} of {total} patents match` (keywords or filters only). One card:
+
+* *Patent landscape*: a scatter of every patent from `GET /map`, colored by subclass with three hues (B60C blue, B60B orange, B60D green; the rest grey "Other"), each dot with a 2px ring in the card color. The legend shows each subclass with the first part of its scheme title in normal case ("Vehicle tyres") and its count. Main groups with 12 or more patents are labelled at their median position; ranks are placed first and a label that would overlap one already placed is skipped. With a search, `POST /map/matches` decides what is lit: with a question, the top N by score (N = the "Number of results" number) keep their color and grow, and the top 5 get rank numbers; with keywords or filters only, every match is lit. Everything else turns grey ("Outside the top N" or "Not matching" in the legend). Hovering picks the nearest point within 24px and shows the title, code and main group title, number and date, and with a search the score, rank, matching claims and best claim; a click pins it.
+* While a new search loads, the map stays in place at reduced opacity. It redraws on resize. Errors show in the results area as for the other views.
 
 **Look**
 
 * Clean landing style: header with an orange "P" logo and "Patent Claim Search", a large two-line headline ("Patent claims," then "found by meaning." in orange `#e8622a`), the subtitle "Ask in plain English and get the patent claims that match. Add exact keywords when wording matters.", and a soft orange glow behind the hero.
 * Large rounded search bar with a search icon and an orange Search button inside it.
-* Pill chips under a "Try an example" label that run the example searches from "Done when": Carbon fiber spokes, Bassinet arm, Tire sensor setup, Wall-climbing robots, Keyword: sipe, Heavy truck tires + tread (the data has no categories, so no category chips).
+* Pill chips under a "Try an example" label that run four of the example searches from "Done when": Carbon fiber spokes, Bassinet arm, Tire sensor setup, Wall-climbing robots (the data has no categories, so no category chips). The `sipe` and heavy truck searches have no chip; they are run by typing them.
 * The Show toggle is a small segmented control labelled "Show" under the search bar.
-* The filters live in the collapsible "Exact filters" panel (claim keywords and results on the first row, title or abstract keywords on the second, the three classification dropdowns on the next, then the dates and the checkbox), which shows a count badge when any filter is set. On a phone the fields stack.
+* The filters live in the collapsible "Exact filters" panel (claim keywords on the first row, title or abstract keywords on the second, the three classification dropdowns on the next, then the dates, then the "Number of results" number, then the checkbox), which shows a count badge when any filter is set. On a phone the fields stack.
 * Patent cards are top-aligned in the grid and keep their own height (not stretched to the tallest card in the row).
 * Result cards in a two column grid (one column on a phone): monospace patent number badge (`US 2024/0116310`), the main or dependent claim label in orange at the top right, a bold title, then a line with claim number, classification and publication date (`Claim 22 · B60B3300FI · Published 2024-03-21`; the classification is shown exactly as stored, not reformatted), then the claim text clamped to 5 lines with "Show full claim". The score sits at the bottom of the card.
 * Show only fields the data has (no assignee or inventor). System font, nothing loaded from the internet.
@@ -379,6 +386,7 @@ patent_search/
     keywords.py             keyword parsing and matching
     cpc.py                  CPC code splitting, query parsing and matching, scheme titles
     search.py
+    landscape.py            patent map layout (t-SNE of the patent vectors, cached next to the index)
     evaluate.py             model comparison: BM25 baseline, cached vectors, metrics
     grading.py              pooled blind grading and scoring
     benchmark.py            timing with and without the hybrid filters (python -m patent_search.benchmark)
@@ -389,7 +397,7 @@ patent_search/
     eval/questions.json     the evaluation questions
 ```
 
-Stack: Python 3.11, `sentence-transformers`, `numpy`, `fastapi`, `uvicorn`, `pytest`. Nothing else unless needed. Pin `transformers>=4.51,<5`: Qwen3-Embedding needs 4.51 or newer, and the nomic model's remote code breaks on transformers 5. `sentence-transformers` must be 2.7 or newer for Qwen (installed: 5.7.0, with transformers 4.57.6).
+Stack: Python 3.11, `sentence-transformers`, `numpy`, `scikit-learn` (t-SNE for the map; installed with sentence-transformers), `fastapi`, `uvicorn`, `pytest`. Nothing else unless needed. Pin `transformers>=4.51,<5`: Qwen3-Embedding needs 4.51 or newer, and the nomic model's remote code breaks on transformers 5. `sentence-transformers` must be 2.7 or newer for Qwen (installed: 5.7.0, with transformers 4.57.6).
 
 ## Rules
 
