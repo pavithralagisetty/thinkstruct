@@ -11,10 +11,17 @@ Production search uses `nomic-embed-text-v1.5`. Part 3 tried four ways to adapt 
 |---|---|---|---|---|---|
 | nomic (production) | 0.857 | 0.672 | 0.770 | 34/40 | 0.805 |
 | 1. Fine tune on abstracts → first claims | 0.799 | 0.633 | 0.750 | 29/40 | 0.648 |
-| 2. Query adapter on abstracts | **0.904** | **0.701** | 0.790 | 33/40 | **0.844** |
-| 3. Query adapter on summaries | 0.902 | 0.695 | **0.800** | 33/40 | 0.839 |
+| 2. Query adapter on abstracts | 0.904 | 0.701 | 0.790 | 33/40 | **0.844** |
+| 3. Query adapter on summaries | 0.902 | 0.695 | 0.800 | 33/40 | 0.839 |
 | 4. Fine tune on summaries → all claims | 0.824 | 0.647 | 0.770 | 28/40 | 0.714 |
-| *For reference: qwen3-0.6b* | 0.898 | 0.708 | 0.805 | 35/40 | |
+| *Other models, for reference:* | | | | | |
+| Qwen3-Embedding-0.6B | 0.898 | **0.708** | 0.805 | **35/40** | 0.749 |
+| Qwen3-Embedding-4B | **0.938** | 0.682 | **0.880** | 29/40 | 0.666 |
+| bge-base-en-v1.5 | 0.879 | 0.576 | 0.750 | 28/40 | 0.656 |
+| bge-small-en-v1.5 | 0.818 | 0.562 | 0.710 | 26/40 | 0.637 |
+| PatentSBERTa | 0.833 | 0.634 | 0.775 | 30/40 | 0.448 |
+| MiniLM (all-MiniLM-L6-v2) | 0.797 | 0.562 | 0.700 | 27/40 | 0.543 |
+| BM25 (word matching) | 0.739 | 0.535 | 0.645 | 25/40 | 0.539 |
 
 `Full@10` = questions with a fully relevant claim in the top 10. "Unseen-patent questions" are the 7 whose fully relevant claims are all in patents outside the training weeks (`q13 q19 q26 q29 q33 q35 q36`), the only questions that cannot reward memory.
 
