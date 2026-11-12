@@ -20,6 +20,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest", "httpx"]
 poc = ["faiss-cpu"]
+train = ["datasets", "accelerate"]  # Part 3 fine tunes (training.py, train_summary.py)
 
 [tool.setuptools.packages.find]
 where = ["src"]
