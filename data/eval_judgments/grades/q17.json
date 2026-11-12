@@ -83,6 +83,16 @@
       "reason": "States radial movement decreases adhesion to the structure; related detail without the openings."
     },
     {
+      "claim_id": "20240326511:15",
+      "grade": 1,
+      "reason": "Mechanism increasing adhesion of the wheel's outer surface to a structure, but suction through surface openings is not stated."
+    },
+    {
+      "claim_id": "20240326511:16",
+      "grade": 1,
+      "reason": "Wheel adhesion to a structure surface via stretchable material and latch, but does not state suction through openings in the surface."
+    },
+    {
       "claim_id": "20240326511:17",
       "grade": 1,
       "reason": "Wedge and spring mechanism that increases adhesion to the structure surface, but no openings stated."
@@ -141,6 +151,11 @@
       "claim_id": "20240326511:9",
       "grade": 1,
       "reason": "Motor gear driving the pump for the diaphragm; detail of the adhesion mechanism."
+    },
+    {
+      "claim_id": "20240399790:16",
+      "grade": 1,
+      "reason": "Wheels in an attracted state travel on a wall surface, but no suction through openings is stated."
     }
   ]
 }

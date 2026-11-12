@@ -63,9 +63,24 @@
       "reason": "Angular pitch detail of a tire deformation method; no glued housing."
     },
     {
+      "claim_id": "20240336092:17",
+      "grade": 1,
+      "reason": "Tire deformation measurement method; claim covers signal aggregation, not a glued sensor housing."
+    },
+    {
+      "claim_id": "20240336092:18",
+      "grade": 1,
+      "reason": "Tire deformation measurement method; claim covers signal sub-portion detail, not a glued sensor housing."
+    },
+    {
       "claim_id": "20240336092:19",
       "grade": 1,
       "reason": "Data aggregation detail of a tire deformation method; no glued housing."
+    },
+    {
+      "claim_id": "20240336092:21",
+      "grade": 1,
+      "reason": "Tire deformation measurement via sensor signal filtering; does not state a housing glued inside the tire."
     },
     {
       "claim_id": "20240336092:22",
@@ -73,9 +88,24 @@
       "reason": "Threshold detail of a tire deformation method; no glued housing."
     },
     {
+      "claim_id": "20240336092:25",
+      "grade": 1,
+      "reason": "Tire deformation measurement method, but only a formula detail; no glued sensor housing."
+    },
+    {
       "claim_id": "20240336092:26",
       "grade": 1,
       "reason": "Formula detail of a tire deformation method; no glued housing."
+    },
+    {
+      "claim_id": "20240359503:17",
+      "grade": 0,
+      "reason": "Wheel spoke geometry resisting deformation; no sensor."
+    },
+    {
+      "claim_id": "20240359503:20",
+      "grade": 0,
+      "reason": "Spoke spacing detail; no sensor or tire deformation measurement."
     },
     {
       "claim_id": "20240367466:1",
@@ -98,9 +128,19 @@
       "reason": "Material of a tire sensor fixing device; no deformation measurement."
     },
     {
+      "claim_id": "20240367466:13",
+      "grade": 1,
+      "reason": "Tire sensor fixing device; claim only adds a groove in the base, not gluing or deformation measurement."
+    },
+    {
       "claim_id": "20240367466:14",
       "grade": 1,
       "reason": "Notches in the base of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:15",
+      "grade": 1,
+      "reason": "Tire sensor fixing device; claim only adds grooves in the cover's support surface."
     },
     {
       "claim_id": "20240367466:16",
@@ -108,9 +148,19 @@
       "reason": "Sensor housed between base and cover and glued to the tire, but no deformation measurement."
     },
     {
+      "claim_id": "20240367466:17",
+      "grade": 1,
+      "reason": "Sensor mounting method for a tire; own text only refers to other claims, no gluing or deformation stated."
+    },
+    {
       "claim_id": "20240367466:18",
       "grade": 1,
       "reason": "Shape detail of a tire sensor fixing device; no deformation measurement."
+    },
+    {
+      "claim_id": "20240367466:19",
+      "grade": 1,
+      "reason": "Tire sensor fixing device; claim only adds openings in the cover."
     },
     {
       "claim_id": "20240367466:2",
@@ -201,6 +251,11 @@
       "claim_id": "20250115083:1",
       "grade": 2,
       "reason": "Housing bonded to the tire inner surface by elastic adhesive with a strain element that detects tire strain."
+    },
+    {
+      "claim_id": "20250115083:2",
+      "grade": 1,
+      "reason": "Strain sensor in an annular elastic member measures deformation, but the claim text does not mention a tire or a housing glued inside it."
     },
     {
       "claim_id": "20250115083:3",

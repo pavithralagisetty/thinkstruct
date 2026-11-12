@@ -13,6 +13,26 @@
       "reason": "Tire mileage cloud management, not relevant."
     },
     {
+      "claim_id": "20240092129:13",
+      "grade": 0,
+      "reason": "UAV air/underwater modes; unrelated to spraying liquid ahead of tires."
+    },
+    {
+      "claim_id": "20240092129:16",
+      "grade": 0,
+      "reason": "UAV water sensor mode switching; unrelated to vehicle hydroplaning prevention."
+    },
+    {
+      "claim_id": "20240092129:18",
+      "grade": 0,
+      "reason": "Underwater UAV target tracking; nothing about washer fluid or hydroplaning."
+    },
+    {
+      "claim_id": "20240092129:20",
+      "grade": 0,
+      "reason": "UAV air/underwater modes; unrelated to spraying liquid ahead of tires."
+    },
+    {
       "claim_id": "20240217268:1",
       "grade": 1,
       "reason": "Injects liquid on the ground in front of the wheel treads from a tank, but does not state using the washer reservoir."
@@ -86,6 +106,11 @@
       "claim_id": "20240383280:34",
       "grade": 0,
       "reason": "Self-cleaning non-pneumatic irrigation tires, not relevant."
+    },
+    {
+      "claim_id": "20250033410:1",
+      "grade": 0,
+      "reason": "Transmission fluid reservoirs and suction lines; nothing about washer fluid or hydroplaning."
     },
     {
       "claim_id": "20250033410:10",
@@ -186,6 +211,11 @@
       "claim_id": "20250058591:7",
       "grade": 0,
       "reason": "Vehicle with tire pressure regulation system, not relevant."
+    },
+    {
+      "claim_id": "20250058591:8",
+      "grade": 0,
+      "reason": "Tire pressure regulation via a reservoir and compressor; nothing about washer fluid or spraying ahead of tires to prevent hydroplaning."
     },
     {
       "claim_id": "20250091386:1",

@@ -33,6 +33,16 @@
       "reason": "Tire crown working layers; unrelated."
     },
     {
+      "claim_id": "20240116309:11",
+      "grade": 0,
+      "reason": "Locating features for the applique, unrelated to coat layers."
+    },
+    {
+      "claim_id": "20240116309:12",
+      "grade": 1,
+      "reason": "A further tinted or pigmented coating among several wheel coats, but does not state two colour layers one over the other."
+    },
+    {
       "claim_id": "20240116309:14",
       "grade": 0,
       "reason": "Same gloss level of over-coating; no colour layers."
@@ -63,6 +73,11 @@
       "reason": "Layer stack on wheel (primer, metal layer, over-coat) but no two colour coats."
     },
     {
+      "claim_id": "20240116309:2",
+      "grade": 0,
+      "reason": "Only states uniform gloss of a single clear coat."
+    },
+    {
       "claim_id": "20240116309:20",
       "grade": 0,
       "reason": "Substrate visible through over-coat; no colour layers stated."
@@ -76,6 +91,26 @@
       "claim_id": "20240116309:22",
       "grade": 0,
       "reason": "Applique is two dimensional; nothing about coats."
+    },
+    {
+      "claim_id": "20240116309:3",
+      "grade": 1,
+      "reason": "Tinted transparent coating on the wheel, a single coloured layer only."
+    },
+    {
+      "claim_id": "20240116309:5",
+      "grade": 0,
+      "reason": "About removing primer beneath the applique, not layered colour coats."
+    },
+    {
+      "claim_id": "20240116309:6",
+      "grade": 1,
+      "reason": "Intermediate coating layered over primer coating on the wheel, but no colour stated."
+    },
+    {
+      "claim_id": "20240116309:7",
+      "grade": 1,
+      "reason": "Second coating over the first on a wheel, but both are transparent, not colour coats."
     },
     {
       "claim_id": "20240116309:8",
@@ -108,9 +143,34 @@
       "reason": "States the component is a vehicle wheel, but the two colour layers are only in the main claim."
     },
     {
+      "claim_id": "20240190168:3",
+      "grade": 1,
+      "reason": "Related detail on transparency of intermediate layer; two color coats not stated in this claim."
+    },
+    {
+      "claim_id": "20240190168:4",
+      "grade": 1,
+      "reason": "Related paint-layer detail (clearcoat intermediate layer) but does not state the two color coats."
+    },
+    {
+      "claim_id": "20240190168:5",
+      "grade": 1,
+      "reason": "Multi-layer paint with an outer clear layer covering the color layers; does not itself state two color layers one over the other."
+    },
+    {
+      "claim_id": "20240190168:6",
+      "grade": 1,
+      "reason": "Layer thickness detail of the paint system; does not state two color layers covering each other."
+    },
+    {
       "claim_id": "20240190168:9",
       "grade": 1,
       "reason": "Applies a second colour-giving layer covering a first, but to a generic base body, not a wheel."
+    },
+    {
+      "claim_id": "20240217263:27",
+      "grade": 0,
+      "reason": "Claims a 3-D printed wheel; no colour coat layers."
     },
     {
       "claim_id": "20240270016:10",
@@ -126,6 +186,11 @@
       "claim_id": "20240270016:9",
       "grade": 0,
       "reason": "Only says the wheel is a composite material."
+    },
+    {
+      "claim_id": "20240294035:16",
+      "grade": 0,
+      "reason": "Graphic image from printed layers on a cover; no two colour coats on a wheel."
     },
     {
       "claim_id": "20240294035:18",

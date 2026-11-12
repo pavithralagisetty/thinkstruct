@@ -93,6 +93,11 @@
       "reason": "Tire channels toward suction ports; related detail only."
     },
     {
+      "claim_id": "20240190172:8",
+      "grade": 1,
+      "reason": "Wheel assembly with suction ports in the gap between two tires, but the claim does not state particle collection or ports in the rim."
+    },
+    {
       "claim_id": "20240190172:9",
       "grade": 1,
       "reason": "Suction ports crossing the rim outer ring; related detail without stating particle collection."

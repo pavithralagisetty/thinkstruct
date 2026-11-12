@@ -38,6 +38,11 @@
       "reason": "Wiring of the measurement circuit to the layers, a related detail without stating detection."
     },
     {
+      "claim_id": "20250108667:17",
+      "grade": 1,
+      "reason": "Tire puncture sensor system topic, but this claim only states where the sensor transmitter unit is mounted, not the conductive layers detecting a puncture."
+    },
+    {
       "claim_id": "20250108667:19",
       "grade": 1,
       "reason": "Only says the sensor system includes an RFID tag."

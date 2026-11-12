@@ -48,6 +48,11 @@
       "reason": "Wrench arm teeth on a press tool, not a wheel-integrated wrench."
     },
     {
+      "claim_id": "20240278598:26",
+      "grade": 0,
+      "reason": "Sensor node in wheel hub recess; no wrench or folding lever."
+    },
+    {
       "claim_id": "20240286435:2",
       "grade": 0,
       "reason": "Tool storage unit wheels, unrelated."
@@ -68,9 +73,19 @@
       "reason": "Sensor ring press fit on clamping nut, unrelated."
     },
     {
+      "claim_id": "20240359504:14",
+      "grade": 0,
+      "reason": "Auxiliary ring mounted in hub sleeve recess; no wrench."
+    },
+    {
       "claim_id": "20240391274:1",
       "grade": 1,
       "reason": "Wheel with built-in lug lever having a storage position, but no folding flat into a recess."
+    },
+    {
+      "claim_id": "20240391274:11",
+      "grade": 1,
+      "reason": "Integrated lug wrench wheel topic, but this claim only adds a lighting assembly, not a folding lever stored in a recess."
     },
     {
       "claim_id": "20240391274:13",
@@ -133,6 +148,41 @@
       "reason": "Ratchet drive of the integrated lever, not its stowing."
     },
     {
+      "claim_id": "20240416685:4",
+      "grade": 0,
+      "reason": "Communication device embedded in tire recess; not a wrench."
+    },
+    {
+      "claim_id": "20250010659:1",
+      "grade": 0,
+      "reason": "Nut socket with inner sleeve; no wheel, lever or recess."
+    },
+    {
+      "claim_id": "20250010659:12",
+      "grade": 0,
+      "reason": "Stackable socket section; not relevant."
+    },
+    {
+      "claim_id": "20250010659:13",
+      "grade": 0,
+      "reason": "Detachable outer sleeve on a socket; not relevant."
+    },
+    {
+      "claim_id": "20250010659:14",
+      "grade": 0,
+      "reason": "Socket outer step for sleeve; unrelated to a built-in folding wheel wrench."
+    },
+    {
+      "claim_id": "20250010659:3",
+      "grade": 0,
+      "reason": "Socket inner step detail; no wheel-integrated wrench or folding lever."
+    },
+    {
+      "claim_id": "20250010659:4",
+      "grade": 0,
+      "reason": "Socket inclined transition surface; not about a folding lever in a wheel."
+    },
+    {
       "claim_id": "20250010660:15",
       "grade": 0,
       "reason": "Spoke assembly device bearing member, unrelated."
@@ -191,6 +241,36 @@
       "claim_id": "20250026148:9",
       "grade": 0,
       "reason": "Annular spacer tool, unrelated."
+    },
+    {
+      "claim_id": "20250100331:19",
+      "grade": 0,
+      "reason": "Tire recess is a groove; unrelated to a wrench."
+    },
+    {
+      "claim_id": "20250100331:20",
+      "grade": 0,
+      "reason": "Tire recess is a depression; unrelated to a wrench."
+    },
+    {
+      "claim_id": "20250100331:5",
+      "grade": 0,
+      "reason": "Tire sidewall mark recess depth; no wrench or wheel nut."
+    },
+    {
+      "claim_id": "20250100331:6",
+      "grade": 0,
+      "reason": "Tire sidewall mark recess depth; no wrench or wheel nut."
+    },
+    {
+      "claim_id": "20250100331:7",
+      "grade": 0,
+      "reason": "Tire sidewall mark recess depth; no wrench or wheel nut."
+    },
+    {
+      "claim_id": "20250100331:8",
+      "grade": 0,
+      "reason": "Tire sidewall mark recess depth; no wrench or wheel nut."
     }
   ]
 }

@@ -28,6 +28,11 @@
       "reason": "Only describes a U-shaped frame."
     },
     {
+      "claim_id": "20240165992:14",
+      "grade": 1,
+      "reason": "Tire handler claim about where the gripping assembly is mounted; does not itself state tilting or laying the tire flat."
+    },
+    {
       "claim_id": "20240165992:15",
       "grade": 0,
       "reason": "Only states the handler is self-propelled with a motor."

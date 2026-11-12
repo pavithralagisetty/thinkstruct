@@ -156,6 +156,11 @@
       "claim_id": "20240391282:18",
       "grade": 0,
       "reason": "Locking mechanisms for stowed/deployed positions, nothing on rattle or damping."
+    },
+    {
+      "claim_id": "20240391282:19",
+      "grade": 1,
+      "reason": "Covers locking a hitch mount relative to the receiver (stow/deploy method) but does not state reducing rattle."
     }
   ]
 }

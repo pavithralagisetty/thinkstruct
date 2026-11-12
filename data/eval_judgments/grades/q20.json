@@ -8,6 +8,26 @@
       "reason": "Wheel carrier and bearing structure of a vehicle, not a lift tool."
     },
     {
+      "claim_id": "20240075773:19",
+      "grade": 0,
+      "reason": "Only states the tyre changer's supporting platform stays horizontal; not a lift holding a wheel upright for mounting on a hoisted car."
+    },
+    {
+      "claim_id": "20240075773:20",
+      "grade": 0,
+      "reason": "Pivoting the wheel on a raised tyre-changer platform; unrelated to mounting a wheel on a car on a hoist."
+    },
+    {
+      "claim_id": "20240075773:6",
+      "grade": 1,
+      "reason": "Lifting actuator positions a wheel-lifting arm and platform; related wheel lift, but not holding the wheel upright to mount on a car."
+    },
+    {
+      "claim_id": "20240075773:9",
+      "grade": 1,
+      "reason": "Describes a powered wheel lifting arm and actuator, a related wheel-lift detail, but for a tyre changer, not mounting on a hoisted car."
+    },
+    {
       "claim_id": "20240075774:10",
       "grade": 1,
       "reason": "Actuated lifting platform raises a wheel onto a tyre changer wheel-holder; related wheel lifting but not mounting on a car."
@@ -118,9 +138,19 @@
       "reason": "Trailer hitch mount actuator, unrelated to wheel lifting."
     },
     {
+      "claim_id": "20250042206:10",
+      "grade": 0,
+      "reason": "Actuators mounted to a tire changing machine chassis; not a lift holding a wheel for mounting on a hoisted car."
+    },
+    {
       "claim_id": "20250042206:13",
       "grade": 0,
       "reason": "Lifting a tire relative to its wheel, i.e. tire demounting, not mounting a wheel on a car."
+    },
+    {
+      "claim_id": "20250042206:16",
+      "grade": 0,
+      "reason": "Decoupling the tire from the wheel during tire changing; unrelated to mounting a wheel on a car on a hoist."
     },
     {
       "claim_id": "20250042206:17",
@@ -131,6 +161,16 @@
       "claim_id": "20250042206:18",
       "grade": 0,
       "reason": "Detecting implement position relative to tire/wheel; not about lifting a wheel onto a car."
+    },
+    {
+      "claim_id": "20250042206:2",
+      "grade": 0,
+      "reason": "Lifts the tire relative to the wheel for tire changing, not holding a wheel for mounting on a vehicle."
+    },
+    {
+      "claim_id": "20250042206:6",
+      "grade": 0,
+      "reason": "About separating a tire from a wheel during lifting, not holding a wheel upright for mounting on a hoisted car."
     },
     {
       "claim_id": "20250042206:7",

@@ -23,6 +23,11 @@
       "reason": "Roller bracket to hub bracket connection; no motor."
     },
     {
+      "claim_id": "20240149613:13",
+      "grade": 1,
+      "reason": "Omni wheel mounting detail (guide slot); right topic but says nothing about a drive motor inside the hub."
+    },
+    {
       "claim_id": "20240149613:14",
       "grade": 0,
       "reason": "Omni wheel roller component structure; no drive motor."
@@ -73,6 +78,11 @@
       "reason": "Overmolding shut-off regions; no motor."
     },
     {
+      "claim_id": "20240326512:12",
+      "grade": 0,
+      "reason": "Overmolding sequence for an omni roller wheel; no drive motor in the hub."
+    },
+    {
       "claim_id": "20240326512:13",
       "grade": 0,
       "reason": "Overmolding inner and outer hub; no motor."
@@ -81,6 +91,11 @@
       "claim_id": "20240326512:15",
       "grade": 0,
       "reason": "Mold shut-off regions; no motor."
+    },
+    {
+      "claim_id": "20240326512:16",
+      "grade": 0,
+      "reason": "Hub spokes holding roller sub-assemblies; no drive motor packaged in the hub."
     },
     {
       "claim_id": "20240326512:17",

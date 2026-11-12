@@ -73,9 +73,29 @@
       "reason": "Places the radio device with the second layer against the inner liner, but does not state the different cure speeds."
     },
     {
+      "claim_id": "20240286439:20",
+      "grade": 1,
+      "reason": "Radio device in tire surrounded by a rubber layer with a set T50 cure time, but no two layers curing at different speeds"
+    },
+    {
       "claim_id": "20240286439:26",
       "grade": 0,
       "reason": "Only the cure package of a single rubber layer; no two layers curing at different speeds."
+    },
+    {
+      "claim_id": "20240286439:28",
+      "grade": 1,
+      "reason": "RFID device surrounded by a rubber layer with a set T50 cure time, placed against the carcass, but the claim does not state two layers that cure at different speeds."
+    },
+    {
+      "claim_id": "20240286439:35",
+      "grade": 1,
+      "reason": "Radio device surrounded by two sheets of rubber layer, but no differing cure speeds between layers stated."
+    },
+    {
+      "claim_id": "20240286439:36",
+      "grade": 0,
+      "reason": "Truncated text about a carcass component; says nothing about RFID between rubber layers or cure speeds."
     },
     {
       "claim_id": "20240416682:28",

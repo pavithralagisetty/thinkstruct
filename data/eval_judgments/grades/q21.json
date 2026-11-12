@@ -23,6 +23,16 @@
       "reason": "Apparatus with threaded end engaging the locking element, torque engagement and bearing surface on the wheel nut, i.e. the removal tool."
     },
     {
+      "claim_id": "20250026148:15",
+      "grade": 1,
+      "reason": "Same extraction apparatus, but this claim only adds the bearing surface position; it does not state removing the locking element from the nut."
+    },
+    {
+      "claim_id": "20250026148:16",
+      "grade": 1,
+      "reason": "Same extraction apparatus, but this claim only adds a two-part split (extraction tool and spacer); it does not state removing the locking element from the nut."
+    },
+    {
       "claim_id": "20250026148:17",
       "grade": 2,
       "reason": "Method using an extraction tool threaded into the locking element with a spacer against the wheel nut to translate the locking element out."

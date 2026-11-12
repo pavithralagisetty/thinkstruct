@@ -8,6 +8,11 @@
       "reason": "Pivotable loading panel on a platform; unrelated."
     },
     {
+      "claim_id": "20240375437:1",
+      "grade": 1,
+      "reason": "Recovery board with interior valley between gripping rows; no strapping or stacking stated."
+    },
+    {
       "claim_id": "20240375437:10",
       "grade": 0,
       "reason": "Differing adjacent gripping surfaces; not about storage."
@@ -21,6 +26,11 @@
       "claim_id": "20240375437:12",
       "grade": 0,
       "reason": "Gripping feature edges engaging tire sipes; nothing on strapping or stacking."
+    },
+    {
+      "claim_id": "20240375437:13",
+      "grade": 1,
+      "reason": "Recovery board structure (gripping rows, profile) but nothing on strapping or stacking."
     },
     {
       "claim_id": "20240375437:14",
@@ -53,6 +63,11 @@
       "reason": "Gaps between gripping features for track lugs; not about storage."
     },
     {
+      "claim_id": "20240375437:2",
+      "grade": 0,
+      "reason": "Only describes the board's concave and convex profile, says nothing about strapping or stacking for storage."
+    },
+    {
       "claim_id": "20240375437:20",
       "grade": 0,
       "reason": "Inclined ramp gripping features; not about storage."
@@ -71,6 +86,11 @@
       "claim_id": "20240375437:23",
       "grade": 0,
       "reason": "Differing aligned gripping surfaces; not about storage."
+    },
+    {
+      "claim_id": "20240375437:3",
+      "grade": 1,
+      "reason": "Recovery board with slots at the edges, a related feature that could serve for strapping, but strapping or stacking is not stated."
     },
     {
       "claim_id": "20240375437:4",

@@ -3,6 +3,16 @@
   "question": "airless wheel for rovers driving on the Moon or Mars",
   "grades": [
     {
+      "claim_id": "20240100881:1",
+      "grade": 1,
+      "reason": "Airless tire with spoke portion, but about antistatic agent for road use; no rover, Moon or Mars."
+    },
+    {
+      "claim_id": "20240100881:2",
+      "grade": 0,
+      "reason": "Antistatic agent material detail; nothing about rovers or Moon/Mars wheels."
+    },
+    {
       "claim_id": "20240100881:3",
       "grade": 0,
       "reason": "Thermoplastic resin of an ordinary airless tire; not relevant to rovers."
@@ -16,6 +26,11 @@
       "claim_id": "20240100881:5",
       "grade": 0,
       "reason": "Volume resistivity of resin in an ordinary airless tire; not relevant."
+    },
+    {
+      "claim_id": "20240100881:6",
+      "grade": 0,
+      "reason": "Bond strength between tread and spokes of a tire; no rover or planetary use stated."
     },
     {
       "claim_id": "20240100881:7",
@@ -173,6 +188,11 @@
       "reason": "Stainless steel strip windings of the deformable ring; wheel detail only."
     },
     {
+      "claim_id": "20250121631:3",
+      "grade": 1,
+      "reason": "Detail (roller bearing of stop disc) of the wheel; claim text itself does not state an airless wheel for lunar/Martian rovers."
+    },
+    {
       "claim_id": "20250121631:4",
       "grade": 1,
       "reason": "Stop disc spring detail of a deformable non-pneumatic wheel; no rover or planetary use stated."
@@ -181,6 +201,11 @@
       "claim_id": "20250121631:5",
       "grade": 1,
       "reason": "Spring connections formed by deformable rings; wheel detail only."
+    },
+    {
+      "claim_id": "20250121631:6",
+      "grade": 1,
+      "reason": "Detail (stainless-steel strip spring rings) of the wheel; claim text does not state airless or planetary rover use."
     },
     {
       "claim_id": "20250121631:7",

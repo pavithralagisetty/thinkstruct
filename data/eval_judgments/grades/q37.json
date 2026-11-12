@@ -3,6 +3,11 @@
   "question": "machine that turns a tire inside out",
   "grades": [
     {
+      "claim_id": "20240075773:1",
+      "grade": 1,
+      "reason": "Tyre changing machine with bead breaker and lifting device, but nothing about inverting a tyre."
+    },
+    {
       "claim_id": "20240075773:16",
       "grade": 0,
       "reason": "Bead breaker driving element positions; not inverting."
@@ -18,14 +23,44 @@
       "reason": "Lifting platform stop on tyre changer; not inverting."
     },
     {
+      "claim_id": "20240075774:1",
+      "grade": 1,
+      "reason": "Tyre changing machine with bead breaker handling tyre and rim, but no turning the tyre inside out."
+    },
+    {
+      "claim_id": "20240075774:10",
+      "grade": 0,
+      "reason": "Lifting platform for placing a wheel on a wheel holder; does not manipulate or invert the tire."
+    },
+    {
+      "claim_id": "20240075774:11",
+      "grade": 0,
+      "reason": "Only a box-shaped body housing a lifting actuator; no tyre inversion."
+    },
+    {
       "claim_id": "20240075774:12",
       "grade": 0,
       "reason": "Lubricant nozzle on bead breaker; not inverting."
     },
     {
+      "claim_id": "20240075774:13",
+      "grade": 0,
+      "reason": "Tyre changing machine with a bead breaker; nothing about turning a tyre inside out."
+    },
+    {
       "claim_id": "20240075774:14",
       "grade": 0,
       "reason": "Control ring for bead breaker; not inverting."
+    },
+    {
+      "claim_id": "20240075774:15",
+      "grade": 0,
+      "reason": "Lifting and rotating the wheel on a wheel holder; no turning the tire inside out."
+    },
+    {
+      "claim_id": "20240075774:16",
+      "grade": 1,
+      "reason": "Tyre changing machine bead breaker actuator that works on the tire bead; related tire-handling machine but no inverting of the tire."
     },
     {
       "claim_id": "20240075774:17",
@@ -76,6 +111,31 @@
       "claim_id": "20240075774:9",
       "grade": 0,
       "reason": "Bead breaking arm shape; not inverting."
+    },
+    {
+      "claim_id": "20240083199:1",
+      "grade": 0,
+      "reason": "Flat tire airbag inner tube system, not a tire-inverting machine."
+    },
+    {
+      "claim_id": "20240083199:10",
+      "grade": 0,
+      "reason": "Inner belt conforming to wheel in airbag system, unrelated to tire inversion."
+    },
+    {
+      "claim_id": "20240083199:12",
+      "grade": 0,
+      "reason": "Inner belt material of a flat tire airbag, unrelated to turning a tire inside out."
+    },
+    {
+      "claim_id": "20240083199:2",
+      "grade": 0,
+      "reason": "Pressurized gas canister for flat tire airbag, unrelated to tire inversion."
+    },
+    {
+      "claim_id": "20240083199:3",
+      "grade": 0,
+      "reason": "Airbag gas generator for flat tires, unrelated to tire inversion."
     },
     {
       "claim_id": "20240116316:12",
@@ -133,6 +193,26 @@
       "reason": "Vehicle with roller-driven tire; unrelated."
     },
     {
+      "claim_id": "20240336095:16",
+      "grade": 0,
+      "reason": "Tire inflation system with valve and pressure booster; nothing about turning a tire inside out."
+    },
+    {
+      "claim_id": "20240336095:17",
+      "grade": 0,
+      "reason": "Control unit detail of a tire inflation system; not relevant."
+    },
+    {
+      "claim_id": "20240336095:22",
+      "grade": 0,
+      "reason": "Pressure input sensor of a tire inflation system; not relevant."
+    },
+    {
+      "claim_id": "20240336095:25",
+      "grade": 0,
+      "reason": "Valve type of a tire inflation system; not relevant."
+    },
+    {
       "claim_id": "20240367467:1",
       "grade": 2,
       "reason": "Device with stand, holder and pusher that inverts a tire."
@@ -171,6 +251,11 @@
       "claim_id": "20240367467:19",
       "grade": 1,
       "reason": "Sidewall removal step in tire inverting method; no machine detail stated."
+    },
+    {
+      "claim_id": "20240367467:2",
+      "grade": 2,
+      "reason": "Claim is itself a tire inverting device, adding how it holds a tire with a damaged bead."
     },
     {
       "claim_id": "20240367467:20",
@@ -246,6 +331,26 @@
       "claim_id": "20250042206:5",
       "grade": 0,
       "reason": "Actuator retraction on tire changer lift; not inverting."
+    },
+    {
+      "claim_id": "20250128549:10",
+      "grade": 0,
+      "reason": "Tire pressure notification control, not a tire-inverting machine."
+    },
+    {
+      "claim_id": "20250128549:4",
+      "grade": 0,
+      "reason": "Tire pressure notification control, not a tire-inverting machine."
+    },
+    {
+      "claim_id": "20250128549:8",
+      "grade": 0,
+      "reason": "Tire pressure notification control, not a tire-inverting machine."
+    },
+    {
+      "claim_id": "20250128549:9",
+      "grade": 0,
+      "reason": "Tire pressure notification control, not a tire-inverting machine."
     }
   ]
 }

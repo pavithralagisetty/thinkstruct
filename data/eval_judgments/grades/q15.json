@@ -3,6 +3,16 @@
   "question": "airless wheel whose spring elements get stiffer once compressed past a threshold",
   "grades": [
     {
+      "claim_id": "20240100881:4",
+      "grade": 0,
+      "reason": "Elastic modulus of airless tire material is a stiffness property, but says nothing about stiffening past a compression threshold; only loosely related."
+    },
+    {
+      "claim_id": "20240100881:5",
+      "grade": 0,
+      "reason": "Volume resistivity of the resin; unrelated to stiffening under compression."
+    },
+    {
       "claim_id": "20240100881:6",
       "grade": 0,
       "reason": "Bond shear strengths of an airless tire; unrelated to spring stiffening."
@@ -18,9 +28,29 @@
       "reason": "Spring-biased spoke in an airless tire, related springs but no threshold stiffening."
     },
     {
+      "claim_id": "20240198723:4",
+      "grade": 0,
+      "reason": "Valves and pressure booster in a pneumatic conduit system; not about progressive spring stiffness."
+    },
+    {
+      "claim_id": "20240198723:6",
+      "grade": 0,
+      "reason": "Air compressor for the spoke pressure system; not about spring elements that stiffen when compressed."
+    },
+    {
+      "claim_id": "20240198723:7",
+      "grade": 0,
+      "reason": "Airless tire spoke pressure system with a generator; nothing about spring elements stiffening past a compression threshold."
+    },
+    {
       "claim_id": "20250026145:20",
       "grade": 0,
       "reason": "Resilient wheel with directional power transfer and braking steps; no stiffening under compression."
+    },
+    {
+      "claim_id": "20250026145:21",
+      "grade": 2,
+      "reason": "Resilient elements of the non-pneumatic wheel interface have a first spring rate in a first compression stage and a second spring rate in a second stage, i.e. stiffness changes past a compression threshold."
     },
     {
       "claim_id": "20250026145:27",

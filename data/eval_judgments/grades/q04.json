@@ -3,6 +3,11 @@
   "question": "what the backing film of a sealing tape for tubeless bicycle rims is made of",
   "grades": [
     {
+      "claim_id": "20240109370:21",
+      "grade": 0,
+      "reason": "Thickness of a tire's inner sealing layer; unrelated to rim tape backing film."
+    },
+    {
       "claim_id": "20240149615:13",
       "grade": 0,
       "reason": "Hub sealing groove geometry; unrelated."
@@ -93,6 +98,11 @@
       "reason": "Tape dispensing machine mechanics; no material."
     },
     {
+      "claim_id": "20240198725:5",
+      "grade": 0,
+      "reason": "Machine dispensing system movement for applying rim tape; says nothing about the backing film material."
+    },
+    {
       "claim_id": "20240198725:8",
       "grade": 0,
       "reason": "Interchangeable pressure roller of tape machine; no material."
@@ -111,6 +121,11 @@
       "claim_id": "20240316986:10",
       "grade": 0,
       "reason": "Hollow bolt air channel; unrelated."
+    },
+    {
+      "claim_id": "20240316986:11",
+      "grade": 0,
+      "reason": "Seal segments and spine segments of a rim seal; no tape backing film or its material."
     },
     {
       "claim_id": "20240316986:12",
@@ -151,6 +166,16 @@
       "claim_id": "20240316986:19",
       "grade": 0,
       "reason": "End caps and threaded couplers of spine; unrelated."
+    },
+    {
+      "claim_id": "20240316986:2",
+      "grade": 0,
+      "reason": "Tire-rim elastomeric seal extent; not a rim sealing tape or its backing film material."
+    },
+    {
+      "claim_id": "20240316986:21",
+      "grade": 0,
+      "reason": "Elastomeric sealing material between tire beads on a rim; not a sealing tape for bicycle rims or its backing film material."
     },
     {
       "claim_id": "20240316986:22",

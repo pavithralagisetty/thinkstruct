@@ -163,6 +163,11 @@
       "reason": "Bearing supports a driven shaft, nothing about greasing."
     },
     {
+      "claim_id": "20250091386:5",
+      "grade": 1,
+      "reason": "Specifies the greasing channel side is the wheel side, a closely related detail; the greasing without disassembly itself is stated only in the main claim."
+    },
+    {
       "claim_id": "20250091386:6",
       "grade": 1,
       "reason": "Greasing tool applies grease to the bearing through the port and channel, but does not state it is done without disassembly."

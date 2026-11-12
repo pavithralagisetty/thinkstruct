@@ -23,6 +23,11 @@
       "reason": "States the tracker housing is attached to the inflation valve."
     },
     {
+      "claim_id": "20240239144:13",
+      "grade": 1,
+      "reason": "Adds a GPS tracker held in the housing receptacle; the claim's own text does not state attaching it to a tire valve (only the main claim does)."
+    },
+    {
       "claim_id": "20240239144:15",
       "grade": 1,
       "reason": "Housing fitted to a tyre rim; related placement detail only."

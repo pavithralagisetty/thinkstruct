@@ -103,6 +103,11 @@
       "reason": "Locks the scale frame onto the hitch tongue, related mounting detail only."
     },
     {
+      "claim_id": "20250135810:1",
+      "grade": 2,
+      "reason": "Supports trailer coupler on a height adjustable head set to a weight measurement height and measures the force."
+    },
+    {
       "claim_id": "20250135810:11",
       "grade": 1,
       "reason": "Load cell housing in the height adjustable tongue weight scale, structural detail only."
@@ -141,6 +146,36 @@
       "claim_id": "20250135810:19",
       "grade": 1,
       "reason": "Load cell mounting in tongue weight scale, structural detail only."
+    },
+    {
+      "claim_id": "20250135810:2",
+      "grade": 1,
+      "reason": "Coupling head post engaging the weight sensor; related detail only."
+    },
+    {
+      "claim_id": "20250135810:3",
+      "grade": 1,
+      "reason": "Coupling head range of motion for weighing; related detail only."
+    },
+    {
+      "claim_id": "20250135810:4",
+      "grade": 1,
+      "reason": "Describes the height adjustment mechanism, closely related, but not weighing at hitch height itself."
+    },
+    {
+      "claim_id": "20250135810:5",
+      "grade": 1,
+      "reason": "Load cell detail of the trailer tongue scale; does not state hitch-height weighing."
+    },
+    {
+      "claim_id": "20250135810:6",
+      "grade": 1,
+      "reason": "Housing and mount construction of the scale; related detail only."
+    },
+    {
+      "claim_id": "20250135810:7",
+      "grade": 1,
+      "reason": "Display on the scale housing; right topic, not the asked point."
     }
   ]
 }

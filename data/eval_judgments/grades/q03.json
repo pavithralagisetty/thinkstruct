@@ -33,6 +33,11 @@
       "reason": "Cast aluminum wheel with spokes and high scrap content, but no grain structure or strength stated."
     },
     {
+      "claim_id": "20240227433:14",
+      "grade": 1,
+      "reason": "Alloy composition for a scrap-aluminum cast wheel; does not state spoke grain structure or strength."
+    },
+    {
       "claim_id": "20240227433:15",
       "grade": 0,
       "reason": "Only a silicon content range; no grain structure, strength or spokes."
@@ -76,6 +81,11 @@
       "claim_id": "20240227433:6",
       "grade": 0,
       "reason": "Only an iron content range."
+    },
+    {
+      "claim_id": "20240227433:7",
+      "grade": 1,
+      "reason": "Alloy composition for a scrap-aluminum cast wheel; does not state spoke grain structure or strength."
     },
     {
       "claim_id": "20240227433:8",

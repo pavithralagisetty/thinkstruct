@@ -8,6 +8,16 @@
       "reason": "Tread block with 3D recess/protrusion wall pattern; related to grip but no snow/noise balance stated."
     },
     {
+      "claim_id": "20240174031:24",
+      "grade": 1,
+      "reason": "Snow-tire tread block wall recess pattern detail; related tread design but says nothing about balancing grip and noise."
+    },
+    {
+      "claim_id": "20240174031:27",
+      "grade": 1,
+      "reason": "Snow-tire tread block wall recess pattern on all walls; related tread design but no grip versus noise balance."
+    },
+    {
       "claim_id": "20240174031:28",
       "grade": 1,
       "reason": "Wavy 3D pattern on tread block walls; related tread detail, no noise balance stated."
@@ -16,6 +26,11 @@
       "claim_id": "20240174031:29",
       "grade": 1,
       "reason": "Spacing detail of a 3D tread block wall pattern; no snow grip or noise balance stated."
+    },
+    {
+      "claim_id": "20240174031:30",
+      "grade": 0,
+      "reason": "Only states a constant crest point height; no snow grip or noise trade-off in its own text."
     },
     {
       "claim_id": "20240174031:32",
@@ -106,6 +121,16 @@
       "claim_id": "20250058589:5",
       "grade": 1,
       "reason": "Symmetric tread pattern portions; related geometry, no snow/noise balance stated."
+    },
+    {
+      "claim_id": "20250058589:6",
+      "grade": 1,
+      "reason": "Tread sipe/void length ratio detail; does not itself state the snow grip versus noise balance."
+    },
+    {
+      "claim_id": "20250058589:7",
+      "grade": 1,
+      "reason": "Tread sipe with buried channel revealed by wear; related tread detail but no snow grip or noise trade-off stated."
     },
     {
       "claim_id": "20250058589:8",

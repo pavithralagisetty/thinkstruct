@@ -168,9 +168,29 @@
       "reason": "Only pin material; no brake or spring stated."
     },
     {
+      "claim_id": "20240300263:2",
+      "grade": 1,
+      "reason": "Caster with built-in brake and a resilient member, but the spring biases the brake away rather than sitting between wheel and housing as suspension."
+    },
+    {
       "claim_id": "20240300263:4",
       "grade": 1,
       "reason": "Caster brake member with resilient member biasing it, but the spring is in the brake, not between wheel and housing."
+    },
+    {
+      "claim_id": "20240300263:5",
+      "grade": 1,
+      "reason": "Caster brake structure details with resilient member on protection seat; related but does not state a spring between wheel and housing."
+    },
+    {
+      "claim_id": "20240359505:1",
+      "grade": 1,
+      "reason": "Caster with wheel, support portion and swivel, but no brake or spring between wheel and housing."
+    },
+    {
+      "claim_id": "20240416680:2",
+      "grade": 1,
+      "reason": "Caster device with the elastic element being a spring; the claim itself only states the spring, not the braking function."
     },
     {
       "claim_id": "20250033409:14",

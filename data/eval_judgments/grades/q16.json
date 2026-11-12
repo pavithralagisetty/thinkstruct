@@ -3,6 +3,31 @@
   "question": "spare wheel that fits over a flat tire so the car can keep driving without a jack",
   "grades": [
     {
+      "claim_id": "20240051334:11",
+      "grade": 0,
+      "reason": "Inserts spaced around a protection device; unrelated to a spare wheel over a flat tire."
+    },
+    {
+      "claim_id": "20240051334:15",
+      "grade": 0,
+      "reason": "Wheel with rim, spoke, tire and a tire protection device; not a spare that fits over a flat tire."
+    },
+    {
+      "claim_id": "20240051334:18",
+      "grade": 0,
+      "reason": "Only claims a vehicle with the wheel; no spare wheel or jack-free use."
+    },
+    {
+      "claim_id": "20240051334:19",
+      "grade": 0,
+      "reason": "Only claims a vehicle with the wheel; nothing about a spare wheel over a flat tire."
+    },
+    {
+      "claim_id": "20240051334:20",
+      "grade": 0,
+      "reason": "Only claims a vehicle with the wheel; no spare wheel or flat-tire driving."
+    },
+    {
       "claim_id": "20240051335:1",
       "grade": 0,
       "reason": "Text is only a fragment 'a semicircular plate (' and states nothing relevant."
@@ -66,6 +91,26 @@
       "claim_id": "20240066916:9",
       "grade": 0,
       "reason": "Brake cooling air channel, unrelated."
+    },
+    {
+      "claim_id": "20240123766:2",
+      "grade": 0,
+      "reason": "Bead filler rubber hardness; not about a spare wheel fitting over a flat tire without a jack."
+    },
+    {
+      "claim_id": "20240123766:3",
+      "grade": 0,
+      "reason": "Bead filler height of a tire; unrelated to an emergency wheel fitted over a flat tire."
+    },
+    {
+      "claim_id": "20240123766:4",
+      "grade": 0,
+      "reason": "Shoulder ground clearance of a tire; unrelated to an emergency spare wheel over a flat tire."
+    },
+    {
+      "claim_id": "20240123766:7",
+      "grade": 0,
+      "reason": "Steel cord wire spec of a flat-spot-proof tire; nothing about a spare wheel mounted over a flat tire."
     },
     {
       "claim_id": "20240149611:17",
@@ -148,9 +193,39 @@
       "reason": "Resonator beads, unrelated."
     },
     {
+      "claim_id": "20240300270:1",
+      "grade": 0,
+      "reason": "Hitch-mounted cargo platform; not about flat tires or spare wheels."
+    },
+    {
+      "claim_id": "20240300270:10",
+      "grade": 0,
+      "reason": "Wheels of a jack hitch device; not a spare wheel fitted over a flat tire."
+    },
+    {
+      "claim_id": "20240300270:11",
+      "grade": 0,
+      "reason": "Front mounting piece to hitch mount; unrelated."
+    },
+    {
+      "claim_id": "20240300270:19",
+      "grade": 0,
+      "reason": "Hitch platform connector; not a spare wheel over a flat tire."
+    },
+    {
       "claim_id": "20240300270:26",
       "grade": 0,
       "reason": "Jack hitch cargo method, unrelated."
+    },
+    {
+      "claim_id": "20240300270:27",
+      "grade": 0,
+      "reason": "Method of aligning a jack hitch to a vehicle hitch mount; unrelated to spare wheels."
+    },
+    {
+      "claim_id": "20240300270:9",
+      "grade": 0,
+      "reason": "Rear mounting piece of a jack hitch; unrelated."
     },
     {
       "claim_id": "20240359502:1",
@@ -186,6 +261,11 @@
       "claim_id": "20240416679:1",
       "grade": 1,
       "reason": "Auxiliary wheel with detachable hubs, but nothing about fitting over a flat tire or avoiding a jack."
+    },
+    {
+      "claim_id": "20240416679:10",
+      "grade": 1,
+      "reason": "Auxiliary wheel topic, but claim only gives hub materials; no fitting over a flat tire or driving without a jack."
     },
     {
       "claim_id": "20240416679:2",

@@ -3,6 +3,21 @@
   "question": "how large the spacing should be between separate foam noise-damping pieces inside a tire or on the rim",
   "grades": [
     {
+      "claim_id": "20240059105:11",
+      "grade": 1,
+      "reason": "Adjacent absorbers separated by a gap, but the gap size is not given."
+    },
+    {
+      "claim_id": "20240059105:14",
+      "grade": 1,
+      "reason": "Discrete absorbers distributed circumferentially in the tire, but no spacing size."
+    },
+    {
+      "claim_id": "20240059105:15",
+      "grade": 0,
+      "reason": "Only about adhesive attachment of absorbers."
+    },
+    {
       "claim_id": "20240059105:17",
       "grade": 2,
       "reason": "States the gap between adjacent sound absorbers in the tire as 1% to 99% of circumferential length."
@@ -13,9 +28,24 @@
       "reason": "Discrete sound absorbers distributed circumferentially on the rim, but no spacing size between them is stated."
     },
     {
+      "claim_id": "20240059105:19",
+      "grade": 0,
+      "reason": "Only about adhesive attachment to rim surface."
+    },
+    {
       "claim_id": "20240059105:21",
       "grade": 2,
       "reason": "States the gap between adjacent sound absorbers on the rim as 1% to 99% of rim circumference."
+    },
+    {
+      "claim_id": "20240059105:23",
+      "grade": 1,
+      "reason": "Array of discrete sound absorbers on tire or rim, but no spacing between them stated."
+    },
+    {
+      "claim_id": "20240059105:7",
+      "grade": 0,
+      "reason": "Only lists absorber materials (e.g. PU foam); says nothing about spacing between separate pieces."
     },
     {
       "claim_id": "20240059105:8",
@@ -128,9 +158,24 @@
       "reason": "Damper size relative to tire, but no spacing between pieces."
     },
     {
+      "claim_id": "20250115081:1",
+      "grade": 0,
+      "reason": "Tread groove protrusions reduce noise; no foam pieces or spacing between them."
+    },
+    {
       "claim_id": "20250115081:15",
       "grade": 0,
       "reason": "Tread groove protrusion sizes, not foam dampers."
+    },
+    {
+      "claim_id": "20250115082:18",
+      "grade": 0,
+      "reason": "Inflatable baffles partitioning the cavity, no foam pieces or spacing."
+    },
+    {
+      "claim_id": "20250115082:3",
+      "grade": 0,
+      "reason": "Inflatable partition baffles evenly spaced, not foam noise-damping pieces and no spacing size."
     },
     {
       "claim_id": "20250135803:7",

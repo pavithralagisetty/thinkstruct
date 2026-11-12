@@ -3,9 +3,34 @@
   "question": "ratio of rim width to tire width in an aircraft radial tire",
   "grades": [
     {
+      "claim_id": "20240066922:13",
+      "grade": 0,
+      "reason": "Ratio of side portion width to band width; not rim-to-tire width."
+    },
+    {
+      "claim_id": "20240066922:14",
+      "grade": 0,
+      "reason": "Ratio of radial height to max width position over section height; not rim width to tire width."
+    },
+    {
       "claim_id": "20240066922:2",
       "grade": 0,
       "reason": "Ratio of tread arc radii, not rim width to tire width."
+    },
+    {
+      "claim_id": "20240066922:3",
+      "grade": 1,
+      "reason": "Tire width ratio (ground contact width to section width) on normal rim, but not rim width to tire width and not aircraft-specific."
+    },
+    {
+      "claim_id": "20240066922:9",
+      "grade": 0,
+      "reason": "Ratio of serration region width to sidewall distance; not rim width to tire width, and not an aircraft radial tire."
+    },
+    {
+      "claim_id": "20240253400:14",
+      "grade": 0,
+      "reason": "Gives a tread zone width to tread arc width ratio; says nothing about rim width versus tire width."
     },
     {
       "claim_id": "20240270020:1",
@@ -23,9 +48,19 @@
       "reason": "Aircraft tire stiffener sheet rubber; nothing about rim width ratio."
     },
     {
+      "claim_id": "20240270020:4",
+      "grade": 0,
+      "reason": "Compares chafer rubber loss coefficient and breaking strength; nothing about rim width to tire width ratio."
+    },
+    {
       "claim_id": "20240270020:5",
       "grade": 0,
       "reason": "Aircraft tire stiffener tan delta comparison; nothing about rim width ratio."
+    },
+    {
+      "claim_id": "20240270020:6",
+      "grade": 0,
+      "reason": "Compares chafer rubber loss coefficient and breaking strength; nothing about rim width to tire width ratio."
     },
     {
       "claim_id": "20240270020:7",

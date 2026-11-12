@@ -28,6 +28,11 @@
       "reason": "States a 3D Hall effect sensor, but not the magnet or position detection itself."
     },
     {
+      "claim_id": "20240116318:16",
+      "grade": 1,
+      "reason": "Same magnet-position sensing system, but this claim only adds an operational-state check from the end position; it does not state the sensor or the magnet."
+    },
+    {
       "claim_id": "20240116318:17",
       "grade": 1,
       "reason": "Lists fifth wheel operational states (worn, locked, unlocked) tied to position sensing, but the claim itself does not state a magnet or Hall sensor."
@@ -103,6 +108,21 @@
       "reason": "Rows of magnets in a caster mount; no sensing."
     },
     {
+      "claim_id": "20240278598:22",
+      "grade": 0,
+      "reason": "Temperature sensor of hub; not Hall effect or magnet position."
+    },
+    {
+      "claim_id": "20240278598:23",
+      "grade": 0,
+      "reason": "Sensor node mounting location; no Hall sensor or magnet."
+    },
+    {
+      "claim_id": "20240278598:27",
+      "grade": 0,
+      "reason": "Sensor node overlaps bearing; no magnet or position sensing."
+    },
+    {
       "claim_id": "20240343065:4",
       "grade": 1,
       "reason": "Sensor detecting displacement of an encoder on a bearing, but no Hall sensor or magnet stated."
@@ -111,6 +131,46 @@
       "claim_id": "20240343065:5",
       "grade": 0,
       "reason": "Nut holding part location; unrelated."
+    },
+    {
+      "claim_id": "20240359508:12",
+      "grade": 0,
+      "reason": "Tread surface scanning device with emitter and sensor; not magnetic position detection."
+    },
+    {
+      "claim_id": "20240359508:13",
+      "grade": 0,
+      "reason": "Depth threshold for tread boundary; no Hall sensor or magnet."
+    },
+    {
+      "claim_id": "20240359508:14",
+      "grade": 0,
+      "reason": "Pattern comparison of representations; no Hall sensor or magnet."
+    },
+    {
+      "claim_id": "20240359508:15",
+      "grade": 0,
+      "reason": "Orientation from motion data for tread scanning; no Hall sensor or magnet."
+    },
+    {
+      "claim_id": "20240359508:21",
+      "grade": 0,
+      "reason": "Light beam reflections on tread surface; not Hall effect sensing."
+    },
+    {
+      "claim_id": "20240359508:3",
+      "grade": 0,
+      "reason": "Pattern matching of successive representations; unrelated to magnet position sensing."
+    },
+    {
+      "claim_id": "20240359508:4",
+      "grade": 0,
+      "reason": "Orientation from motion data for tread scanning; no Hall sensor or magnet."
+    },
+    {
+      "claim_id": "20240383279:14",
+      "grade": 1,
+      "reason": "Names a Hall effect sensor as an option for the reference-point sensor, but does not itself state detecting a magnet on a moving part for position."
     },
     {
       "claim_id": "20240383279:4",
