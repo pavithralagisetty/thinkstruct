@@ -27,3 +27,4 @@ env/
 .vscode/
 .idea/
 .DS_Store
+part2/query_vectors.npy
