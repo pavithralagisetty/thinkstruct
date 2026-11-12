@@ -2,7 +2,9 @@
 
 Type a plain-English question, optionally add exact keywords and filters, and get back the patent **claims** that best match.
 
-Video walkthrough of Parts 2 and 3: **[add link]**
+Videos:
+* Part 1, working demo of the search engine: [watch on Google Drive](https://drive.google.com/file/d/1lPqW-x4CqjXjFeB1wDF0l8hVAfHeWaeF/view?usp=sharing)
+* Parts 2 and 3, walkthrough: **[add link]**
 
 * Part 1: claim search with hybrid filters (this README)
 * Part 2: system design at 10M patents and a FAISS proof of concept ([`part2/`](part2/))
