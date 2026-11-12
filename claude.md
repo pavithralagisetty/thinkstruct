@@ -208,44 +208,45 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 * A text box for the question.
 * A "Show: Claims | Patents | Map" toggle under the search bar. Claims and Patents set `group_by` (`claim` or `patent`) and rerun the current search if one has run. Map switches to the map view (below) and runs at once, even with nothing typed.
 * A collapsible "Exact filters" panel with:
-  * a "Claim keywords" text box, marked optional. Placeholder: `sipe "tread block" spoke*`
-  * a "Title or abstract keywords" text box (`title_abstract_keywords`), marked optional. Placeholder: `bassinet "spoke star" sensor*`
+  * a "Claim keywords" tag box (see Behavior), marked optional. Placeholder: `Type a keyword and press Enter, e.g. sipe` (`Add another` once it has a tag)
+  * a "Title or abstract keywords" tag box (`title_abstract_keywords`), marked optional. Placeholder: `Type a keyword and press Enter, e.g. bassinet`
   * a number box labelled "Number of results" (claims or patents), default 10
   * three linked classification dropdowns, Subclass, Main group and Subgroup, filled from `GET /classifications`. Each option shows the code, the title when known and the patent count (`11 — Tyre tread bands; … (101)`). Each later dropdown is disabled until the one before it is chosen; changing one resets the ones after it. The most specific choice is sent as one `classification` code (`B60C`, `B60C 11` or `B60C 11/12`). Subgroups listed are the ones in the data (not `/00`, which is the group itself)
   * "Published from" and "Published to" text boxes (`2024`, `2024-06` or `2024-06-15`, inclusive; the server checks them). Each has a calendar button inside it that opens the browser's own date picker (`showPicker()` on a hidden `<input type="date">`); the chosen day replaces the box's text. The picker opens on what the box already says (a year or month at its first day for "from", its last day for "to"). Typing stays possible because a picker can only give a full day, while the filter also takes a year or a month
-  * a "Main claims only" checkbox (`independent_only`), with a note that claims whose start is missing have an unknown type and are left out
   * a "Clear filters" link
 * A Search button. Pressing Enter in any text box also searches.
 
 **Behavior**
 
-* Sends the question, the keyword box as one string (an empty box sends no keywords), the number, `classification`, `date_from`, `date_to`, `independent_only` and `group_by` to `POST /search`.
+* Sends the question, the claim keyword tags as a list (no tags sends no keywords), the number, `classification`, `date_from`, `date_to` and `group_by` to `POST /search`. The page has no main claims only option; `independent_only` is available in the API and the CLI (`--main-only`).
 * Filters alone can search. If the question, keywords and every filter are empty, show "Type a question or a keyword, or choose a filter" and do not call the API.
-* Sends the title or abstract box as one string in `title_abstract_keywords` (empty sends nothing). A question with title or abstract keywords is filtered, so the count line says `{n} matching claims`.
-* The panel's badge counts the claim keywords and the title or abstract keywords plus the other filters set (classification, each date, main claims only): "1 filter", "4 filters".
-* The example chips clear the filters, then set the question and keywords; the Show toggle keeps its setting.
+* Sends the title or abstract tags as a list in `title_abstract_keywords` (no tags sends nothing). A question with title or abstract keywords is filtered, so the count line says `{n} matching claims`.
+* The panel's badge counts the claim keyword tags and the title or abstract keyword tags plus the other filters set (classification, each date): "1 filter", "4 filters".
+* The example chips clear the filters, then set the question; the Show toggle keeps its setting.
 * While waiting, disable the button and show "Searching...".
 * Above the results show `{total_matches} matching claims` (or `matching patents`), and `showing top {n}` when there are more than shown. When there is a question but no keyword and no filter, nothing is filtered out and every claim is ranked, so the line says `Top {n} claims by meaning` (or `patents`) instead, without the total, so it does not look as if every claim matched. There is no score cutoff: on the graded evaluation claims, nomic's scores for relevant and not relevant claims overlap and differ from question to question, so no fixed value separates them.
 * Each claim result is a simple card with:
   * the patent title
   * patent number and claim number
-  * the score with 2 decimals (hidden when there is no question)
+  * the score as an orange `{score} match` pill at the top right, after the claim label, as a whole percentage (`79% match` for 0.79; hidden when there is no question)
   * a "main claim" or "dependent claim" label (no label when unknown)
   * the claim text
   * when `opening_missing` is true, a small grey note: "The start of this claim is missing in the source data."
 * Each patent result is a card (patent mode only):
-  * top left: the patent number badge and the publication date (on a phone the date wraps under the number); top right: an orange `{score} match` pill with 2 decimals (the best claim's score; hidden when there is no question)
+  * top left: the patent number badge and the publication date (on a phone the date wraps under the number); top right: an orange `{score} match` pill with the score as a whole percentage (`79% match`) (the best claim's score; hidden when there is no question)
   * the title. All-caps titles get a smaller, letter-spaced style; the text itself is never changed
   * the readable code (`cpc_code`, e.g. `B60C 11/12`, falling back to the stored code) as a small monospace chip, followed by its main group title when known (from `GET /classifications`; the page waits for it before showing patent cards)
   * the abstract clamped to 3 lines with "Show full abstract"
   * a small uppercase heading "Best matching claims" ("Matching claims" without a question) with `{shown} of {matching_claims}` on the right
   * each shown claim (up to 3) in a soft panel: bold "Claim N", a quiet "Main" or "Dependent" tag (none when unknown), a dashed "Start missing" tag when `opening_missing` (its tooltip is the full note "The start of this claim is missing in the source data."), its score on the right (when there is a question), and the text clamped to 3 lines with "Show full claim". The best claim's panel has a thin orange border (only when there is a question)
   * no score repeated at the bottom
+* Claim keyword and title or abstract keyword boxes are tag inputs: Enter (or a comma) turns the typed text into a tag with an × to remove it; Backspace in an empty box removes the last tag; Enter in an empty box searches. Each tag is one keyword or one exact phrase (words typed together, quotes not needed), and the tags are sent as a list, so the server's list rules apply. Text still in the box when a search runs becomes a tag first. A repeated tag (ignoring case) is not added twice, and a blank or bare `*` is ignored.
 * Keyword matches are marked with a soft yellow highlight (`<mark>`, a token for light and one for dark) in claim cards and in the claims of patent cards, using the `highlights` spans from the server; the page does not re-implement the keyword rules. Spans are code point offsets, so the page slices an array of code points (`Array.from(text)`), not the UTF-16 string, and builds the text from text nodes (no HTML from the data).
 * A "See more" button under the results runs the same search again with 10 more (`top_n` + 10, up to `TOP_N_MAX`). Ranking is deterministic, so the results already shown keep their places. It shows only while the last search filled its `top_n` and there are more matches; at 100 it is replaced by a note that 100 is the most one search returns and keywords or filters narrow it down. It does not change the "Number of results" box, so a new search, an example chip or the Show toggle starts again from the box's number.
 * No results: show "No claims matched." or "No patents matched."
 * API errors: show the error message in red above the results.
 * If `/classifications` cannot be loaded, the subclass dropdown says "Classifications unavailable" and the other searches still work.
+
 **Map view** (Show: Map). Works with no input, which shows every patent. The line above the map says `{n} patents`, `Top {shown} of {total} patents highlighted` (with a question) or `{n} of {total} patents match` (keywords or filters only). One card:
 
 * *Patent landscape*: a scatter of every patent from `GET /map`, colored by subclass with three hues (B60C blue, B60B orange, B60D green; the rest grey "Other"), each dot with a 2px ring in the card color. The legend shows each subclass with the first part of its scheme title in normal case ("Vehicle tyres") and its count. Main groups with 12 or more patents are labelled at their median position; ranks are placed first and a label that would overlap one already placed is skipped. With a search, `POST /map/matches` decides what is lit: with a question, the top N by score (N = the "Number of results" number) keep their color and grow, and the top 5 get rank numbers; with keywords or filters only, every match is lit. Everything else turns grey ("Outside the top N" or "Not matching" in the legend). Hovering picks the nearest point within 24px and shows the title, code and main group title, number and date, and with a search the score, rank, matching claims and best claim; a click pins it.
@@ -257,9 +258,9 @@ Keep it minimal. One file, `src/patent_search/static/index.html`, served by Fast
 * Large rounded search bar with a search icon and an orange Search button inside it.
 * Pill chips under a "Try an example" label that run four of the example searches from "Done when": Carbon fiber spokes, Bassinet arm, Tire sensor setup, Wall-climbing robots (the data has no categories, so no category chips). The `sipe` and heavy truck searches have no chip; they are run by typing them.
 * The Show toggle is a small segmented control labelled "Show" under the search bar.
-* The filters live in the collapsible "Exact filters" panel (claim keywords on the first row, title or abstract keywords on the second, the three classification dropdowns on the next, then the dates, then the "Number of results" number, then the checkbox), which shows a count badge when any filter is set. On a phone the fields stack.
+* The filters live in the collapsible "Exact filters" panel (claim keywords on the first row, title or abstract keywords on the second, the three classification dropdowns on the next, then the dates, then the "Number of results" number with the "Clear filters" link), which shows a count badge when any filter is set. On a phone the fields stack.
 * Patent cards are top-aligned in the grid and keep their own height (not stretched to the tallest card in the row).
-* Result cards in a two column grid (one column on a phone): monospace patent number badge (`US 2024/0116310`), the main or dependent claim label in orange at the top right, a bold title, then a line with claim number, classification and publication date (`Claim 22 · B60B3300FI · Published 2024-03-21`; the classification is shown exactly as stored, not reformatted), then the claim text clamped to 5 lines with "Show full claim". The score sits at the bottom of the card.
+* Result cards in a two column grid (one column on a phone): monospace patent number badge (`US 2024/0116310`), the main or dependent claim label in orange and the score pill at the top right, a bold title, then a line with claim number, classification and publication date (`Claim 22 · B60B3300FI · Published 2024-03-21`; the classification is shown exactly as stored, not reformatted), then the claim text clamped to 5 lines with "Show full claim".
 * Show only fields the data has (no assignee or inventor). System font, nothing loaded from the internet.
 * Follows the system setting with `prefers-color-scheme`. Light and dark are equally finished; neither is the main one.
 

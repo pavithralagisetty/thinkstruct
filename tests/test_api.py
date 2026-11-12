@@ -68,8 +68,8 @@ def test_page(client):
     r = client.get("/")
     assert r.status_code == 200 and r.headers["content-type"].startswith("text/html")
     page = r.text
-    for text in ['placeholder=\'sipe "tread block" spoke*\'', "Exact filters", "Type a question or a keyword",
-                 'data-group="claim"', 'data-group="patent"', 'fetch("/classifications")', "Main claims only",
+    for text in ['class="tagbox"', 'Press Enter after each keyword', "Exact filters", "Type a question or a keyword",
+                 'data-group="claim"', 'data-group="patent"', 'fetch("/classifications")', 'data-group="map"',
                  "Published from", "Published to", "No patents matched.", "Best matching claims", "Start missing", " match`",
                  "Searching...", "No claims matched.", "The start of this claim is missing in the source data.",
                  "Show full claim", "prefers-color-scheme", 'fetch("/search"']:

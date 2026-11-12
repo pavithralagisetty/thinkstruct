@@ -214,11 +214,8 @@
   }
   .field select:focus { outline: none; border-color: var(--accent); }
   .field select:disabled { opacity: 0.5; cursor: not-allowed; }
-  .check { display: flex; align-items: center; gap: 10px; font-size: 15px; cursor: pointer; }
-  .check input { width: 18px; height: 18px; accent-color: var(--accent); margin: 0; }
-  .check .hint { margin: 0; }
   .clear {
-    justify-self: end; align-self: center;
+    justify-self: end; align-self: end; margin-bottom: 12px;
     border: 0; background: transparent; color: var(--accent); font-weight: 600; font-size: 14px; padding: 0;
   }
   .filters-body[hidden] { display: none; }
@@ -233,6 +230,26 @@
     font-size: 16px;
   }
   .field input:focus { outline: none; border-color: var(--accent); }
+  /* Keyword boxes: each keyword becomes a removable tag when Enter is pressed */
+  .tagbox {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+    padding: 5px 6px; cursor: text;
+  }
+  .tagbox:focus-within { border-color: var(--accent); }
+  .field .tagbox input { flex: 1; min-width: 160px; width: auto; border: 0; background: transparent; padding: 4px 6px; }
+  .field .tagbox input:focus { border: 0; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 2px; max-width: 100%;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px;
+    padding: 2px 4px 2px 10px; font-size: 14px; line-height: 22px;
+  }
+  .tag span { overflow-wrap: anywhere; }
+  .tag button {
+    border: 0; background: transparent; color: var(--muted); cursor: pointer;
+    width: 22px; height: 22px; border-radius: 50%; padding: 0; font-size: 16px; line-height: 22px;
+  }
+  .tag button:hover { color: var(--text); background: var(--border); }
   /* Date box: type a partial date, or pick one from the calendar */
   .date-field { position: relative; }
   .date-field input[type="text"] { padding-right: 44px; }
@@ -301,6 +318,7 @@
     box-shadow: var(--shadow);
   }
   .card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .card-side { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
   .number {
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 15px;
@@ -377,11 +395,6 @@
   @media (max-width: 760px) {
     .pid { flex-direction: column; align-items: flex-start; }
   }
-  .score {
-    margin-top: auto; padding-top: 16px;
-    color: var(--muted); font-size: 14px;
-  }
-  .score strong { color: var(--text); font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -429,13 +442,17 @@
       <div class="filters-body" id="filters-body" hidden>
         <div class="field span-6">
           <label for="keywords">Claim keywords <span class="optional">(optional)</span></label>
-          <input id="keywords" type="text" autocomplete="off" placeholder='sipe "tread block" spoke*'>
-          <p class="hint">Every keyword must appear in the claim. <code>"quotes"</code> for a phrase, <code>*</code> at the end for word starts.</p>
+          <div class="tagbox" data-placeholder="Type a keyword and press Enter, e.g. sipe">
+            <input id="keywords" type="text" autocomplete="off" enterkeyhint="done">
+          </div>
+          <p class="hint">Press Enter after each keyword. A claim must contain every one. Words typed together are one exact phrase (<code>tread block</code>); <code>*</code> at the end matches word starts (<code>spoke*</code>).</p>
         </div>
         <div class="field span-6">
           <label for="title-abstract">Title or abstract keywords <span class="optional">(optional)</span></label>
-          <input id="title-abstract" type="text" autocomplete="off" placeholder='bassinet "spoke star" sensor*'>
-          <p class="hint">Every keyword must appear in the patent's title or its abstract. Same rules as claim keywords.</p>
+          <div class="tagbox" data-placeholder="Type a keyword and press Enter, e.g. bassinet">
+            <input id="title-abstract" type="text" autocomplete="off" enterkeyhint="done">
+          </div>
+          <p class="hint">Press Enter after each keyword. Every one must be in the patent's title or its abstract. Same rules as claim keywords.</p>
         </div>
 
         <div class="group-label">Classification (CPC)</div>
@@ -472,15 +489,11 @@
           <p class="hint" style="margin-bottom: 12px;">Inclusive. Pick a day, or type <code>2024</code>, <code>2024-06</code> or <code>2024-06-15</code>.</p>
         </div>
 
-        <div class="field span-6 results-field">
+        <div class="field span-5 results-field">
           <label for="top-n">Number of results</label>
           <input id="top-n" type="number" min="1" max="100" step="1" value="10" inputmode="numeric">
         </div>
 
-        <label class="check span-5" for="main-only">
-          <input id="main-only" type="checkbox">
-          <span>Main claims only <span class="hint">(claims whose start is missing have an unknown type and are left out)</span></span>
-        </label>
         <button class="clear" id="clear-filters" type="button">Clear filters</button>
       </div>
     </div>
@@ -505,10 +518,10 @@
 <script>
 (() => {
   const EXAMPLES = [
-    { label: "Carbon fiber spokes", query: "wheel spoke made of carbon fiber", keywords: "" },
-    { label: "Bassinet arm", query: "bassinet arm that rotates the infant tub", keywords: "" },
-    { label: "Tire sensor setup", query: "setting up a tire pressure sensor from a phone", keywords: "" },
-    { label: "Wall-climbing robots", query: "robot that drives up walls using magnetic wheels", keywords: "" },
+    { label: "Carbon fiber spokes", query: "wheel spoke made of carbon fiber" },
+    { label: "Bassinet arm", query: "bassinet arm that rotates the infant tub" },
+    { label: "Tire sensor setup", query: "setting up a tire pressure sensor from a phone" },
+    { label: "Wall-climbing robots", query: "robot that drives up walls using magnetic wheels" },
   ];
 
   const TOP_N_MAX = 100, MORE_STEP = 10;   // TOP_N_MAX matches config.TOP_N_MAX
@@ -516,8 +529,10 @@
   const $ = (id) => document.getElementById(id);
   const form = $("form"), queryBox = $("query"), keywordBox = $("keywords"), topBox = $("top-n");
   const titleAbstractBox = $("title-abstract");
+  const onKeywordsChange = () => { updateFilterState(); clearActiveChip(); };
+  const claimTags = tagBox(keywordBox, onKeywordsChange), titleTags = tagBox(titleAbstractBox, onKeywordsChange);
   const subclassBox = $("cpc-subclass"), groupBox = $("cpc-group"), subgroupBox = $("cpc-subgroup");
-  const fromBox = $("date-from"), toBox = $("date-to"), mainOnly = $("main-only");
+  const fromBox = $("date-from"), toBox = $("date-to");
   const button = $("submit"), results = $("results");
   const toggle = $("filters-toggle"), filtersBody = $("filters-body"), filtersState = $("filters-state");
   let requestId = 0;
@@ -532,13 +547,49 @@
     return node;
   }
 
-  // Same splitting as the server's parser: spaces separate keywords, "quotes" keep a phrase.
-  function countKeywords(text) {
-    let n = 0;
-    for (const m of text.matchAll(/"([^"]*)"?|(\S+)/g)) {
-      if ((m[1] ?? m[2]).replace(/[\s"*]/g, "")) n++;
-    }
-    return n;
+  // A keyword box: Enter (or a comma) turns the typed text into a tag, one keyword or phrase each.
+  // The tags go to the server as a list, so a tag with spaces is matched as one exact phrase.
+  // Enter on an empty box searches; Backspace on an empty box removes the last tag.
+  function tagBox(input, onChange) {
+    const box = input.parentElement, words = [];
+    const draw = () => {
+      for (const t of box.querySelectorAll(".tag")) t.remove();
+      words.forEach((w, i) => {
+        const tag = el("span", "tag"), x = el("button", null, "×");
+        x.type = "button";
+        x.setAttribute("aria-label", `Remove ${w}`);
+        x.addEventListener("click", (e) => { e.stopPropagation(); words.splice(i, 1); draw(); onChange(); input.focus(); });
+        tag.append(el("span", null, w), x);
+        box.insertBefore(tag, input);
+      });
+      input.placeholder = words.length ? "Add another" : box.dataset.placeholder;
+    };
+    const add = (text) => {
+      const w = text.replace(/"/g, "").replace(/\s+/g, " ").trim();
+      if (!w.replace(/\*/g, "")) return false;              // blank or a bare *
+      if (!words.some((x) => x.toLowerCase() === w.toLowerCase())) words.push(w);
+      return true;
+    };
+    const commit = () => {                                    // the typed text, if any, becomes a tag
+      if (!input.value.trim()) return;
+      add(input.value);
+      input.value = "";
+      draw();
+      onChange();
+    };
+    input.addEventListener("keydown", (e) => {
+      if ((e.key === "Enter" || e.key === ",") && input.value.trim()) { e.preventDefault(); commit(); }
+      else if (e.key === "Backspace" && !input.value && words.length) { words.pop(); draw(); onChange(); }
+    });
+    input.addEventListener("blur", commit);
+    input.addEventListener("input", () => { if (input.value.includes(",")) { input.value.split(",").forEach(add); input.value = ""; draw(); } onChange(); });
+    box.addEventListener("click", () => input.focus());
+    draw();
+    return {
+      list: () => { commit(); return [...words]; },
+      count: () => words.length + (input.value.trim() ? 1 : 0),
+      clear: () => { words.length = 0; input.value = ""; draw(); },
+    };
   }
 
   // ---------- classification dropdowns ----------
@@ -602,8 +653,8 @@
   // ---------- filter panel ----------
 
   function filterCount() {
-    return countKeywords(keywordBox.value) + countKeywords(titleAbstractBox.value) + (classificationCode() ? 1 : 0) +
-      (fromBox.value.trim() ? 1 : 0) + (toBox.value.trim() ? 1 : 0) + (mainOnly.checked ? 1 : 0);
+    return claimTags.count() + titleTags.count() + (classificationCode() ? 1 : 0) +
+      (fromBox.value.trim() ? 1 : 0) + (toBox.value.trim() ? 1 : 0);
   }
 
   function updateFilterState() {
@@ -619,13 +670,12 @@
   }
 
   function clearFilters() {
-    keywordBox.value = "";
-    titleAbstractBox.value = "";
+    claimTags.clear();
+    titleTags.clear();
     subclassBox.value = "";
     onSubclass();
     fromBox.value = "";
     toBox.value = "";
-    mainOnly.checked = false;
   }
 
   // ---------- date pickers ----------
@@ -660,6 +710,11 @@
   }
 
   // ---------- results ----------
+
+  // Scores (0 to 1) are shown as whole percentages: 0.79 is "79%".
+  function pct(score) {
+    return `${Math.round(score * 100)}%`;
+  }
 
   function formatNumber(doc) {
     return /^\d{11}$/.test(doc) ? `US ${doc.slice(0, 4)}/${doc.slice(4)}` : `US ${doc}`;
@@ -698,8 +753,11 @@
     const node = el("article", "card");
     const top = el("div", "card-top");
     top.append(el("span", "number", formatNumber(hit.doc_number)));
+    const side = el("div", "card-side");
     const kind = kindLabel(hit.is_independent);
-    if (kind) top.append(el("span", "kind", kind));
+    if (kind) side.append(el("span", "kind", kind));
+    if (hit.score !== null && hit.score !== undefined) side.append(el("span", "pill", `${pct(hit.score)} match`));
+    if (side.childElementCount) top.append(side);
     node.append(top);
 
     node.append(el("h2", "", hit.title || "Untitled"));
@@ -715,11 +773,6 @@
 
     if (hit.opening_missing) {
       node.append(el("p", "note", "The start of this claim is missing in the source data."));
-    }
-    if (hit.score !== null && hit.score !== undefined) {
-      const score = el("div", "score", "Score ");
-      score.append(el("strong", "", hit.score.toFixed(2)));
-      node.append(score);
     }
     return node;
   }
@@ -737,7 +790,7 @@
     id.append(el("span", "number", formatNumber(hit.doc_number)));
     if (hit.pub_date) id.append(el("span", "pdate", hit.pub_date));
     top.append(id);
-    if (scored) top.append(el("span", "pill", `${hit.score.toFixed(2)} match`));
+    if (scored) top.append(el("span", "pill", `${pct(hit.score)} match`));
     node.append(top);
 
     const title = el("h2", "", hit.title || "Untitled");
@@ -777,7 +830,7 @@
         tag.title = "The start of this claim is missing in the source data.";
         h.append(tag);
       }
-      if (claim.score !== null && claim.score !== undefined) h.append(el("span", "pscore", claim.score.toFixed(2)));
+      if (claim.score !== null && claim.score !== undefined) h.append(el("span", "pscore", pct(claim.score)));
       item.append(h);
       const text = claimText("claim-text clamped", claim.text, claim.highlights);
       const more = el("button", "more", "Show full claim");
@@ -851,11 +904,11 @@
 
   async function runSearch(moreTopN = null) {
     const query = queryBox.value.trim();
-    const keywords = keywordBox.value.trim();
+    const keywords = claimTags.list();
     const classification = classificationCode();
     const dateFrom = fromBox.value.trim(), dateTo = toBox.value.trim();
-    const titleAbstract = titleAbstractBox.value.trim();
-    const anyInput = Boolean(query || keywords || titleAbstract || classification || dateFrom || dateTo || mainOnly.checked);
+    const titleAbstract = titleTags.list();
+    const anyInput = Boolean(query || keywords.length || titleAbstract.length || classification || dateFrom || dateTo);
     if (groupBy !== "map" && !anyInput) {
       showError("Type a question or a keyword, or choose a filter");
       return;
@@ -863,10 +916,10 @@
     const raw = topBox.value.trim();
     const topN = moreTopN ?? (raw === "" ? 10 : (/^\d+$/.test(raw) ? Number(raw) : raw));
     const body = {
-      query: query || null, keywords: keywords || null, top_n: topN,
+      query: query || null, keywords: keywords.length ? keywords : null, top_n: topN,
       classification: classification || null, date_from: dateFrom || null, date_to: dateTo || null,
-      independent_only: mainOnly.checked, group_by: groupBy,
-      title_abstract_keywords: titleAbstract || null,
+      group_by: groupBy,
+      title_abstract_keywords: titleAbstract.length ? titleAbstract : null,
     };
 
     searched = true;
@@ -894,7 +947,7 @@
       if (data.group_by === "patent") await treeReady;   // group titles come from /classifications
       if (id !== requestId) return;
       data.top_n = topN;
-      data.ranked_all = Boolean(query) && !keywords && !titleAbstract && !classification && !dateFrom && !dateTo && !mainOnly.checked;
+      data.ranked_all = Boolean(query) && !keywords.length && !titleAbstract.length && !classification && !dateFrom && !dateTo;
       render(data);
     } catch (e) {
       if (id === requestId) showError(e instanceof MapError ? e.message : "Could not reach the search server.");
@@ -1023,7 +1076,7 @@
     if (mapMatches) {
       const m = mapMatches.get(p.doc_number), line = el("div", "m");
       if (m) {
-        line.append(el("strong", null, m.score !== null ? `${m.score.toFixed(2)} match · rank ${m.rank}` : "Matches"));
+        line.append(el("strong", null, m.score !== null ? `${pct(m.score)} match · rank ${m.rank}` : "Matches"));
         line.append(document.createTextNode(`${m.matching_claims} matching claim${m.matching_claims === 1 ? "" : "s"}, best is claim ${m.best_claim}`));
       } else {
         line.textContent = "Does not match this search";
@@ -1125,9 +1178,7 @@
     chip.addEventListener("click", () => {
       clearFilters();
       queryBox.value = example.query;
-      keywordBox.value = example.keywords;
       updateFilterState();
-      if (example.keywords) setFiltersOpen(true);
       clearActiveChip();
       chip.setAttribute("aria-pressed", "true");
       runSearch();
@@ -1150,10 +1201,9 @@
   subclassBox.addEventListener("change", () => { onSubclass(); clearActiveChip(); });
   groupBox.addEventListener("change", () => { onGroup(); clearActiveChip(); });
   subgroupBox.addEventListener("change", () => { updateFilterState(); clearActiveChip(); });
-  for (const box of [keywordBox, titleAbstractBox, fromBox, toBox]) {
+  for (const box of [fromBox, toBox]) {
     box.addEventListener("input", () => { updateFilterState(); clearActiveChip(); });
   }
-  mainOnly.addEventListener("change", () => { updateFilterState(); clearActiveChip(); });
   queryBox.addEventListener("input", clearActiveChip);
   $("clear-filters").addEventListener("click", () => { clearFilters(); updateFilterState(); clearActiveChip(); });
   form.addEventListener("submit", (event) => { event.preventDefault(); runSearch(); });
