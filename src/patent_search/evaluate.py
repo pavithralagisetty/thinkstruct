@@ -4,6 +4,7 @@ vectors change between candidates; weights, filtering and tie order are the
 same search code. Grading (and so the metrics) comes from labels added later."""
 
 import hashlib
+import io
 import json
 import logging
 import math
@@ -191,10 +192,7 @@ def texts_hash(claim_texts: list[str], patent_texts: list[str]) -> str:
     return h.hexdigest()
 
 
-def cached_vectors(name: str, spec: dict, embedder, claim_texts: list[str], patent_texts: list[str],
-                   cache_dir: Path) -> tuple[np.ndarray, np.ndarray, bool]:
-    """Load vectors from data/eval_cache/<name>/ when model, revision, prefix and texts
-    all match; otherwise embed and save. Returns (claims, patents, was_cached)."""
+def cache_key(spec: dict, claim_texts: list[str], patent_texts: list[str]) -> dict:
     key = {
         "model_name": spec["model_name"], "revision": spec["revision"],
         "code_revision": spec.get("code_revision"), "document_prefix": spec.get("document_prefix", ""),
@@ -202,6 +200,26 @@ def cached_vectors(name: str, spec: dict, embedder, claim_texts: list[str], pate
     }
     if spec.get("max_seq_length") is not None:     # only when set, so existing caches stay valid
         key["max_seq_length"] = spec["max_seq_length"]
+    if Path(spec["model_name"]).is_dir():          # a local model: no revision, so hash its weights
+        key["weights_sha256"] = weights_hash(Path(spec["model_name"]))
+    return key
+
+
+def weights_hash(folder: Path) -> str:
+    h = hashlib.sha256()
+    for path in sorted(folder.glob("*.safetensors")) + sorted(folder.glob("*.bin")):
+        h.update(path.name.encode())
+        with open(path, "rb") as f:
+            for block in iter(lambda: f.read(1 << 20), b""):
+                h.update(block)
+    return h.hexdigest()
+
+
+def cached_vectors(name: str, spec: dict, embedder, claim_texts: list[str], patent_texts: list[str],
+                   cache_dir: Path) -> tuple[np.ndarray, np.ndarray, bool]:
+    """Load vectors from data/eval_cache/<name>/ when model, revision, prefix and texts
+    all match; otherwise embed and save. Returns (claims, patents, was_cached)."""
+    key = cache_key(spec, claim_texts, patent_texts)
     folder = Path(cache_dir) / name
     meta_path = folder / "meta.json"
     if meta_path.exists() and json.loads(meta_path.read_text()).get("key") == key:
@@ -218,6 +236,82 @@ def cached_vectors(name: str, spec: dict, embedder, claim_texts: list[str], pate
     meta_path.write_text(json.dumps({"key": key, "vector_size": int(claims.shape[1]),
                                      "created": datetime.now(timezone.utc).isoformat(timespec="seconds")}, indent=2))
     return claims, patents, False
+
+
+# ---------- precomputed vectors (models too large to run here) ----------
+
+class PrecomputedQuery:
+    """embed_query() for a model whose question vectors were made elsewhere: it looks the
+    question up by its exact text and refuses any other question."""
+
+    def __init__(self, questions: list[dict], vectors: np.ndarray):
+        self.by_text = {q["text"]: vectors[i] for i, q in enumerate(questions)}
+
+    def embed_query(self, text: str) -> np.ndarray:
+        if text not in self.by_text:
+            raise ValueError(f"No precomputed vector for the question {text!r}; re-embed the questions")
+        return self.by_text[text]
+
+
+def import_vectors(name: str, zip_path: Path, spec: dict, claim_texts: list[str], patent_texts: list[str],
+                   questions: list[dict], cache_dir: Path) -> Path:
+    """Check the zip from colab_qwen4b.py against the local texts, questions and config, then
+    store it in data/eval_cache/<name>/ under the same key the cache uses."""
+    import zipfile
+    key = cache_key(spec, claim_texts, patent_texts)
+    with zipfile.ZipFile(zip_path) as z:
+        meta_name = next((n for n in z.namelist() if n.endswith("meta.json")), None)
+        if meta_name is None:
+            raise ValueError(f"{zip_path}: no *meta.json inside")
+        meta = json.loads(z.read(meta_name))
+        arrays = {}
+        for part in ("claim", "patent", "query"):
+            with z.open(f"{part}_vectors.npy") as f:
+                arrays[part] = np.load(io.BytesIO(f.read()))
+    expected = {"model_name": key["model_name"], "revision": key["revision"],
+                "document_prefix": key["document_prefix"], "query_prefix": spec.get("query_prefix", ""),
+                "max_seq_length": spec.get("max_seq_length"), "texts_sha256": key["texts_sha256"],
+                "question_ids": [q["id"] for q in questions]}
+    wrong = [k for k, v in expected.items() if meta.get(k) != v]
+    if wrong:
+        raise ValueError(f"{zip_path} does not match the local {', '.join(wrong)}; re-embed on Colab")
+    sizes = {"claim": len(claim_texts), "patent": len(patent_texts), "query": len(questions)}
+    dims = {a.shape[1] for a in arrays.values() if a.ndim == 2}
+    for part, a in arrays.items():
+        if a.ndim != 2 or a.shape[0] != sizes[part] or len(dims) != 1 or not np.isfinite(a).all():
+            raise ValueError(f"{zip_path}: {part}_vectors has shape {a.shape} or bad values, "
+                             f"expected {sizes[part]} finite rows of one size")
+        norms = np.linalg.norm(a, axis=1)
+        if np.abs(norms - 1).max() > 0.01:
+            raise ValueError(f"{zip_path}: {part}_vectors are not normalized")
+
+    folder = Path(cache_dir) / name
+    folder.mkdir(parents=True, exist_ok=True)
+    for part, a in arrays.items():
+        with open(folder / f"{part}_vectors.npy.tmp", "wb") as f:
+            np.save(f, a.astype(np.float32))
+        os.replace(folder / f"{part}_vectors.npy.tmp", folder / f"{part}_vectors.npy")
+    (folder / "meta.json").write_text(json.dumps({
+        "key": key, "vector_size": dims.pop(), "precomputed": True, "dtype": meta.get("dtype"),
+        "query_prefix": expected["query_prefix"], "questions": [{"id": q["id"], "text": q["text"]} for q in questions],
+        "source": Path(zip_path).name, "created": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+    }, indent=2, ensure_ascii=False))
+    return folder
+
+
+def precomputed_vectors(name: str, spec: dict, claim_texts: list[str], patent_texts: list[str],
+                        cache_dir: Path) -> tuple[VectorStore, PrecomputedQuery]:
+    folder = Path(cache_dir) / name
+    meta_path = folder / "meta.json"
+    if not meta_path.exists():
+        raise ValueError(f"{name}: no vectors in {folder}; import them with "
+                         f"`python -m patent_search eval --import-vectors ZIP --models {name}`")
+    meta = json.loads(meta_path.read_text())
+    if meta.get("key") != cache_key(spec, claim_texts, patent_texts):
+        raise ValueError(f"{name}: the vectors in {folder} were made from other texts or settings; "
+                         "re-embed on Colab and import again")
+    store = VectorStore(np.load(folder / "claim_vectors.npy"), np.load(folder / "patent_vectors.npy"))
+    return store, PrecomputedQuery(meta["questions"], np.load(folder / "query_vectors.npy"))
 
 
 def load_questions(path: Path = config.EVAL_QUESTIONS_PATH) -> list[dict]:
@@ -262,9 +356,22 @@ def run(candidates: list[str] | None = None, questions: list[dict] | None = None
         info = {"kind": "bm25" if name == BM25 else "embedding"}
         if name == BM25:
             searcher = index.with_store(BM25Store(claim_texts, patent_texts), BM25Query())
+        elif models[name].get("precomputed"):
+            spec = models[name]
+            vectors, embedder = precomputed_vectors(name, spec, claim_texts, patent_texts, cache_dir)
+            info.update({k: spec.get(k) for k in ("model_name", "revision", "code_revision", "query_prefix",
+                                                  "document_prefix", "max_seq_length", "pooling")})
+            info.update({"batch_size": None, "vectors": "precomputed"})
+            searcher = index.with_store(vectors, embedder)
         else:
             spec = models[name]
             embedder = embedder_factory(spec, device)
+            if spec.get("query_adapter"):
+                from patent_search.adapter import AdaptedQuery, QueryAdapter, check_adapter
+                adapter = QueryAdapter.load(spec["query_adapter"])
+                check_adapter(adapter, index.meta)
+                embedder = AdaptedQuery(embedder, adapter)
+                info["query_adapter"] = {"path": str(spec["query_adapter"]), "trained": adapter.meta.get("trained")}
             info.update({k: spec.get(k) for k in ("model_name", "revision", "code_revision",
                                                   "query_prefix", "document_prefix")})
             info["batch_size"] = getattr(embedder, "batch_size", None)

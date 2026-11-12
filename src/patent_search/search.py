@@ -218,7 +218,17 @@ class Index:
     def embedder(self):
         if self._embedder is None:
             from patent_search.embedder import Embedder
-            self._embedder = Embedder()
+            embedder = Embedder()
+            if config.QUERY_ADAPTER:
+                # Question -> model -> query adapter -> normalized; claim vectors stay as built.
+                from patent_search.adapter import AdaptedQuery, QueryAdapter, check_adapter
+                try:
+                    adapter = QueryAdapter.load(config.QUERY_ADAPTER)
+                    check_adapter(adapter, self.meta)
+                except (FileNotFoundError, ValueError) as e:
+                    raise IndexNotReady(str(e)) from e
+                embedder = AdaptedQuery(embedder, adapter)
+            self._embedder = embedder
         return self._embedder
 
     def with_store(self, vectors, embedder) -> "Index":

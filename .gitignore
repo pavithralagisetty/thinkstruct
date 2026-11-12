@@ -28,3 +28,9 @@ env/
 .idea/
 .DS_Store
 part2/query_vectors.npy
+# Part 3: fine tuned model folders (523 MB each; rebuild with part3_train_eval.py / train_summary.py)
+models/nomic-finetuned/
+models/nomic-finetuned-summary/
+models/.part3_checkpoints/
+# Part 3 training rows (rebuilt by python -m patent_search.train_summary --dry_run)
+data/part3_summaries/train_rows.jsonl

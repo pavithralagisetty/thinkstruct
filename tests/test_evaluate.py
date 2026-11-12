@@ -161,3 +161,61 @@ def test_embedder_reports_pooling():
     assert e.pooling == "mean+max"
     e.model = [object()]
     assert e.pooling == "none"
+
+
+# ---------- precomputed vectors (qwen3-4b) ----------
+
+def _precomputed_zip(path, spec, index, questions, **meta_changes):
+    import io as _io
+    import zipfile
+    claims, patents = evaluate.load_documents(index.index_dir)
+    rng = np.random.default_rng(0)
+
+    def unit(n):
+        v = rng.normal(size=(n, 8)).astype(np.float32)
+        return v / np.linalg.norm(v, axis=1, keepdims=True)
+    meta = {"model_name": spec["model_name"], "revision": spec["revision"], "max_seq_length": spec["max_seq_length"],
+            "query_prefix": spec["query_prefix"], "document_prefix": "", "dtype": "torch.bfloat16",
+            "texts_sha256": evaluate.texts_hash(claims, patents), "question_ids": [q["id"] for q in questions]}
+    meta.update(meta_changes)
+    with zipfile.ZipFile(path, "w") as z:
+        for name, n in (("claim", len(claims)), ("patent", len(patents)), ("query", len(questions))):
+            buf = _io.BytesIO()
+            np.save(buf, unit(n))
+            z.writestr(f"{name}_vectors.npy", buf.getvalue())
+        z.writestr("big_meta.json", json.dumps(meta))
+    return claims, patents
+
+
+PRE = {"big": {"model_name": "fake-big", "revision": "r9", "query_prefix": "Q:", "document_prefix": "",
+               "max_seq_length": 8192, "precomputed": True, "pooling": "lasttoken"}}
+
+
+def test_precomputed_import_and_run(index, tmp_path):
+    zip_path = tmp_path / "v.zip"
+    claims, patents = _precomputed_zip(zip_path, PRE["big"], index, QUESTIONS)
+    evaluate.import_vectors("big", zip_path, PRE["big"], claims, patents, QUESTIONS, tmp_path / "cache")
+
+    def no_model(spec, device):
+        raise AssertionError("a precomputed candidate must not load a model")
+    report = evaluate.run(["big"], questions=QUESTIONS, index=index, models=PRE, device="cpu",
+                          cache_dir=tmp_path / "cache", top_n=3, embedder_factory=no_model)
+    assert report["candidates"]["big"]["vectors"] == "precomputed"
+    assert report["candidates"]["big"]["pooling"] == "lasttoken"
+    assert all(len(h) == 3 for h in report["results"]["big"].values())
+    # a question the vectors were not made for is refused, not silently embedded
+    with pytest.raises(ValueError, match="No precomputed vector"):
+        evaluate.run(["big"], questions=[{"id": "q09", "text": "new"}], index=index, models=PRE,
+                     device="cpu", cache_dir=tmp_path / "cache", top_n=3, embedder_factory=no_model)
+
+
+def test_precomputed_import_checks(index, tmp_path):
+    zip_path = tmp_path / "v.zip"
+    claims, patents = _precomputed_zip(zip_path, PRE["big"], index, QUESTIONS, texts_sha256="other")
+    with pytest.raises(ValueError, match="texts_sha256"):
+        evaluate.import_vectors("big", zip_path, PRE["big"], claims, patents, QUESTIONS, tmp_path / "cache")
+    _precomputed_zip(zip_path, PRE["big"], index, QUESTIONS, revision="r1")
+    with pytest.raises(ValueError, match="revision"):
+        evaluate.import_vectors("big", zip_path, PRE["big"], claims, patents, QUESTIONS, tmp_path / "cache")
+    with pytest.raises(ValueError, match="no vectors"):
+        evaluate.run(["big"], questions=QUESTIONS, index=index, models=PRE, cache_dir=tmp_path / "empty")

@@ -5,6 +5,7 @@ import json
 import logging
 import sys
 import textwrap
+from pathlib import Path
 
 from patent_search import config
 
@@ -87,6 +88,16 @@ def cmd_eval(args):
 
     try:
         index = Index()
+        if args.import_vectors:
+            if not args.models or len(args.models) != 1 or not config.EVAL_MODELS.get(args.models[0], {}).get("precomputed"):
+                precomputed = [n for n, s in config.EVAL_MODELS.items() if s.get("precomputed")]
+                raise ValueError(f"--import-vectors needs one precomputed model in --models ({', '.join(precomputed)})")
+            name = args.models[0]
+            folder = evaluate.import_vectors(name, Path(args.import_vectors), config.EVAL_MODELS[name],
+                                             *evaluate.load_documents(index.index_dir), evaluate.load_questions(),
+                                             config.EVAL_CACHE_DIR)
+            print(f"{name}: vectors checked and stored in {folder}")
+            return
         report = evaluate.run(candidates=args.models, device=args.device, top_n=args.top, index=index)
     except (ValueError, IndexNotReady) as e:
         sys.exit(f"Error: {e}")
@@ -138,6 +149,16 @@ def cmd_grade(args):
     print(f"\nScores: {path}")
 
 
+def cmd_adapter(args):
+    from patent_search import adapter
+    from patent_search.embedder import Embedder
+    logging.getLogger("patent_search").setLevel(logging.INFO)
+    result = adapter.run(embedder=Embedder(device=args.device) if args.device else None, source=args.source)
+    print(adapter.markdown(result))
+    out = config.ADAPTER_SOURCES[args.source]["out"]
+    print(f"Saved {out}. Search with it: PATENT_SEARCH_QUERY_ADAPTER={out}")
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="python -m patent_search")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -171,12 +192,19 @@ def main(argv=None):
                    help=f"candidates to run (default: bm25 {' '.join(config.EVAL_MODELS)})")
     e.add_argument("--device", help="torch device for the models (default: mps when available, else cpu)")
     e.add_argument("-n", "--top", type=int, default=config.EVAL_TOP_N, help="claims saved per question")
+    e.add_argument("--import-vectors", metavar="ZIP",
+                   help="check and store vectors embedded elsewhere (colab_qwen4b.py) for the one --models NAME")
     e.set_defaults(func=cmd_eval)
     g = sub.add_parser("grade", help="pooled blind grading of the eval results")
     g.add_argument("action", choices=["prepare", "score"],
                    help="prepare: write blind packets; score: merge grades and score every model")
     g.add_argument("--report", help="eval report to use (default: latest data/eval_results/run_*.json)")
     g.set_defaults(func=cmd_grade)
+    a = sub.add_parser("adapter", help="Part 3: train the query adapter on abstracts (or summaries) and their claims")
+    a.add_argument("--source", choices=list(config.ADAPTER_SOURCES), default="abstract",
+                   help="train on the abstracts (default) or on their 1 to 2 sentence summaries")
+    a.add_argument("--device", help="torch device for embedding the abstracts (default: the model's choice)")
+    a.set_defaults(func=cmd_adapter)
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(message)s")
     args.func(args)
