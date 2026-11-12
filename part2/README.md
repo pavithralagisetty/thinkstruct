@@ -27,6 +27,14 @@ Recall = share of the exact top 10 found. Higher `efSearch` raises it (99.5% on 
 
 All tables: [`results.md`](results.md).
 
+## Accuracy vs speed
+
+HNSW gives up a little accuracy for a lot of speed, and the loss can be bought back. On its own
+it finds 88 to 93% of the exact top 10. With two-stage re-scoring it keeps 96% at 0.41 ms,
+while exact search would take ~25 s per question at 163M claims. So the loss is small, but
+measured, not zero. Recall here is against exact search, not against the graded relevance
+labels, so how much answer quality drops (if at all) is not yet measured.
+
 ## Limits
 
 * The 200k set is the real vectors copied with random noise, so the trends hold but the exact
