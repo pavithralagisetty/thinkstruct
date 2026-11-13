@@ -43,6 +43,28 @@ python -m patent_search search -k sipe -c "B60C 11" --from 2024-06 --by patent  
 python -m patent_search.benchmark                                                # reproduces the timing table below
 ```
 
+**Screenshots**
+
+The search page.
+
+![Search page](docs/screenshots/1-home.png)
+
+Search by meaning ("wheel spoke made of carbon fiber"): claims ranked with a match score and labelled main or dependent.
+
+![Claim results](docs/screenshots/2-claim-results.png)
+
+The same question grouped by patent, with each patent's best matching claims.
+
+![Patent results](docs/screenshots/3-patent-results.png)
+
+Map view: every patent placed by meaning, with the top matches lit and the top 5 numbered.
+
+![Patent map](docs/screenshots/4-map.png)
+
+Hybrid search ("tire for heavy trucks"): two exact filters, the claim keyword `tread` and classification B60C 11, narrow it to 539 claims, and the keyword is highlighted in each claim.
+
+![Hybrid filters](docs/screenshots/5-hybrid-filters.png)
+
 ### Part 3
 
 The grades and eval runs are in the repo, so this reprints the model comparison below without any new grading:
